@@ -6,7 +6,7 @@ namespace KeysToInsanity
     /// <summary>
     /// The main class.
     /// </summary>
-    public static class Program
+    public static class ProgramMain
     {
         /// <summary>
         /// The main entry point for the application.
@@ -14,7 +14,7 @@ namespace KeysToInsanity
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new KeysToInsanity())
                 game.Run();
         }
     }

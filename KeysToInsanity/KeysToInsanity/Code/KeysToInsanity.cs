@@ -1,18 +1,24 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KeysToInsanity.Code;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace KeysToInsanity
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class KeysToInsanity : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        BasicSprite theGentleman; // Our main character sprite
+        BasicSprite[] staticSprites; // Our other sprites
+        BasicInput input; // Our input handler
+
+        public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -39,8 +45,16 @@ namespace KeysToInsanity
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            // lets add those sprites
+            theGentleman = new BasicSprite(this, "TopHat");
+
+            /* for now, the input is created here, however later we will want
+               to create it earlier in order to provide input before everything is loaded
+            */
+            input = new BasicInput(this, theGentleman);
 
             // TODO: use this.Content to load your game content here
+            // ^ this is now being done in our Basic classes
         }
 
         /// <summary>
@@ -50,6 +64,7 @@ namespace KeysToInsanity
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            Content.Unload();
         }
 
         /// <summary>
@@ -59,9 +74,7 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
+            input.defaultKeyboardHandler();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -76,6 +89,9 @@ namespace KeysToInsanity
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            theGentleman.draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
