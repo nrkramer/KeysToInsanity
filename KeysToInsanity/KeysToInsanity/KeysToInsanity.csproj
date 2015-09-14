@@ -53,6 +53,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\Animation.cs" />
+    <Compile Include="Code\AnimationFrame.cs" />
     <Compile Include="Code\BasicSprite.cs" />
     <Compile Include="Code\BasicInput.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
