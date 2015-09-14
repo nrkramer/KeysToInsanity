@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace KeysToInsanity
 {
@@ -14,8 +15,9 @@ namespace KeysToInsanity
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        BasicBackground background; // Our background sprite. Gets drawn first
+        List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
         BasicSprite theGentleman; // Our main character sprite
-        BasicSprite[] staticSprites; // Our other sprites
         BasicInput input; // Our input handler
 
         public KeysToInsanity()
@@ -45,8 +47,13 @@ namespace KeysToInsanity
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            // lets add those sprites
+
+            // Gentleman
             theGentleman = new BasicSprite(this, "TopHat");
+
+            // static sprites
+            background = new BasicBackground(this, "Test_Background");
+            staticSprites.Add(background);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -90,6 +97,10 @@ namespace KeysToInsanity
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            for (int i = 0; i < staticSprites.Count; i++)
+            {
+                staticSprites[i].draw(spriteBatch);
+            }
             theGentleman.draw(spriteBatch);
             spriteBatch.End();
 

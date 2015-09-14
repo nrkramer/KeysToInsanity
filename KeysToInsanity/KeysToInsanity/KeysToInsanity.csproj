@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Code\Animation.cs" />
     <Compile Include="Code\AnimationFrame.cs" />
+    <Compile Include="Code\BasicBackground.cs" />
     <Compile Include="Code\BasicSprite.cs" />
     <Compile Include="Code\BasicInput.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
@@ -69,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Test_Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\TopHat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
