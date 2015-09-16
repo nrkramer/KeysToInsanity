@@ -27,14 +27,14 @@ namespace KeysToInsanity.Code
         {
             spriteSize = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
-            slide_timer.Interval = 5;
+            slide_timer.Interval = 5; // Adjust this for faster animation updates
         }
 
         // Load sprite from existing texture
         public BasicBackground(Texture2D tex) : base(tex)
         {
             slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
-            slide_timer.Interval = 5;
+            slide_timer.Interval = 5; // Adjust this for faster animation updates
         }
 
         public void slide(SLIDE_DIRECTION direction)
@@ -52,7 +52,7 @@ namespace KeysToInsanity.Code
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    spritePos = new Point(spritePos.X - 20, spritePos.Y);
+                    spritePos = new Point(spritePos.X - 20, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X < -spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -61,7 +61,7 @@ namespace KeysToInsanity.Code
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    spritePos = new Point(spritePos.X + 20, spritePos.Y);
+                    spritePos = new Point(spritePos.X + 20, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X > spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -70,7 +70,7 @@ namespace KeysToInsanity.Code
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_UP:
-                    spritePos = new Point(spritePos.X, spritePos.Y - 10);
+                    spritePos = new Point(spritePos.X, spritePos.Y - 10); // adjust the value here for animation speed
                     if (spritePos.Y < -spriteSize.Y)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -79,7 +79,7 @@ namespace KeysToInsanity.Code
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_DOWN:
-                    spritePos = new Point(spritePos.X, spritePos.Y + 10);
+                    spritePos = new Point(spritePos.X, spritePos.Y + 10); // adjust the value here for animation speed
                     if (spritePos.Y > spriteSize.Y)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
