@@ -15,7 +15,7 @@ namespace KeysToInsanity
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BasicBackground background; // Our background sprite. Gets drawn first
+        BasicBackground background; // background
         List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
         BasicSprite theGentleman; // Our main character sprite
         BasicInput input; // Our input handler
@@ -82,7 +82,23 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
             input.defaultKeyboardHandler();
-            // TODO: Add your update logic here
+            if (theGentleman.spritePos.X < 0)
+            {
+                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
+                theGentleman.spritePos = new Point(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
+            } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
+            {
+                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
+                theGentleman.spritePos = new Point(0, theGentleman.spritePos.Y);
+            } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
+            {
+                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
+                theGentleman.spritePos = new Point(theGentleman.spritePos.X, 0);
+            } else if (theGentleman.spritePos.Y < 0)
+            {
+                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
+                theGentleman.spritePos = new Point(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
+            }
 
             base.Update(gameTime);
         }

@@ -60,7 +60,7 @@
     <Compile Include="Code\BasicInput.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\ProgramMain.cs" />
-    <Compile Include="Code\TheGentleman.cs" />
+    <None Include="Code\TheGentleman.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
