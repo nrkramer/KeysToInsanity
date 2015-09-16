@@ -13,7 +13,7 @@ namespace KeysToInsanity
             get; }
         public Point spritePos {
             get; set; }
-        protected Point spriteSize;
+        public Point spriteSize;
 
         // Load sprite from file, requires you pass in a game instance for content loading
         public BasicSprite(Game game, string file)

@@ -9,6 +9,6 @@ namespace KeysToInsanity
     {
         BasicSprite Gentleman;
 
-        Gentleman = new BasicSprite(game,TempGentlman.png );
+        Gentleman = new BasicSprite(game, "TempGentlman.png");
     }
 }
