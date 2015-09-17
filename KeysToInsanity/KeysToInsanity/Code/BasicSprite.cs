@@ -9,7 +9,6 @@ namespace KeysToInsanity
 {
     class BasicSprite
     {
-
         public Texture2D spriteTex {
             get; }
         public Point spritePos {
@@ -54,6 +53,16 @@ namespace KeysToInsanity
             return spritePos + velocity.getDirection().ToPoint();
         }
 
+        public void updatePositionFromVelocity(Velocity v)
+        {
+            spritePos = getUpdatePositionFromVelocity(v);
+        }
+
+        public Point getUpdatePositionFromVelocity(Velocity v)
+        {
+            return spritePos + v.getDirection().ToPoint();
+        }
+
         // "virtual" allows the method to be overriden by subclasses
         public virtual void draw(SpriteBatch s)
         {
@@ -66,7 +75,7 @@ namespace KeysToInsanity
             }
         }
 
-        private void drawBorder(SpriteBatch s, Rectangle box, int borderWidth, Color color)
+        protected void drawBorder(SpriteBatch s, Rectangle box, int borderWidth, Color color)
         {
             s.Draw(KeysToInsanity.BOUNDING_BOX, new Rectangle(box.Left, box.Top, borderWidth, box.Height), color); // Left
             s.Draw(KeysToInsanity.BOUNDING_BOX, new Rectangle(box.Right, box.Top, borderWidth, box.Height), color); // Right

@@ -96,15 +96,11 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
             input.defaultKeyboardHandler();
-            bool moveGentleman = true;
             for (int i = 0; i < staticSprites.Count; i++)
             {
-                if (RectangleCollision.willCollide(theGentleman, staticSprites[i]))
-                    moveGentleman = false;
+                // all-in-one collision detection/handling for input slip
+                theGentleman.updatePositionFromVelocity(RectangleCollision.collisionWithSlip(theGentleman, staticSprites[i]));
             }
-
-            if (moveGentleman) // this creates "sticky" positional updates. needs editing
-                theGentleman.updatePosition();
 
             if (theGentleman.spritePos.X < 0)
             {
