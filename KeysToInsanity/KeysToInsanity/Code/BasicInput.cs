@@ -27,7 +27,7 @@ namespace KeysToInsanity.Code
 
             if (sprite != null)
             {
-                // here, you can change how fast the sprites move
+                // here, you can change how fast the sprite moves
                 int xVelocity = 5;
                 int yVelocity = 5;
 
@@ -42,7 +42,7 @@ namespace KeysToInsanity.Code
                 if (downDown(kb))
                     yDiff += yVelocity;
 
-                sprite.spritePos = new Point(sprite.spritePos.X + xDiff, sprite.spritePos.Y + yDiff);
+                sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff);
             }
         }
 

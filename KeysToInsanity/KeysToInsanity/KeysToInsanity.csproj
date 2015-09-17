@@ -61,6 +61,8 @@
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <None Include="Code\TheGentleman.cs" />
+    <Compile Include="Code\RectangleCollision.cs" />
+    <Compile Include="Code\Velocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +73,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tempGentleman.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

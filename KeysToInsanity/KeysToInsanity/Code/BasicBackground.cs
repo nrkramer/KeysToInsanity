@@ -52,7 +52,7 @@ namespace KeysToInsanity.Code
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    spritePos = new Point(spritePos.X - 20, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Point(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X < -spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -61,7 +61,7 @@ namespace KeysToInsanity.Code
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    spritePos = new Point(spritePos.X + 20, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Point(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X > spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -99,6 +99,7 @@ namespace KeysToInsanity.Code
             spriteSize.X = s.GraphicsDevice.Viewport.Width;
             spriteSize.Y = s.GraphicsDevice.Viewport.Height;
             s.Draw(spriteTex, new Rectangle(spritePos, spriteSize), new Color(1.0f, 1.0f, 1.0f));
+            // draw the next chunk of background
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_DOWN:
