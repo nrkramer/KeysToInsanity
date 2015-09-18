@@ -28,15 +28,17 @@ namespace KeysToInsanity.Code
                 float vf1, vf2;
                 Velocity v1 = Velocity.FromCoordinates(s1.velocity.getDirection().X, 0.0f);
                 Velocity v2 = Velocity.FromCoordinates(s2.velocity.getDirection().X, 0.0f);
-                if (new Rectangle(s1.getUpdatePositionFromVelocity(v1), s1.spriteSize).Intersects(new Rectangle(s2.getUpdatePositionFromVelocity(v2), s2.spriteSize)))
-                    vf1 = 0.0f;
+                Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2), s2.spriteSize));
+                if (collision != Rectangle.Empty)
+                    vf1 = v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width);
                 else
                     vf1 = v1.getDirection().X;
 
                 v1 = Velocity.FromCoordinates(0.0f, s1.velocity.getDirection().Y);
                 v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
-                if (new Rectangle(s1.getUpdatePositionFromVelocity(v1), s1.spriteSize).Intersects(new Rectangle(s2.getUpdatePositionFromVelocity(v2), s2.spriteSize)))
-                    vf2 = 0.0f;
+                collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2), s2.spriteSize));
+                if (collision != Rectangle.Empty)
+                    vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
                 else
                     vf2 = v1.getDirection().Y;
 
