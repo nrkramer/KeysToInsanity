@@ -58,9 +58,12 @@
     <Compile Include="Code\BasicBackground.cs" />
     <Compile Include="Code\BasicSprite.cs" />
     <Compile Include="Code\BasicInput.cs" />
+    <Compile Include="Code\Entitys\Nurse.cs" />
+    <Compile Include="Code\Entitys\Security.cs" />
+    <Compile Include="Code\Entitys\TheDoctor.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\ProgramMain.cs" />
-    <None Include="Code\TheGentleman.cs" />
+    <None Include="Code\Entitys\TheGentleman.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
