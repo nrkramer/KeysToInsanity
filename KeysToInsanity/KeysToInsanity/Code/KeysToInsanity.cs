@@ -12,13 +12,17 @@ namespace KeysToInsanity
     /// </summary>
     public class KeysToInsanity : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        // Some debug values
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static Texture2D BOUNDING_BOX;
 
-        BasicBackground background; // background
-        List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
-        BasicSprite theGentleman; // Our main character sprite
-        BasicInput input; // Our input handler
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+
+        private BasicBackground background; // background
+        private List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
+        private BasicSprite theGentleman; // Our main character sprite
+        private BasicInput input; // Our input handler
 
         public KeysToInsanity()
         {
@@ -48,12 +52,22 @@ namespace KeysToInsanity
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            if (DRAW_BOUNDING_BOXES)
+            {
+                BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
+                BOUNDING_BOX.SetData(new[] { Color.White });
+            }
+
             // Gentleman
             theGentleman = new BasicSprite(this, "TopHat");
 
             // static sprites
             background = new BasicBackground(this, "Test_Background");
-            staticSprites.Add(background);
+            BasicSprite platform = new BasicSprite(this, "platform");
+            platform.spritePos = new Point(300, 280);
+            platform.spriteSize = new Point(150, 30);
+
+            staticSprites.Add(platform);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -82,6 +96,12 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
             input.defaultKeyboardHandler();
+            for (int i = 0; i < staticSprites.Count; i++)
+            {
+                // all-in-one collision detection/handling for input slip
+                theGentleman.updatePositionFromVelocity(RectangleCollision.collisionWithSlip(theGentleman, staticSprites[i]));
+            }
+
             if (theGentleman.spritePos.X < 0)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
@@ -113,6 +133,7 @@ namespace KeysToInsanity
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            background.draw(spriteBatch);
             for (int i = 0; i < staticSprites.Count; i++)
             {
                 staticSprites[i].draw(spriteBatch);

@@ -52,7 +52,7 @@ namespace KeysToInsanity.Code
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    spritePos = new Point(spritePos.X - 20, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Point(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X < -spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -61,7 +61,7 @@ namespace KeysToInsanity.Code
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    spritePos = new Point(spritePos.X + 20, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Point(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X > spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
@@ -98,24 +98,32 @@ namespace KeysToInsanity.Code
             // set the sprite size to the size of the drawing viewport
             spriteSize.X = s.GraphicsDevice.Viewport.Width;
             spriteSize.Y = s.GraphicsDevice.Viewport.Height;
-            s.Draw(spriteTex, new Rectangle(spritePos, spriteSize), new Color(1.0f, 1.0f, 1.0f));
+            drawBackground(s, spriteTex, new Rectangle(spritePos, spriteSize), new Color(1.0f, 1.0f, 1.0f));
+            // draw the next chunk of background
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_DOWN:
-                    s.Draw(spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y - spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y - spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    s.Draw(spriteTex, new Rectangle(new Point(spritePos.X + spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X + spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    s.Draw(spriteTex, new Rectangle(new Point(spritePos.X - spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X - spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_UP:
-                    s.Draw(spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y + spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y + spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 default:
                     break;
             }
+        }
+
+        private void drawBackground(SpriteBatch s, Texture2D tex, Rectangle r, Color c)
+        {
+            s.Draw(tex, r, c);
+            if (KeysToInsanity.DRAW_BOUNDING_BOXES)
+                drawBorder(s, r, 2, Color.Yellow);
         }
     }
 }

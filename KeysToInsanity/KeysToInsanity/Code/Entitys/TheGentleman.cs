@@ -8,11 +8,10 @@ namespace KeysToInsanity
     class TheGentleman
     {
         private BasicSprite gentleman;
-        
-        private TheGentleman()
-            {
 
-         gentleman = new BasicSprite(game , "TempGentlman.png");
-            }
+        public TheGentleman()
+        {
+            gentleman = new BasicSprite(game, "TempGentlman.png");
+        }
     }
 }
