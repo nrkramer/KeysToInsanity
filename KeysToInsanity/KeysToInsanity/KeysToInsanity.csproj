@@ -61,9 +61,9 @@
     <Compile Include="Code\Entitys\Nurse.cs" />
     <Compile Include="Code\Entitys\Security.cs" />
     <Compile Include="Code\Entitys\TheDoctor.cs" />
+    <Compile Include="Code\Entitys\TheGentleman.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\ProgramMain.cs" />
-    <None Include="Code\TheGentleman.cs" />
     <Compile Include="Code\RectangleCollision.cs" />
     <Compile Include="Code\Velocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
