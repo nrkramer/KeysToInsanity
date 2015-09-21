@@ -58,6 +58,7 @@
     <Compile Include="Code\BasicBackground.cs" />
     <Compile Include="Code\BasicSprite.cs" />
     <Compile Include="Code\BasicInput.cs" />
+    <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <None Include="Code\TheGentleman.cs" />
