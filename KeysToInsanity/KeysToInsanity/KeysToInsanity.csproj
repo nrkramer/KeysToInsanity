@@ -64,6 +64,7 @@
     <Compile Include="Code\Entitys\TheDoctor.cs" />
     <Compile Include="Code\Entitys\TheGentleman.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
+    <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <Compile Include="Code\RectangleCollision.cs" />
     <Compile Include="Code\Velocity.cs" />
@@ -77,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\hat hanger 2.png" />
     <Content Include="Content\platform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -110,6 +112,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\obj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

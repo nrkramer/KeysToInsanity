@@ -59,7 +59,7 @@ namespace KeysToInsanity
             }
 
             // Gentleman
-            theGentleman = new BasicSprite(this, "TopHat");
+            theGentleman = new TheGentleman(this,"TopHat.png");
 
             // static sprites
             background = new BasicBackground(this, "Test_Background");

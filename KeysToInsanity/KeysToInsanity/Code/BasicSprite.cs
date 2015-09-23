@@ -16,6 +16,7 @@ namespace KeysToInsanity
         public Point spriteSize;
         public Velocity velocity;
 
+      
         // Load sprite from file, requires you pass in a game instance for content loading
         // when subclassing BasicSprite you must create the same Constructors in the subclass with :base(parameters)
         // the parameters should match the ones here

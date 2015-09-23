@@ -4,11 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 
 namespace KeysToInsanity.Code
 {
-    class Physics
-    {
+    class Physics 
+        {
         public bool isHeJumping;
         public Vector2 position;
         public Vector2 velocity;
@@ -19,19 +20,19 @@ namespace KeysToInsanity.Code
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                velocity.X = 3f;
+                velocity.X = 3.0f;
             }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                velocity.X = -3f;
+                velocity.X = -3.0f;
             }
             else{
-                velocity.X = 0f;
+                velocity.X = 0.0f;
             }
 
             if(Keyboard.GetState().IsKeyDown(Keys.Space) && isHeJumping == false)
             {
-                position.Y -= 10f;
-                velocity.Y = -5f;
+                position.Y -= 10.0f;
+                velocity.Y = -5.0f;
                 isHeJumping = true;
             }
             if(isHeJumping == true)
@@ -47,7 +48,7 @@ namespace KeysToInsanity.Code
 
             if(isHeJumping == false)
             {
-                velocity.Y = 0f;
+                velocity.Y = 0.0f;
             }
 
         }
