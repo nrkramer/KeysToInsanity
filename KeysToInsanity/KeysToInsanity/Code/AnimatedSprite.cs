@@ -9,23 +9,25 @@ namespace KeysToInsanity.Code
         private List<Animation> animations = new List<Animation>();
         private Animation currentAnimation = new Animation();
 
-        private Rectangle animatedSpriteSize = new Rectangle(); // size of each individual sprite in the sprite sheet
+        private Point animatedSpriteSize = new Point(); // size of each individual sprite in the sprite sheet
         private int spriteAnimations = 1; // number of rows in sprite sheet
         private double animationSpeed = 0.25f;
 
-        public AnimatedSprite(Game game, string file, Rectangle animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(game, file)
+        public AnimatedSprite(Game game, string file, Point animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(game, file)
         {
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;
             this.animationSpeed = animationSpeed;
+            spriteSize = animatedSpriteSize;
             loadAnimations();
         }
 
-        public AnimatedSprite(Texture2D tex, Rectangle animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(tex)
+        public AnimatedSprite(Texture2D tex, Point animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(tex)
         {
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;
             this.animationSpeed = animationSpeed;
+            spriteSize = animatedSpriteSize;
             loadAnimations();
         }
 
@@ -36,10 +38,10 @@ namespace KeysToInsanity.Code
             for (int i = 0; i < spriteAnimations; i++)
             {
                 animations.Add(new Animation());
-                for (int j = 0; j < spriteTex.Width / animatedSpriteSize.Width; j++)
+                for (int j = 0; j < spriteTex.Width / animatedSpriteSize.X; j++)
                 {
                     animations[i].AddFrame(
-                        new Rectangle(j * animatedSpriteSize.Width, i * animatedSpriteSize.Height, animatedSpriteSize.Width, animatedSpriteSize.Height),
+                        new Rectangle(j * animatedSpriteSize.X, i * animatedSpriteSize.Y, animatedSpriteSize.X, animatedSpriteSize.Y),
                         System.TimeSpan.FromSeconds(animationSpeed));
                 }
             }
