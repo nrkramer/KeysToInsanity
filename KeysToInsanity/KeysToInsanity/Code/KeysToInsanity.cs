@@ -13,7 +13,7 @@ namespace KeysToInsanity
     public class KeysToInsanity : Game
     {
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static Texture2D BOUNDING_BOX;
 
         private GraphicsDeviceManager graphics;
@@ -21,7 +21,7 @@ namespace KeysToInsanity
 
         private BasicBackground background; // background
         private List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
-        private BasicSprite theGentleman; // Our main character sprite
+        private TheGentleman theGentleman; // Our main character sprite
         private BasicInput input; // Our input handler
 
         public KeysToInsanity()
@@ -59,7 +59,7 @@ namespace KeysToInsanity
             }
 
             // Gentleman
-            theGentleman = new TheGentleman(this,"TopHat.png");
+            theGentleman = new TheGentleman(this);
 
             // static sprites
             background = new BasicBackground(this, "Test_Background");
@@ -95,7 +95,7 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            input.defaultKeyboardHandler();
+            theGentleman.handleInput(gameTime);
             for (int i = 0; i < staticSprites.Count; i++)
             {
                 // all-in-one collision detection/handling for input slip
