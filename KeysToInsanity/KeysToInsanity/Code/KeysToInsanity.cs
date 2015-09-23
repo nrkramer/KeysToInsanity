@@ -13,7 +13,7 @@ namespace KeysToInsanity
     public class KeysToInsanity : Game
     {
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static Texture2D BOUNDING_BOX;
 
         private GraphicsDeviceManager graphics;
