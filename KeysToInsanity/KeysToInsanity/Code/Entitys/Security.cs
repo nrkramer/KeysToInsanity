@@ -7,5 +7,11 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Security
     {
+        private BasicSprite security;
+
+        public Security()
+        {
+            security = new BasicSprite(game, "TopHat.png");
+        }
     }
 }

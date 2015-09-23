@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
-namespace KeysToInsanity
+namespace KeysToInsanity.Code.Entitys
 {
     class TheGentleman
     {
-        private BasicSprite gentleman;
-
+      
         public TheGentleman()
         {
             gentleman = new BasicSprite(game, "TempGentlman.png");

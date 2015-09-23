@@ -7,5 +7,11 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Nurse
     {
+        private BasicSprite nurse;
+
+        public Nurse()
+        {
+            nurse = new BasicSprite(game, "TopHat.png");
+        }
     }
 }
