@@ -81,6 +81,7 @@
     <Content Include="Content\hat hanger 2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\padded room.png" />
     <Content Include="Content\platform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
