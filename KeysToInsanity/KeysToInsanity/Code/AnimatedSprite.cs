@@ -35,7 +35,7 @@ namespace KeysToInsanity.Code
         {
             for (int i = 0; i < spriteAnimations; i++)
             {
-                animations[i] = new Animation();
+                animations.Add(new Animation());
                 for (int j = 0; j < spriteTex.Width / animatedSpriteSize.Width; j++)
                 {
                     animations[i].AddFrame(
