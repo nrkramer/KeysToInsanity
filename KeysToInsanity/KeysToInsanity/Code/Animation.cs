@@ -19,7 +19,6 @@ namespace KeysToInsanity
                 foreach (var frame in frames)
                 {
                     totalSeconds += frame.Duration.TotalSeconds;
-
                 }
 
                 return TimeSpan.FromSeconds(totalSeconds);
@@ -36,6 +35,7 @@ namespace KeysToInsanity
 
             frames.Add(newFrame);
         }
+
         public void Update(GameTime gameTime)
         {
             double secondsIntoAnimation =
@@ -54,16 +54,16 @@ namespace KeysToInsanity
 
                 //See if we can find the frame
                 TimeSpan accumulatedTime = new TimeSpan();
-                foreach (var frame in frames)
+                for(int i = 0; i < frames.Count; i++)
                 {
-                    if (accumulatedTime + frame.Duration >= timeIntoAnimation)
+                    if (accumulatedTime + frames[i].Duration >= timeIntoAnimation)
                     {
-                        currentFrame = frame;
+                        currentFrame = frames[i];
                         break;
                     }
                     else
                     {
-                        accumulatedTime += frame.Duration;
+                        accumulatedTime += frames[i].Duration;
                     }
                 }
                 /*If no frame was found, then we ty the last frame,
@@ -81,7 +81,6 @@ namespace KeysToInsanity
                     return Rectangle.Empty;
                 }
             }
-
         }
     }
 }
