@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
-namespace KeysToInsanity.Code.Entitys
+namespace KeysToInsanity
 {
     class Security
     {
         private BasicSprite security;
+        
 
-        public Security()
+        public Security(Game game)
         {
             security = new BasicSprite(game, "TopHat.png");
         }

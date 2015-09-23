@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
 namespace KeysToInsanity.Code.Entitys
 {
     class TheDoctor
     {
+       
         private BasicSprite doctor;
 
-        public TheDoctor()
+        public TheDoctor(Game game)
         {
             doctor = new BasicSprite(game, "TopHat.png");
         }
