@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-
-namespace KeysToInsanity.Code.Entitys
+﻿using Microsoft.Xna.Framework;
+namespace KeysToInsanity
 {
     class TheGentleman
     {
-      
-        public TheGentleman()
+        
+        private BasicSprite gentleman;
+        public TheGentleman(Game game,string file)
         {
-            gentleman = new BasicSprite(game, "TempGentlman.png");
+            gentleman = new BasicSprite(game, file);
         }
     }
 }

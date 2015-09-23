@@ -16,6 +16,7 @@ namespace KeysToInsanity
         public Point spriteSize;
         public Velocity velocity;
 
+      
         // Load sprite from file, requires you pass in a game instance for content loading
         public BasicSprite(Game game, string file)
         {
