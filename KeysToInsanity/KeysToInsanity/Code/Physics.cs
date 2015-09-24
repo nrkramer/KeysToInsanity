@@ -10,47 +10,17 @@ namespace KeysToInsanity.Code
 {
     class Physics 
         {
-        public bool isHeJumping;
-        public Vector2 position;
-        public Vector2 velocity;
+        public bool isHeJumping = false;
+        public Velocity velocity;
+        public int gravity;
 
         public void Update(GameTime gameTime)
         {
-            position += velocity;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (isHeJumping == false)
             {
-                velocity.X = 3.0f;
-            }else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                velocity.X = -3.0f;
+                velocity = Velocity.Zero;
             }
-            else{
-                velocity.X = 0.0f;
-            }
-
-            if(Keyboard.GetState().IsKeyDown(Keys.Space) && isHeJumping == false)
-            {
-                position.Y -= 10.0f;
-                velocity.Y = -5.0f;
-                isHeJumping = true;
-            }
-            if(isHeJumping == true)
-            {
-                int n = 1;
-                velocity.Y = 0.15f + n;
-            }
-
-            if(position.Y >= 450)
-            {
-                isHeJumping = false;
-            }
-
-            if(isHeJumping == false)
-            {
-                velocity.Y = 0.0f;
-            }
-
         }
         
 
