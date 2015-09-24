@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace KeysToInsanity.Code
@@ -42,13 +43,14 @@ namespace KeysToInsanity.Code
                 {
                     animations[i].AddFrame(
                         new Rectangle(j * animatedSpriteSize.X, i * animatedSpriteSize.Y, animatedSpriteSize.X, animatedSpriteSize.Y),
-                        System.TimeSpan.FromSeconds(animationSpeed));
+                        TimeSpan.FromSeconds(animationSpeed));
                 }
             }
         }
 
         public void updateWithAnimation(GameTime time, int index)
         {
+            currentAnimation = animations[index];
             animations[index].Update(time);
         }
 
@@ -57,7 +59,7 @@ namespace KeysToInsanity.Code
             if (spriteTex != null)
             {
                 Rectangle spriteBox = new Rectangle(spritePos, spriteSize);
-                s.Draw(spriteTex, spriteBox, currentAnimation.CurrentRectangle, new Color(1.0f, 1.0f, 1.0f)); // add source rectangle
+                s.Draw(spriteTex, spritePos.ToVector2(), currentAnimation.CurrentRectangle, new Color(1.0f, 1.0f, 1.0f)); // add source rectangle
                 if (KeysToInsanity.DRAW_BOUNDING_BOXES)
                     drawBorder(s, spriteBox, 2, Color.Red);
             }
