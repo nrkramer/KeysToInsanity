@@ -13,7 +13,7 @@ namespace KeysToInsanity
     public class KeysToInsanity : Game
     {
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static Texture2D BOUNDING_BOX;
 
         private GraphicsDeviceManager graphics;
@@ -60,14 +60,35 @@ namespace KeysToInsanity
 
             // Gentleman
             theGentleman = new TheGentleman(this);
+            theGentleman.spritePos = new Point(100, 100);
 
-            // static sprites
-            background = new BasicBackground(this, "Test_Background");
-            BasicSprite platform = new BasicSprite(this, "platform");
-            platform.spritePos = new Point(300, 280);
-            platform.spriteSize = new Point(150, 30);
+            // static sprites - test code. To be replaced by a level loader (XML maybe)
+            background = new BasicBackground(this, "padded_background");
+            BasicSprite leftWall = new BasicSprite(this, "padded_wall_left");
+            leftWall.spritePos = new Point(0, 0);
+            leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
+            BasicSprite rightWall = new BasicSprite(this, "padded_wall_right");
+            rightWall.spritePos = new Point(GraphicsDevice.Viewport.Width - 30, 0);
+            rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
+            BasicSprite floor = new BasicSprite(this, "padded_floor");
+            floor.spritePos = new Point(0, GraphicsDevice.Viewport.Height - 30);
+            floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
+            BasicSprite key = new BasicSprite(this, "key");
+            key.spritePos = new Point(30, GraphicsDevice.Viewport.Height - 80);
+            key.spriteSize = new Point(50, 50);
+            BasicSprite hangar = new BasicSprite(this, "hat hanger 2");
+            hangar.spritePos = new Point(550, GraphicsDevice.Viewport.Height - 220);
+            hangar.spriteSize = new Point(100, 200);
+            BasicSprite bed = new BasicSprite(this, "bed");
+            bed.spritePos = new Point(250, GraphicsDevice.Viewport.Height - 150);
+            bed.spriteSize = new Point(200, 150);
 
-            staticSprites.Add(platform);
+            staticSprites.Add(floor);
+            staticSprites.Add(rightWall);
+            staticSprites.Add(leftWall);
+            staticSprites.Add(key);
+            staticSprites.Add(hangar);
+            staticSprites.Add(bed);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -99,8 +120,9 @@ namespace KeysToInsanity
             for (int i = 0; i < staticSprites.Count; i++)
             {
                 // all-in-one collision detection/handling for input slip
-                theGentleman.updatePositionFromVelocity(RectangleCollision.collisionWithSlip(theGentleman, staticSprites[i]));
+                theGentleman.velocity = RectangleCollision.collisionWithSlip(theGentleman, staticSprites[i]);
             }
+            theGentleman.updatePosition();
 
             if (theGentleman.spritePos.X < 0)
             {
