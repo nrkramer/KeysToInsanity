@@ -2,7 +2,6 @@
 using KeysToInsanity.Code.Interactive_Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace KeysToInsanity
