@@ -1,5 +1,5 @@
 ﻿using KeysToInsanity.Code;
-
+using KeysToInsanity.Code.Interactive_Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -64,22 +64,20 @@ namespace KeysToInsanity
 
             // static sprites - test code. To be replaced by a level loader (XML maybe)
             background = new BasicBackground(this, "padded_background");
-            BasicSprite leftWall = new BasicSprite(this, "padded_wall_left");
+            BasicSprite leftWall = new BasicSprite(this, "padded_wall_left", true);
             leftWall.spritePos = new Point(0, 0);
             leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
-            BasicSprite rightWall = new BasicSprite(this, "padded_wall_right");
+            BasicSprite rightWall = new BasicSprite(this, "padded_wall_right", true);
             rightWall.spritePos = new Point(GraphicsDevice.Viewport.Width - 30, 0);
             rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
-            BasicSprite floor = new BasicSprite(this, "padded_floor");
+            BasicSprite floor = new BasicSprite(this, "padded_floor", true);
             floor.spritePos = new Point(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
-            BasicSprite key = new BasicSprite(this, "key");
+            Key key = new Key(this);
             key.spritePos = new Point(30, GraphicsDevice.Viewport.Height - 80);
-            key.spriteSize = new Point(50, 50);
-            BasicSprite hangar = new BasicSprite(this, "hat hanger 2");
-            hangar.spritePos = new Point(550, GraphicsDevice.Viewport.Height - 220);
-            hangar.spriteSize = new Point(100, 200);
-            BasicSprite bed = new BasicSprite(this, "bed");
+            HatHanger hanger = new HatHanger(this);
+            hanger.spritePos = new Point(550, GraphicsDevice.Viewport.Height - 220);
+            BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Point(250, GraphicsDevice.Viewport.Height - 150);
             bed.spriteSize = new Point(200, 150);
 
@@ -87,7 +85,7 @@ namespace KeysToInsanity
             staticSprites.Add(rightWall);
             staticSprites.Add(leftWall);
             staticSprites.Add(key);
-            staticSprites.Add(hangar);
+            staticSprites.Add(hanger);
             staticSprites.Add(bed);
 
             /* for now, the input is created here, however later we will want

@@ -7,7 +7,7 @@ namespace KeysToInsanity.Code
        
         private BasicSprite doctor;
 
-        public TheDoctor(Game game) : base(game, "TopHat", new Point (72,71), 1,.25)
+        public TheDoctor(Game game) : base(game, "TopHat", new Point (72,71), 1,.25, false)
         {
             
         }

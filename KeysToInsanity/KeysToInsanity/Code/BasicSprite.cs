@@ -15,12 +15,13 @@ namespace KeysToInsanity
             get; set; }
         public Point spriteSize;
         public Velocity velocity;
+        public bool collidable;
 
       
         // Load sprite from file, requires you pass in a game instance for content loading
         // when subclassing BasicSprite you must create the same Constructors in the subclass with :base(parameters)
         // the parameters should match the ones here
-        public BasicSprite(Game game, string file)
+        public BasicSprite(Game game, string file, bool collide)
         {
             try {
                 spriteTex = game.Content.Load<Texture2D>(file); // load the texture
@@ -28,20 +29,22 @@ namespace KeysToInsanity
                 spritePos = new Point(0, 0); // initial position
                 spriteSize = spriteTex.Bounds.Size; // get the size from the texture size
                 velocity = Velocity.Zero;
+                collidable = collide;
                 
-            } catch (ContentLoadException e)
+            } catch (ContentLoadException)
             {
                 Console.WriteLine(file + " not loaded. Probably can't be found.\n");
             }
         }
 
         // Load sprite from existing texture
-        public BasicSprite(Texture2D tex)
+        public BasicSprite(Texture2D tex, bool collide)
         {
             spriteTex = tex;
             spritePos = new Point(0, 0);
             spriteSize = spriteTex.Bounds.Size;
             velocity = Velocity.Zero;
+            collidable = collide;
         }
 
         // updates the position based on the current velocity
@@ -65,6 +68,8 @@ namespace KeysToInsanity
         {
             return spritePos + v.getDirection().ToPoint();
         }
+
+        public virtual void onCollide(BasicSprite collided) { }
 
         // "virtual" allows the method to be overriden by subclasses
         public virtual void draw(SpriteBatch s)

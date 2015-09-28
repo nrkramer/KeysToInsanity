@@ -6,7 +6,7 @@ namespace KeysToInsanity.Code
     {
         
 
-        public Security(Game game) : base(game, "TopHat",new Point (72,71),1,.25)
+        public Security(Game game) : base(game, "TopHat",new Point (72,71),1,.25, false)
         {
             
         }

@@ -14,7 +14,7 @@ namespace KeysToInsanity.Code
         private int spriteAnimations = 1; // number of rows in sprite sheet
         private double animationSpeed = 0.25f;
 
-        public AnimatedSprite(Game game, string file, Point animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(game, file)
+        public AnimatedSprite(Game game, string file, Point animatedSpriteSize, int spriteAnimations, double animationSpeed, bool collidable) : base(game, file, collidable)
         {
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;
@@ -23,7 +23,7 @@ namespace KeysToInsanity.Code
             loadAnimations();
         }
 
-        public AnimatedSprite(Texture2D tex, Point animatedSpriteSize, int spriteAnimations, double animationSpeed) : base(tex)
+        public AnimatedSprite(Texture2D tex, Point animatedSpriteSize, int spriteAnimations, double animationSpeed, bool collidable) : base(tex, collidable)
         {
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;

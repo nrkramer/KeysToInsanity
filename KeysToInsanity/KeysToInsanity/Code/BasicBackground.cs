@@ -23,7 +23,7 @@ namespace KeysToInsanity.Code
         private SLIDE_DIRECTION sliding = SLIDE_DIRECTION.NO_SLIDE;
         private Timer slide_timer = new Timer();
 
-        public BasicBackground(Game game, string file) : base(game, file)
+        public BasicBackground(Game game, string file) : base(game, file, false)
         {
             spriteSize = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
@@ -31,7 +31,7 @@ namespace KeysToInsanity.Code
         }
 
         // Load sprite from existing texture
-        public BasicBackground(Texture2D tex) : base(tex)
+        public BasicBackground(Texture2D tex) : base(tex, false)
         {
             slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
             slide_timer.Interval = 5; // Adjust this for faster animation updates

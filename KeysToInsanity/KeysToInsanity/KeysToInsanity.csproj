@@ -63,6 +63,8 @@
     <Compile Include="Code\Entitys\Security.cs" />
     <Compile Include="Code\Entitys\TheDoctor.cs" />
     <Compile Include="Code\Entitys\TheGentleman.cs" />
+    <Compile Include="Code\Interactive Objects\HatHanger.cs" />
+    <Compile Include="Code\Interactive Objects\Key.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\ProgramMain.cs" />
