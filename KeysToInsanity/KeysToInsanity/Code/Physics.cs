@@ -10,9 +10,7 @@ namespace KeysToInsanity.Code
 {
     class Physics
     {
-        private Velocity space;
-        public BasicInput upwards;
-        private Velocity movement;
+        public bool isJumping;
         public Vector2 gravity = new Vector2(0, -9.8f);
         public Vector2 velocity;
         public Vector2 position;
