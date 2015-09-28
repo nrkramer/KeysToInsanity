@@ -10,18 +10,15 @@ namespace KeysToInsanity.Code
 {
     class Physics
     {
-        private Velocity space;
-        public BasicInput upwards;
-        private Velocity movement;
-        public Vector2 gravity = new Vector2(0, -9.8f);
-        public Vector2 velocity;
-        public Vector2 position;
+        public Velocity gravity = Velocity.FromDirection(270, -9.8f);
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<BasicSprite> spritesToPhysics)
         {
-            float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            velocity += gravity * time;
-            position += velocity * time;
+            foreach(BasicSprite i in spritesToPhysics)
+            {
+               // float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                i.velocity = i.velocity + gravity;
+            }
         }
     }
 }

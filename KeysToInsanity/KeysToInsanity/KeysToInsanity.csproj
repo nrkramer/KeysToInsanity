@@ -69,6 +69,7 @@
     <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <Compile Include="Code\RectangleCollision.cs" />
+    <Compile Include="Code\Sound.cs" />
     <Compile Include="Code\Velocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SoundFX\Music\Beethovens5th.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tempGentleman.png">

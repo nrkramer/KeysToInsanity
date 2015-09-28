@@ -21,8 +21,13 @@ namespace KeysToInsanity
 
         private BasicBackground background; // background
         private List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
+        private List<BasicSprite> characterSprites = new List<BasicSprite>();
         private TheGentleman theGentleman; // Our main character sprite
         private BasicInput input; // Our input handler
+
+        private Physics physics = new Physics();
+
+        private Sound testSound;
 
         public KeysToInsanity()
         {
@@ -60,6 +65,7 @@ namespace KeysToInsanity
 
             // Gentleman
             theGentleman = new TheGentleman(this);
+            characterSprites.Add(theGentleman);
             theGentleman.spritePos = new Point(100, 100);
 
             // static sprites - test code. To be replaced by a level loader (XML maybe)
@@ -93,6 +99,9 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
+            //testSound = new Sound(this, "SoundFX/Music/Beethovens5th");
+            //testSound.play(true);
+
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
         }
@@ -114,6 +123,8 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            physics.Update(gameTime, characterSprites);
+
             theGentleman.handleInput(gameTime);
             for (int i = 0; i < staticSprites.Count; i++)
             {
