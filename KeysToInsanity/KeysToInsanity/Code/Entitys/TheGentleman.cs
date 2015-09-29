@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace KeysToInsanity.Code
 {
@@ -23,6 +24,22 @@ namespace KeysToInsanity.Code
         {
         }
 
+        public override void draw(SpriteBatch s)
+        {
+            base.draw(s);
+            if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
+                drawMovementVector(s);
+            // Custom Gentleman drawing code.
+        }
+
+        private void drawMovementVector(SpriteBatch s)
+        {
+            Rectangle bounds = KeysToInsanity.MOVEMENT_VECTOR.Bounds;
+            s.Draw(KeysToInsanity.MOVEMENT_VECTOR,
+                new Rectangle(spritePos + new Point(spriteSize.X / 2, spriteSize.Y / 2), spriteSize),
+                KeysToInsanity.MOVEMENT_VECTOR.Bounds, Color.Red, (float)velocity.getRotation(),
+                new Vector2(bounds.Width / 2, bounds.Height / 2), SpriteEffects.None, 1.0f);
+        }
         //use an update method to move ai in methods.
     }
 }

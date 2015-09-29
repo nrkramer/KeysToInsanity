@@ -13,7 +13,9 @@ namespace KeysToInsanity
     {
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_MOVEMENT_VECTORS = true;
         public static Texture2D BOUNDING_BOX;
+        public static Texture2D MOVEMENT_VECTOR;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -60,6 +62,11 @@ namespace KeysToInsanity
             {
                 BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
                 BOUNDING_BOX.SetData(new[] { Color.White });
+            }
+
+            if (DRAW_MOVEMENT_VECTORS)
+            {
+                MOVEMENT_VECTOR = Content.Load<Texture2D>("arrow");
             }
 
             // Gentleman
@@ -122,9 +129,9 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            theGentleman.handleInput(gameTime);
             physics.Update(gameTime, characterSprites);
 
-            theGentleman.handleInput(gameTime);
             for (int i = 0; i < staticSprites.Count; i++)
             {
                 // all-in-one collision detection/handling for input slip
