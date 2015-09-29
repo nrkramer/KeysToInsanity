@@ -145,6 +145,10 @@
   <ItemGroup>
     <Folder Include="Content\obj\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="KeysToInsanity.zargo" />
+    <None Include="KeysToInsanitySRS.docx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
