@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code
         public void Update(GameTime gameTime, List<BasicSprite> spritesToPhysics)
         {
             foreach(BasicSprite i in spritesToPhysics)
-            {
+        {
                // float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 i.velocity = i.velocity + gravity;
             }

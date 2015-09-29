@@ -29,10 +29,10 @@ namespace KeysToInsanity.Code
             {
                 // here, you can change how fast the sprite moves
                 int xVelocity = 5;
-                int yVelocity = 9;
+                int yVelocity = 3;
 
                 int xDiff = 0;
-                int yDiff = 4;
+                int yDiff = 5;
                 if (leftDown(kb))
                     xDiff -= xVelocity;
                 if (rightDown(kb))
@@ -41,8 +41,11 @@ namespace KeysToInsanity.Code
                     yDiff -= yVelocity;
                 if (downDown(kb))
                     yDiff += yVelocity;
-                    
-                sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff);
+                if (spaceDown(kb))
+                    yDiff *= -yVelocity;
+
+                //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
+                sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff); //+ jumpVelocity;
             }
         }
 

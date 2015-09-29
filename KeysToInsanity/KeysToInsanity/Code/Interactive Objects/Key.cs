@@ -15,7 +15,6 @@ namespace KeysToInsanity.Code.Interactive_Objects
 
         public override void onCollide(BasicSprite collided)
         {
-            Console.WriteLine(collided.GetType().Name + " collided with key.");
         }
     }
 }
