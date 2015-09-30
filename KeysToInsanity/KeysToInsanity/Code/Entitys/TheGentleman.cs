@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code
     {
 
         private BasicInput input;
-        public TheGentleman(Game game) : base(game,"tempGentleman",new Point(120,150),2,0.25,true)
+        public TheGentleman(Game game) : base(game, "tempGentleman", new Point(120,150), 2, 0.25, true)
         {
             input = new BasicInput(game, this);
         }
@@ -17,7 +17,6 @@ namespace KeysToInsanity.Code
         {
             input.defaultKeyboardHandler();
             updateWithAnimation(time, 0);
-
         }
 
         public override void onCollide(BasicSprite s)
@@ -36,7 +35,7 @@ namespace KeysToInsanity.Code
         {
             Rectangle bounds = KeysToInsanity.MOVEMENT_VECTOR.Bounds;
             s.Draw(KeysToInsanity.MOVEMENT_VECTOR,
-                new Rectangle(spritePos + new Point(spriteSize.X / 2, spriteSize.Y / 2), spriteSize),
+                new Rectangle((spritePos + new Vector2(spriteSize.X / 2.0f, spriteSize.Y / 2.0f)).ToPoint(), spriteSize),
                 KeysToInsanity.MOVEMENT_VECTOR.Bounds, Color.Red, (float)velocity.getRotation(),
                 new Vector2(bounds.Width / 2, bounds.Height / 2), SpriteEffects.None, 1.0f);
         }

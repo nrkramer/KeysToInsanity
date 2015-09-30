@@ -5,7 +5,7 @@ namespace KeysToInsanity.Code
 {
     class Velocity
     {
-        const double RAD_TO_DEG = Math.PI / 180.0;
+        public const double DEG_TO_RAD = Math.PI / 180.0;
         public static Velocity Zero { get { return Velocity.FromCoordinates(0.0f, 0.0f); } }
         private Vector2 direction;
         private float speed;
@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code
         public static Velocity FromDirection(float directionDegrees, float speed)
         {
             Velocity v = new Velocity();
-            v.direction = new Vector2((float)Math.Cos(directionDegrees * RAD_TO_DEG) * speed, (float)Math.Sin(directionDegrees * RAD_TO_DEG) * speed);
+            v.direction = new Vector2((float)Math.Cos(directionDegrees * DEG_TO_RAD) * speed, (float)Math.Sin(directionDegrees * DEG_TO_RAD) * speed);
             v.speed = speed;
             return v;
         }

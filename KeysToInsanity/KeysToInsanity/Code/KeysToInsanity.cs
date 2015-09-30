@@ -1,5 +1,6 @@
 ﻿using KeysToInsanity.Code;
 using KeysToInsanity.Code.Interactive_Objects;
+using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace KeysToInsanity
     {
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
-        public static bool DRAW_MOVEMENT_VECTORS = true;
+        public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
 
@@ -21,9 +22,11 @@ namespace KeysToInsanity
         private SpriteBatch spriteBatch;
 
         private BasicBackground background; // background
-        private List<BasicSprite> staticSprites = new List<BasicSprite>(); // Our other sprites
-        private List<BasicSprite> characterSprites = new List<BasicSprite>();
+        private SpriteContainer staticSprites = new SpriteContainer();
+        private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private TheGentleman theGentleman; // Our main character sprite
+        private HUD hud;
+
         private BasicInput input; // Our input handler
 
         private Physics physics = new Physics();
@@ -65,40 +68,41 @@ namespace KeysToInsanity
             }
 
             if (DRAW_MOVEMENT_VECTORS)
-            {
                 MOVEMENT_VECTOR = Content.Load<Texture2D>("arrow");
-            }
 
             // Gentleman
             theGentleman = new TheGentleman(this);
-            characterSprites.Add(theGentleman);
-            theGentleman.spritePos = new Point(100, 100);
+            theGentleman.addTo(characterSprites);
+            theGentleman.spritePos = new Vector2(100, 100);
+
+            // Heads up display (HUD)
+            hud = new HUD(this, GraphicsDevice);
 
             // static sprites - test code. To be replaced by a level loader (XML maybe)
             background = new BasicBackground(this, "padded_background");
             BasicSprite leftWall = new BasicSprite(this, "padded_wall_left", true);
-            leftWall.spritePos = new Point(0, 0);
+            leftWall.spritePos = new Vector2(0, 0);
             leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
             BasicSprite rightWall = new BasicSprite(this, "padded_wall_right", true);
-            rightWall.spritePos = new Point(GraphicsDevice.Viewport.Width - 30, 0);
+            rightWall.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 30, 0);
             rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
             BasicSprite floor = new BasicSprite(this, "padded_floor", true);
-            floor.spritePos = new Point(0, GraphicsDevice.Viewport.Height - 30);
+            floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
-            Key key = new Key(this);
-            key.spritePos = new Point(30, GraphicsDevice.Viewport.Height - 80);
+            Key key = new Key(this, hud); // key requires a HUD to go to
+            key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
             HatHanger hanger = new HatHanger(this);
-            hanger.spritePos = new Point(550, GraphicsDevice.Viewport.Height - 220);
+            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 220);
             BasicSprite bed = new BasicSprite(this, "bed", false);
-            bed.spritePos = new Point(250, GraphicsDevice.Viewport.Height - 150);
+            bed.spritePos = new Vector2(250, GraphicsDevice.Viewport.Height - 150);
             bed.spriteSize = new Point(200, 150);
 
-            staticSprites.Add(floor);
-            staticSprites.Add(rightWall);
-            staticSprites.Add(leftWall);
-            staticSprites.Add(key);
-            staticSprites.Add(hanger);
-            staticSprites.Add(bed);
+            floor.addTo(staticSprites);
+            rightWall.addTo(staticSprites);
+            leftWall.addTo(staticSprites);
+            key.addTo(staticSprites);
+            hanger.addTo(staticSprites);
+            bed.addTo(staticSprites);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -129,32 +133,26 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            theGentleman.handleInput(gameTime);
-            physics.Update(gameTime, characterSprites);
+            theGentleman.handleInput(gameTime); // input
+            physics.Update(gameTime, characterSprites); // physics
+            RectangleCollision.update(characterSprites, staticSprites); // collision
 
-            for (int i = 0; i < staticSprites.Count; i++)
-            {
-                // all-in-one collision detection/handling for input slip
-                theGentleman.velocity = RectangleCollision.collisionWithSlip(theGentleman, staticSprites[i]);
-            }
-            theGentleman.updatePosition();
-
-            if (theGentleman.spritePos.X < 0)
+            if (theGentleman.spritePos.X < 0) // background slide
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
-                theGentleman.spritePos = new Point(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
+                theGentleman.spritePos = new Vector2(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
             } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
-                theGentleman.spritePos = new Point(0, theGentleman.spritePos.Y);
+                theGentleman.spritePos = new Vector2(0, theGentleman.spritePos.Y);
             } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
-                theGentleman.spritePos = new Point(theGentleman.spritePos.X, 0);
+                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, 0);
             } else if (theGentleman.spritePos.Y < 0)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-                theGentleman.spritePos = new Point(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
+                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
             }
 
             base.Update(gameTime);
@@ -166,16 +164,16 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Black);
+            
             spriteBatch.Begin();
             background.draw(spriteBatch);
-            for (int i = 0; i < staticSprites.Count; i++)
+            foreach (BasicSprite s in staticSprites)
             {
-                staticSprites[i].draw(spriteBatch);
+                s.draw(spriteBatch);
             }
             theGentleman.draw(spriteBatch);
+            hud.draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

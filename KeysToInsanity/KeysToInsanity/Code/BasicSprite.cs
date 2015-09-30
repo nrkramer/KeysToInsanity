@@ -11,11 +11,13 @@ namespace KeysToInsanity
     {
         public Texture2D spriteTex {
             get; }
-        public Point spritePos {
+        public Vector2 spritePos {
             get; set; }
         public Point spriteSize;
         public Velocity velocity;
-        public bool collidable;
+        public bool collidable = false;
+        protected Color borderColor = Color.Red;
+        protected SpriteContainer container;
 
       
         // Load sprite from file, requires you pass in a game instance for content loading
@@ -26,10 +28,12 @@ namespace KeysToInsanity
             try {
                 spriteTex = game.Content.Load<Texture2D>(file); // load the texture
 
-                spritePos = new Point(0, 0); // initial position
+                spritePos = new Vector2(0, 0); // initial position
                 spriteSize = spriteTex.Bounds.Size; // get the size from the texture size
                 velocity = Velocity.Zero;
                 collidable = collide;
+                if (!collidable)
+                    borderColor = Color.Blue;
                 
             } catch (ContentLoadException)
             {
@@ -41,10 +45,20 @@ namespace KeysToInsanity
         public BasicSprite(Texture2D tex, bool collide)
         {
             spriteTex = tex;
-            spritePos = new Point(0, 0);
+            spritePos = new Vector2(0, 0);
             spriteSize = spriteTex.Bounds.Size;
             velocity = Velocity.Zero;
             collidable = collide;
+            if (!collidable)
+                borderColor = Color.Blue;
+        }
+
+        // adds the sprite to a container - this is useful if the sprite
+        // wishes to remove itself from that container, therefore not get drawn or something
+        public void addTo(SpriteContainer container)
+        {
+            container.Add(this);
+            this.container = container;
         }
 
         // updates the position based on the current velocity
@@ -54,9 +68,9 @@ namespace KeysToInsanity
         }
 
         // returns the position based on the current velocity without updating the sprites position
-        public Point getUpdatePosition()
+        public Vector2 getUpdatePosition()
         {
-            return spritePos + velocity.getDirection().ToPoint();
+            return spritePos + velocity.getDirection();
         }
 
         public void updatePositionFromVelocity(Velocity v)
@@ -64,9 +78,9 @@ namespace KeysToInsanity
             spritePos = getUpdatePositionFromVelocity(v);
         }
 
-        public Point getUpdatePositionFromVelocity(Velocity v)
+        public Vector2 getUpdatePositionFromVelocity(Velocity v)
         {
-            return spritePos + v.getDirection().ToPoint();
+            return spritePos + v.getDirection();
         }
 
         public virtual void onCollide(BasicSprite collided) { }
@@ -76,10 +90,10 @@ namespace KeysToInsanity
         {
             if (spriteTex != null)
             {
-                Rectangle spriteBox = new Rectangle(spritePos, spriteSize);
+                Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
                 s.Draw(spriteTex, spriteBox, new Color(1.0f, 1.0f, 1.0f));
                 if (KeysToInsanity.DRAW_BOUNDING_BOXES)
-                    drawBorder(s, spriteBox, 2, Color.Red);
+                    drawBorder(s, spriteBox, 2, borderColor);
             }
         }
 
