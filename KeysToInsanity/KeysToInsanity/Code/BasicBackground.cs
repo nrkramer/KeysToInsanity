@@ -52,39 +52,39 @@ namespace KeysToInsanity.Code
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    spritePos = new Point(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Vector2(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X < -spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
                         slide_timer.Stop();
-                        spritePos = new Point(0, 0);
+                        spritePos = new Vector2(0, 0);
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    spritePos = new Point(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
+                    spritePos = new Vector2(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X > spriteSize.X)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
                         slide_timer.Stop();
-                        spritePos = new Point(0, 0);
+                        spritePos = new Vector2(0, 0);
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_UP:
-                    spritePos = new Point(spritePos.X, spritePos.Y - 10); // adjust the value here for animation speed
+                    spritePos = new Vector2(spritePos.X, spritePos.Y - 10); // adjust the value here for animation speed
                     if (spritePos.Y < -spriteSize.Y)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
                         slide_timer.Stop();
-                        spritePos = new Point(0, 0);
+                        spritePos = new Vector2(0, 0);
                     }
                     break;
                 case SLIDE_DIRECTION.SLIDE_DOWN:
-                    spritePos = new Point(spritePos.X, spritePos.Y + 10); // adjust the value here for animation speed
+                    spritePos = new Vector2(spritePos.X, spritePos.Y + 10); // adjust the value here for animation speed
                     if (spritePos.Y > spriteSize.Y)
                     {
                         sliding = SLIDE_DIRECTION.NO_SLIDE;
                         slide_timer.Stop();
-                        spritePos = new Point(0, 0);
+                        spritePos = new Vector2(0, 0);
                     }
                     break;
                 default:
@@ -98,21 +98,21 @@ namespace KeysToInsanity.Code
             // set the sprite size to the size of the drawing viewport
             spriteSize.X = s.GraphicsDevice.Viewport.Width;
             spriteSize.Y = s.GraphicsDevice.Viewport.Height;
-            drawBackground(s, spriteTex, new Rectangle(spritePos, spriteSize), new Color(1.0f, 1.0f, 1.0f));
+            drawBackground(s, spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
             // draw the next chunk of background
             switch(sliding)
             {
                 case SLIDE_DIRECTION.SLIDE_DOWN:
-                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y - spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y - spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_LEFT:
-                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X + spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X + spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X - spriteSize.X, spritePos.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X - spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 case SLIDE_DIRECTION.SLIDE_UP:
-                    drawBackground(s, spriteTex, new Rectangle(new Point(spritePos.X, spritePos.Y + spriteSize.Y), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y + spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 default:
                     break;

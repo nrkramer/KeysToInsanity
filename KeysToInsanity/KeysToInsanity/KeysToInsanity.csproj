@@ -65,11 +65,15 @@
     <Compile Include="Code\Entitys\TheGentleman.cs" />
     <Compile Include="Code\Interactive Objects\HatHanger.cs" />
     <Compile Include="Code\Interactive Objects\Key.cs" />
+    <Compile Include="Code\Interface\HUD.cs" />
+    <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <Compile Include="Code\RectangleCollision.cs" />
     <Compile Include="Code\Sound.cs" />
+    <Compile Include="Code\SpriteContainer.cs" />
+    <Compile Include="Code\Utilities\OrderedHashSet.cs" />
     <Compile Include="Code\Velocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,10 +85,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bed.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\hat hanger 2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\hud_key_frame.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\key.png">

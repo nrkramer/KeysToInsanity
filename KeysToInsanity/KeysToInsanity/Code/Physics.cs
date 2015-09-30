@@ -1,18 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace KeysToInsanity.Code
 {
     class Physics
     {
-        public Velocity gravity = Velocity.FromDirection(270, -9.8f);
+        public Velocity gravity = Velocity.FromDirection(-90.0f, -9.8f);
 
-        public void Update(GameTime gameTime, List<BasicSprite> spritesToPhysics)
+        public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
         {
-            foreach(BasicSprite i in spritesToPhysics)
-        {
-               // float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //Console.WriteLine();
+            float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            foreach (BasicSprite i in spritesToPhysics)
+            {
                 i.velocity = i.velocity + gravity;
+                //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
             }
         }
     }
