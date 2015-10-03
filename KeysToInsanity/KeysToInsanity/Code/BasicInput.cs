@@ -8,6 +8,7 @@ namespace KeysToInsanity.Code
     {
         private BasicSprite sprite;
         private Game game;
+        private KeyboardState OKBS;
 
         public BasicInput(Game game, BasicSprite sprite)
         {
@@ -46,6 +47,7 @@ namespace KeysToInsanity.Code
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
                 sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff); //+ jumpVelocity;
             }
+            OKBS = kb;
         }
 
         private bool leftDown(KeyboardState kb)
@@ -75,7 +77,7 @@ namespace KeysToInsanity.Code
 
         private bool spaceDown(KeyboardState kb)
         {
-            return kb.IsKeyDown(Keys.Space);
+            return kb.IsKeyDown(Keys.Space) && !OKBS.IsKeyDown(Keys.Space);
         }
 
         private bool gamepadBackPressed(GamePadButtons b)
