@@ -76,7 +76,7 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(100, 100);
+            theGentleman.spritePos = new Vector2(100, 790);
 
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);

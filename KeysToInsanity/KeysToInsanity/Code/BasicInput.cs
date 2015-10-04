@@ -29,10 +29,11 @@ namespace KeysToInsanity.Code
             {
                 // here, you can change how fast the sprite moves
                 int xVelocity = 5;
-                int yVelocity = 5;
+                int yVelocity = 8;
 
                 int xDiff = 0;
                 int yDiff = 0;
+
                 if (leftDown(kb))
                     xDiff -= xVelocity;
                 if (rightDown(kb))
