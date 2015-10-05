@@ -29,8 +29,20 @@ namespace KeysToInsanity.Code.Interface
         {
             BasicSprite hud_key_frame = new BasicSprite(game, "hud_key_frame", false);
             hud_key_frame.spriteSize = new Point(60, 60);
-            hud_key_frame.spritePos = new Vector2(0, 0);
+            hud_key_frame.spritePos = new Vector2(740, 0);
+            
+            BasicSprite hud_health_frame = new BasicSprite(game, "health_bar_frame", false);
+            hud_health_frame.spriteSize = new Point(200, 30);
+            hud_health_frame.spritePos = new Vector2(1, 0);
+           
+            BasicSprite hud_health_color = new BasicSprite(game, "health_bar_color", false);
+            hud_health_color.spriteSize = new Point(202, 32);
+            hud_health_color.spritePos = new Vector2(0, 0);
+
             hud_key_frame.addTo(hudSprites);
+            hud_health_color.addTo(hudSprites);
+            hud_health_frame.addTo(hudSprites);
+
             gd = d;
         }
 
