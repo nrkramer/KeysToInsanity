@@ -3,6 +3,7 @@ using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace KeysToInsanity
@@ -13,8 +14,8 @@ namespace KeysToInsanity
     public class KeysToInsanity : Game
     {
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
-        public static bool DRAW_MOVEMENT_VECTORS = false;
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_MOVEMENT_VECTORS = true;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
 
@@ -33,12 +34,15 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
+        public delegate void GameEventHandler(object caller);
+        //public event GameEventHandler gameEventHandeler;
+
         public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
@@ -53,6 +57,14 @@ namespace KeysToInsanity
             // TODO: Add your initialization logic here
 
             base.Initialize();
+        }
+
+        public void testEvents(object caller)
+        {
+            if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
+            {
+                Console.WriteLine("A Key was picked up!");
+            }
         }
 
         /// <summary>
@@ -89,11 +101,15 @@ namespace KeysToInsanity
             BasicSprite rightWall = new BasicSprite(this, "padded_wall_right", true);
             rightWall.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 30, 0);
             rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
+            BasicSprite door = new BasicSprite(this, "closed_door_left_metal", false);
+            door.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 35, GraphicsDevice.Viewport.Height - 200);
+            door.spriteSize = new Point(25, 170);
             BasicSprite floor = new BasicSprite(this, "padded_floor", true);
             floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
             Key key = new Key(this, hud); // key requires a HUD to go to
             key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
+            key.eventCallback += new GameEventHandler(testEvents);
             HatHanger hanger = new HatHanger(this);
             hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 220);
             BasicSprite bed = new BasicSprite(this, "bed", false);
@@ -106,6 +122,7 @@ namespace KeysToInsanity
             key.addTo(staticSprites);
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
+            door.addTo(staticSprites);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded

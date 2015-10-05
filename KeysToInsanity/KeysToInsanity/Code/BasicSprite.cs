@@ -18,6 +18,7 @@ namespace KeysToInsanity
         public bool collidable = false;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
+        public event KeysToInsanity.GameEventHandler eventCallback;
 
       
         // Load sprite from file, requires you pass in a game instance for content loading
@@ -83,7 +84,11 @@ namespace KeysToInsanity
             return spritePos + v.getDirection();
         }
 
-        public virtual void onCollide(BasicSprite collided) { }
+        public virtual void onCollide(BasicSprite collided)
+        {
+            if (eventCallback != null)
+                eventCallback(this);
+        }
 
         // "virtual" allows the method to be overriden by subclasses
         public virtual void draw(SpriteBatch s)

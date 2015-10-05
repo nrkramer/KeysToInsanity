@@ -19,11 +19,11 @@ namespace KeysToInsanity.Code.Interactive_Objects
         {
             spriteSize = new Point(50, 50);
             this.hud = hud;
-            timer.Elapsed += new ElapsedEventHandler(timer_event);
+            timer.Elapsed += new ElapsedEventHandler(move_to_interface_event);
             timer.Interval = 5;
         }
 
-        private void timer_event(object source, ElapsedEventArgs e)
+        private void move_to_interface_event(object source, ElapsedEventArgs e)
         {
             updatePosition();
             if (spritePos.Y <= 5)
@@ -35,13 +35,14 @@ namespace KeysToInsanity.Code.Interactive_Objects
 
         public override void onCollide(BasicSprite collided)
         {
+            base.onCollide(collided);
             // The Gentleman picked up the key
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 container.Remove(this);
                 hud.addKey(this);
                 onHUD = true;
-                double angle = Math.Atan2(5 - spritePos.Y, 5 - spritePos.X) * 180.0 / Math.PI;
+                double angle = Math.Atan2(5 - spritePos.Y, 745 - spritePos.X) * 180.0 / Math.PI;
                 velocity = Velocity.FromDirection((float)angle, 10.0f);
                 timer.Start();
             }
