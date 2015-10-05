@@ -111,10 +111,10 @@ namespace KeysToInsanity
             key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
             key.eventCallback += new GameEventHandler(testEvents);
             HatHanger hanger = new HatHanger(this);
-            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 220);
+            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             BasicSprite bed = new BasicSprite(this, "bed", false);
-            bed.spritePos = new Vector2(250, GraphicsDevice.Viewport.Height - 150);
-            bed.spriteSize = new Point(200, 150);
+            bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 50);
+            bed.spriteSize = new Point(70, 55);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -129,7 +129,7 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-            //testSound = new Sound(this, "SoundFX/Music/Beethovens5th");
+            //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
             //testSound.play(true);
 
             // TODO: use this.Content to load your game content here
