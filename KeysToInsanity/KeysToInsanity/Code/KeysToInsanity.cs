@@ -41,6 +41,9 @@ namespace KeysToInsanity
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
+            //graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+            //graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(100, 100);
+            theGentleman.spritePos = new Vector2(100, 790);
 
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);

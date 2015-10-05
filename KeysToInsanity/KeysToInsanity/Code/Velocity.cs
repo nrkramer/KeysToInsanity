@@ -49,6 +49,26 @@ namespace KeysToInsanity.Code
             return speed;
         }
 
+        public float getY()
+        {
+            return direction.Y;
+        }
+
+        public float getX()
+        {
+            return direction.X;
+        }
+
+        public void setY(float ySpeed)
+        {
+            direction.Y = ySpeed;
+        }
+
+        public void setX(float xSpeed)
+        {
+            direction.X = xSpeed;
+        }
+
         public override String ToString()
         {
             return direction.ToString() + ", Speed:[" + Convert.ToString(speed) + "]";
