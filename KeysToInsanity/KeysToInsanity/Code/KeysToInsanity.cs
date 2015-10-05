@@ -37,8 +37,8 @@ namespace KeysToInsanity
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
