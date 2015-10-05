@@ -88,7 +88,7 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(100, 790);
+            theGentleman.spritePos = new Vector2(370, 790);
 
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);
@@ -102,8 +102,8 @@ namespace KeysToInsanity
             rightWall.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 30, 0);
             rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
             BasicSprite door = new BasicSprite(this, "closed_door_left_metal", false);
-            door.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 35, GraphicsDevice.Viewport.Height - 200);
-            door.spriteSize = new Point(25, 170);
+            door.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 35, GraphicsDevice.Viewport.Height - 140);
+            door.spriteSize = new Point(25, 120);
             BasicSprite floor = new BasicSprite(this, "padded_floor", true);
             floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
@@ -111,10 +111,10 @@ namespace KeysToInsanity
             key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
             key.eventCallback += new GameEventHandler(testEvents);
             HatHanger hanger = new HatHanger(this);
-            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 220);
+            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             BasicSprite bed = new BasicSprite(this, "bed", false);
-            bed.spritePos = new Vector2(250, GraphicsDevice.Viewport.Height - 150);
-            bed.spriteSize = new Point(200, 150);
+            bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
+            bed.spriteSize = new Point(70, 55);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -129,7 +129,7 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-            //testSound = new Sound(this, "SoundFX/Music/Beethovens5th");
+            //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
             //testSound.play(true);
 
             // TODO: use this.Content to load your game content here
