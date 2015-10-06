@@ -16,8 +16,8 @@ namespace KeysToInsanity.Code
             foreach (BasicSprite i in spritesToPhysics)
             {
                 i.velocity.setY(i.velocity.getY() + (gravity * frameTime));
-                if (i.velocity.getY() >= 30.0f)
-                    i.velocity.setY(30.0f);
+                if (i.velocity.getY() >= 15.0f)
+                    i.velocity.setY(15.0);
 
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
             }
