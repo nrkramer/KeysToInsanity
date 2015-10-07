@@ -35,6 +35,7 @@ namespace KeysToInsanity
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private TheGentleman theGentleman; // Our main character sprite
+        private Nurse nurse;
         private HUD hud;
 
         private BasicInput input; // Our input handler
@@ -45,9 +46,7 @@ namespace KeysToInsanity
 
         //Used for the menu ADR
         private Texture2D startButton;
-        private Texture2D exitButton;
-        private Texture2D pauseButton;
-        private Texture2D resumeButton;
+        private Texture2D exitButton;        
         private Texture2D loadingScreen;
         
         //Used for position of the menu ADR        
@@ -133,6 +132,10 @@ namespace KeysToInsanity
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 790);
+            nurse = new Nurse(this);
+            nurse.addTo(characterSprites);
+            nurse.spritePos = new Vector2(590, 790);
+
 
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);
