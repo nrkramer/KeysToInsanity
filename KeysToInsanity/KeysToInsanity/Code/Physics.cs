@@ -17,7 +17,7 @@ namespace KeysToInsanity.Code
             {
                 i.velocity.setY(i.velocity.getY() + (gravity * frameTime));
                 if (i.velocity.getY() >= 15.0f)
-                    i.velocity.setY(15.0);
+                    i.velocity.setY(15.0f);
 
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
             }
