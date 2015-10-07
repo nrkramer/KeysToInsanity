@@ -3,8 +3,10 @@ using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace KeysToInsanity
 {
@@ -13,6 +15,13 @@ namespace KeysToInsanity
     /// </summary>
     public class KeysToInsanity : Game
     {
+        enum GameState
+        {
+            StartMenu,
+            Loading,
+            Playing,
+            Paused
+        }
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
@@ -26,18 +35,33 @@ namespace KeysToInsanity
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private TheGentleman theGentleman; // Our main character sprite
+        private Nurse nurse;
         private HUD hud;
-
-        private SpriteFont Font1;
-        private Vector2 FontPos;
-        private bool Gotkey = false;
-        private string output;
 
         private BasicInput input; // Our input handler
 
         private Physics physics = new Physics();
 
         private Sound testSound;
+
+        //Used for the menu ADR
+        private Texture2D startButton;
+        private Texture2D exitButton;        
+        private Texture2D loadingScreen;
+        
+        //Used for position of the menu ADR        
+        private Vector2 startButtonPosition;
+        private Vector2 exitButtonPosition;
+        private Vector2 rusumeButtonPosition;
+        //Setting constants for the menu items
+        private const float OrbWidth = 50f;
+        private const float OrbHeight = 50f;
+        private float speed = 1.5f;
+        private Thread backgroundThread;
+        private bool isLoading = false;
+        MouseState mouseState;
+        MouseState previousMouseState;
+        private GameState gameState;
 
         public delegate void GameEventHandler(object caller);
         //public event GameEventHandler gameEventHandeler;
@@ -59,8 +83,18 @@ namespace KeysToInsanity
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //Enabling mouse pointer
+            IsMouseVisible = true;
 
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
+            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
+
+            //set the gamestate to the start menu
+            gameState = GameState.StartMenu;
+
+            //Get the mouse state
+            mouseState = Mouse.GetState();
+            previousMouseState = mouseState;
             base.Initialize();
         }
 
@@ -68,7 +102,6 @@ namespace KeysToInsanity
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
-                Gotkey = true;
                 Console.WriteLine("A Key was picked up!");
             }
         }
@@ -78,9 +111,13 @@ namespace KeysToInsanity
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
-        {
+        {           
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            //Loading the games menu buttons for menu screen ADR
+            startButton = Content.Load<Texture2D>("start");
+            exitButton = Content.Load<Texture2D>("exit");
+
 
             if (DRAW_BOUNDING_BOXES)
             {
@@ -95,6 +132,10 @@ namespace KeysToInsanity
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 790);
+            nurse = new Nurse(this);
+            nurse.addTo(characterSprites);
+            nurse.spritePos = new Vector2(590, 790);
+
 
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);
@@ -138,10 +179,6 @@ namespace KeysToInsanity
             //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
             //testSound.play(true);
 
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
-            FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
-
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
         }
@@ -163,29 +200,44 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            theGentleman.handleInput(gameTime); // input
-            physics.Update(gameTime, characterSprites); // physics
-            RectangleCollision.update(characterSprites, staticSprites); // collision
+                mouseState = Mouse.GetState();
+                if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+                {
+                    MouseClicked(mouseState.X, mouseState.Y);
+                }
+                previousMouseState = mouseState;
+               /* For when we have a loading manager
+               if(gameState == GameState.Playing && isLoading)
+               {
+                LoadGame();
+                isLoading = false;
+               }
+               */
 
-            if (theGentleman.spritePos.X < 0) // background slide
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
-                theGentleman.spritePos = new Vector2(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
-            } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
-                theGentleman.spritePos = new Vector2(0, theGentleman.spritePos.Y);
-            } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
-                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, 0);
-            } else if (theGentleman.spritePos.Y < 0)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
-            }
+                theGentleman.handleInput(gameTime); // input
+                physics.Update(gameTime, characterSprites); // physics
+                RectangleCollision.update(characterSprites, staticSprites); // collision
 
-            base.Update(gameTime);
+                if (theGentleman.spritePos.X < 0) // background slide
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
+                    theGentleman.spritePos = new Vector2(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
+                } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
+                    theGentleman.spritePos = new Vector2(0, theGentleman.spritePos.Y);
+                } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
+                    theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, 0);
+                } else if (theGentleman.spritePos.Y < 0)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
+                    theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
+                }
+
+                base.Update(gameTime);
+            
         }
 
         /// <summary>
@@ -194,26 +246,68 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            
-            spriteBatch.Begin();
-            background.draw(spriteBatch);
-            foreach (BasicSprite s in staticSprites)
-            {
-                s.draw(spriteBatch);
-            }
-            theGentleman.draw(spriteBatch);
-            hud.draw(spriteBatch);
-            if (Gotkey == true)
-            {
-                output = "You got a key!1";
-                Vector2 FontOrigin = Font1.MeasureString(output) / 2;
-                spriteBatch.DrawString(Font1, output, FontPos, Color.Red,
-                              0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }
-            spriteBatch.End();
 
-            base.Draw(gameTime);
+            
+                GraphicsDevice.Clear(Color.Black);
+
+                spriteBatch.Begin();
+
+            //Checks if gameState is at StartMenu, draws the start menu
+               if(gameState == GameState.StartMenu)
+            {
+                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
+
+
+            //checks if the gameState is at playing, draws the game
+            if (gameState == GameState.Playing)
+            {
+
+                background.draw(spriteBatch);
+                foreach (BasicSprite s in staticSprites)
+                {
+                    s.draw(spriteBatch);
+                }
+                theGentleman.draw(spriteBatch);
+                hud.draw(spriteBatch);
+            }
+                spriteBatch.End();
+
+                base.Draw(gameTime);
+
+            
+            
         }
+
+    void MouseClicked(int x, int y)
+        {
+            //Creates a rectangle around where the mouse clicked
+            Rectangle mouseClickR = new Rectangle(x,y,10,10);
+
+            //Checks the start menu
+            if(gameState == GameState.StartMenu)
+            {
+                Rectangle startButtonR = new Rectangle((int)startButtonPosition.X,
+                    (int)exitButtonPosition.Y, 100, 20);
+                Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
+                    (int)exitButtonPosition.Y, 100, 20);
+                //Checking if start button was clicked
+                if(mouseClickR.Intersects(startButtonR))
+                {
+                    //gameState.Loading;
+                    gameState = GameState.Playing;
+                
+                    //For when we have a loading manager
+                   // isLoading = true;
+                }
+                //Player clicked exit button
+                else if(mouseClickR.Intersects(exitButtonR))
+                {
+                    Exit();
+                }
+            }
+        }
+
     }
 }

@@ -100,7 +100,7 @@
     <Content Include="Content\closed_door_left_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\Kootenay.xml">
+    <Content Include="Content\exit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Gentleman.png">
@@ -131,6 +131,7 @@
     <Content Include="Content\open_door_left_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\orb.png" />
     <Content Include="Content\padded_background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -143,7 +144,13 @@
     <Content Include="Content\padded_wall_right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\pause.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\resume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\Music\Beethovens5th.wav">
@@ -151,6 +158,9 @@
     </Content>
     <Content Include="Content\SoundFX\Music\Op9No2Session.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Test_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -184,6 +194,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Fonts\" />
     <Folder Include="Content\obj\" />
   </ItemGroup>
   <ItemGroup>
