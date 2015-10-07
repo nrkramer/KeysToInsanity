@@ -100,6 +100,9 @@
     <Content Include="Content\closed_door_left_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Fonts\Kootenay.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Gentleman.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -181,7 +184,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Fonts\" />
     <Folder Include="Content\obj\" />
   </ItemGroup>
   <ItemGroup>
