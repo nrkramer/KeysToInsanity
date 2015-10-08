@@ -44,19 +44,17 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        //Used for the menu ADR
+        //Used for the menu
+        private Texture2D logo;
         private Texture2D startButton;
-        private Texture2D exitButton;        
-        private Texture2D loadingScreen;
-        
-        //Used for position of the menu ADR        
+        private Texture2D exitButton;
+
+
+        //Used for position of the menu     
+        private Vector2 logoPosition; 
         private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;
-        private Vector2 rusumeButtonPosition;
-        //Setting constants for the menu items
-        private const float OrbWidth = 50f;
-        private const float OrbHeight = 50f;
-        private float speed = 1.5f;
+        private Vector2 exitButtonPosition;      
+        //Setting constants for the menu items       
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
@@ -70,8 +68,8 @@ namespace KeysToInsanity
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+           //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
@@ -86,8 +84,9 @@ namespace KeysToInsanity
             //Enabling mouse pointer
             IsMouseVisible = true;
 
-            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
-            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
+            logoPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) -100, 20);
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
+            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
 
             //set the gamestate to the start menu
             gameState = GameState.StartMenu;
@@ -114,7 +113,8 @@ namespace KeysToInsanity
         {           
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Loading the games menu buttons for menu screen ADR
+            //Loading the games menu buttons for menu screen
+            logo = Content.Load<Texture2D>("logo");
             startButton = Content.Load<Texture2D>("start");
             exitButton = Content.Load<Texture2D>("exit");
 
@@ -255,6 +255,7 @@ namespace KeysToInsanity
             //Checks if gameState is at StartMenu, draws the start menu
                if(gameState == GameState.StartMenu)
             {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
@@ -289,13 +290,13 @@ namespace KeysToInsanity
             if(gameState == GameState.StartMenu)
             {
                 Rectangle startButtonR = new Rectangle((int)startButtonPosition.X,
-                    (int)exitButtonPosition.Y, 100, 20);
+                    (int)startButtonPosition.Y, 100, 20);
                 Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
                     (int)exitButtonPosition.Y, 100, 20);
                 //Checking if start button was clicked
                 if(mouseClickR.Intersects(startButtonR))
                 {
-                    //gameState.Loading;
+                    //gameState.Loading;                   
                     gameState = GameState.Playing;
                 
                     //For when we have a loading manager
