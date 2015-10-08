@@ -2,10 +2,8 @@
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -44,24 +42,19 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        //Used for the menu ADR
+        private Sound testSound;
+
+        //Used for the menu
+        private Texture2D logo;
         private Texture2D startButton;
-        private Texture2D exitButton;        
-        private Texture2D loadingScreen;
+        private Texture2D exitButton;
 
-        //used for font and text manipulation
-        bool gotKey;
-        SpriteFont Font1;
-        Vector2 FontPos;
 
-        //Used for position of the menu ADR        
+        //Used for position of the menu     
+        private Vector2 logoPosition; 
         private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;
-        private Vector2 resumeButtonPosition;
-        //Setting constants for the menu items
-        private const float OrbWidth = 50f;
-        private const float OrbHeight = 50f;
-        private float speed = 1.5f;
+        private Vector2 exitButtonPosition;      
+        //Setting constants for the menu items       
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
@@ -75,8 +68,8 @@ namespace KeysToInsanity
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+           //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
@@ -91,8 +84,9 @@ namespace KeysToInsanity
             //Enabling mouse pointer
             IsMouseVisible = true;
 
-            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
-            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
+            logoPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) -100, 20);
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
+            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
 
             //set the gamestate to the start menu
             gameState = GameState.StartMenu;
@@ -107,7 +101,6 @@ namespace KeysToInsanity
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
-                gotKey = true;
                 Console.WriteLine("A Key was picked up!");
             }
         }
@@ -120,7 +113,8 @@ namespace KeysToInsanity
         {           
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Loading the games menu buttons for menu screen ADR
+            //Loading the games menu buttons for menu screen
+            logo = Content.Load<Texture2D>("logo");
             startButton = Content.Load<Texture2D>("start");
             exitButton = Content.Load<Texture2D>("exit");
 
@@ -182,12 +176,8 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-            //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
-            //MediaPlayer.Play(testSound);
-
-           //spriteBatch = new SpriteBatch(GraphicsDevice);
-           //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
-           //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+            //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
+            //testSound.play(true);
 
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
@@ -265,6 +255,7 @@ namespace KeysToInsanity
             //Checks if gameState is at StartMenu, draws the start menu
                if(gameState == GameState.StartMenu)
             {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
@@ -282,13 +273,7 @@ namespace KeysToInsanity
                 theGentleman.draw(spriteBatch);
                 hud.draw(spriteBatch);
             }
-            /*if (gotKey == true)
-            {
-               string output = "You got a key!";
-               Vector2 FontOrigin = Font1.MeasureString(output) / 2;
-                spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }*/
-            spriteBatch.End();
+                spriteBatch.End();
 
                 base.Draw(gameTime);
 
@@ -305,13 +290,13 @@ namespace KeysToInsanity
             if(gameState == GameState.StartMenu)
             {
                 Rectangle startButtonR = new Rectangle((int)startButtonPosition.X,
-                    (int)exitButtonPosition.Y, 100, 20);
+                    (int)startButtonPosition.Y, 100, 20);
                 Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
                     (int)exitButtonPosition.Y, 100, 20);
                 //Checking if start button was clicked
                 if(mouseClickR.Intersects(startButtonR))
                 {
-                    //gameState.Loading;
+                    //gameState.Loading;                   
                     gameState = GameState.Playing;
                 
                     //For when we have a loading manager
