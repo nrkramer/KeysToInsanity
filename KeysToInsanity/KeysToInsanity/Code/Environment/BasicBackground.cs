@@ -121,7 +121,7 @@ namespace KeysToInsanity.Code
 
         private void drawBackground(SpriteBatch s, Texture2D tex, Rectangle r, Color c)
         {
-            s.Draw(tex, r, c);
+            s.Draw(tex, r, null, c, 0.0f, Vector2.Zero, SpriteEffects.None, 1.0f);
             if (KeysToInsanity.DRAW_BOUNDING_BOXES)
                 drawBorder(s, r, 2, Color.Yellow);
         }

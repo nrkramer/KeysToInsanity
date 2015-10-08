@@ -25,8 +25,11 @@ namespace KeysToInsanity
         private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
+        private SpriteContainer lightEffects = new SpriteContainer(); // light effects
         private TheGentleman theGentleman; // Our main character sprite
         private HUD hud;
+
+        private Door testDoor;
 
         private BasicInput input; // Our input handler
 
@@ -64,6 +67,7 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 Console.WriteLine("A Key was picked up!");
+                testDoor.setOpen(true);
             }
         }
 
@@ -88,10 +92,10 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(370, 790);
+            theGentleman.spritePos = new Vector2(370, 0);
 
             // Heads up display (HUD)
-            hud = new HUD(this, GraphicsDevice);
+            hud = new HUD(this);
 
             // static sprites - test code. To be replaced by a level loader (XML maybe)
             background = new BasicBackground(this, "padded_background");
@@ -100,10 +104,10 @@ namespace KeysToInsanity
             leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
             BasicSprite rightWall = new BasicSprite(this, "padded_wall_right", true);
             rightWall.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 30, 0);
-            rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
-            BasicSprite door = new BasicSprite(this, "closed_door_left_metal", false);
-            door.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 35, GraphicsDevice.Viewport.Height - 140);
-            door.spriteSize = new Point(25, 120);
+            rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height - 150);
+            testDoor = new Door(this);
+            testDoor.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 25, GraphicsDevice.Viewport.Height - 150);
+            testDoor.spriteSize = new Point(25, 120);
             BasicSprite floor = new BasicSprite(this, "padded_floor", true);
             floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
@@ -122,7 +126,9 @@ namespace KeysToInsanity
             key.addTo(staticSprites);
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
-            door.addTo(staticSprites);
+            testDoor.addTo(staticSprites);
+
+            testDoor.doorLight.addTo(lightEffects);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -160,19 +166,15 @@ namespace KeysToInsanity
             if (theGentleman.spritePos.X < 0) // background slide
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
-                theGentleman.spritePos = new Vector2(GraphicsDevice.Viewport.Width - theGentleman.spriteSize.X, theGentleman.spritePos.Y);
             } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
-                theGentleman.spritePos = new Vector2(0, theGentleman.spritePos.Y);
             } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
-                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, 0);
             } else if (theGentleman.spritePos.Y < 0)
             {
                 background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-                theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, GraphicsDevice.Viewport.Height - theGentleman.spriteSize.Y);
             }
 
             base.Update(gameTime);
@@ -185,14 +187,18 @@ namespace KeysToInsanity
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
-            spriteBatch.Begin();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             background.draw(spriteBatch);
             foreach (BasicSprite s in staticSprites)
             {
                 s.draw(spriteBatch);
             }
             theGentleman.draw(spriteBatch);
+            foreach (BasicSprite s in lightEffects)
+            {
+                s.draw(spriteBatch);
+            }
             hud.draw(spriteBatch);
             spriteBatch.End();
 

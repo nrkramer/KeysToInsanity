@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
             spriteSize = new Point(50, 100);
         }
 
-        public override void onCollide(BasicSprite s)
+        public override void onCollide(BasicSprite s, Rectangle data)
         {
 
         }

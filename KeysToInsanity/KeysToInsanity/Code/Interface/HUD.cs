@@ -16,15 +16,15 @@ namespace KeysToInsanity.Code.Interface
         // First of all, all elements are drawn to external texture, why?
         // To ensure that the HUD is
         // a) drawn all at once
-        // b) drawn over everything else (we will draw the HUD last in the draw order of the main draw function)
-        // and c) not a part of collision detection
+        // b) drawn over everything else (doesn't matter anymore since were using FrontToBack drawing)
+        // and c) not a part of collision detection (most important reason)
         // This also allows us to define custom behavior for drawing whatever sprites are added to
         // the HUD's list of sprites to draw. And adjust the color of the entire HUD itself.
-        public HUD(Game game, GraphicsDevice d) : base(new RenderTarget2D(d,
-                d.PresentationParameters.BackBufferWidth,
-                d.PresentationParameters.BackBufferHeight,
+        public HUD(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
+                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
+                game.GraphicsDevice.PresentationParameters.BackBufferHeight,
                 false,
-                d.PresentationParameters.BackBufferFormat,
+                game.GraphicsDevice.PresentationParameters.BackBufferFormat,
                 DepthFormat.Depth24), false)
         {
             BasicSprite hud_key_frame = new BasicSprite(game, "hud_key_frame", false);
@@ -43,7 +43,7 @@ namespace KeysToInsanity.Code.Interface
             hud_health_color.addTo(hudSprites);
             hud_health_frame.addTo(hudSprites);
 
-            gd = d;
+            gd = game.GraphicsDevice;
         }
 
         // This draws the HUD to it's texture
@@ -52,11 +52,11 @@ namespace KeysToInsanity.Code.Interface
             gd.SetRenderTarget(spriteTex);
             gd.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true }; // didn't know you could do this until now
             gd.Clear(Color.White);
-
+            
             // Draw HUD
             foreach (BasicSprite s in hudSprites)
             {
-                spriteBatch.Draw(s.spriteTex, new Rectangle(s.spritePos.ToPoint(), s.spriteSize), Color.White);
+                s.draw(spriteBatch);
             }
 
             gd.SetRenderTarget(null);

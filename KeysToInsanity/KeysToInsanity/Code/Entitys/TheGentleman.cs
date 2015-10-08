@@ -19,7 +19,7 @@ namespace KeysToInsanity.Code
             updateWithAnimation(time, 0);
         }
 
-        public override void onCollide(BasicSprite s)
+        public override void onCollide(BasicSprite s, Rectangle data)
         {
         }
 

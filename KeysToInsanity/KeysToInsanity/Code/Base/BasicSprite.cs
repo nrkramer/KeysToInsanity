@@ -11,11 +11,14 @@ namespace KeysToInsanity
     {
         public Texture2D spriteTex {
             get; }
+
         public Vector2 spritePos {
             get; set; }
+
         public Point spriteSize;
         public Velocity velocity;
         public bool collidable = false;
+        public bool hidden = false;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
         public event KeysToInsanity.GameEventHandler eventCallback;
@@ -84,7 +87,9 @@ namespace KeysToInsanity
             return spritePos + v.getDirection();
         }
 
-        public virtual void onCollide(BasicSprite collided)
+        // gets collision data
+        // first parameter is who i've collided with
+        public virtual void onCollide(BasicSprite collided, Rectangle data)
         {
             if (eventCallback != null)
                 eventCallback(this);
@@ -93,13 +98,13 @@ namespace KeysToInsanity
         // "virtual" allows the method to be overriden by subclasses
         public virtual void draw(SpriteBatch s)
         {
-            if (spriteTex != null)
+            Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
+            if ((spriteTex != null) && !hidden)
             {
-                Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
-                s.Draw(spriteTex, spriteBox, new Color(1.0f, 1.0f, 1.0f));
-                if (KeysToInsanity.DRAW_BOUNDING_BOXES)
-                    drawBorder(s, spriteBox, 2, borderColor);
+                s.Draw(spriteTex, spriteBox, null, Color.White);
             }
+            if (KeysToInsanity.DRAW_BOUNDING_BOXES)
+                drawBorder(s, spriteBox, 2, borderColor);
         }
 
         protected void drawBorder(SpriteBatch s, Rectangle box, int borderWidth, Color color)

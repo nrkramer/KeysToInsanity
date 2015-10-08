@@ -20,7 +20,15 @@ namespace KeysToInsanity.Code
 
         public static bool willCollide(BasicSprite s1, BasicSprite s2)
         {
-            return new Rectangle(s1.getUpdatePosition().ToPoint(), s1.spriteSize).Intersects(new Rectangle(s2.getUpdatePosition().ToPoint(), s2.spriteSize));
+            Rectangle r = Rectangle.Intersect(new Rectangle(s1.getUpdatePosition().ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePosition().ToPoint(), s2.spriteSize));
+            if ((r != Rectangle.Empty))
+            {
+                s1.onCollide(s2, r);
+                s2.onCollide(s1, r);
+                return true;
+            }
+            else
+                return false;
         }
 
         public static Vector2 collisionDirection(BasicSprite s1, BasicSprite s2)
@@ -35,8 +43,6 @@ namespace KeysToInsanity.Code
         {
             if (willCollide(s1, s2))
             {
-                s1.onCollide(s2);
-                s2.onCollide(s1);
                 if (s1.collidable && s2.collidable)
                 {
                     float vf1, vf2;
