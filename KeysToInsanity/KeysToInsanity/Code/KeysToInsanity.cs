@@ -2,8 +2,10 @@
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -44,17 +46,15 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        //Used for the menu
-        private Texture2D logo;
+        //Used for the menu ADR
         private Texture2D startButton;
-        private Texture2D exitButton;
-
-
-        //Used for position of the menu     
-        private Vector2 logoPosition; 
+        private Texture2D exitButton;        
+        
+        //Used for position of the menu ADR        
         private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;      
-        //Setting constants for the menu items       
+        private Vector2 exitButtonPosition;
+        private Vector2 rusumeButtonPosition;
+        //Setting constants for the menu items
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
@@ -101,6 +101,7 @@ namespace KeysToInsanity
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
+                gotKey = true;
                 Console.WriteLine("A Key was picked up!");
             }
         }
@@ -176,8 +177,12 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-            //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
-            //testSound.play(true);
+            //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
+            //MediaPlayer.Play(testSound);
+
+           //spriteBatch = new SpriteBatch(GraphicsDevice);
+           //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
+           //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
 
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
@@ -273,6 +278,12 @@ namespace KeysToInsanity
                 theGentleman.draw(spriteBatch);
                 hud.draw(spriteBatch);
             }
+            /*if (gotKey == true)
+            {
+               string output = "You got a key!";
+               Vector2 FontOrigin = Font1.MeasureString(output) / 2;
+                spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+            }*/
                 spriteBatch.End();
 
                 base.Draw(gameTime);
@@ -296,7 +307,7 @@ namespace KeysToInsanity
                 //Checking if start button was clicked
                 if(mouseClickR.Intersects(startButtonR))
                 {
-                    //gameState.Loading;                   
+                    //gameState.Loading;
                     gameState = GameState.Playing;
                 
                     //For when we have a loading manager
