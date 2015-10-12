@@ -95,6 +95,16 @@ namespace KeysToInsanity
                 eventCallback(this);
         }
 
+        public float getSpriteXPos()
+        {
+            return spritePos.X;
+        }
+
+        public float getSpriteYPos()
+        {
+            return spritePos.Y;
+        }
+
         // "virtual" allows the method to be overriden by subclasses
         public virtual void draw(SpriteBatch s)
         {

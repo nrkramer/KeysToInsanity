@@ -2,8 +2,10 @@
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -47,22 +49,22 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        //Used for the menu
-        private Texture2D logo;
+        //Used for the menu ADR
         private Texture2D startButton;
         private Texture2D exitButton;
+        private Texture2D logo;        
 
-
-        //Used for position of the menu     
-        private Vector2 logoPosition; 
+        //Used for position of the menu ADR        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;      
+        private Vector2 logoPosition;
         //Setting constants for the menu items       
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
+        private bool gotKey;
 
         public delegate void GameEventHandler(object caller);
         //public event GameEventHandler gameEventHandeler;
@@ -104,6 +106,7 @@ namespace KeysToInsanity
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
+                gotKey = true;
                 Console.WriteLine("A Key was picked up!");
                 testDoor.setOpen(true);
             }
@@ -114,7 +117,7 @@ namespace KeysToInsanity
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
-        {
+        {           
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //Loading the games menu buttons for menu screen
@@ -182,8 +185,12 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-            //testSound = new Sound(this, "SoundFX/Music/Op9No2Session");
-            //testSound.play(true);
+            //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
+            //MediaPlayer.Play(testSound);
+
+           //spriteBatch = new SpriteBatch(GraphicsDevice);
+           //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
+           //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
 
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
@@ -220,25 +227,25 @@ namespace KeysToInsanity
                }
                */
 
-            theGentleman.handleInput(gameTime); // input
-            physics.Update(gameTime, characterSprites); // physics
-            RectangleCollision.update(characterSprites, staticSprites); // collision
+                theGentleman.handleInput(gameTime); // input
+                physics.Update(gameTime, characterSprites); // physics
+                RectangleCollision.update(characterSprites, staticSprites); // collision
 
-            if (theGentleman.spritePos.X < 0) // background slide
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
-            } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
-            } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
-            } else if (theGentleman.spritePos.Y < 0)
-            {
-                background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-            }
+                if (theGentleman.spritePos.X < 0) // background slide
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
+                } else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
+                } else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
+                } else if (theGentleman.spritePos.Y < 0)
+                {
+                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
+                }
 
-            base.Update(gameTime);
+                base.Update(gameTime);
             
         }
 
@@ -247,11 +254,9 @@ namespace KeysToInsanity
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
+        {            
+                GraphicsDevice.Clear(Color.Black);
 
-            
-            GraphicsDevice.Clear(Color.Black);
-            
                 spriteBatch.Begin();
 
             //Checks if gameState is at StartMenu, draws the start menu
@@ -267,21 +272,27 @@ namespace KeysToInsanity
             if (gameState == GameState.Playing)
             {
 
-            background.draw(spriteBatch);
-            foreach (BasicSprite s in staticSprites)
-            {
-                s.draw(spriteBatch);
-            }
-            theGentleman.draw(spriteBatch);
+                background.draw(spriteBatch);
+                foreach (BasicSprite s in staticSprites)
+                {
+                    s.draw(spriteBatch);
+                }
+                theGentleman.draw(spriteBatch);
             foreach (BasicSprite s in lightEffects)
             {
                 s.draw(spriteBatch);
             }
-            hud.draw(spriteBatch);
+                hud.draw(spriteBatch);
             }
-            spriteBatch.End();
+            /*if (gotKey == true)
+            {
+               string output = "You got a key!";
+               Vector2 FontOrigin = Font1.MeasureString(output) / 2;
+                spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+            }*/
+                spriteBatch.End();
 
-            base.Draw(gameTime);
+                base.Draw(gameTime);
 
             
             

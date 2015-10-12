@@ -15,6 +15,7 @@ namespace KeysToInsanity.Code
             //Console.WriteLine();
 
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
+
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
             {
