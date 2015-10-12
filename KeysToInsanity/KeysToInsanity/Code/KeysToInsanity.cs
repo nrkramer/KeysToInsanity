@@ -48,18 +48,20 @@ namespace KeysToInsanity
 
         //Used for the menu ADR
         private Texture2D startButton;
-        private Texture2D exitButton;        
+        private Texture2D exitButton;
+        private Texture2D logo;        
         
         //Used for position of the menu ADR        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;
-        private Vector2 rusumeButtonPosition;
+        private Vector2 logoPosition;
         //Setting constants for the menu items
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
+        private bool gotKey;
 
         public delegate void GameEventHandler(object caller);
         //public event GameEventHandler gameEventHandeler;
