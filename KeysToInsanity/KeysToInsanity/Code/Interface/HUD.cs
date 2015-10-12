@@ -39,7 +39,9 @@ namespace KeysToInsanity.Code.Interface
             hud_health_color.spriteSize = new Point(202, 32);
             hud_health_color.spritePos = new Vector2(0, 0);
 
-            hud_key_frame.addTo(hudSprites);
+            
+
+        hud_key_frame.addTo(hudSprites);
             hud_health_color.addTo(hudSprites);
             hud_health_frame.addTo(hudSprites);
 

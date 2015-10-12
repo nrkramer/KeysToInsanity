@@ -3,8 +3,10 @@ using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace KeysToInsanity
 {
@@ -13,6 +15,13 @@ namespace KeysToInsanity
     /// </summary>
     public class KeysToInsanity : Game
     {
+        enum GameState
+        {
+            StartMenu,
+            Loading,
+            Playing,
+            Paused
+        }
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
@@ -27,6 +36,7 @@ namespace KeysToInsanity
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
         private TheGentleman theGentleman; // Our main character sprite
+        private Nurse nurse;
         private HUD hud;
 
         private Door testDoor;
@@ -37,6 +47,23 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
+        //Used for the menu
+        private Texture2D logo;
+        private Texture2D startButton;
+        private Texture2D exitButton;
+
+
+        //Used for position of the menu     
+        private Vector2 logoPosition; 
+        private Vector2 startButtonPosition;
+        private Vector2 exitButtonPosition;      
+        //Setting constants for the menu items       
+        private Thread backgroundThread;
+        private bool isLoading = false;
+        MouseState mouseState;
+        MouseState previousMouseState;
+        private GameState gameState;
+
         public delegate void GameEventHandler(object caller);
         //public event GameEventHandler gameEventHandeler;
 
@@ -44,8 +71,8 @@ namespace KeysToInsanity
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           // graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+           //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
@@ -57,8 +84,19 @@ namespace KeysToInsanity
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //Enabling mouse pointer
+            IsMouseVisible = true;
 
+            logoPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) -100, 20);
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
+            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
+
+            //set the gamestate to the start menu
+            gameState = GameState.StartMenu;
+
+            //Get the mouse state
+            mouseState = Mouse.GetState();
+            previousMouseState = mouseState;
             base.Initialize();
         }
 
@@ -79,6 +117,11 @@ namespace KeysToInsanity
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            //Loading the games menu buttons for menu screen
+            logo = Content.Load<Texture2D>("logo");
+            startButton = Content.Load<Texture2D>("start");
+            exitButton = Content.Load<Texture2D>("exit");
+
 
             if (DRAW_BOUNDING_BOXES)
             {
@@ -92,7 +135,11 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(370, 0);
+            theGentleman.spritePos = new Vector2(370, 790);
+            nurse = new Nurse(this);
+            nurse.addTo(characterSprites);
+            nurse.spritePos = new Vector2(590, 790);
+
 
             // Heads up display (HUD)
             hud = new HUD(this);
@@ -159,6 +206,20 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+                mouseState = Mouse.GetState();
+                if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+                {
+                    MouseClicked(mouseState.X, mouseState.Y);
+                }
+                previousMouseState = mouseState;
+               /* For when we have a loading manager
+               if(gameState == GameState.Playing && isLoading)
+               {
+                LoadGame();
+                isLoading = false;
+               }
+               */
+
             theGentleman.handleInput(gameTime); // input
             physics.Update(gameTime, characterSprites); // physics
             RectangleCollision.update(characterSprites, staticSprites); // collision
@@ -178,6 +239,7 @@ namespace KeysToInsanity
             }
 
             base.Update(gameTime);
+            
         }
 
         /// <summary>
@@ -186,9 +248,25 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            
+            GraphicsDevice.Clear(Color.Black);
+            
+                spriteBatch.Begin();
+
+            //Checks if gameState is at StartMenu, draws the start menu
+               if(gameState == GameState.StartMenu)
+            {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
+                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
+
+
+            //checks if the gameState is at playing, draws the game
+            if (gameState == GameState.Playing)
+            {
+
             background.draw(spriteBatch);
             foreach (BasicSprite s in staticSprites)
             {
@@ -200,9 +278,43 @@ namespace KeysToInsanity
                 s.draw(spriteBatch);
             }
             hud.draw(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
+
+            
+            
         }
+
+    void MouseClicked(int x, int y)
+        {
+            //Creates a rectangle around where the mouse clicked
+            Rectangle mouseClickR = new Rectangle(x,y,10,10);
+
+            //Checks the start menu
+            if(gameState == GameState.StartMenu)
+            {
+                Rectangle startButtonR = new Rectangle((int)startButtonPosition.X,
+                    (int)startButtonPosition.Y, 100, 20);
+                Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
+                    (int)exitButtonPosition.Y, 100, 20);
+                //Checking if start button was clicked
+                if(mouseClickR.Intersects(startButtonR))
+                {
+                    //gameState.Loading;                   
+                    gameState = GameState.Playing;
+                
+                    //For when we have a loading manager
+                   // isLoading = true;
+                }
+                //Player clicked exit button
+                else if(mouseClickR.Intersects(exitButtonR))
+                {
+                    Exit();
+                }
+            }
+        }
+
     }
 }
