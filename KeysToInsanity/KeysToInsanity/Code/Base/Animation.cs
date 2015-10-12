@@ -36,6 +36,19 @@ namespace KeysToInsanity
             frames.Add(newFrame);
         }
 
+        public void AddUniformStrip(Rectangle stripRectangle, Point frameSize, TimeSpan frameDuration)
+        {
+            int size = stripRectangle.Width / frameSize.X;
+            for(int i = 0; i < size; i++)
+            {
+                frames.Add(new AnimationFrame()
+                {
+                    SourceRectangle = new Rectangle((frameSize.X * i) + stripRectangle.X, stripRectangle.Y, frameSize.X, frameSize.Y),
+                    Duration = frameDuration
+                });
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             double secondsIntoAnimation =

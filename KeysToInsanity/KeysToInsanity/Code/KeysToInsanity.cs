@@ -66,8 +66,7 @@ namespace KeysToInsanity
         private GameState gameState;
         private bool gotKey;
 
-        public delegate void GameEventHandler(object caller);
-        //public event GameEventHandler gameEventHandeler;
+        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data);
 
         public KeysToInsanity()
         {
@@ -102,13 +101,20 @@ namespace KeysToInsanity
             base.Initialize();
         }
 
-        public void testEvents(object caller)
+        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data)
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
                 Console.WriteLine("A Key was picked up!");
                 testDoor.setOpen(true);
+            }
+
+            if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
+            {
+                if (collided.collidable)
+                    if (data.Height > 0)
+                        Console.WriteLine("The Gentleman has collided with the ground.");
             }
         }
 
@@ -138,7 +144,8 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(370, 790);
+            theGentleman.spritePos = new Vector2(370, 0);
+            theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
             nurse = new Nurse(this);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(590, 790);
@@ -163,7 +170,7 @@ namespace KeysToInsanity
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
             Key key = new Key(this, hud); // key requires a HUD to go to
             key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
-            key.eventCallback += new GameEventHandler(testEvents);
+            key.collisionCallback += new CollisionEventHandler(collisionEvents);
             HatHanger hanger = new HatHanger(this);
             hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             BasicSprite bed = new BasicSprite(this, "bed", false);

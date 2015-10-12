@@ -3,7 +3,7 @@ using System;
 
 namespace KeysToInsanity.Code
 {
-    class Velocity
+    public class Velocity
     {
         public const double DEG_TO_RAD = Math.PI / 180.0;
         public static Velocity Zero { get { return Velocity.FromCoordinates(0.0f, 0.0f); } }

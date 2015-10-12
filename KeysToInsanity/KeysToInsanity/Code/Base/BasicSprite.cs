@@ -7,7 +7,7 @@ using System;
 
 namespace KeysToInsanity
 {
-    class BasicSprite
+    public class BasicSprite
     {
         public Texture2D spriteTex {
             get; }
@@ -21,7 +21,7 @@ namespace KeysToInsanity
         public bool hidden = false;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
-        public event KeysToInsanity.GameEventHandler eventCallback;
+        public event KeysToInsanity.CollisionEventHandler collisionCallback;
 
       
         // Load sprite from file, requires you pass in a game instance for content loading
@@ -91,8 +91,8 @@ namespace KeysToInsanity
         // first parameter is who i've collided with
         public virtual void onCollide(BasicSprite collided, Rectangle data)
         {
-            if (eventCallback != null)
-                eventCallback(this);
+            if (collisionCallback != null)
+                collisionCallback(this, collided, data);
         }
 
         public float getSpriteXPos()

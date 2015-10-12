@@ -31,5 +31,5 @@ namespace KeysToInsanity.Code
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
             }
         }
-        }
     }
+}

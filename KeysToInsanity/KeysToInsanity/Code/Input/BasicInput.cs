@@ -8,7 +8,8 @@ namespace KeysToInsanity.Code
     {
         private BasicSprite sprite;
         private Game game;
-        private KeyboardState OKBS;
+        public KeyboardState IKBS; // immediate keyboard state
+        public KeyboardState OKBS; // original keyboard state
 
         public BasicInput(Game game, BasicSprite sprite)
         {
@@ -16,13 +17,13 @@ namespace KeysToInsanity.Code
             this.sprite = sprite;
         }
 
-        public void defaultKeyboardHandler()
+        public virtual void defaultKeyboardHandler()
         {
             GamePadButtons b = GamePad.GetState(PlayerIndex.One).Buttons; // gamepad controller support (may get rid of)
-            KeyboardState kb = Keyboard.GetState();
+            IKBS = Keyboard.GetState();
 
             // if either escape is pressed, or, on a gamepad, back is pressed
-            if (escDown(kb) || gamepadBackPressed(b))
+            if (escDown(IKBS) || gamepadBackPressed(b))
                 game.Exit();
 
             if (sprite != null)
@@ -34,55 +35,55 @@ namespace KeysToInsanity.Code
                 int xDiff = 0;
                 int yDiff = 0;
 
-                if (leftDown(kb))
+                if (leftDown(IKBS))
                     xDiff -= xVelocity;
-                if (rightDown(kb))
+                if (rightDown(IKBS))
                     xDiff += xVelocity;
-                if (upDown(kb))
+                if (upDown(IKBS))
                     yDiff -= yVelocity;
-                if (downDown(kb))
+                if (downDown(IKBS))
                     yDiff += yVelocity;
-                if (spaceDown(kb))
+                if (spaceDown(IKBS))
                     yDiff += -4*yVelocity;
                
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
                 sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff); //+ jumpVelocity;
             }
-            OKBS = kb;
+            OKBS = IKBS;
         }
 
-        private bool leftDown(KeyboardState kb)
+        public bool leftDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Left);
         }
 
-        private bool rightDown(KeyboardState kb)
+        public bool rightDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Right);
         }
 
-        private bool upDown(KeyboardState kb)
+        public bool upDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Up);
         }
 
-        private bool downDown(KeyboardState kb)
+        public bool downDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Down);
         }
 
-        private bool escDown(KeyboardState kb)
+        public bool escDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Escape);
         }
 
-        private bool spaceDown(KeyboardState kb)
+        public bool spaceDown(KeyboardState kb)
         {
             return kb.IsKeyDown(Keys.Space) && !OKBS.IsKeyDown(Keys.Space);
         }
 
-        private bool gamepadBackPressed(GamePadButtons b)
+        public bool gamepadBackPressed(GamePadButtons b)
         {
             return (b.Back == ButtonState.Pressed);
         }

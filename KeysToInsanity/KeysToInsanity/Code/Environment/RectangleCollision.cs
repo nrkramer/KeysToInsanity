@@ -23,8 +23,11 @@ namespace KeysToInsanity.Code
             Rectangle r = Rectangle.Intersect(new Rectangle(s1.getUpdatePosition().ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePosition().ToPoint(), s2.spriteSize));
             if ((r != Rectangle.Empty))
             {
-                s1.onCollide(s2, r);
-                s2.onCollide(s1, r);
+                if (!(s1.collidable && s2.collidable))
+                {
+                    s1.onCollide(s2, r);
+                    s2.onCollide(s1, r);
+                }
                 return true;
             }
             else
@@ -43,6 +46,7 @@ namespace KeysToInsanity.Code
         {
             if (willCollide(s1, s2))
             {
+                Rectangle data = new Rectangle();
                 if (s1.collidable && s2.collidable)
                 {
                     float vf1, vf2;
@@ -54,6 +58,9 @@ namespace KeysToInsanity.Code
                     else
                         vf1 = v1.getDirection().X;
 
+                    data.X = collision.X;
+                    data.Width = (Math.Sign(v1.getDirection().X)) * collision.Width;
+
                     v1 = Velocity.FromCoordinates(0.0f, s1.velocity.getDirection().Y);
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
@@ -61,6 +68,13 @@ namespace KeysToInsanity.Code
                         vf2 = (int)v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
                     else
                         vf2 = v1.getDirection().Y;
+
+                    data.Y = collision.Y;
+                    data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
+
+                    //Console.WriteLine(data);
+                    s1.onCollide(s2, data);
+                    s2.onCollide(s1, data);
 
                     return Velocity.FromCoordinates(vf1, vf2);
                 }
