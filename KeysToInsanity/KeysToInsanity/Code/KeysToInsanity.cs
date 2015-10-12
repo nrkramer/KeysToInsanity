@@ -1,6 +1,7 @@
 ﻿using KeysToInsanity.Code;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
+using KeysToInsanity.Code.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,8 +26,8 @@ namespace KeysToInsanity
             Paused
         }
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
-        public static bool DRAW_MOVEMENT_VECTORS = false;
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_MOVEMENT_VECTORS = true;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
 
@@ -53,13 +54,15 @@ namespace KeysToInsanity
         //Used for position of the menu ADR        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;
-        private Vector2 rusumeButtonPosition;
+        private Vector2 resumeButtonPosition;
         //Setting constants for the menu items
         private Thread backgroundThread;
         private bool isLoading = false;
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
+        private Texture2D logo;
+        private Vector2 logoPosition;
 
         public delegate void GameEventHandler(object caller);
         //public event GameEventHandler gameEventHandeler;
@@ -101,7 +104,7 @@ namespace KeysToInsanity
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
-                gotKey = true;
+               // gotKey = true;
                 Console.WriteLine("A Key was picked up!");
             }
         }
@@ -137,7 +140,6 @@ namespace KeysToInsanity
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(590, 790);
 
-
             // Heads up display (HUD)
             hud = new HUD(this, GraphicsDevice);
 
@@ -163,6 +165,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
+            platform Platform = new platform(this);
+            Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -171,6 +175,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             door.addTo(staticSprites);
+            Platform.addTo(staticSprites);
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
@@ -211,17 +216,18 @@ namespace KeysToInsanity
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
                 previousMouseState = mouseState;
-               /* For when we have a loading manager
-               if(gameState == GameState.Playing && isLoading)
-               {
-                LoadGame();
-                isLoading = false;
-               }
-               */
+            /* For when we have a loading manager
+            if(gameState == GameState.Playing && isLoading)
+            {
+             LoadGame();
+             isLoading = false;
+            }
+            */
 
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites); // collision
+                
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
