@@ -53,12 +53,14 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\AnimatedSprite.cs" />
-    <Compile Include="Code\Animation.cs" />
-    <Compile Include="Code\AnimationFrame.cs" />
-    <Compile Include="Code\BasicBackground.cs" />
-    <Compile Include="Code\BasicSprite.cs" />
-    <Compile Include="Code\BasicInput.cs" />
+    <Compile Include="Code\Base\AnimatedSprite.cs" />
+    <Compile Include="Code\Base\Animation.cs" />
+    <Compile Include="Code\Base\AnimationFrame.cs" />
+    <Compile Include="Code\Environment\BasicBackground.cs" />
+    <Compile Include="Code\Base\BasicSprite.cs" />
+    <Compile Include="Code\Environment\LightEffect.cs" />
+    <Compile Include="Code\Environment\Physics.cs" />
+    <Compile Include="Code\Input\BasicInput.cs" />
     <Compile Include="Code\Entitys\Nurse.cs" />
     <Compile Include="Code\Entitys\Security.cs" />
     <Compile Include="Code\Entitys\TheDoctor.cs" />
@@ -73,13 +75,12 @@
     <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\platform.cs" />
-    <Compile Include="Code\Physics.cs" />
     <Compile Include="Code\ProgramMain.cs" />
-    <Compile Include="Code\RectangleCollision.cs" />
-    <Compile Include="Code\Sound.cs" />
-    <Compile Include="Code\SpriteContainer.cs" />
+    <Compile Include="Code\Environment\RectangleCollision.cs" />
+    <Compile Include="Code\Sound\Sound.cs" />
+    <Compile Include="Code\Base\SpriteContainer.cs" />
     <Compile Include="Code\Utilities\OrderedHashSet.cs" />
-    <Compile Include="Code\Velocity.cs" />
+    <Compile Include="Code\Utilities\Velocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\4LinkGreen1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -163,6 +167,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SuperMetroidSamus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Test_Background.png">

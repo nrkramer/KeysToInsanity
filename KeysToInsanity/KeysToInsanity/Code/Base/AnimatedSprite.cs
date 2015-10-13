@@ -7,8 +7,8 @@ namespace KeysToInsanity.Code
 {
     class AnimatedSprite : BasicSprite
     {
-        private List<Animation> animations = new List<Animation>();
-        private Animation currentAnimation = new Animation();
+        protected List<Animation> animations = new List<Animation>();
+        protected Animation currentAnimation = new Animation();
 
         private Point animatedSpriteSize = new Point(); // size of each individual sprite in the sprite sheet
         private int spriteAnimations = 1; // number of rows in sprite sheet

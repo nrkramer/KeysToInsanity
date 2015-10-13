@@ -33,9 +33,9 @@ namespace KeysToInsanity.Code.Interactive_Objects
             }
         }
 
-        public override void onCollide(BasicSprite collided)
+        public override void onCollide(BasicSprite collided, Rectangle data)
         {
-            base.onCollide(collided);
+            base.onCollide(collided, data);
             // The Gentleman picked up the key
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {

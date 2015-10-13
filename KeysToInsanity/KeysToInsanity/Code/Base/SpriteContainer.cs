@@ -6,7 +6,7 @@ namespace KeysToInsanity.Code
 {
     // Convienence class for a set of sprites
     // May implement some special functionality later
-    class SpriteContainer : List<BasicSprite>
+    public class SpriteContainer : List<BasicSprite>
     {
         public SpriteContainer() : base() { }
     }

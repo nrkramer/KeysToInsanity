@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code
     {
 
         private BasicInput input;
-        public TheGentleman(Game game) : base(game, "Gentleman", new Point(17,34), 4, 0.25, true)
+        public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30,56), 4, 0.1, true)
         {
             input = new BasicInput(game, this);
         }
@@ -16,11 +16,17 @@ namespace KeysToInsanity.Code
         public void handleInput(GameTime time)
         {
             input.defaultKeyboardHandler();
-            updateWithAnimation(time, 0);
+            if (input.rightDown(input.IKBS))
+                updateWithAnimation(time, 1);
+            else if (input.leftDown(input.IKBS))
+                updateWithAnimation(time, 2);
+            else
+                updateWithAnimation(time, 0);
         }
 
-        public override void onCollide(BasicSprite s)
+        public override void onCollide(BasicSprite s, Rectangle data)
         {
+            base.onCollide(s, data);
         }
 
         public override void draw(SpriteBatch s)
@@ -40,5 +46,25 @@ namespace KeysToInsanity.Code
                 new Vector2(bounds.Width / 2, bounds.Height / 2), SpriteEffects.None, 1.0f);
         }
         //use an update method to move ai in methods.
+
+        // custom animation loading for gentleman... could get complicated
+        protected override void loadAnimations()
+        {
+            // idle
+            Animation idle = new Animation();
+            idle.AddFrame(new Rectangle(0, 0, 30, 55), TimeSpan.FromSeconds(1.0));
+
+            // run right
+            Animation runRight = new Animation();
+            runRight.AddUniformStrip(new Rectangle(0, 280, 420, 45), new Point(42, 55), TimeSpan.FromSeconds(0.05));
+
+            // run left
+            Animation runLeft = new Animation();
+            runLeft.AddUniformStrip(new Rectangle(550, 225, 420, 45), new Point(42, 55), TimeSpan.FromSeconds(0.05));
+
+            animations.Add(idle);
+            animations.Add(runRight);
+            animations.Add(runLeft);
+        }
     }
 }
