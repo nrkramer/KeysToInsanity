@@ -67,7 +67,7 @@ namespace KeysToInsanity
         private GameState gameState;
         private bool gotKey;
 
-        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data);
+        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time);
 
         public KeysToInsanity()
         {
@@ -102,7 +102,7 @@ namespace KeysToInsanity
             base.Initialize();
         }
 
-        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data)
+        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
@@ -242,7 +242,7 @@ namespace KeysToInsanity
 
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
-                RectangleCollision.update(characterSprites, staticSprites); // collision
+                RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {

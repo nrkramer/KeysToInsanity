@@ -89,10 +89,10 @@ namespace KeysToInsanity
 
         // gets collision data
         // first parameter is who i've collided with
-        public virtual void onCollide(BasicSprite collided, Rectangle data)
+        public virtual void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
             if (collisionCallback != null)
-                collisionCallback(this, collided, data);
+                collisionCallback(this, collided, data, time);
         }
 
         public float getSpriteXPos()

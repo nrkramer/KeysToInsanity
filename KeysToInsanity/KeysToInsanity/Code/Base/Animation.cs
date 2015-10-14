@@ -49,6 +49,18 @@ namespace KeysToInsanity
             }
         }
 
+        public void AddUniformHeightStrip(Rectangle stripRectangle, int[] widths, TimeSpan frameDuration)
+        {
+            for(int i = 0; i < widths.Count(); i++)
+            {
+                frames.Add(new AnimationFrame()
+                {
+                    SourceRectangle = new Rectangle((widths[i] * i) + stripRectangle.X, stripRectangle.Y, widths[i], stripRectangle.Height),
+                    Duration = frameDuration
+                });
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             double secondsIntoAnimation =
