@@ -17,9 +17,9 @@ namespace KeysToInsanity.Code.Interactive_Objects
 
         }
 
-        public override void onCollide(BasicSprite collided, Rectangle data)
+        public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
-            base.onCollide(collided, data);
+            base.onCollide(collided, data, time);
             // The Gentleman pushs into a box
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {

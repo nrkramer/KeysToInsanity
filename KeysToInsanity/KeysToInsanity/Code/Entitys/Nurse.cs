@@ -7,28 +7,48 @@ namespace KeysToInsanity.Code
     class Nurse : AnimatedSprite
     {
  
+        //Place were NPC moves around
         private int center;
+        
 
         public Nurse(Game game, int posX, int posY) : base(game, "TopHat", new Point(posX, posY), 1, .25, false)
         {
+            //Setting the nurse posX to be center
             center = posX;
         }
 
         protected  void Update()
         {
-            //Deciding if we need to move to the right
-            if(center > getSpriteXPos()+50)
+            
+            //Deciding if we need to move to the left
+            if( getSpriteXPos() <= center+50)
             {
-                //Ask for help
-            }else if (center < getSpriteXPos()-50) //Or to the left
+                this.velocity = Velocity.FromDirection(0.0f, 2.5f);
+            }else if ( getSpriteXPos() >=center-50) //Or to the right
             {
-
-            }else
-            {
-
+                this.velocity = Velocity.FromDirection(0.0f, -2.5f);
             }
 
 
+        }
+        //Overriding nurse to get it cause damage || to get it to stop at obstacles
+        public override void onCollide(BasicSprite collided, Rectangle data)
+        {
+
+            base.onCollide(collided, data);
+            //Seeing if nurse hit the Gentleman
+            if(collided.ToString() == "KeysToInsanity.Code.TheGentleman")
+            {
+                //call method to handle damage and effects
+            }
+            //Checking to see if nurse hit a floor
+            if (collided.collidable)
+            {if(data.Width <= 0)
+                {
+                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                }
+                
+            }
         }
     }
 }

@@ -24,9 +24,9 @@ namespace KeysToInsanity.Code
                 updateWithAnimation(time, 3);
         }
 
-        public override void onCollide(BasicSprite s, Rectangle data)
+        public override void onCollide(BasicSprite s, Rectangle data, GameTime time)
         {
-            base.onCollide(s, data);
+            base.onCollide(s, data, time);
         }
 
         public override void draw(SpriteBatch s)
@@ -64,7 +64,7 @@ namespace KeysToInsanity.Code
 
             // fall right
             Animation fallLeft = new Animation();
-            fallLeft.AddUniformHeightStrip(new Rectangle(368, 183, 327, 33), new int[10] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30}, TimeSpan.FromSeconds(0.05));
+            fallLeft.AddUniformHeightStrip(new Rectangle(368, 183, 327, 33), new int[9] {30, 39, 44, 44, 33, 30, 38, 40, 27}, TimeSpan.FromSeconds(0.05));
 
             animations.Add(idle);
             animations.Add(runRight);

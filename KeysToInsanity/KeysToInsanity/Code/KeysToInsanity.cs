@@ -119,6 +119,7 @@ namespace KeysToInsanity
                         Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
                     }
+            
             }
         }
 
@@ -150,9 +151,9 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            //nurse = new Nurse(this);
-            //nurse.addTo(characterSprites);
-            //nurse.spritePos = new Vector2(590, 790);
+            nurse = new Nurse(this,32,0);
+            nurse.addTo(characterSprites);
+            nurse.spritePos = new Vector2(590, 790);
 
 
             // Heads up display (HUD)
