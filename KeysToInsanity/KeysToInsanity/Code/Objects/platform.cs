@@ -9,21 +9,18 @@ namespace KeysToInsanity.Code.Objects
 
     class platform : BasicSprite
     {
-        public bool moving = false;
 
-        public platform(Game game) : base(game, "platform", true)
+
+        public platform(Game game) : base(game, "platform", false)
         {
-            spriteSize = new Point(100, 35);
+            spriteSize = new Point(100, 50);
         }
-       
-        public void Update(GameTime gameTime, SpriteContainer platformsThatMove)
-        { 
-            float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            moving = true;
-            
 
+        public void Update(GameTime gameTime, SpriteContainer platformsThatMove) {
             foreach (BasicSprite z in platformsThatMove)
             {
+                float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
+                bool moving = true;
                 float newSpeed = z.getSpriteXPos();
                 while (moving == true)
                 {
@@ -34,7 +31,7 @@ namespace KeysToInsanity.Code.Objects
                         newSpeed = z.getSpriteXPos() + 1;
                     }
                     frameTime = 0;                 
-                }
+                }            
             }
         }
     }
