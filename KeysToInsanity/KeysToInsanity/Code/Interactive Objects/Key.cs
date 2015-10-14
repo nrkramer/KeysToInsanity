@@ -33,7 +33,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
             }
         }
 
-        public override void onCollide(BasicSprite collided, Rectangle data)
+        public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
             base.onCollide(collided, data);
             // The Gentleman picked up the key
