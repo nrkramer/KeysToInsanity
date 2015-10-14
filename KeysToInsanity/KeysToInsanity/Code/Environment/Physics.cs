@@ -20,17 +20,15 @@ namespace KeysToInsanity.Code
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
             {
-                 if (i.velocity.getY() >= 0)
-                {
-                    i.velocity.setY(i.velocity.getY() + (gravity * frameTime));
-                    if (i.velocity.getY() >= 10.0f)
-                    {
-                        i.velocity.setY(10.0f);
-                    }
-                }
+                    i.velocity.setY(i.velocity.getY() + (gravity * frameTime - jumpTime));
+            }
 
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
-            }
+        }
+
+        public void resetTime(GameTime time)
+        {
+            jumpTime = (float)time.TotalGameTime.TotalSeconds;
         }
     }
 }
