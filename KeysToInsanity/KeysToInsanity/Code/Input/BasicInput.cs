@@ -44,7 +44,7 @@ namespace KeysToInsanity.Code
                 if (downDown(IKBS))
                     yDiff += yVelocity;*/
                 if (spaceDown(IKBS))
-                    yDiff = -10;
+                    yDiff = -20;
                
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);

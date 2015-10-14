@@ -15,14 +15,18 @@ namespace KeysToInsanity.Code
         {
             //Console.WriteLine();
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            float downVel = gravity * (frameTime - jumpTime);
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
             {
-                i.velocity.setY(i.velocity.getY() + (gravity * (frameTime - jumpTime)));
-            }
+                if (downVel <= 9.8f)
+                {
+                    i.velocity.setY(i.velocity.getY() + downVel);
+                }
+                }
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
-        }
+            }
 
         public void resetTime(GameTime time)
         {
