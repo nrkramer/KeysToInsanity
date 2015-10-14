@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code
             else if (input.leftDown(input.IKBS))
                 updateWithAnimation(time, 2);
             else
-                updateWithAnimation(time, 3);
+                updateWithAnimation(time, 0);
         }
 
         public override void onCollide(BasicSprite s, Rectangle data, GameTime time)
@@ -63,13 +63,13 @@ namespace KeysToInsanity.Code
             runLeft.AddUniformStrip(new Rectangle(550, 225, 420, 45), new Point(42, 55), TimeSpan.FromSeconds(0.05));
 
             // fall right
-            Animation fallLeft = new Animation();
-            fallLeft.AddUniformHeightStrip(new Rectangle(368, 183, 327, 33), new int[9] {30, 39, 44, 44, 33, 30, 38, 40, 27}, TimeSpan.FromSeconds(0.05));
+            //Animation fallLeft = new Animation();
+            //fallLeft.AddUniformHeightStrip(new Rectangle(368, 183, 327, 33), new int[9] {30, 39, 44, 44, 33, 30, 38, 40, 27}, TimeSpan.FromSeconds(0.05));
 
             animations.Add(idle);
             animations.Add(runRight);
             animations.Add(runLeft);
-            animations.Add(fallLeft);
+            //animations.Add(fallLeft);
         }
     }
 }

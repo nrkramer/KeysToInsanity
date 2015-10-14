@@ -117,9 +117,8 @@ namespace KeysToInsanity
                     if (data.Height > 0)
                     {
                         Console.WriteLine("The Gentleman has collided with the ground.");
+                    }
             }
-            
-        }
         }
 
         /// <summary>
