@@ -48,6 +48,8 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
+        private horizontalplatform platform1;
+
         private Sound testSound;
 
         //Used for the menu ADR
@@ -180,7 +182,7 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            platform Platform = new platform(this);
+            horizontalplatform Platform = new horizontalplatform(this);
             Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
@@ -244,6 +246,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
+               // platform1.Update(gameTime, staticSprites);// horizontal platform
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
