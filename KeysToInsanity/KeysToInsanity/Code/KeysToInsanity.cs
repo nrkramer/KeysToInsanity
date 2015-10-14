@@ -1,6 +1,7 @@
 ﻿using KeysToInsanity.Code;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
+using KeysToInsanity.Code.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -114,7 +115,9 @@ namespace KeysToInsanity
             {
                 if (collided.collidable)
                     if (data.Height > 0)
+                    {
                         Console.WriteLine("The Gentleman has collided with the ground.");
+                    }
             }
         }
 
@@ -146,9 +149,9 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);
-            nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(590, 790);
+            //nurse = new Nurse(this);
+            //nurse.addTo(characterSprites);
+            //nurse.spritePos = new Vector2(590, 790);
 
 
             // Heads up display (HUD)
@@ -176,6 +179,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
+            platform Platform = new platform(this);
+            Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -184,6 +189,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
+            Platform.addTo(staticSprites);
 
             testDoor.doorLight.addTo(lightEffects);
 
