@@ -7,31 +7,28 @@ using System.Text;
 namespace KeysToInsanity.Code.Objects
 {
 
-    class platform : BasicSprite
+    class horizontalplatform : BasicSprite
     {
 
+        private int center;
 
-        public platform(Game game) : base(game, "platform", true)
+        public horizontalplatform(Game game) : base(game, "platform", true)
         {
-            spriteSize = new Point(150, 50);
+            spriteSize = new Point(150, 50); 
         }
 
         public void Update(GameTime gameTime, SpriteContainer platformsThatMove) {
             foreach (BasicSprite z in platformsThatMove)
             {
                 float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
-                bool moving = true;
-                float newSpeed = z.getSpriteXPos();
-                while (moving == true)
+                if (getSpriteXPos() <= center + 50)
                 {
-                    if(frameTime <= 5.0) {
-                        newSpeed = z.getSpriteXPos() - 1;
-                    }else if(frameTime <= 10.0)
-                    {
-                        newSpeed = z.getSpriteXPos() + 1;
-                    }
-                    frameTime = 0;                 
-                }            
+                    this.velocity = Velocity.FromDirection(0.0f, 2.5f);
+                }
+                else if (getSpriteXPos() >= center - 50) 
+                {
+                    this.velocity = Velocity.FromDirection(0.0f, -2.5f);
+                }
             }
         }
     }
