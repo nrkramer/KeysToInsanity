@@ -116,6 +116,7 @@ namespace KeysToInsanity
                     if (data.Height > 0)
                         Console.WriteLine("The Gentleman has collided with the ground.");
             }
+            
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);
+            nurse = new Nurse(this,32,0);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(590, 790);
 
