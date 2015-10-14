@@ -25,9 +25,9 @@ namespace KeysToInsanity.Code
             }
         }
 
-        public override void onCollide(BasicSprite collided, Rectangle data)
+        public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
-            base.onCollide(collided, data);
+            base.onCollide(collided, data,time);
             //Seeing if security hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {

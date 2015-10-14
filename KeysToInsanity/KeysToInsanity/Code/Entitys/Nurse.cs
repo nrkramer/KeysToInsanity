@@ -32,10 +32,10 @@ namespace KeysToInsanity.Code
 
         }
         //Overriding nurse to get it cause damage || to get it to stop at obstacles
-        public override void onCollide(BasicSprite collided, Rectangle data)
+        public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
 
-            base.onCollide(collided, data);
+            base.onCollide(collided, data, time);
             //Seeing if nurse hit the Gentleman
             if(collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
