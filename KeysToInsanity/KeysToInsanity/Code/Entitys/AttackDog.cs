@@ -28,6 +28,10 @@ namespace KeysToInsanity.Code.Entitys
             {
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
             }
+            /*if(TheGentleman.getSpriteXPos() >= center)
+            {
+
+            }*/
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
