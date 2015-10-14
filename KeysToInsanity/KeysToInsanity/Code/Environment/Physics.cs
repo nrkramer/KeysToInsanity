@@ -22,7 +22,7 @@ namespace KeysToInsanity.Code
             {
                     i.velocity.setY(i.velocity.getY() + (gravity * frameTime - jumpTime));
             }
-
+            Console.WriteLine(frameTime - jumpTime);
                 //Console.WriteLine(gravity * Velocity.FromCoordinates(frameTime, frameTime));
         }
 
