@@ -4,11 +4,27 @@ namespace KeysToInsanity.Code
 {
     class Security : AnimatedSprite
     {
-        
 
-        public Security(Game game) : base(game, "TopHat",new Point (72,71),1,.25, false)
+        private int center;
+        public Security(Game game, int Xpos, int Ypos) : base(game, "TopHat",new Point (Xpos,Ypos),1,.25, false)
         {
-            
+            center = Xpos;
         }
+
+        protected void Update()
+        {
+            if(center > getSpriteXPos() + 10)
+            {
+
+            }else if (center < getSpriteXPos() -10)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }
