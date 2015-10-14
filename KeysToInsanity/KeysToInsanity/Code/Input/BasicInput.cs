@@ -44,11 +44,11 @@ namespace KeysToInsanity.Code
                 if (downDown(IKBS))
                     yDiff += yVelocity;
                 if (spaceDown(IKBS))
-                    yDiff += -4*yVelocity;
+                    yDiff = -10;
                
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
-                sprite.velocity = Velocity.FromCoordinates(xDiff, yDiff); //+ jumpVelocity;
+                sprite.velocity = Velocity.FromCoordinates(xDiff, sprite.velocity.getY() + yDiff); //+ jumpVelocity;
             }
             OKBS = IKBS;
         }
