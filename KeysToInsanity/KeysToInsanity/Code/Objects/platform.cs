@@ -11,9 +11,9 @@ namespace KeysToInsanity.Code.Objects
     {
 
 
-        public platform(Game game) : base(game, "platform", false)
+        public platform(Game game) : base(game, "platform", true)
         {
-            spriteSize = new Point(100, 50);
+            spriteSize = new Point(150, 50);
         }
 
         public void Update(GameTime gameTime, SpriteContainer platformsThatMove) {

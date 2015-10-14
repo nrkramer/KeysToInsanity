@@ -1,6 +1,7 @@
 ﻿using KeysToInsanity.Code;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
+using KeysToInsanity.Code.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -66,7 +67,7 @@ namespace KeysToInsanity
         private GameState gameState;
         private bool gotKey;
 
-        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data);
+        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time);
 
         public KeysToInsanity()
         {
@@ -101,7 +102,7 @@ namespace KeysToInsanity
             base.Initialize();
         }
 
-        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data)
+        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
         {
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
@@ -114,9 +115,11 @@ namespace KeysToInsanity
             {
                 if (collided.collidable)
                     if (data.Height > 0)
+                    {
                         Console.WriteLine("The Gentleman has collided with the ground.");
             }
             
+        }
         }
 
         /// <summary>
@@ -177,6 +180,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
+            platform Platform = new platform(this);
+            Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -185,6 +190,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
+            Platform.addTo(staticSprites);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -237,7 +243,7 @@ namespace KeysToInsanity
 
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
-                RectangleCollision.update(characterSprites, staticSprites); // collision
+                RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
