@@ -210,6 +210,11 @@ namespace KeysToInsanity
 
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
+
+            if (gameState == GameState.Paused)
+            {
+
+            }
         }
 
         /// <summary>

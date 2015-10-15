@@ -23,8 +23,18 @@ namespace KeysToInsanity.Code.Interactive_Objects
             // The Gentleman pushs into a box
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                //Want position to move
-            }
+                if (data.Width <=0)
+                {
+                    this.velocity = Velocity.FromDirection(0.0f, 0.5f);
+                }else if (data.Width>=0)
+                {
+                    this.velocity = Velocity.FromDirection(0.0f, 0.5f);
+                }
+                
+                 
+                
+
+             }
         }
     }
 }
