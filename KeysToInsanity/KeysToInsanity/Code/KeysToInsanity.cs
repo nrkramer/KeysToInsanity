@@ -14,7 +14,7 @@ using System.Threading;
 namespace KeysToInsanity
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// This is the main type for our game.
     /// </summary>
     public class KeysToInsanity : Game
     {
@@ -38,6 +38,7 @@ namespace KeysToInsanity
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
+        private SpriteContainer platforms = new SpriteContainer(); // platforms that move horizontally, vertically, and possibly diagonally
         private TheGentleman theGentleman; // Our main character sprite
         private Nurse nurse;
         private HUD hud;
@@ -48,9 +49,9 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        private horizontalplatform platform1;
-
         private Sound testSound;
+
+        private horizontalPlatform platform1;
 
         //Used for the menu ADR
         private Texture2D startButton;
@@ -182,8 +183,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            horizontalplatform Platform = new horizontalplatform(this);
-            Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            platform1 = new horizontalPlatform(this);
+            platform1.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -192,7 +193,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            Platform.addTo(staticSprites);
+            platform1.addTo(staticSprites);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -251,7 +252,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-               // platform1.Update(gameTime, staticSprites);// horizontal platform
+                platform1.Update(gameTime, staticSprites); //horizontal movement for platforms, if we want them to move that way
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {

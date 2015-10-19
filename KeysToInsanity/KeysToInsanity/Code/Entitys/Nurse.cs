@@ -31,7 +31,7 @@ namespace KeysToInsanity.Code
 
 
         }
-        //Overriding nurse to get it cause damage || to get it to stop at obstacles
+        //Overriding nurse to get it to cause damage || to get it to stop at obstacles
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
 

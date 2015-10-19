@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code
     {
         
         private BasicInput input;
-        public TheGentleman(Game game) : base(game, "Gentleman", new Point(30,56), 4, 0.1, true)
+        public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30,56), 4, 0.1, true)
         {
             input = new BasicInput(game, this);
         }
