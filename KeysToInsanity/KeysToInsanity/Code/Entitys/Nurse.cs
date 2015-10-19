@@ -11,7 +11,7 @@ namespace KeysToInsanity.Code
         private int center;
         
 
-        public Nurse(Game game, int posX, int posY) : base(game, "TopHat", new Point(posX, posY), 1, .25, false)
+        public Nurse(Game game, int posX, int posY) : base(game, "nurse", new Point(posX, posY), 1, .25, false)
         {
             //Setting the nurse posX to be center
             center = posX;

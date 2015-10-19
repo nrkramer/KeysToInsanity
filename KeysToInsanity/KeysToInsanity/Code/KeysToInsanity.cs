@@ -21,7 +21,6 @@ namespace KeysToInsanity
         enum GameState
         {
             StartMenu,
-            Loading,
             Playing,
             Paused
         }
@@ -56,12 +55,16 @@ namespace KeysToInsanity
         //Used for the menu ADR
         private Texture2D startButton;
         private Texture2D exitButton;
-        private Texture2D logo;        
+        private Texture2D logo;
+
+        private Texture2D resume;     
 
         //Used for position of the menu ADR        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;      
         private Vector2 logoPosition;
+
+        private Vector2 resumePosition;  
         //Setting constants for the menu items       
         private Thread backgroundThread;
         private bool isLoading = false;
@@ -95,6 +98,8 @@ namespace KeysToInsanity
             logoPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) -100, 20);
             startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
             exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
+
+            resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
             gameState = GameState.StartMenu;
@@ -137,6 +142,7 @@ namespace KeysToInsanity
             logo = Content.Load<Texture2D>("logo");
             startButton = Content.Load<Texture2D>("start");
             exitButton = Content.Load<Texture2D>("exit");
+            resume = Content.Load<Texture2D>("resume");
 
 
             if (DRAW_BOUNDING_BOXES)
@@ -212,10 +218,7 @@ namespace KeysToInsanity
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
 
-            if (gameState == GameState.Paused)
-            {
-
-            }
+          
         }
 
         /// <summary>
@@ -235,19 +238,13 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-                mouseState = Mouse.GetState();
+              
+mouseState = Mouse.GetState();
                 if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;
-               /* For when we have a loading manager
-               if(gameState == GameState.Playing && isLoading)
-               {
-                LoadGame();
-                isLoading = false;
-               }
-               */
+                previousMouseState = mouseState;            
 
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
@@ -268,6 +265,12 @@ namespace KeysToInsanity
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
 
+
+            if (input.pDown(input.IKBS) == true)
+            {
+                gameState = GameState.Paused;
+            }
+           
                 base.Update(gameTime);
             
         }
@@ -290,7 +293,12 @@ namespace KeysToInsanity
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
 
-
+            if(gameState == GameState.Paused)
+            {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
+                spriteBatch.Draw(resume, resumePosition, Color.White);
+                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
             //checks if the gameState is at playing, draws the game
             if (gameState == GameState.Playing)
             {
@@ -341,9 +349,9 @@ namespace KeysToInsanity
                 
                     //For when we have a loading manager
                    // isLoading = true;
-                }
+                }          
                 //Player clicked exit button
-                else if(mouseClickR.Intersects(exitButtonR))
+                else if (mouseClickR.Intersects(exitButtonR))
                 {
                     Exit();
                 }

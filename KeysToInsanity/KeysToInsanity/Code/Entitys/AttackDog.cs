@@ -13,7 +13,7 @@ namespace KeysToInsanity.Code.Entitys
 
         private int center;
 
-        public AttackDog(Game game, int PosX, int PosY) : base(game, "TopHat", new Point(PosX, PosY), 1, .25, false)
+        public AttackDog(Game game, int PosX, int PosY) : base(game, "dogs", new Point(PosX, PosY), 1, .25, false)
         {
             center = PosX;
         }
@@ -29,11 +29,11 @@ namespace KeysToInsanity.Code.Entitys
             So  it is greater than or equal to center plus 100.
             */
             
-            /*if (TheGentleman.theGentleman.getSpriteXPos() <= center+100)
+            /*if (KeysToInsanity.theGentleman.getSpriteXPos() <= center+100)
             {
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
             }
-            if (TheGentleman.theGentleman.SpritePos.get() >= center-100)
+            if (KeysToInsanity.theGentleman.SpritePos.get() >= center-100)
             {
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
             }*/
