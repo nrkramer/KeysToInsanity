@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code
     {
         private BasicSprite sprite;
         private Game game;
-        public KeyboardState IKBS; // immediate keyboard state
+        public KeyboardState kb; // immediate keyboard state
         public KeyboardState OKBS; // original keyboard state
 
         public BasicInput(Game game, BasicSprite sprite)
@@ -20,37 +20,36 @@ namespace KeysToInsanity.Code
         public virtual void defaultKeyboardHandler()
         {
             GamePadButtons b = GamePad.GetState(PlayerIndex.One).Buttons; // gamepad controller support (may get rid of)
-            IKBS = Keyboard.GetState();
+            kb = Keyboard.GetState();
 
             // if either escape is pressed, or, on a gamepad, back is pressed
-            if (escDown(IKBS) || gamepadBackPressed(b))
+            if (escDown(kb) || gamepadBackPressed(b))
                 game.Exit();
 
             if (sprite != null)
             {
                 // here, you can change how fast the sprite moves
                 int xVelocity = 5;
-                int yVelocity = 20;
+                int yVelocity = 8;
 
                 int xDiff = 0;
                 int yDiff = 0;
 
-                if (leftDown(IKBS))
+                if (leftDown(kb))
                     xDiff -= xVelocity;
-                if (rightDown(IKBS))
+                if (rightDown(kb))
                     xDiff += xVelocity;
                 /*if (upDown(IKBS))
                     yDiff -= yVelocity;
                 if (downDown(IKBS))
                     yDiff += yVelocity;*/
-                if (spaceDown(IKBS))
-                    yDiff = -20;
+                if (spaceDown(kb))
+                    yDiff = -5;
                
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
                 sprite.velocity = Velocity.FromCoordinates(xDiff, sprite.velocity.getY() + yDiff); //+ jumpVelocity;
             }
-            OKBS = IKBS;
         }
 
         public bool leftDown(KeyboardState kb)
@@ -80,17 +79,12 @@ namespace KeysToInsanity.Code
 
         public bool spaceDown(KeyboardState kb)
         {
-            return kb.IsKeyDown(Keys.Space) && !OKBS.IsKeyDown(Keys.Space);
+            return kb.IsKeyDown(Keys.Space);
         }
 
         public bool gamepadBackPressed(GamePadButtons b)
         {
             return (b.Back == ButtonState.Pressed);
-        }
-
-        public bool pDown(KeyboardState kb)
-        {
-            return kb.IsKeyDown(Keys.P);
         }
 
     }

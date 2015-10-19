@@ -11,29 +11,32 @@ namespace KeysToInsanity.Code.Objects
     {
 
         private float center;
+        private bool neverStop = false;
 
-        public horizontalPlatform(Game game) : base(game, "platform", false)
+        
+        public horizontalPlatform(Game game) : base(game, "platform", true)
         {
-            spriteSize = new Point(150, 50); 
+            spriteSize = new Point(150, 50);
         }
 
         public void Update(GameTime gameTime, SpriteContainer SidewaysPlatforms) {
-                center = getSpriteXPos();
-                
-                if (getSpriteXPos() == center)
-                {
-                    velocity = Velocity.FromDirection(0.0f, 1.0f);
-                }
-                else if(getSpriteXPos() >= center)
-                {
-                    velocity = Velocity.FromDirection(0.0f, 2.5f);
-                }
-                else 
-                {
-                    velocity = Velocity.FromDirection(0.0f, -2.5f);
+            foreach (BasicSprite x in SidewaysPlatforms)
+            {
+                x.velocity.setY(0.0f);
+                center = x.getSpriteXPos();                
+                    if (x.getSpriteXPos() >= center)
+                    {
+                    x.velocity = Velocity.FromCoordinates(1.0f, 0.0f);
+                    }
+                    else if (x.velocity.getX() < center)
+                    {
+                    x.velocity = Velocity.FromCoordinates(1.0f, 0.0f);
+                    }
                 }
             }
+
+            }
         }
-    }
+    
 
 

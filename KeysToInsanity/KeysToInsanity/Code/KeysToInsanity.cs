@@ -36,8 +36,9 @@ namespace KeysToInsanity
         private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
+        private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
+        private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
-        private SpriteContainer platforms = new SpriteContainer(); // platforms that move horizontally, vertically, and possibly diagonally
         private TheGentleman theGentleman; // Our main character sprite
         private Nurse nurse;
         private HUD hud;
@@ -50,7 +51,7 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        private horizontalPlatform platform1;
+        private horizontalPlatform platformH;
 
         //Used for the menu ADR
         private Texture2D startButton;
@@ -124,7 +125,7 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (data.Height > 0)
                     {
-                        Console.WriteLine("The Gentleman has collided with the ground.");
+                        //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
             }
         }
@@ -162,8 +163,8 @@ namespace KeysToInsanity
             nurse = new Nurse(this);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(350,0);            
-            
-            
+
+
 
 
             // Heads up display (HUD)
@@ -184,15 +185,15 @@ namespace KeysToInsanity
             floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
             Key key = new Key(this, hud); // key requires a HUD to go to
-           key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
+            key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
             key.collisionCallback += new CollisionEventHandler(collisionEvents);
             HatHanger hanger = new HatHanger(this);
-           hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
+            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             BasicSprite bed = new BasicSprite(this, "bed", false);
-           bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
+            bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            platform1 = new horizontalPlatform(this);
-            platform1.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            //platformH = new horizontalPlatform(this);
+            //platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -201,7 +202,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            platform1.addTo(staticSprites);
+           // platformH.addTo(hPlatforms);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -209,7 +210,7 @@ namespace KeysToInsanity
                to create it earlier in order to provide input before everything is loaded
             */
             input = new BasicInput(this, theGentleman);
-            
+
 
             //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
             //MediaPlayer.Play(testSound);
@@ -247,7 +248,7 @@ mouseState = Mouse.GetState();
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;
+                previousMouseState = mouseState;            
             if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
             {
                 gameState = GameState.Paused;
@@ -265,7 +266,9 @@ mouseState = Mouse.GetState();
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-                platform1.Update(gameTime, staticSprites); //horizontal movement for platforms, if we want them to move that way
+                //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
+                //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
+                
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
@@ -280,10 +283,10 @@ mouseState = Mouse.GetState();
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
-            
+
                 nurse.Update();
                 base.Update(gameTime);
-            } 
+        }
         }
 
         /// <summary>
@@ -319,18 +322,22 @@ mouseState = Mouse.GetState();
                 {
                     s.draw(spriteBatch);
                 }
+               /* foreach (BasicSprite s in hPlatforms)
+                {
+                    s.draw(spriteBatch);
+                }*/
                 theGentleman.draw(spriteBatch);
                 nurse.draw(spriteBatch);
 
-                foreach (BasicSprite s in lightEffects)
-                {
-                    s.draw(spriteBatch);
-                }
+            foreach (BasicSprite s in lightEffects)
+            {
+                s.draw(spriteBatch);
+            }
                 hud.draw(spriteBatch);
 
                 if (gotKey == true)
-                {
-                    string output = "You got a key!";
+            {
+               string output = "You got a key!";
                     // Vector2 FontOrigin = Font1.MeasureString(output) / 2;
                     // spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
                 }
@@ -379,9 +386,9 @@ mouseState = Mouse.GetState();
                 {
 
                     gameState = GameState.Playing;
+                
 
-
-                }
+                }          
                 //Player clicked exit button
                 else if (mouseClickR.Intersects(exitButtonR))
                 {
