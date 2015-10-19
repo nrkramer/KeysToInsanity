@@ -5,7 +5,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
 {
     class HatHanger : BasicSprite
     {
-        public HatHanger(Game game) : base(game, "hat hanger 2", true)
+        public HatHanger(Game game) : base(game, "hat hanger 2", false)
         {
             spriteSize = new Point(50, 100);
         }

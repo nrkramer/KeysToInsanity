@@ -6,7 +6,7 @@ namespace KeysToInsanity.Code
 {
     class Physics
     {
-        public float gravity = 3.0f;
+        public float gravity = 4.9f;
         public float jumpTime = 0.0f;
         private bool grounded = false;
 
