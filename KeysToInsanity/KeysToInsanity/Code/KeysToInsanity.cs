@@ -125,7 +125,7 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (data.Height > 0)
                     {
-                        Console.WriteLine("The Gentleman has collided with the ground.");
+                        //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
             }
         }
@@ -240,7 +240,7 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
               
-mouseState = Mouse.GetState();
+                mouseState = Mouse.GetState();
                 if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
@@ -269,10 +269,10 @@ mouseState = Mouse.GetState();
                 }
 
 
-            if (input.pDown(input.IKBS) == true)
+            /*if (input.pDown(input.IKBS) == true)
             {
                 gameState = GameState.Paused;
-            }
+            }*/
            
                 base.Update(gameTime);
             
