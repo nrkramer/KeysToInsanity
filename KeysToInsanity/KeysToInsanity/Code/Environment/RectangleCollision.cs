@@ -54,9 +54,15 @@ namespace KeysToInsanity.Code
                     Velocity v2 = Velocity.FromCoordinates(s2.velocity.getDirection().X, 0.0f);
                     Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
+                    {
                         vf1 = (int)v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width);
+                        Console.WriteLine("sliping");
+
+                    }
                     else
+                    { 
                         vf1 = v1.getDirection().X;
+                }
 
                     data.X = collision.X;
                     data.Width = (Math.Sign(v1.getDirection().X)) * collision.Width;
@@ -67,8 +73,9 @@ namespace KeysToInsanity.Code
                     if (collision != Rectangle.Empty)
                         vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
                     else
+                    {
                         vf2 = v1.getDirection().Y;
-
+                    }
                     data.Y = collision.Y;
                     data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
 
