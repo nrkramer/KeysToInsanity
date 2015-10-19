@@ -7,7 +7,7 @@ namespace KeysToInsanity.Code
     class Physics
     {
         //public Velocity gravity = Velocity.FromDirection(-90.0f, -9.8f);
-        public float gravity = 4.5f;
+        public float gravity = 1.0f;
         public bool jumping = false;
         public float jumpTime = 0.0f;
 

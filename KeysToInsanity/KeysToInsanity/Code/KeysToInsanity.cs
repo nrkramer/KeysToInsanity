@@ -159,9 +159,11 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this,32,0);
+            nurse = new Nurse(this);
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(590, 790);
+            nurse.spritePos = new Vector2(350,0);            
+            
+            
 
 
             // Heads up display (HUD)
@@ -182,12 +184,12 @@ namespace KeysToInsanity
             floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
             floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
             Key key = new Key(this, hud); // key requires a HUD to go to
-            key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
+           key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
             key.collisionCallback += new CollisionEventHandler(collisionEvents);
             HatHanger hanger = new HatHanger(this);
-            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
+           hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             BasicSprite bed = new BasicSprite(this, "bed", false);
-            bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
+           bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
             platform1 = new horizontalPlatform(this);
             platform1.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
@@ -207,11 +209,12 @@ namespace KeysToInsanity
                to create it earlier in order to provide input before everything is loaded
             */
             input = new BasicInput(this, theGentleman);
+            
 
             //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
             //MediaPlayer.Play(testSound);
 
-           //spriteBatch = new SpriteBatch(GraphicsDevice);
+           spriteBatch = new SpriteBatch(GraphicsDevice);
            //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
            //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
 
@@ -244,8 +247,21 @@ mouseState = Mouse.GetState();
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;            
+                previousMouseState = mouseState;
+            if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
+            {
+                gameState = GameState.Paused;
 
+            }
+            if(gameState == GameState.Paused)
+            {
+                if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+                {
+                    MouseClicked(mouseState.X, mouseState.Y);
+                }
+                previousMouseState = mouseState;
+            }
+            else if (gameState == GameState.Playing) {
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
@@ -264,15 +280,10 @@ mouseState = Mouse.GetState();
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
-
-
-            if (input.pDown(input.IKBS) == true)
-            {
-                gameState = GameState.Paused;
-            }
-           
-                base.Update(gameTime);
             
+                nurse.Update();
+                base.Update(gameTime);
+            } 
         }
 
         /// <summary>
@@ -309,18 +320,21 @@ mouseState = Mouse.GetState();
                     s.draw(spriteBatch);
                 }
                 theGentleman.draw(spriteBatch);
-            foreach (BasicSprite s in lightEffects)
-            {
-                s.draw(spriteBatch);
-            }
+                nurse.draw(spriteBatch);
+
+                foreach (BasicSprite s in lightEffects)
+                {
+                    s.draw(spriteBatch);
+                }
                 hud.draw(spriteBatch);
+
+                if (gotKey == true)
+                {
+                    string output = "You got a key!";
+                    // Vector2 FontOrigin = Font1.MeasureString(output) / 2;
+                    // spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+                }
             }
-            /*if (gotKey == true)
-            {
-               string output = "You got a key!";
-               Vector2 FontOrigin = Font1.MeasureString(output) / 2;
-                spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }*/
                 spriteBatch.End();
 
                 base.Draw(gameTime);
@@ -344,12 +358,30 @@ mouseState = Mouse.GetState();
                 //Checking if start button was clicked
                 if(mouseClickR.Intersects(startButtonR))
                 {
-                    //gameState.Loading;                   
+                                    
                     gameState = GameState.Playing;
                 
-                    //For when we have a loading manager
-                   // isLoading = true;
+                    
                 }          
+                //Player clicked exit button
+                else if (mouseClickR.Intersects(exitButtonR))
+                {
+                    Exit();
+                }
+            } else if(gameState == GameState.Paused)
+            {
+                Rectangle resumeR = new Rectangle((int)startButtonPosition.X,
+                    (int)startButtonPosition.Y, 100, 20);
+                Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
+                    (int)exitButtonPosition.Y, 100, 20);
+                //Checking if start button was clicked
+                if (mouseClickR.Intersects(resumeR))
+                {
+
+                    gameState = GameState.Playing;
+
+
+                }
                 //Player clicked exit button
                 else if (mouseClickR.Intersects(exitButtonR))
                 {

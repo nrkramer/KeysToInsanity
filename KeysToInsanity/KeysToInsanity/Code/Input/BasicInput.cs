@@ -88,9 +88,9 @@ namespace KeysToInsanity.Code
             return (b.Back == ButtonState.Pressed);
         }
 
-        public bool pDown(KeyboardState kp)
+        public bool pDown(KeyboardState kb)
         {
-            return IKBS.IsKeyDown(Keys.P);
+            return kb.IsKeyDown(Keys.P);
         }
 
     }

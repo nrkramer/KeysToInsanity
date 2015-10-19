@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code
         public static Velocity FromDirection(float directionDegrees, float speed)
         {
             Velocity v = new Velocity();
-            v.direction = new Vector2((float)Math.Cos(directionDegrees * DEG_TO_RAD) * speed, (float)Math.Sin(directionDegrees * DEG_TO_RAD) * speed);
+            v.direction = new Vector2(((float)Math.Cos(directionDegrees * DEG_TO_RAD) * speed), (float)Math.Sin(directionDegrees * DEG_TO_RAD) * speed);
             v.speed = speed;
             return v;
         }
