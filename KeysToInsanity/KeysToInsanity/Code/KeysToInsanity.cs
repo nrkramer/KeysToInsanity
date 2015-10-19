@@ -327,7 +327,7 @@ mouseState = Mouse.GetState();
                     s.draw(spriteBatch);
                 }*/
                 theGentleman.draw(spriteBatch);
-                nurse.draw(spriteBatch);
+               
 
             foreach (BasicSprite s in lightEffects)
             {
@@ -377,8 +377,8 @@ mouseState = Mouse.GetState();
                 }
             } else if(gameState == GameState.Paused)
             {
-                Rectangle resumeR = new Rectangle((int)startButtonPosition.X,
-                    (int)startButtonPosition.Y, 100, 20);
+                Rectangle resumeR = new Rectangle((int)resumePosition.X,
+                    (int)resumePosition.Y, 100, 20);
                 Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
                     (int)exitButtonPosition.Y, 100, 20);
                 //Checking if start button was clicked

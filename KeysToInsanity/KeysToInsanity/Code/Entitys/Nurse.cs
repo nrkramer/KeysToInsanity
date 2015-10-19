@@ -17,11 +17,7 @@ namespace KeysToInsanity.Code
             center = getSpriteXPos();
         }
 
-        public override void draw(SpriteBatch s)
-        {
-            base.draw(s);
-            
-        }
+        
         public  void Update()
         {
             
