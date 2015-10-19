@@ -6,7 +6,7 @@ namespace KeysToInsanity.Code
 {
     class Physics
     {
-        public float gravity = 3.0f;
+        public float gravity = 4.9f;
         public float jumpTime = 0.0f;
         private bool grounded = false;
 
@@ -15,6 +15,7 @@ namespace KeysToInsanity.Code
             //Console.WriteLine();
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * (frameTime - jumpTime);
+            
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
@@ -24,10 +25,14 @@ namespace KeysToInsanity.Code
                     {
                     if (i.ToString() == "KeysToInsanity.Code.TheGentleman")
                     {
-                        if (!((TheGentleman)i).isJumping() && grounded)
+                        if (((TheGentleman)i).isJumping() == false && grounded == true)
+                        {
                             i.velocity.setY(0.0f);
+                        }
                         else
-                        i.velocity.setY(i.velocity.getY() + downVel);
+                        {
+                            i.velocity.setY(i.velocity.getY() + downVel);
+                        }
                     }
                 }
             }

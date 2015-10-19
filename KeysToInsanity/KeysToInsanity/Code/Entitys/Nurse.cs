@@ -11,10 +11,10 @@ namespace KeysToInsanity.Code.Entitys
         private float center;
         
 
-        public Nurse(Game game) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
-            center = getSpriteXPos();
+            center = posX;
         }
 
         

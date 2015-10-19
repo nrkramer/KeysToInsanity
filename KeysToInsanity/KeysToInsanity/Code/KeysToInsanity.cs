@@ -159,7 +159,7 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);           
+            nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300,0);
             dog = new AttackDog(this);
@@ -321,6 +321,10 @@ mouseState = Mouse.GetState();
 
                 background.draw(spriteBatch);
                 foreach (BasicSprite s in staticSprites)
+                {
+                    s.draw(spriteBatch);
+                }
+                foreach(AnimatedSprite s in characterSprites)
                 {
                     s.draw(spriteBatch);
                 }
