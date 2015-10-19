@@ -1,4 +1,5 @@
 ﻿using KeysToInsanity.Code;
+using KeysToInsanity.Code.Entitys;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using KeysToInsanity.Code.Objects;
@@ -40,7 +41,8 @@ namespace KeysToInsanity
         private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
         private TheGentleman theGentleman; // Our main character sprite
-        private Nurse nurse;
+        private Code.Entitys.Nurse nurse;
+        private Code.Entitys.AttackDog dog;
         private HUD hud;
 
         private Door testDoor;
@@ -53,22 +55,19 @@ namespace KeysToInsanity
 
         private horizontalPlatform platformH;
 
-        //Used for the menu ADR
+        //Used for the menu
         private Texture2D startButton;
         private Texture2D exitButton;
         private Texture2D logo;
-
         private Texture2D resume;     
 
-        //Used for position of the menu ADR        
+        //Used for position of the menu        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;      
         private Vector2 logoPosition;
-
-        private Vector2 resumePosition;  
+        private Vector2 resumePosition;
+          
         //Setting constants for the menu items       
-        private Thread backgroundThread;
-        private bool isLoading = false;
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
@@ -160,9 +159,12 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 0);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);
+            nurse = new Nurse(this);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(350,0);            
+            nurse.spritePos = new Vector2(300,0);
+            dog = new AttackDog(this);
+            dog.addTo(characterSprites);
+            dog.spritePos = new Vector2(250, 0);             
 
 
 
@@ -327,6 +329,8 @@ mouseState = Mouse.GetState();
                     s.draw(spriteBatch);
                 }*/
                 theGentleman.draw(spriteBatch);
+                //nurse.draw(spriteBatch);
+                //dog.draw(spriteBatch);
                
 
             foreach (BasicSprite s in lightEffects)

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace KeysToInsanity.Code
+namespace KeysToInsanity.Code.Entitys
 {
     class Nurse : AnimatedSprite
     {

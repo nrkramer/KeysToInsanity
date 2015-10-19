@@ -8,11 +8,11 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Rats : AnimatedSprite
     {
-        private int center;
+        private float center;
         /*Basic fast NPC, will try to hit player, no line of sight algorithim*/
-        public Rats(Game game, int PosX, int PosY) : base(game, "TopHat", new Point(PosX, PosY), 1, .25, false)
+        public Rats(Game game) : base(game, "TopHat", new Point(72, 71), 1, .25, false)
         {
-            center = PosX;
+            center = getSpriteXPos();
         }
 
         protected void Update()

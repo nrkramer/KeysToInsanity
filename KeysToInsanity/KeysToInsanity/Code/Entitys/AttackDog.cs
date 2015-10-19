@@ -11,11 +11,11 @@ namespace KeysToInsanity.Code.Entitys
     class AttackDog : AnimatedSprite
     {
 
-        private int center;
+        private float center;
 
-        public AttackDog(Game game, int PosX, int PosY) : base(game, "dogs", new Point(PosX, PosY), 1, .25, false)
+        public AttackDog(Game game) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
         {
-            center = PosX;
+            center = getSpriteXPos();
         }
 
         protected void Update()

@@ -5,11 +5,11 @@ namespace KeysToInsanity.Code
     class Security : AnimatedSprite
     {
 
-        private int center;
-        public Security(Game game, int posX, int posY) : base(game, "TopHat",new Point (posX,posY),1,.25, false)
+        private float center;
+        public Security(Game game) : base(game, "TopHat",new Point (72,71),1,.25, false)
         {
             //Setting Xpos
-            center = posX;
+            center = getSpriteXPos();
         }
 
         protected void Update()
