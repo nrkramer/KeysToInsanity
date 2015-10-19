@@ -37,8 +37,9 @@ namespace KeysToInsanity
         private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
+        private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
+        private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
-        private SpriteContainer platforms = new SpriteContainer(); // platforms that move horizontally, vertically, and possibly diagonally
         private TheGentleman theGentleman; // Our main character sprite
         private Nurse nurse;
         private HUD hud;
@@ -51,7 +52,7 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        private horizontalPlatform platform1;
+        private horizontalPlatform platformH;
 
         //Used for the menu ADR
         private Texture2D startButton;
@@ -183,8 +184,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            platform1 = new horizontalPlatform(this);
-            platform1.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            //platformH = new horizontalPlatform(this);
+            //platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -193,7 +194,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            platform1.addTo(staticSprites);
+           // platformH.addTo(hPlatforms);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -252,7 +253,9 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-                platform1.Update(gameTime, staticSprites); //horizontal movement for platforms, if we want them to move that way
+                //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
+                //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
+                
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
@@ -300,6 +303,10 @@ namespace KeysToInsanity
                 {
                     s.draw(spriteBatch);
                 }
+               /* foreach (BasicSprite s in hPlatforms)
+                {
+                    s.draw(spriteBatch);
+                }*/
                 theGentleman.draw(spriteBatch);
             foreach (BasicSprite s in lightEffects)
             {
