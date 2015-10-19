@@ -55,7 +55,7 @@ namespace KeysToInsanity.Code
                     Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
                     {
-                        vf1 = (int)v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width);
+                        vf1 = (int)v1.getDirection().X + (Math.Sign(v1.getDirection().X) * (collision.Width));
                         Console.WriteLine("sliping");
 
                     }
@@ -71,13 +71,13 @@ namespace KeysToInsanity.Code
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
+                        vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -(collision.Height));
                     else
                     {
                         vf2 = v1.getDirection().Y;
                     }
                     data.Y = collision.Y;
-                    data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
+                    data.Height = Math.Sign(v1.getDirection().Y) * -collision.Height;
 
                     //Console.WriteLine(data);
                     s1.onCollide(s2, data, time);

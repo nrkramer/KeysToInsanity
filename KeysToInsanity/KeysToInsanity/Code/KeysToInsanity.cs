@@ -161,10 +161,10 @@ namespace KeysToInsanity
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
             nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300,0);
+            nurse.spritePos = new Vector2(300,100);
             dog = new AttackDog(this);
             dog.addTo(characterSprites);
-            dog.spritePos = new Vector2(250, 0);             
+            dog.spritePos = new Vector2(250, 100);             
 
 
 
