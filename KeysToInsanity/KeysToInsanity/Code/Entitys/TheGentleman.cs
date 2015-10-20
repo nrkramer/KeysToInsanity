@@ -8,6 +8,9 @@ namespace KeysToInsanity.Code
     {
         private BasicInput input;
 
+        private BasicInput input;
+        private bool jumping = false;
+
         public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30,56), 4, 0.1, true)
         {
             input = new BasicInput(game, this);
@@ -16,12 +19,22 @@ namespace KeysToInsanity.Code
         public void handleInput(GameTime time)
         {
             input.defaultKeyboardHandler();
-            if (input.rightDown(input.IKBS))
+            if (input.rightDown(input.kb))
                 updateWithAnimation(time, 1);
-            else if (input.leftDown(input.IKBS))
+            else if (input.leftDown(input.kb))
                 updateWithAnimation(time, 2);
             else
                 updateWithAnimation(time, 0);
+
+            if (input.spaceDown(input.kb))
+            {
+                jumping = true;
+            }
+        }
+
+        public bool isJumping()
+        {
+            return jumping;
         }
 
         public override void onCollide(BasicSprite s, Rectangle data, GameTime time)
@@ -71,5 +84,7 @@ namespace KeysToInsanity.Code
             animations.Add(runLeft);
             //animations.Add(fallLeft);
         }
+        
+        
     }
 }

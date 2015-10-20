@@ -11,23 +11,42 @@ namespace KeysToInsanity.Code.Entitys
     class AttackDog : AnimatedSprite
     {
 
-        private int center;
+        private float center;
 
-        public AttackDog(Game game, int PosX, int PosY) : base(game, "TopHat", new Point(PosX, PosY), 1, .25, false)
+        public AttackDog(Game game) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
         {
-            center = PosX;
+            center = getSpriteXPos();
         }
 
         protected void Update()
         {
-            if (getSpriteXPos() <= center + 100)
+            
+            /*
+            G1 |   C     | G2
+            If Genteman is at G1, the dog needs to attack Gentleman, but not go past boundary.
+            So the control statement has to be less than or equal to C plus 100. 
+            Likewise if the Gentleman is at G2, the dog has to get him,but not go past the boundry. 
+            So  it is greater than or equal to center plus 100.
+            */
+            
+            /*if (KeysToInsanity.theGentleman.getSpriteXPos() <= center+100)
             {
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
+            }
+            if (KeysToInsanity.theGentleman.SpritePos.get() >= center-100)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, 6.0f);
+            }*/
+
+            if (getSpriteXPos() <= center + 100)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, 1.0f);
             }
             if (getSpriteXPos() >= center - 100)
             {
-                this.velocity = Velocity.FromDirection(0.0f, 6.0f);
+                this.velocity = Velocity.FromDirection(0.0f, -1.0f);
             }
+            
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
@@ -35,7 +54,7 @@ namespace KeysToInsanity.Code.Entitys
             base.onCollide(collided, data, time);
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-
+                //Will use damage class to deduct gentleman
             }
 
             if (collided.collidable)

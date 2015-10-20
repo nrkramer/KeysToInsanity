@@ -1,4 +1,5 @@
 ﻿using KeysToInsanity.Code;
+using KeysToInsanity.Code.Entitys;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using KeysToInsanity.Code.Objects;
@@ -14,14 +15,13 @@ using System.Threading;
 namespace KeysToInsanity
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// This is the main type for our game.
     /// </summary>
     public class KeysToInsanity : Game
     {
         enum GameState
         {
             StartMenu,
-            Loading,
             Playing,
             Paused
         }
@@ -37,9 +37,12 @@ namespace KeysToInsanity
         private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
+        private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
+        private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
         private TheGentleman theGentleman; // Our main character sprite
-        private Nurse nurse;
+        private Code.Entitys.Nurse nurse;
+        private Code.Entitys.AttackDog dog;
         private HUD hud;
 
         private Door testDoor;
@@ -48,22 +51,23 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        private horizontalplatform platform1;
-
         private Sound testSound;
 
-        //Used for the menu ADR
+        private horizontalPlatform platformH;
+
+        //Used for the menu
         private Texture2D startButton;
         private Texture2D exitButton;
-        private Texture2D logo;        
+        private Texture2D logo;
+        private Texture2D resume;     
 
-        //Used for position of the menu ADR        
+        //Used for position of the menu        
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;      
         private Vector2 logoPosition;
+        private Vector2 resumePosition;
+          
         //Setting constants for the menu items       
-        private Thread backgroundThread;
-        private bool isLoading = false;
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
@@ -95,6 +99,8 @@ namespace KeysToInsanity
             startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
             exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
 
+            resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
+
             //set the gamestate to the start menu
             gameState = GameState.StartMenu;
 
@@ -118,7 +124,7 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (data.Height > 0)
                     {
-                        Console.WriteLine("The Gentleman has collided with the ground.");
+                        //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
             }
         }
@@ -136,6 +142,7 @@ namespace KeysToInsanity
             logo = Content.Load<Texture2D>("logo");
             startButton = Content.Load<Texture2D>("start");
             exitButton = Content.Load<Texture2D>("exit");
+            resume = Content.Load<Texture2D>("resume");
 
 
             if (DRAW_BOUNDING_BOXES)
@@ -150,11 +157,16 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.addTo(characterSprites);
-            theGentleman.spritePos = new Vector2(370, 0);
+            theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this,32,0);
+            nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(590, 790);
+            nurse.spritePos = new Vector2(300,100);
+            dog = new AttackDog(this);
+            dog.addTo(characterSprites);
+            dog.spritePos = new Vector2(250, 100);             
+
+
 
 
             // Heads up display (HUD)
@@ -182,8 +194,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            horizontalplatform Platform = new horizontalplatform(this);
-            Platform.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            //platformH = new horizontalPlatform(this);
+            //platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -192,7 +204,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            Platform.addTo(staticSprites);
+           // platformH.addTo(hPlatforms);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -201,15 +213,18 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
+
             //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
             //MediaPlayer.Play(testSound);
 
-           //spriteBatch = new SpriteBatch(GraphicsDevice);
+           spriteBatch = new SpriteBatch(GraphicsDevice);
            //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
            //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
 
             // TODO: use this.Content to load your game content here
             // ^ this is now being done in our Basic classes
+
+          
         }
 
         /// <summary>
@@ -228,25 +243,33 @@ namespace KeysToInsanity
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {
+        {              
                 mouseState = Mouse.GetState();
                 if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;
-               /* For when we have a loading manager
-               if(gameState == GameState.Playing && isLoading)
-               {
-                LoadGame();
-                isLoading = false;
-               }
-               */
+                previousMouseState = mouseState;            
+            if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
+            {
+                gameState = GameState.Paused;
 
+            }
+            if(gameState == GameState.Paused)
+            {
+                if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+                {
+                    MouseClicked(mouseState.X, mouseState.Y);
+                }
+                previousMouseState = mouseState;
+            }
+            else if (gameState == GameState.Playing) {
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-               // platform1.Update(gameTime, staticSprites);// horizontal platform
+                //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
+                //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
+                
 
                 if (theGentleman.spritePos.X < 0) // background slide
                 {
@@ -262,8 +285,9 @@ namespace KeysToInsanity
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
 
+                nurse.Update();
                 base.Update(gameTime);
-            
+        }
         }
 
         /// <summary>
@@ -284,7 +308,12 @@ namespace KeysToInsanity
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
 
-
+            if(gameState == GameState.Paused)
+            {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
+                spriteBatch.Draw(resume, resumePosition, Color.White);
+                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
             //checks if the gameState is at playing, draws the game
             if (gameState == GameState.Playing)
             {
@@ -294,19 +323,32 @@ namespace KeysToInsanity
                 {
                     s.draw(spriteBatch);
                 }
+                foreach(AnimatedSprite s in characterSprites)
+                {
+                    s.draw(spriteBatch);
+                }
+               /* foreach (BasicSprite s in hPlatforms)
+                {
+                    s.draw(spriteBatch);
+                }*/
                 theGentleman.draw(spriteBatch);
+                //nurse.draw(spriteBatch);
+                //dog.draw(spriteBatch);
+               
+
             foreach (BasicSprite s in lightEffects)
             {
                 s.draw(spriteBatch);
             }
                 hud.draw(spriteBatch);
-            }
-            /*if (gotKey == true)
+
+                if (gotKey == true)
             {
                string output = "You got a key!";
-               Vector2 FontOrigin = Font1.MeasureString(output) / 2;
-                spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
-            }*/
+                    // Vector2 FontOrigin = Font1.MeasureString(output) / 2;
+                    // spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+                }
+            }
                 spriteBatch.End();
 
                 base.Draw(gameTime);
@@ -330,14 +372,32 @@ namespace KeysToInsanity
                 //Checking if start button was clicked
                 if(mouseClickR.Intersects(startButtonR))
                 {
-                    //gameState.Loading;                   
+                                    
                     gameState = GameState.Playing;
                 
-                    //For when we have a loading manager
-                   // isLoading = true;
-                }
+                    
+                }          
                 //Player clicked exit button
-                else if(mouseClickR.Intersects(exitButtonR))
+                else if (mouseClickR.Intersects(exitButtonR))
+                {
+                    Exit();
+                }
+            } else if(gameState == GameState.Paused)
+            {
+                Rectangle resumeR = new Rectangle((int)resumePosition.X,
+                    (int)resumePosition.Y, 100, 20);
+                Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
+                    (int)exitButtonPosition.Y, 100, 20);
+                //Checking if start button was clicked
+                if (mouseClickR.Intersects(resumeR))
+                {
+
+                    gameState = GameState.Playing;
+                
+
+                }          
+                //Player clicked exit button
+                else if (mouseClickR.Intersects(exitButtonR))
                 {
                     Exit();
                 }

@@ -8,23 +8,24 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Birds : AnimatedSprite
     {
-        private int center;
+        private float center;
 
-        public Birds(Game game, int PosX, int PosY) : base(game, "TopHat", new Point(PosX, PosY), 1, .25, false)
+        public Birds(Game game) : base(game, "TopHat", new Point(72, 71), 1, .25, true)
         {
-            center = PosX;
+            center = getSpriteXPos();
         }
 
         protected void Update()
         {
             if (getSpriteXPos() <= center + 100)
             {
-                this.velocity = Velocity.FromDirection(135.0f, 2.0f);
+                this.velocity = Velocity.FromDirection(0.0f, 2.0f);
             }
             if (getSpriteXPos() >= center - 100)
             {
-                this.velocity = Velocity.FromDirection(225.0f, 6.0f);
+                this.velocity = Velocity.FromDirection(0.0f, 2.0f);
             }
+            
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)

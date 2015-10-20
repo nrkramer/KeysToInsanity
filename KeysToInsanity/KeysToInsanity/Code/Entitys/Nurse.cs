@@ -2,22 +2,23 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace KeysToInsanity.Code
+namespace KeysToInsanity.Code.Entitys
 {
     class Nurse : AnimatedSprite
     {
  
         //Place were NPC moves around
-        private int center;
+        private float center;
         
 
-        public Nurse(Game game, int posX, int posY) : base(game, "TopHat", new Point(posX, posY), 1, .25, false)
+        public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
             center = posX;
         }
 
-        protected  void Update()
+        
+        public  void Update()
         {
             
             //Deciding if we need to move to the left
@@ -31,7 +32,7 @@ namespace KeysToInsanity.Code
 
 
         }
-        //Overriding nurse to get it cause damage || to get it to stop at obstacles
+        //Overriding nurse to get it to cause damage || to get it to stop at obstacles
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
 

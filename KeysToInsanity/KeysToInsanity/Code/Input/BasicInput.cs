@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code
     {
         private BasicSprite sprite;
         private Game game;
-        public KeyboardState IKBS; // immediate keyboard state
+        public KeyboardState kb; // immediate keyboard state
         public KeyboardState OKBS; // original keyboard state
 
         public BasicInput(Game game, BasicSprite sprite)
@@ -20,10 +20,10 @@ namespace KeysToInsanity.Code
         public virtual void defaultKeyboardHandler()
         {
             GamePadButtons b = GamePad.GetState(PlayerIndex.One).Buttons; // gamepad controller support (may get rid of)
-            IKBS = Keyboard.GetState();
+            kb = Keyboard.GetState();
 
             // if either escape is pressed, or, on a gamepad, back is pressed
-            if (escDown(IKBS) || gamepadBackPressed(b))
+            if (escDown(kb) || gamepadBackPressed(b))
                 game.Exit();
 
             if (sprite != null)
@@ -35,22 +35,22 @@ namespace KeysToInsanity.Code
                 int xDiff = 0;
                 int yDiff = 0;
 
-                if (leftDown(IKBS))
+                if (leftDown(kb))
                     xDiff -= xVelocity;
-                if (rightDown(IKBS))
+                if (rightDown(kb))
                     xDiff += xVelocity;
-                /*if (upDown(IKBS))
+                /*if (upDown(kb))
                     yDiff -= yVelocity;
-                if (downDown(IKBS))
+                if (downDown(kb))
                     yDiff += yVelocity;*/
-                if (spaceDown(IKBS))
+                if (spaceDown(kb))
                     yDiff = -10;
                
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
                 sprite.velocity = Velocity.FromCoordinates(xDiff, sprite.velocity.getY() + yDiff); //+ jumpVelocity;
             }
-            OKBS = IKBS;
+            OKBS = kb;
         }
 
         public bool leftDown(KeyboardState kb)

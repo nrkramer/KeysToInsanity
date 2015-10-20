@@ -5,11 +5,11 @@ namespace KeysToInsanity.Code
     class TheDoctor : AnimatedSprite
     {
 
-        private int center;
+        private float center;
 
-        public TheDoctor(Game game, int posX, int posY) : base(game, "TopHat", new Point (posX,posY), 1,.25, false)
+        public TheDoctor(Game game) : base(game, "TopHat", new Point (72,71), 1,.25, false)
         {
-            center = posX;
+            center = getSpriteXPos();
         }
 
         protected void Update()
