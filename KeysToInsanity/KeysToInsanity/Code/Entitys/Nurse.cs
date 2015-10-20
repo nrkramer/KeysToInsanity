@@ -13,22 +13,19 @@ namespace KeysToInsanity.Code.Entitys
         private float patrolDistance;
         //How fast it is coming back
         private float patrolSpeed;
-       
-        private bool p1Flag;
-        private bool p2Flag;
+        private float totalDistance;
+        private bool direction;        
 
-        private float p1;
-        private float p2;
-        Random random = new Random();
+        
 
         public Nurse(Game game) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
             center = getSpriteXPos();
-            patrolDistance = 50f;
+            patrolDistance = 0f;
             patrolSpeed = 1.0f;
-            p1Flag = false;
-            p2Flag = false;
+            direction = true;
+            
                   }
 
         public Nurse(Game game, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
@@ -36,58 +33,36 @@ namespace KeysToInsanity.Code.Entitys
             center = getSpriteXPos();
             patrolDistance = patrol;
             patrolSpeed = speed;
-            p1Flag = false;
-            p2Flag = false;
-
+            direction = true;
 
         }
 
         
         public  void Update(GameTime time)
         {
-            p1 = center - patrolDistance;
-            p2 = center + patrolDistance;
-
-            if (p2Flag == false && p1Flag ==false)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                Console.WriteLine("Moving right");
-                if (getSpriteXPos() >= p2)
-                {
-                    p1Flag = false;
-                    p2Flag = true;
-                    Console.WriteLine(p2Flag);
-                    
-
-                }
-            }
-            if (p2Flag == true && p1Flag == false)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-                Console.WriteLine("Moving left");
-                if(getSpriteXPos()<= p1)
-                {
-                    p1Flag = true;
-                    p2Flag = false;
-                }
-            }
-            if (p1Flag == true && p2Flag == false)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                Console.WriteLine("Moving right using P1FLAG");
-                if(getSpriteXPos() >= p2)
-                {
-                    p1Flag = true;
-                    p2Flag = false;
-                }
-            }
             
-               
             
-           
+            if (direction == true)
+            {
+
+                this.velocity =  Velocity.FromDirection(0.0f,-1.0f);
+            }
+            if(direction == false)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, 1.0f);
+            }
+            if(getSpriteXPos() > center+50)
+            {
+                direction = true;
+                Console.WriteLine("Center+50");
+            }
+            if(getSpriteXPos()< center-50)
+            {
+                direction = false;
+                Console.WriteLine(direction);
+            }
             updateWithAnimation(time, 0);
-
-
+                                                                                      
         }
         //Overriding nurse to get it to cause damage || to get it to stop at obstacles
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
