@@ -166,7 +166,7 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);
+            nurse = new Nurse(this,300);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300, 560);
             //dog = new AttackDog(this);
