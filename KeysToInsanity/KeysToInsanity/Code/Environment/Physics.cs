@@ -46,8 +46,8 @@ namespace KeysToInsanity.Code
                         }
                     }
                 }
-            }
-            grounded = false;
+                grounded = false;
+            }           
         }
 
 

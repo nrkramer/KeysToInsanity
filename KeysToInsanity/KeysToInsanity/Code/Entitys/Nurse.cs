@@ -45,11 +45,11 @@ namespace KeysToInsanity.Code.Entitys
             if (direction == true)
             {
 
-                this.velocity =  Velocity.FromDirection(0.0f,-1.0f);
+                velocity =  Velocity.FromDirection(0.0f,-1.0f);
             }
             if(direction == false)
             {
-                this.velocity = Velocity.FromDirection(0.0f, 1.0f);
+                velocity = Velocity.FromDirection(0.0f, 1.0f);
             }
             if(getSpriteXPos() > center+50)
             {
@@ -78,7 +78,7 @@ namespace KeysToInsanity.Code.Entitys
             if (collided.collidable)
             {if(data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
+                    velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
                 }
                 
             }

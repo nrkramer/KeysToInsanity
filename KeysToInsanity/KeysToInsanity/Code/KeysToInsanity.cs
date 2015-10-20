@@ -123,7 +123,7 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
-                Console.WriteLine("A Key was picked up!");
+                //Console.WriteLine("A Key was picked up!");
                 testDoor.setOpen(true);
             }
 
@@ -284,7 +284,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-
+                hud.Update(gameTime);
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 

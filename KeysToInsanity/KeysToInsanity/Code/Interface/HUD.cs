@@ -11,6 +11,7 @@ namespace KeysToInsanity.Code.Interface
         private new RenderTarget2D spriteTex; // This hides BasicSprite's Texture2D, which RenderTarget2D inherits
         private GraphicsDevice gd;
         private SpriteContainer hudSprites = new SpriteContainer();
+        private int InsanityMeter = 0;
 
         // This class is kind of weird
         // First of all, all elements are drawn to external texture, why?
@@ -45,7 +46,7 @@ namespace KeysToInsanity.Code.Interface
 
 
             BasicSprite hud_insanity_color = new BasicSprite(game, "insanity_bar_color", false);
-            hud_insanity_color.spriteSize = new Point(202, 32);
+            hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
             hud_insanity_color.spritePos = new Vector2(210, 0);
 
 
@@ -78,6 +79,15 @@ namespace KeysToInsanity.Code.Interface
         {
             drawHUD(spriteBatch);
             base.draw(spriteBatch);
+        }
+
+        public void Update(GameTime time)
+        {
+            int frameTime = (int)time.TotalGameTime.TotalSeconds;
+            if(InsanityMeter <= 220)
+            {
+                InsanityMeter = frameTime;
+            }
         }
 
         // player picked up a key
