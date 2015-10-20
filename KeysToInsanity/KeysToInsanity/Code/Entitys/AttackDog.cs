@@ -7,7 +7,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Entitys
 {
 
-    /*Will try to create a cone of sit algoritim for this. Otherwise dogs will be really fast*/
+    //Will try to create a cone of sit algoritim for this. Otherwise dogs will be really fast
     class AttackDog : AnimatedSprite
     {
 

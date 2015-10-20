@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Entitys
             //Setting the nurse posX to be center
             center = posX;
             patrolDistance = 50f;
-            patrolSpeed = 2.5f;
+            patrolSpeed = 1.0f;
         }
 
         public Nurse(Game game, float posX, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
@@ -35,15 +35,15 @@ namespace KeysToInsanity.Code.Entitys
             int sign = random.Next(0, 2);
             if(getSpriteXPos() == center) {
                 
-                this.velocity = Velocity.FromDirection(0.0f, 45f);
+                velocity = Velocity.FromDirection(0.0f, 45f);
             }
             //Deciding if we need to move to the left
             if( getSpriteXPos() <= center+patrolDistance)
             {
-                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+               // velocity = Velocity.FromDirection(0.0f, patrolSpeed);
             }else if ( getSpriteXPos() >=center-patrolDistance) //Or to the right
             {
-                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
             }
            
             updateWithAnimation(time, 0);

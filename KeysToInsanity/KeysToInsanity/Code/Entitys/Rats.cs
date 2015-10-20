@@ -9,7 +9,7 @@ namespace KeysToInsanity.Code.Entitys
     class Rats : AnimatedSprite
     {
         private float center;
-        /*Basic fast NPC, will try to hit player, no line of sight algorithim*/
+        //Basic fast NPC, will try to hit player, no line of sight algorithim
         public Rats(Game game) : base(game, "TopHat", new Point(72, 71), 1, .25, false)
         {
             center = getSpriteXPos();

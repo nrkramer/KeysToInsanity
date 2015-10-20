@@ -39,8 +39,10 @@ namespace KeysToInsanity.Code
             grounded = false;
         }
 
+        
         public void resetTime(GameTime time)
         {
+            //when the Gentleman hits the ground we can make sure to turn off gravity by resetting the timer, which makes gravity zero until he is in the air again
             jumpTime = (float)time.TotalGameTime.TotalSeconds;
             grounded = true;
         }

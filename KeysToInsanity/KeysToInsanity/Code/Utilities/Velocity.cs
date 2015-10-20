@@ -44,6 +44,7 @@ namespace KeysToInsanity.Code
             throw new NotImplementedException();
         }
 
+        //many getters and setters that allow the program to receive different values necessary for different stages of the game
         public Vector2 getDirection()
         {
             return direction;
