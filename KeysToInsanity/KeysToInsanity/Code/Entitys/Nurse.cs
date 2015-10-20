@@ -22,8 +22,8 @@ namespace KeysToInsanity.Code.Entitys
         {
             //Setting the nurse posX to be center
             center = posX;
-            Console.WriteLine("Center is" +center);
-            Console.WriteLine("Sprite Pos is"+getSpriteXPos());
+           // Console.WriteLine("Center is" +center);
+           // Console.WriteLine("Sprite Pos is"+getSpriteXPos());
             patrolDistance = 0f;
             patrolSpeed = 1.0f;
             direction = true;
