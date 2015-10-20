@@ -73,13 +73,13 @@ namespace KeysToInsanity
         private GameState gameState;
         private bool gotKey;
 
-        public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time);
+        Vector2 Scale = Vector2.One;
 
         public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+           // graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             if (!graphics.IsFullScreen)
             {
                 graphics.ToggleFullScreen();
@@ -102,14 +102,15 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             logoPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 100, 20);
+           
             startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
             exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 290);
 
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            //gameState = GameState.StartMenu;
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
+            
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -317,6 +318,8 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
+            
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
@@ -387,9 +390,9 @@ namespace KeysToInsanity
             if (gameState == GameState.StartMenu)
             {
                 Rectangle startButtonR = new Rectangle((int)startButtonPosition.X,
-                    (int)startButtonPosition.Y, 100, 20);
+                    (int)startButtonPosition.Y, startButton.Width, startButton.Height);
                 Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
-                    (int)exitButtonPosition.Y, 100, 20);
+                    (int)exitButtonPosition.Y, exitButton.Width, startButton.Height);
                 //Checking if start button was clicked
                 if (mouseClickR.Intersects(startButtonR))
                 {
@@ -407,9 +410,9 @@ namespace KeysToInsanity
             else if (gameState == GameState.Paused)
             {
                 Rectangle resumeR = new Rectangle((int)resumePosition.X,
-                    (int)resumePosition.Y, 100, 20);
+                    (int)resumePosition.Y, resume.Width, resume.Height);
                 Rectangle exitButtonR = new Rectangle((int)exitButtonPosition.X,
-                    (int)exitButtonPosition.Y, 100, 20);
+                    (int)exitButtonPosition.Y, exitButton.Width, exitButton.Height);
                 //Checking if start button was clicked
                 if (mouseClickR.Intersects(resumeR))
                 {
