@@ -13,24 +13,26 @@ namespace KeysToInsanity.Code.Entitys
         private float patrolDistance;
         //How fast it is coming back
         private float patrolSpeed;
-        private float totalDistance;
+        
         private bool direction;        
 
         
 
-        public Nurse(Game game) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
-            center = getSpriteXPos();
+            center = posX;
+            Console.WriteLine("Center is" +center);
+            Console.WriteLine("Sprite Pos is"+getSpriteXPos());
             patrolDistance = 0f;
             patrolSpeed = 1.0f;
             direction = true;
             
                   }
 
-        public Nurse(Game game, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
+        public Nurse(Game game,float posX, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
         {
-            center = getSpriteXPos();
+            center = posX;
             patrolDistance = patrol;
             patrolSpeed = speed;
             direction = true;
@@ -40,27 +42,28 @@ namespace KeysToInsanity.Code.Entitys
         
         public  void Update(GameTime time)
         {
-            
+           // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
+           // Console.WriteLine("Center is" + center);
             
             if (direction == true)
             {
 
-                this.velocity =  Velocity.FromDirection(0.0f,-1.0f);
-            }
-            if(direction == false)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, 1.0f);
-            }
-            if(getSpriteXPos() > center+50)
-            {
-                direction = true;
-                Console.WriteLine("Center+50");
-            }
-            if(getSpriteXPos()< center-50)
+                velocity =  Velocity.FromDirection(0.0f,patrolSpeed);
+                if (getSpriteXPos()> center+patrolDistance)
             {
                 direction = false;
-                Console.WriteLine(direction);
+                //Console.WriteLine(direction);
             }
+            }else
+            {
+                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+            }
+            if(getSpriteXPos() < center-patrolDistance)
+            {
+                direction = false;
+                //Console.WriteLine("Center+50");
+            }
+            
             updateWithAnimation(time, 0);
                                                                                       
         }
@@ -78,7 +81,7 @@ namespace KeysToInsanity.Code.Entitys
             if (collided.collidable)
             {if(data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
+                    velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
                 }
                 
             }

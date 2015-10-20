@@ -108,7 +108,6 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            //gameState = GameState.StartMenu;
             gameState = GameState.Playing;
 
             //Get the mouse state
@@ -123,7 +122,7 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
-                Console.WriteLine("A Key was picked up!");
+                //Console.WriteLine("A Key was picked up!");
                 testDoor.setOpen(true);
             }
 
@@ -167,7 +166,7 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this);
+            nurse = new Nurse(this,300);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300, 560);
             //dog = new AttackDog(this);
@@ -284,7 +283,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-
+                hud.Update(gameTime);
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 
