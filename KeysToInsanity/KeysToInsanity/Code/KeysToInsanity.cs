@@ -78,9 +78,17 @@ namespace KeysToInsanity
         public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+            if (!graphics.IsFullScreen)
+                graphics.ToggleFullScreen();
+
             Content.RootDirectory = "Content";
-           //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+            if (!graphics.IsFullScreen)
+                graphics.ToggleFullScreen();
+
             graphics.ApplyChanges();
         }
 
@@ -102,7 +110,7 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -194,8 +202,8 @@ namespace KeysToInsanity
             BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
             bed.spriteSize = new Point(70, 55);
-            //platformH = new horizontalPlatform(this);
-            //platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            platformH = new horizontalPlatform(this);
+            platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
@@ -204,7 +212,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-           // platformH.addTo(hPlatforms);
+            platformH.addTo(staticSprites);
 
             testDoor.doorLight.addTo(lightEffects);
 
@@ -328,7 +336,7 @@ namespace KeysToInsanity
                 {
                     s.draw(spriteBatch);
                 }
-               /* foreach (BasicSprite s in hPlatforms)
+               /*foreach (BasicSprite s in hPlatforms)
                 {
                     s.draw(spriteBatch);
                 }*/
