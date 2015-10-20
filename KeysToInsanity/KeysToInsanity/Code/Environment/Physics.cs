@@ -34,6 +34,17 @@ namespace KeysToInsanity.Code
                             i.velocity.setY(i.velocity.getY() + downVel);
                         }
                     }
+                    else
+                    {
+                        if(grounded == true)
+                        {
+                            i.velocity.setY(0.0f);
+                        }
+                        else
+                        {
+                            i.velocity.setY(i.velocity.getY() + downVel);
+                        }
+                    }
                 }
             }
             grounded = false;

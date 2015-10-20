@@ -167,9 +167,9 @@ namespace KeysToInsanity
             nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300,500);
-            dog = new AttackDog(this);
-            dog.addTo(characterSprites);
-            dog.spritePos = new Vector2(250, 100);             
+           //dog = new AttackDog(this);
+           // dog.addTo(characterSprites);
+            //dog.spritePos = new Vector2(250, 100);             
 
 
 
