@@ -78,9 +78,12 @@ namespace KeysToInsanity
         public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+            if (!graphics.IsFullScreen)
+                graphics.ToggleFullScreen();
+
             Content.RootDirectory = "Content";
-           //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             graphics.ApplyChanges();
         }
 
@@ -102,7 +105,7 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
