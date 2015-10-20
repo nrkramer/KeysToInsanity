@@ -34,7 +34,7 @@ namespace KeysToInsanity.Code.Base
             while (r.Read())
             {
                 if (r.NodeType == XmlNodeType.Element)
-                    switch(r.Name)
+                    switch (r.Name)
                     {
                         case "Stage":
                             break;
@@ -53,7 +53,7 @@ namespace KeysToInsanity.Code.Base
             while (r.Read())
             {
                 if (r.NodeType == XmlNodeType.Element)
-                    switch(r.Name)
+                    switch (r.Name)
                     {
                         case "Start":
                             break;

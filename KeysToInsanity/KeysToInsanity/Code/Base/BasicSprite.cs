@@ -9,11 +9,15 @@ namespace KeysToInsanity
 {
     public class BasicSprite
     {
-        public Texture2D spriteTex {
-            get; }
+        public Texture2D spriteTex
+        {
+            get;
+        }
 
-        public Vector2 spritePos {
-            get; set; }
+        public Vector2 spritePos
+        {
+            get; set;
+        }
 
         public Point spriteSize;
         public Velocity velocity;
@@ -23,13 +27,14 @@ namespace KeysToInsanity
         protected SpriteContainer container;
         public event KeysToInsanity.CollisionEventHandler collisionCallback;
 
-      
+
         // Load sprite from file, requires you pass in a game instance for content loading
         // when subclassing BasicSprite you must create the same Constructors in the subclass with :base(parameters)
         // the parameters should match the ones here
         public BasicSprite(Game game, string file, bool collide)
         {
-            try {
+            try
+            {
                 spriteTex = game.Content.Load<Texture2D>(file); // load the texture
 
                 spritePos = new Vector2(0, 0); // initial position
@@ -38,8 +43,9 @@ namespace KeysToInsanity
                 collidable = collide;
                 if (!collidable)
                     borderColor = Color.Blue;
-                
-            } catch (ContentLoadException)
+
+            }
+            catch (ContentLoadException)
             {
                 Console.WriteLine(file + " not loaded. Probably can't be found.\n");
             }
