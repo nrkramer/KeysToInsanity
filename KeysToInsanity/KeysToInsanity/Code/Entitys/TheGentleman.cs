@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code
 
         private bool jumping = false;
 
-        public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30,56), 4, 0.1, true)
+        public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30, 56), 4, 0.1, true)
         {
             input = new BasicInput(game, this);
         }
@@ -87,7 +87,7 @@ namespace KeysToInsanity.Code
             animations.Add(runLeft);
             //animations.Add(fallLeft);
         }
-        
-        
+
+
     }
 }

@@ -44,8 +44,8 @@ namespace KeysToInsanity.Code
                 if (downDown(kb))
                     yDiff += yVelocity;*/
                 if (spaceDown(kb))
-                    yDiff = -10;
-               
+                    yDiff = -13;
+
 
                 //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
                 sprite.velocity = Velocity.FromCoordinates(xDiff, sprite.velocity.getY() + yDiff); //+ jumpVelocity;
