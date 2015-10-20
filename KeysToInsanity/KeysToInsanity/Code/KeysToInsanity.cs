@@ -81,7 +81,7 @@ namespace KeysToInsanity
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             if (!graphics.IsFullScreen) {
-                graphics.ToggleFullScreen();
+                //graphics.ToggleFullScreen();
             }
             Content.RootDirectory = "Content";
           
@@ -166,9 +166,9 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this,300);           
+            nurse = new Nurse(this);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300,500);
+            nurse.spritePos = new Vector2(300,560);
            //dog = new AttackDog(this);
            // dog.addTo(characterSprites);
             //dog.spritePos = new Vector2(250, 100);             
@@ -278,6 +278,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
+                
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
                 

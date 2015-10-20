@@ -13,39 +13,77 @@ namespace KeysToInsanity.Code.Entitys
         private float patrolDistance;
         //How fast it is coming back
         private float patrolSpeed;
-       // Random random = new Random();
+       
+        private bool p1Flag;
+        private bool p2Flag;
 
-        public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        private float p1;
+        private float p2;
+        Random random = new Random();
+
+        public Nurse(Game game) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
-            center = posX;
+            center = getSpriteXPos();
             patrolDistance = 50f;
             patrolSpeed = 1.0f;
-        }
+            p1Flag = false;
+            p2Flag = false;
+                  }
 
-        public Nurse(Game game, float posX, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
+        public Nurse(Game game, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
         {
-            center = posX;
+            center = getSpriteXPos();
             patrolDistance = patrol;
             patrolSpeed = speed;
+            p1Flag = false;
+            p2Flag = false;
+
 
         }
 
         
         public  void Update(GameTime time)
         {
-            
-            //Moving to the right
-            if(getSpriteXPos() == center) {
-                
-                this.velocity = Velocity.FromDirection(0.0f, patrolDistance);
-            }
-            //Moving to the left
-            else if ( getSpriteXPos() >=center-patrolDistance)
+            p1 = center - patrolDistance;
+            p2 = center + patrolDistance;
+
+            if (p2Flag == false && p1Flag ==false)
             {
-                //setting velocity to be as fast as patrol speed, need to go left, so we use a - sign.
-                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+                Console.WriteLine("Moving right");
+                if (getSpriteXPos() >= p2)
+                {
+                    p1Flag = false;
+                    p2Flag = true;
+                    Console.WriteLine(p2Flag);
+                    
+
+                }
             }
+            if (p2Flag == true && p1Flag == false)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+                Console.WriteLine("Moving left");
+                if(getSpriteXPos()<= p1)
+                {
+                    p1Flag = true;
+                    p2Flag = false;
+                }
+            }
+            if (p1Flag == true && p2Flag == false)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+                Console.WriteLine("Moving right using P1FLAG");
+                if(getSpriteXPos() >= p2)
+                {
+                    p1Flag = true;
+                    p2Flag = false;
+                }
+            }
+            
+               
+            
            
             updateWithAnimation(time, 0);
 
