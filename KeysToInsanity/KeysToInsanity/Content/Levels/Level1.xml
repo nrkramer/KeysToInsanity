@@ -9,7 +9,7 @@
       <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="1"/>
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/> 
       <Background type="padded_background"/>
-      <Checkpoint x="400" y="f-10" collide ="0"/>
+      <Checkpoint x="400" y="f-15" collide ="0"/>
       <Door x="f" y="f-20" w="10" h=""/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -35,7 +35,7 @@
       <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="1"/>
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/>
       <Background type="padded_background"/>
-      <Checkpoint x="400" y="f-10" collide ="0"/>
+      <Checkpoint x="400" y="f-15" collide ="0"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-10"/>
@@ -59,7 +59,7 @@
       <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide ="1"/>
       <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="1"/>
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/>
-      <Checkpoint x="400" y="f-10" collide ="0"/>
+      <Checkpoint x="400" y="f-15" collide ="0"/>
       <Background type="padded_background"/>
     </Stage>
   </Level>
