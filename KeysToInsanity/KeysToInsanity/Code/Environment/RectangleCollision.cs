@@ -83,7 +83,8 @@ namespace KeysToInsanity.Code
                 {
                     return s1.velocity;
                 }
-            } else
+            }
+            else
             {
                 return s1.velocity;
             }
