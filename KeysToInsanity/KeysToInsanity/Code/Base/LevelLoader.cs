@@ -69,6 +69,8 @@ namespace KeysToInsanity.Code.Base
                             break;
                         case "Platform":
                             break;
+                        case "LightEffect":
+                            break;
                         case "End":
                             break;
                         default:

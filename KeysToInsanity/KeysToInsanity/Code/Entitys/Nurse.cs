@@ -81,7 +81,7 @@ namespace KeysToInsanity.Code.Entitys
             if (collided.collidable)
             {if(data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
+                    velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
                 }
                 
             }

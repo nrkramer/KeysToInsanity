@@ -26,7 +26,7 @@ namespace KeysToInsanity
             Paused
         }
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -123,14 +123,14 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
-                Console.WriteLine("A Key was picked up!");
+                //Console.WriteLine("A Key was picked up!");
                 testDoor.setOpen(true);
             }
 
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 if (collided.collidable)
-                    if (data.Height > 0)
+                    if (Math.Abs(data.Height) >= 1.0f)
                     {
                         //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
@@ -284,7 +284,7 @@ namespace KeysToInsanity
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-
+                hud.Update(gameTime);
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 
