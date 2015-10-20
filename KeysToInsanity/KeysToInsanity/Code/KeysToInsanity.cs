@@ -108,7 +108,6 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            //gameState = GameState.StartMenu;
             gameState = GameState.Playing;
 
             //Get the mouse state
