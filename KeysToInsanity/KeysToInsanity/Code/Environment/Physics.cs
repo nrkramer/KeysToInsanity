@@ -9,13 +9,12 @@ namespace KeysToInsanity.Code
         public float gravity = 4.9f;
         public float jumpTime = 0.0f;
         private bool grounded = false;
-        const float hysteresisAmount = 1.0f;
 
         public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
         {
             //Console.WriteLine();
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            float downVel = gravity * (frameTime - jumpTime) * hysteresisAmount;
+            float downVel = gravity * (frameTime - jumpTime);
             
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
