@@ -12,7 +12,6 @@ namespace KeysToInsanity.Code
 
         public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
         {
-            //Console.WriteLine();
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * (frameTime - jumpTime);
 
@@ -25,13 +24,14 @@ namespace KeysToInsanity.Code
                 {
                     if (i.ToString() == "KeysToInsanity.Code.TheGentleman")
                     {
-                        if (((TheGentleman)i).isJumping() == false && grounded == true)
+                        if ((((TheGentleman)i).isJumping() == false) && (grounded == true))
                         {
                             i.velocity.setY(0.0f);
                         }
                         else
                         {
                             i.velocity.setY(i.velocity.getY() + downVel);
+                            
                         }
                     }
                     else

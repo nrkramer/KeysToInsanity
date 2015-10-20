@@ -44,7 +44,6 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.spriteSize = new Point(200, 30);
             hud_insanity_frame.spritePos = new Vector2(211, 0);
 
-
             BasicSprite hud_insanity_color = new BasicSprite(game, "insanity_bar_color", false);
             hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
             hud_insanity_color.spritePos = new Vector2(210, 0);

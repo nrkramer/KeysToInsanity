@@ -73,7 +73,7 @@ namespace KeysToInsanity.Code
                     data.Y = collision.Y;
                     data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
 
-                    //Console.WriteLine(data);
+                    Console.WriteLine(vf2);
                     s1.onCollide(s2, data, time);
                     s2.onCollide(s1, data, time);
 
