@@ -161,7 +161,7 @@ namespace KeysToInsanity
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
             nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300,100);
+            nurse.spritePos = new Vector2(300,200);
             dog = new AttackDog(this);
             dog.addTo(characterSprites);
             dog.spritePos = new Vector2(250, 100);             
@@ -264,6 +264,7 @@ namespace KeysToInsanity
                 previousMouseState = mouseState;
             }
             else if (gameState == GameState.Playing) {
+                nurse.Update(gameTime);
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
@@ -285,7 +286,7 @@ namespace KeysToInsanity
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
 
-                nurse.Update();
+                
                 base.Update(gameTime);
         }
         }
@@ -331,7 +332,7 @@ namespace KeysToInsanity
                 {
                     s.draw(spriteBatch);
                 }*/
-                theGentleman.draw(spriteBatch);
+                
                 //nurse.draw(spriteBatch);
                 //dog.draw(spriteBatch);
                

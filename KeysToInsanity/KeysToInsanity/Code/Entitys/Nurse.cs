@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Entitys
         }
 
         
-        public  void Update()
+        public  void Update(GameTime time)
         {
             
             //Deciding if we need to move to the left
@@ -29,6 +29,7 @@ namespace KeysToInsanity.Code.Entitys
             {
                 this.velocity = Velocity.FromDirection(0.0f, -2.5f);
             }
+            updateWithAnimation(time, 0);
 
 
         }
@@ -46,10 +47,16 @@ namespace KeysToInsanity.Code.Entitys
             if (collided.collidable)
             {if(data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
                 }
                 
             }
+        }
+        protected override void loadAnimations()
+        {
+            Animation idle = new Animation();
+            idle.AddFrame(new Rectangle(0, 0, 22, 22), TimeSpan.FromSeconds(1.0));
+            animations.Add(idle);
         }
     }
 }
