@@ -9,7 +9,7 @@ namespace KeysToInsanity.Code.Entitys
  
         //Place were NPC moves around
         private float center;
-        
+        Random random = new Random();
 
         public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
@@ -20,15 +20,20 @@ namespace KeysToInsanity.Code.Entitys
         
         public  void Update(GameTime time)
         {
-            
+            int sign = random.Next(0, 2);
+            if(getSpriteXPos() == center) {
+
+                this.velocity = Velocity.FromDirection(0.0f, 45f);
+            }
             //Deciding if we need to move to the left
-            if( getSpriteXPos() <= center+50)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, 2.5f);
-            }else if ( getSpriteXPos() >=center-50) //Or to the right
+            if( getSpriteXPos() < center+50 && getSpriteXPos()>center)
             {
                 this.velocity = Velocity.FromDirection(0.0f, -2.5f);
+            }else if ( getSpriteXPos() >center-50 && getSpriteXPos() < center) //Or to the right
+            {
+                this.velocity = Velocity.FromDirection(0.0f, 2.5f);
             }
+           
             updateWithAnimation(time, 0);
 
 

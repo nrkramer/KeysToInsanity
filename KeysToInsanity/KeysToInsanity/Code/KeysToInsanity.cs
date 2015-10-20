@@ -80,14 +80,11 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-            if (!graphics.IsFullScreen)
+           /* if (!graphics.IsFullScreen) {
                 graphics.ToggleFullScreen();
-
+            }*/
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-            if (!graphics.IsFullScreen)
-                graphics.ToggleFullScreen();
+          
 
             graphics.ApplyChanges();
         }
@@ -110,7 +107,7 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -169,7 +166,7 @@ namespace KeysToInsanity
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
             nurse = new Nurse(this,300);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300,200);
+            nurse.spritePos = new Vector2(300,500);
             dog = new AttackDog(this);
             dog.addTo(characterSprites);
             dog.spritePos = new Vector2(250, 100);             
@@ -273,6 +270,7 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing) {
                 nurse.Update(gameTime);
+                //dog.Update(gameTime);
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
