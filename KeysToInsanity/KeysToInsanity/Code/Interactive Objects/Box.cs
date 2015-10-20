@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
     class Box : BasicSprite
     {
 
-
+        //interactable box that the user will have to use to be able to progress through different parts of the game
         public Box(Game game) : base(game, "box", false)
         {
             spriteSize = new Point(25, 25);

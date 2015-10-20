@@ -10,6 +10,7 @@ namespace KeysToInsanity.Code.Entitys
     {
         private float center;
 
+        //basic floating enemie that will "swoop" and attack the player
         public Birds(Game game) : base(game, "TopHat", new Point(72, 71), 1, .25, true)
         {
             center = getSpriteXPos();

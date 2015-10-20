@@ -80,9 +80,9 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-           /* if (!graphics.IsFullScreen) {
+            if (!graphics.IsFullScreen) {
                 graphics.ToggleFullScreen();
-            }*/
+            }
             Content.RootDirectory = "Content";
           
 
@@ -107,7 +107,8 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            //gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -117,6 +118,7 @@ namespace KeysToInsanity
 
         public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
         {
+            //collision detection so we can manipulate gravity to simulate real jumping
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
@@ -149,7 +151,7 @@ namespace KeysToInsanity
             exitButton = Content.Load<Texture2D>("exit");
             resume = Content.Load<Texture2D>("resume");
 
-
+            //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
             if (DRAW_BOUNDING_BOXES)
             {
                 BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
@@ -202,6 +204,7 @@ namespace KeysToInsanity
             platformH = new horizontalPlatform(this);
             platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
+            //we add them to the SpriteContainers here
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
             leftWall.addTo(staticSprites);
@@ -210,7 +213,6 @@ namespace KeysToInsanity
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
             platformH.addTo(staticSprites);
-
             testDoor.doorLight.addTo(lightEffects);
 
             /* for now, the input is created here, however later we will want
@@ -249,12 +251,14 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {              
+            //allows the game to know when the user has used the mouse to start the game
                 mouseState = Mouse.GetState();
                 if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;            
+                previousMouseState = mouseState;
+            //pause menu            
             if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
             {
                 gameState = GameState.Paused;
@@ -342,7 +346,7 @@ namespace KeysToInsanity
                 //nurse.draw(spriteBatch);
                 //dog.draw(spriteBatch);
                
-
+            //allows us to make the light effects in the game
             foreach (BasicSprite s in lightEffects)
             {
                 s.draw(spriteBatch);

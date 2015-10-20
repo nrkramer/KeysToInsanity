@@ -12,13 +12,18 @@ namespace KeysToInsanity.Code.Objects
 
         private float center;
         private bool neverStop = false;
+        private float moveSpeed;
+        private float moveDistance;
 
-        
+        //a type of platform that will move side to side
         public horizontalPlatform(Game game) : base(game, "platform", true)
         {
             spriteSize = new Point(150, 50);
+            moveDistance = 50f;
+            moveSpeed = 1.0f;
         }
 
+        //allows the platform to move itself in the desired direction
         public void Update(GameTime gameTime, SpriteContainer SidewaysPlatforms) {
             foreach (BasicSprite x in SidewaysPlatforms)
             {

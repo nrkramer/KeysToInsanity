@@ -36,6 +36,7 @@ namespace KeysToInsanity.Code
 
         public static Vector2 collisionDirection(BasicSprite s1, BasicSprite s2, GameTime time)
         {
+            //returns the direction of how one collision box is colliding with another (i.e. The Gentleman hits the ground going straight down and the game recognizes that)
             if (willCollide(s1, s2, time))
                 return (s2.velocity - s1.velocity).getDirection();
             else

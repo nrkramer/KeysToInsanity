@@ -86,7 +86,7 @@ namespace KeysToInsanity.Code.Entitys
             if(getSpriteXPos() == center) {
 
                 this.velocity = Velocity.FromDirection(0.0f, 45f);
-            }
+    }
             //Deciding if we need to move to the left
             if( getSpriteXPos() <= center+patrolDistance)
             {
@@ -94,7 +94,7 @@ namespace KeysToInsanity.Code.Entitys
             }else if ( getSpriteXPos() >=center-patrolDistance) //Or to the right
             {
                 this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-            }
+}
 
             updateWithAnimation(time, 0);
             */

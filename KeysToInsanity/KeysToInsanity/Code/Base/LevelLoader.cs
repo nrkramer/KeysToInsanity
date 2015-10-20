@@ -28,6 +28,7 @@ namespace KeysToInsanity.Code.Base
             }
         }
 
+        //reads through the XML file until the next "Level" appears, generating everything it reads in as parts that make up the level as a whole, which is a list of stages involved with that level
         public void ParseLevel(XmlReader r)
         {
             while (r.Read())
@@ -46,6 +47,7 @@ namespace KeysToInsanity.Code.Base
             }
         }
 
+        //Reads through the "Stage" part of the XML file to generate what is happening in each stage of the game, which is each individual room
         public void ParseStage(XmlReader r)
         {
             while (r.Read())

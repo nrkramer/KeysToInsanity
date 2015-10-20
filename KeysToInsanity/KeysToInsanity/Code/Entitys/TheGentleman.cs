@@ -17,6 +17,7 @@ namespace KeysToInsanity.Code
 
         public void handleInput(GameTime time)
         {
+            //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
             if (input.rightDown(input.kb))
                 updateWithAnimation(time, 1);
@@ -25,12 +26,14 @@ namespace KeysToInsanity.Code
             else
                 updateWithAnimation(time, 0);
 
+            //allows the game to know when to apply gravity
             if (input.spaceDown(input.kb))
             {
                 jumping = true;
             }
         }
 
+        //checks to see if The Gentleman is in the air or not
         public bool isJumping()
         {
             return jumping;
@@ -49,6 +52,7 @@ namespace KeysToInsanity.Code
             // Custom Gentleman drawing code.
         }
 
+        //development tool to allow us to see how the Gentleman is moving through a vector arrow
         private void drawMovementVector(SpriteBatch s)
         {
             Rectangle bounds = KeysToInsanity.MOVEMENT_VECTOR.Bounds;
