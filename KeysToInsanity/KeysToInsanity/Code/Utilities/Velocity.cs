@@ -34,6 +34,16 @@ namespace KeysToInsanity.Code
             return v;
         }
 
+        internal static Velocity FromCordinates(float v1, float v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static Velocity FromCordinates()
+        {
+            throw new NotImplementedException();
+        }
+
         public Vector2 getDirection()
         {
             return direction;

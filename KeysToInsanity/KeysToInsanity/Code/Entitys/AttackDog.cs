@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Entitys
             center = getSpriteXPos();
         }
 
-        protected void Update()
+        public void Update(GameTime time)
         {
             
             /*
@@ -46,7 +46,10 @@ namespace KeysToInsanity.Code.Entitys
             {
                 this.velocity = Velocity.FromDirection(0.0f, -1.0f);
             }
-            
+
+            updateWithAnimation(time, 0);
+            updateWithAnimation(time, 1);
+            updateWithAnimation(time, 2);
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
@@ -64,6 +67,21 @@ namespace KeysToInsanity.Code.Entitys
                     this.velocity = Velocity.FromDirection(0.0f, 0.0f);
                 }
             }
+        }
+
+        protected override void loadAnimations()
+        {
+            Animation run1 = new Animation();
+            run1.AddFrame(new Rectangle(0, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run1);
+
+            Animation run2 = new Animation();
+            run2.AddFrame(new Rectangle(47, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run2);
+
+            Animation run3 = new Animation();
+            run3.AddFrame(new Rectangle(94, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run3);
         }
     }
 }

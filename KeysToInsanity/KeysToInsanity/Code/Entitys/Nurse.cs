@@ -9,26 +9,44 @@ namespace KeysToInsanity.Code.Entitys
  
         //Place were NPC moves around
         private float center;
-        
+        private float patrolDistance;
+        private float patrolSpeed;
+        Random random = new Random();
 
         public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
             center = posX;
+            patrolDistance = 50f;
+            patrolSpeed = 2.5f;
+        }
+
+        public Nurse(Game game, float posX, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
+        {
+            center = posX;
+            patrolDistance = patrol;
+            patrolSpeed = speed;
+
         }
 
         
-        public  void Update()
+        public  void Update(GameTime time)
         {
-            
-            //Deciding if we need to move to the left
-            if( getSpriteXPos() <= center+50)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, 2.5f);
-            }else if ( getSpriteXPos() >=center-50) //Or to the right
-            {
-                this.velocity = Velocity.FromDirection(0.0f, -2.5f);
+            int sign = random.Next(0, 2);
+            if(getSpriteXPos() == center) {
+                
+                this.velocity = Velocity.FromDirection(0.0f, 45f);
             }
+            //Deciding if we need to move to the left
+            if( getSpriteXPos() <= center+patrolDistance)
+            {
+                this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+            }else if ( getSpriteXPos() >=center-patrolDistance) //Or to the right
+            {
+                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+            }
+           
+            updateWithAnimation(time, 0);
 
 
         }
@@ -46,10 +64,16 @@ namespace KeysToInsanity.Code.Entitys
             if (collided.collidable)
             {if(data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
                 }
                 
             }
+        }
+        protected override void loadAnimations()
+        {
+            Animation idle = new Animation();
+            idle.AddFrame(new Rectangle(0, 0, 22, 22), TimeSpan.FromSeconds(1.0));
+            animations.Add(idle);
         }
     }
 }
