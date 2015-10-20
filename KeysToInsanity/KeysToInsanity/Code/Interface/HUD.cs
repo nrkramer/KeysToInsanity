@@ -12,6 +12,7 @@ namespace KeysToInsanity.Code.Interface
         private GraphicsDevice gd;
         private SpriteContainer hudSprites = new SpriteContainer();
         private int InsanityMeter = 0;
+        InsanityBar hud_insanity_color;
 
         // This class is kind of weird
         // First of all, all elements are drawn to external texture, why?
@@ -44,7 +45,7 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.spriteSize = new Point(200, 30);
             hud_insanity_frame.spritePos = new Vector2(211, 0);
 
-            BasicSprite hud_insanity_color = new BasicSprite(game, "insanity_bar_color", false);
+            hud_insanity_color = new InsanityBar(game);
             hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
             hud_insanity_color.spritePos = new Vector2(210, 0);
 
@@ -56,6 +57,17 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.addTo(hudSprites);
 
             gd = game.GraphicsDevice;
+        }
+
+        public void Update(GameTime time)
+        {
+            int frameTime = (int)time.TotalGameTime.TotalSeconds;
+            if (frameTime <= 202)
+            {
+                InsanityMeter = frameTime;
+                hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
+            }
+            
         }
 
         // This draws the HUD to it's texture
@@ -78,15 +90,6 @@ namespace KeysToInsanity.Code.Interface
         {
             drawHUD(spriteBatch);
             base.draw(spriteBatch);
-        }
-
-        public void Update(GameTime time)
-        {
-            int frameTime = (int)time.TotalGameTime.TotalSeconds;
-            if (frameTime <= 202)
-            {               
-                InsanityMeter = frameTime;
-            }
         }
 
         // player picked up a key

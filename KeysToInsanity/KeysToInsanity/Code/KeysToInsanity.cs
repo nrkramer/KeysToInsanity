@@ -26,7 +26,7 @@ namespace KeysToInsanity
             Paused
         }
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -80,10 +80,10 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-            if (!graphics.IsFullScreen)
+           /* if (!graphics.IsFullScreen)
             {
                 graphics.ToggleFullScreen();
-            }
+            }*/
             Content.RootDirectory = "Content";
 
 
@@ -108,7 +108,7 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -281,9 +281,9 @@ namespace KeysToInsanity
                 nurse.Update(gameTime);
                 //dog.Update(gameTime);
                 theGentleman.handleInput(gameTime); // input
-                physics.Update(gameTime, characterSprites); // physics
-                RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
                 hud.Update(gameTime);
+                physics.Update(gameTime, characterSprites); // physics
+                RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision          
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 

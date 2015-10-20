@@ -77,6 +77,7 @@
     <Compile Include="Code\Interactive Objects\Lever.cs" />
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
+    <Compile Include="Code\Interface\InsanityBar.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\horizontalPlatform.cs" />
     <Compile Include="Code\ProgramMain.cs" />
