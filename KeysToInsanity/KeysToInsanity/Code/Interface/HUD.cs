@@ -83,8 +83,8 @@ namespace KeysToInsanity.Code.Interface
         public void Update(GameTime time)
         {
             int frameTime = (int)time.TotalGameTime.TotalSeconds;
-            if(InsanityMeter <= 220)
-            {
+            if (frameTime <= 202)
+            {               
                 InsanityMeter = frameTime;
             }
         }

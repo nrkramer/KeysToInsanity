@@ -50,7 +50,7 @@ namespace KeysToInsanity.Code
                 Rectangle data = new Rectangle();
                 if (s1.collidable && s2.collidable)
                 {
-                    float vf1, vf2;
+                    double vf1, vf2;
                     Velocity v1 = Velocity.FromCoordinates(s1.velocity.getDirection().X, 0.0f);
                     Velocity v2 = Velocity.FromCoordinates(s2.velocity.getDirection().X, 0.0f);
                     Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
@@ -64,11 +64,17 @@ namespace KeysToInsanity.Code
 
                     v1 = Velocity.FromCoordinates(0.0f, s1.velocity.getDirection().Y);
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
+                    if (Math.Abs(v1.getY()) < 1.0f) // stupid floats
+                        v1.setY(0.0f);
+
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
                         vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
                     else
                         vf2 = v1.getDirection().Y;
+
+                    if (Math.Abs(vf2) < 1.0f) // stupid floats
+                        vf2 = 0.0f;
 
                     data.Y = collision.Y;
                     data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
@@ -77,7 +83,7 @@ namespace KeysToInsanity.Code
                     s1.onCollide(s2, data, time);
                     s2.onCollide(s1, data, time);
 
-                    return Velocity.FromCoordinates(vf1, vf2);
+                    return Velocity.FromCoordinates((float)vf1, (float)vf2);
                 }
                 else
                 {
