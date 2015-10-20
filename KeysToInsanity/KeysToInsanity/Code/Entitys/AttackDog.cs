@@ -14,23 +14,26 @@ namespace KeysToInsanity.Code.Entitys
         private float center;
         private float patrolDistance;
         private float patrolSpeed;
+        private bool direction;
 
         public AttackDog(Game game,float posX) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
         {
             center = posX;
             patrolDistance = 100.0f;
             patrolSpeed = 2.0f;
+            direction = true;
         }
         public AttackDog(Game game,float posX, float patrol, float speed) : base (game, "dogs", new Point(47,27),3,.25,true)
         {
             center = posX;
             patrolDistance = patrol;
             patrolSpeed = speed;
+            direction = true;
         }
 
         public void Update(GameTime time)
         {
-            
+
             /*
             G1 |   C     | G2
             If Genteman is at G1, the dog needs to attack Gentleman, but not go past boundary.
@@ -38,7 +41,7 @@ namespace KeysToInsanity.Code.Entitys
             Likewise if the Gentleman is at G2, the dog has to get him,but not go past the boundry. 
             So  it is greater than or equal to center plus 100.
             */
-            
+
             /*if (KeysToInsanity.theGentleman.getSpriteXPos() <= center+100)
             {
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
@@ -48,17 +51,25 @@ namespace KeysToInsanity.Code.Entitys
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
             }*/
 
-            //Moving to the left
-            if(getSpriteXPos()== center)
+            if (direction == true)
             {
-                this.velocity = Velocity.FromDirection(0.0f, patrolDistance);
-            }
-            //Moving to the right
-            if (getSpriteXPos() >= center -patrolDistance)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-            }
 
+                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+                if (getSpriteXPos() > center + patrolDistance)
+                {
+                    direction = false;
+                    //Console.WriteLine(direction);
+                }
+            }
+            else
+            {
+                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+            }
+            if (getSpriteXPos() < center - patrolDistance)
+            {
+                direction = true;
+                //Console.WriteLine("Center+50");
+            }
             updateWithAnimation(time, 0);
             updateWithAnimation(time, 1);
             updateWithAnimation(time, 2);

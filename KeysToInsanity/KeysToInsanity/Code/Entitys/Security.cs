@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace KeysToInsanity.Code
 {
@@ -6,23 +7,45 @@ namespace KeysToInsanity.Code
     {
 
         private float center;
-        public Security(Game game) : base(game, "TopHat",new Point (72,71),1,.25, false)
+        private float patrolSpeed;
+        private float patrolDistance;
+        private bool direction;
+        public Security(Game game,float posX) : base(game, "TopHat",new Point (72,71),1,.25, false)
         {
             //Setting Xpos
-            center = getSpriteXPos();
+            center = posX;
+            patrolDistance = 50.0f;
+            patrolSpeed = 0.50f;
+            direction = true;
         }
 
-        protected void Update()
+        protected void Update(GameTime time)
         {
-            //Deciding if guard moves left
-            if ( getSpriteXPos() <= center + 50)
+            // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
+            // Console.WriteLine("Center is" + center);
+
+            if (direction == true)
             {
-                this.velocity = Velocity.FromDirection(0.0f,2.5f);
-            }else if (getSpriteXPos() >= center - 50)//Or going right
-            {
-                this.velocity = Velocity.FromDirection(0.0f, -2.5f);
+
+                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+                if (getSpriteXPos() > center + patrolDistance)
+                {
+                    direction = false;
+                    //Console.WriteLine(direction);
+                }
             }
-            
+            else
+            {
+                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+            }
+            if (getSpriteXPos() < center - patrolDistance)
+            {
+                direction = true;
+                //Console.WriteLine("Center+50");
+            }
+
+            updateWithAnimation(time, 0);
+
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
@@ -44,5 +67,12 @@ namespace KeysToInsanity.Code
             }
         }
 
+
+        protected override void loadAnimations()
+        {
+            Animation idle = new Animation();
+            idle.AddFrame(new Rectangle(0, 0, 72, 71), TimeSpan.FromSeconds(1.0));
+            animations.Add(idle);
+        }
     }
 }
