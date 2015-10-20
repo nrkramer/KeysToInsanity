@@ -26,18 +26,19 @@ namespace KeysToInsanity.Code
                     {
                     if (i.ToString() == "KeysToInsanity.Code.TheGentleman")
                     {
-                        if (((TheGentleman)i).isJumping() == false && grounded == true)
+                        if ((((TheGentleman)i).isJumping() == false) && (grounded == true))
                         {
                             i.velocity.setY(0.0f);
+                            grounded = false;
                         }
                         else
                         {
                             i.velocity.setY(i.velocity.getY() + downVel);
+                            
                         }
                     }
                 }
             }
-            grounded = false;
         }
 
         public void resetTime(GameTime time)

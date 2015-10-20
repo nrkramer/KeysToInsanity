@@ -65,14 +65,14 @@ namespace KeysToInsanity.Code
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf2 = Math.Round(v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height));
+                        vf2 = (Math.Sign(v1.getDirection().Y) * -collision.Height) + v1.getY() + 0.5f;
                     else
                         vf2 = v1.getDirection().Y;
 
                     data.Y = collision.Y;
                     data.Height = Math.Sign(v1.getDirection().Y) * collision.Height;
 
-                    //Console.WriteLine(data);
+                    Console.WriteLine(vf2);
                     s1.onCollide(s2, data, time);
                     s2.onCollide(s1, data, time);
 
