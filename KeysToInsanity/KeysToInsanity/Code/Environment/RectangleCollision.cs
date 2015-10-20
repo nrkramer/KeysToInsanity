@@ -36,6 +36,7 @@ namespace KeysToInsanity.Code
 
         public static Vector2 collisionDirection(BasicSprite s1, BasicSprite s2, GameTime time)
         {
+            //returns the direction of how one collision box is colliding with another (i.e. The Gentleman hits the ground going straight down and the game recognizes that)
             if (willCollide(s1, s2, time))
                 return (s2.velocity - s1.velocity).getDirection();
             else
@@ -49,12 +50,12 @@ namespace KeysToInsanity.Code
                 Rectangle data = new Rectangle();
                 if (s1.collidable && s2.collidable)
                 {
-                    double vf1, vf2;
+                    float vf1, vf2;
                     Velocity v1 = Velocity.FromCoordinates(s1.velocity.getDirection().X, 0.0f);
                     Velocity v2 = Velocity.FromCoordinates(s2.velocity.getDirection().X, 0.0f);
                     Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf1 = Math.Round(v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width));
+                        vf1 = v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width);
                     else
                         vf1 = v1.getDirection().X;
 
@@ -65,7 +66,7 @@ namespace KeysToInsanity.Code
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf2 = (Math.Sign(v1.getDirection().Y) * -collision.Height) + v1.getY() + 0.5f;
+                        vf2 = v1.getDirection().Y + (Math.Sign(v1.getDirection().Y) * -collision.Height);
                     else
                         vf2 = v1.getDirection().Y;
 
@@ -76,7 +77,7 @@ namespace KeysToInsanity.Code
                     s1.onCollide(s2, data, time);
                     s2.onCollide(s1, data, time);
 
-                    return Velocity.FromCoordinates((float)vf1, (float) vf2);
+                    return Velocity.FromCoordinates(vf1, vf2);
                 }
                 else
                 {

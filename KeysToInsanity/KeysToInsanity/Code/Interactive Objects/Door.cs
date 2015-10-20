@@ -14,6 +14,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
         public LightEffect doorLight { get; }
         private bool open = false;
 
+        //doors that will open when the player has acquired the key
         public Door(Game game) : base(game, "closed_door_left_metal", true)
         {
             openSprite = new BasicSprite(game, "open_door_left_metal", false);

@@ -15,6 +15,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
         private HUD hud; // hud to add key to
         private Timer timer = new Timer();
 
+        //the main objective of the game: collecting the keys 
         public Key(Game game, HUD hud) : base(game, "key", false)
         {
             spriteSize = new Point(50, 50);
@@ -23,6 +24,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
             timer.Interval = 5;
         }
 
+        //enables an event that will move the key up to the HUD space designated for it
         private void move_to_interface_event(object source, ElapsedEventArgs e)
         {
             updatePosition();

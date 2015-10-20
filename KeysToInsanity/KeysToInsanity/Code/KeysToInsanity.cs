@@ -80,10 +80,12 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-            if (!graphics.IsFullScreen)
-                graphics.ToggleFullScreen();
-
+            if (!graphics.IsFullScreen) {
+                //graphics.ToggleFullScreen();
+            }
             Content.RootDirectory = "Content";
+          
+
             graphics.ApplyChanges();
         }
 
@@ -105,6 +107,7 @@ namespace KeysToInsanity
             resumePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 240);
 
             //set the gamestate to the start menu
+            //gameState = GameState.StartMenu;
             gameState = GameState.Playing;
 
             //Get the mouse state
@@ -115,6 +118,7 @@ namespace KeysToInsanity
 
         public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
         {
+            //collision detection so we can manipulate gravity to simulate real jumping
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
@@ -125,12 +129,12 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 if (collided.collidable)
-                    if (data.Height > 0)
+                    if (Math.Abs(data.Height) >= 1.0f)
                     {
                         //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
+                    }
             }
-        }
         }
 
         /// <summary>
@@ -147,7 +151,7 @@ namespace KeysToInsanity
             exitButton = Content.Load<Texture2D>("exit");
             resume = Content.Load<Texture2D>("resume");
 
-
+            //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
             if (DRAW_BOUNDING_BOXES)
             {
                 BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
@@ -162,12 +166,12 @@ namespace KeysToInsanity
             theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this,300);           
+            nurse = new Nurse(this);           
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300,100);
-            dog = new AttackDog(this);
-            dog.addTo(characterSprites);
-            dog.spritePos = new Vector2(250, 100);             
+            nurse.spritePos = new Vector2(300,560);
+           //dog = new AttackDog(this);
+           // dog.addTo(characterSprites);
+            //dog.spritePos = new Vector2(250, 100);             
 
 
 
@@ -200,6 +204,7 @@ namespace KeysToInsanity
             platformH = new horizontalPlatform(this);
             platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
 
+            //we add them to the SpriteContainers here
             floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
             leftWall.addTo(staticSprites);
@@ -207,8 +212,7 @@ namespace KeysToInsanity
             hanger.addTo(staticSprites);
             bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            //platformH.addTo(staticSprites);
-
+            platformH.addTo(staticSprites);
             testDoor.doorLight.addTo(lightEffects);
 
             /* for now, the input is created here, however later we will want
@@ -247,12 +251,14 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {              
+            //allows the game to know when the user has used the mouse to start the game
                 mouseState = Mouse.GetState();
                 if(previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
                 }
-                previousMouseState = mouseState;            
+                previousMouseState = mouseState;
+            //pause menu            
             if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
             {
                 gameState = GameState.Paused;
@@ -267,9 +273,12 @@ namespace KeysToInsanity
                 previousMouseState = mouseState;
             }
             else if (gameState == GameState.Playing) {
+                nurse.Update(gameTime);
+                //dog.Update(gameTime);
                 theGentleman.handleInput(gameTime); // input
                 physics.Update(gameTime, characterSprites); // physics
                 RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
+                
                 //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
                 
@@ -288,7 +297,7 @@ namespace KeysToInsanity
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
 
-                nurse.Update();
+                
                 base.Update(gameTime);
         }
         }
@@ -334,11 +343,11 @@ namespace KeysToInsanity
                 {
                     s.draw(spriteBatch);
                 }*/
-                theGentleman.draw(spriteBatch);
+                
                 //nurse.draw(spriteBatch);
                 //dog.draw(spriteBatch);
                
-
+            //allows us to make the light effects in the game
             foreach (BasicSprite s in lightEffects)
             {
                 s.draw(spriteBatch);

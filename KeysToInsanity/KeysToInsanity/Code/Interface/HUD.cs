@@ -43,13 +43,12 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.spriteSize = new Point(200, 30);
             hud_insanity_frame.spritePos = new Vector2(211, 0);
 
-
             BasicSprite hud_insanity_color = new BasicSprite(game, "insanity_bar_color", false);
             hud_insanity_color.spriteSize = new Point(202, 32);
             hud_insanity_color.spritePos = new Vector2(210, 0);
             
 
-        hud_key_frame.addTo(hudSprites);
+            hud_key_frame.addTo(hudSprites);
             hud_health_color.addTo(hudSprites);
             hud_health_frame.addTo(hudSprites);
             hud_insanity_color.addTo(hudSprites);
@@ -62,7 +61,7 @@ namespace KeysToInsanity.Code.Interface
         public void drawHUD(SpriteBatch spriteBatch)
         {
             gd.SetRenderTarget(spriteTex);
-            gd.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true }; // didn't know you could do this until now
+            gd.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true }; 
             gd.Clear(Color.White);
             
             // Draw HUD

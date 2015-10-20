@@ -9,13 +9,11 @@ namespace KeysToInsanity.Code
         public float gravity = 4.9f;
         public float jumpTime = 0.0f;
         private bool grounded = false;
-        const float hysteresisAmount = 1.0f;
 
         public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
         {
-            //Console.WriteLine();
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            float downVel = gravity * (frameTime - jumpTime) * hysteresisAmount;
+            float downVel = gravity * (frameTime - jumpTime);
             
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
@@ -29,7 +27,6 @@ namespace KeysToInsanity.Code
                         if ((((TheGentleman)i).isJumping() == false) && (grounded == true))
                         {
                             i.velocity.setY(0.0f);
-                            grounded = false;
                         }
                         else
                         {
@@ -37,12 +34,26 @@ namespace KeysToInsanity.Code
                             
                         }
                     }
+                    else
+                    {
+                        if(grounded == true)
+                        {
+                            i.velocity.setY(0.0f);
+                        }
+                        else
+                        {
+                            i.velocity.setY(i.velocity.getY() + downVel);
+                        }
+                    }
                 }
             }
+            grounded = false;
         }
 
+        
         public void resetTime(GameTime time)
         {
+            //when the Gentleman hits the ground we can make sure to turn off gravity by resetting the timer, which makes gravity zero until he is in the air again
             jumpTime = (float)time.TotalGameTime.TotalSeconds;
             grounded = true;
         }

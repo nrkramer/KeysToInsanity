@@ -7,18 +7,28 @@ using System.Text;
 namespace KeysToInsanity.Code.Entitys
 {
 
-    /*Will try to create a cone of sit algoritim for this. Otherwise dogs will be really fast*/
+    /*Will try to create a line of sit algoritim for this. Otherwise dogs will be really fast*/
     class AttackDog : AnimatedSprite
     {
 
         private float center;
+        private float patrolDistance;
+        private float patrolSpeed;
 
-        public AttackDog(Game game) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
+        public AttackDog(Game game,float posX) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
         {
-            center = getSpriteXPos();
+            center = posX;
+            patrolDistance = 100.0f;
+            patrolSpeed = 2.0f;
+        }
+        public AttackDog(Game game,float posX, float patrol, float speed) : base (game, "dogs", new Point(47,27),3,.25,true)
+        {
+            center = posX;
+            patrolDistance = patrol;
+            patrolSpeed = speed;
         }
 
-        protected void Update()
+        public void Update(GameTime time)
         {
             
             /*
@@ -38,15 +48,20 @@ namespace KeysToInsanity.Code.Entitys
                 this.velocity = Velocity.FromDirection(0.0f, 6.0f);
             }*/
 
-            if (getSpriteXPos() <= center + 100)
+            //Moving to the left
+            if(getSpriteXPos()== center)
             {
-                this.velocity = Velocity.FromDirection(0.0f, 1.0f);
+                this.velocity = Velocity.FromDirection(0.0f, patrolDistance);
             }
-            if (getSpriteXPos() >= center - 100)
+            //Moving to the right
+            if (getSpriteXPos() >= center -patrolDistance)
             {
-                this.velocity = Velocity.FromDirection(0.0f, -1.0f);
+                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
             }
-            
+
+            updateWithAnimation(time, 0);
+            updateWithAnimation(time, 1);
+            updateWithAnimation(time, 2);
         }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
@@ -64,6 +79,22 @@ namespace KeysToInsanity.Code.Entitys
                     this.velocity = Velocity.FromDirection(0.0f, 0.0f);
                 }
             }
+        }
+
+        //Custom load for AttackDog
+        protected override void loadAnimations()
+        {
+            Animation run1 = new Animation();
+            run1.AddFrame(new Rectangle(0, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run1);
+
+            Animation run2 = new Animation();
+            run2.AddFrame(new Rectangle(47, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run2);
+
+            Animation run3 = new Animation();
+            run3.AddFrame(new Rectangle(94, 0, 47, 27), TimeSpan.FromSeconds(1.0));
+            animations.Add(run3);
         }
     }
 }
