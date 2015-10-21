@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code
 
         private bool jumping = false;
 
-        public TheGentleman(Game game) : base(game, "SuperMetroidSamus", new Point(30, 56), 4, 0.1, true)
+        public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
             input = new BasicInput(game, this);
         }
@@ -67,24 +67,29 @@ namespace KeysToInsanity.Code
         {
             // idle
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 30, 55), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 32, 48), TimeSpan.FromSeconds(1.0));
 
             // run right
             Animation runRight = new Animation();
-            runRight.AddUniformStrip(new Rectangle(0, 280, 420, 45), new Point(42, 55), TimeSpan.FromSeconds(0.05));
+            runRight.AddUniformStrip(new Rectangle(1, 48, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
 
             // run left
             Animation runLeft = new Animation();
-            runLeft.AddUniformStrip(new Rectangle(550, 225, 420, 45), new Point(42, 55), TimeSpan.FromSeconds(0.05));
+            runLeft.AddUniformStrip(new Rectangle(1, 96, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
 
             // fall right
-            //Animation fallLeft = new Animation();
-            //fallLeft.AddUniformHeightStrip(new Rectangle(368, 183, 327, 33), new int[9] {30, 39, 44, 44, 33, 30, 38, 40, 27}, TimeSpan.FromSeconds(0.05));
+            Animation fallRight = new Animation();
+            fallRight.AddUniformStrip(new Rectangle(1, 144, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
+
+            // fall left
+            Animation fallLeft = new Animation();
+            fallLeft.AddUniformStrip(new Rectangle(1, 192, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
 
             animations.Add(idle);
             animations.Add(runRight);
             animations.Add(runLeft);
-            //animations.Add(fallLeft);
+            animations.Add(fallRight);
+            animations.Add(fallLeft);
         }
 
 

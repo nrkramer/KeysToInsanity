@@ -205,6 +205,9 @@
     <Content Include="Content\resume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Samus_fixed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SoundFX\Music\Beethovens5th.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

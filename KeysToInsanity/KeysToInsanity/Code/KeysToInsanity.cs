@@ -233,7 +233,9 @@ namespace KeysToInsanity
                     f.Update(gameTime);
                     f.updatePosition();
                 }
+
                 theGentleman.handleInput(gameTime); // input
+
                 foreach (Character c in loader.level.stages[stageIndex].characters)
                 {
                     c.Update(gameTime);
