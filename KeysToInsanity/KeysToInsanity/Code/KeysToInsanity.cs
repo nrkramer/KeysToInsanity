@@ -231,6 +231,7 @@ namespace KeysToInsanity
                 foreach (Platform f in loader.level.stages[stageIndex].platforms)
                 {
                     f.Update(gameTime);
+                    f.updatePosition();
                 }
                 theGentleman.handleInput(gameTime); // input
                 foreach (Character c in loader.level.stages[stageIndex].characters)

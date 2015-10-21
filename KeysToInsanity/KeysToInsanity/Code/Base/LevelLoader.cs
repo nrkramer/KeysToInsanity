@@ -271,6 +271,7 @@ namespace KeysToInsanity.Code.Base
             HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
             platform.spritePos = new Vector2(x, y);
             platform.spriteSize = new Point(w, h);
+            platform.center = x;
 
             return platform;
         }

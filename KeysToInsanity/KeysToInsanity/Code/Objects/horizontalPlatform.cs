@@ -9,9 +9,7 @@ namespace KeysToInsanity.Code.Objects
 
     class HorizontalPlatform : Platform
     {
-
-        private float center = 0.0f;
-        private bool neverStop = false;
+        public float center = 0.0f;
         private float moveSpeed = 0.0f;
         private float moveDistance = 0.0f;
         private bool direction = true;
@@ -22,29 +20,28 @@ namespace KeysToInsanity.Code.Objects
             center = getSpriteXPos();
             this.moveDistance = moveDistance;
             this.moveSpeed = moveSpeed;
-            direction = true;
         }
 
         //allows the platform to move itself in the desired direction
         public override void Update(GameTime gameTime)
         {
-                if (direction == true)
+            if (direction)
+            {
+                velocity = Velocity.FromCoordinates(moveSpeed, 0.0f);
+                if (getSpriteXPos() > center + moveDistance)
                 {
-                    velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
-                    if (getSpriteXPos() > center + moveDistance)
-                    {
-                        direction = false;
-                    }
-                    else
-                    {
-                        velocity = Velocity.FromDirection(moveSpeed, 0.0f);
-                    }
-                    if (getSpriteXPos() < center - moveDistance)
-                    {
-                        direction = true;
-                    }
+                    direction = false;
                 }
             }
+            else
+            {
+                velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
+                if (getSpriteXPos() < center - moveDistance)
+                {
+                    direction = true;
+                }
+            }
+        }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
