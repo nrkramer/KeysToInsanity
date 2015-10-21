@@ -6,14 +6,13 @@
       <Static type ="platform2" x="0" y="0" w="10" h="f" collide="true" />
       <Static type ="platform2" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="platform2" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="platform2" x="0" y="0" w="f" h="10" collide="true" /> 
-      <Platform x="c-100" y="f-60" w="60" h="25" distance ="50" speed ="1" direction="true"/>
+      <Static type ="platform2" x="0" y="0" w="f" h="10" collide="true" />
       <Background type="padded_background" />
-      <Checkpoint x="400" y="f-15" />
-      <End boundary="right" />
+      <Checkpoint x="400" y="f-100" />
+      <End x="f-5" y="f-70" boundary="right" />
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="f-75" boundary="left" />
+      <Start x="0" y="f-70" boundary="left" />
       <Static type ="platform2" x="0" y="0" w="10" h="f-100" collide ="true" />
       <Static type ="platform2" x="0" y="f-10" w="c-50" h="40" collide ="true" />
       <Static type ="platform2" x="c+50" y="f-10" w="c+30" h="40" collide ="true" />

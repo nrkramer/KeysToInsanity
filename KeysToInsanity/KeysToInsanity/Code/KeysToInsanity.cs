@@ -73,9 +73,8 @@ namespace KeysToInsanity
         private Vector2 exitButtonPosition;
         private Vector2 logoPosition;
         private Vector2 resumePosition;
-        const float aspectX= 800/1920;
 
-        //Setting constants for the menu items       
+        //Setting constants for the menu items
         MouseState mouseState;
         MouseState previousMouseState;
         private GameState gameState;
@@ -113,7 +112,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -127,7 +126,7 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
-                //Console.WriteLine("A Key was picked up!");
+                Console.WriteLine("A Key was picked up!");
                 //testDoor.setOpen(true);
             }
 
@@ -179,6 +178,8 @@ namespace KeysToInsanity
 
             // Load level
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            Console.WriteLine(loader.level.stageWithKey);
+            //loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents);
 
             input = new BasicInput(this, theGentleman);
 
@@ -404,15 +405,17 @@ namespace KeysToInsanity
         {
             //Creates a rectangle around where the mouse clicked
             Rectangle mouseClickR = new Rectangle(x, y, 10, 10);
-            Console.WriteLine(mouseClickR);
+            if (graphics.IsFullScreen)
+            {
+                mouseClickR.X = (int)(mouseClickR.X * (GraphicsDevice.Viewport.Bounds.Width / (float)Window.ClientBounds.Width));
+                mouseClickR.Y = (int)(mouseClickR.Y * (GraphicsDevice.Viewport.Bounds.Height / (float)Window.ClientBounds.Height));
+            }
 
             //Checks the start menu
             if (gameState == GameState.StartMenu)
             {
-                
                 Rectangle startButtonR = new Rectangle((int)startButton.getSpriteXPos(),
                     (int)startButton.getSpriteYPos(),100, 20);
-                Console.WriteLine(startButton.getSpriteXPos() + "," + startButton.getSpriteYPos());
                 Console.WriteLine(startButtonR);
                 Rectangle exitButtonR = new Rectangle((int)exitButton.getSpriteXPos(),
                     (int)exitButton.getSpriteXPos(), 100, 20);

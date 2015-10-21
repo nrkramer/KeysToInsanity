@@ -86,6 +86,7 @@
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
+    <Compile Include="Code\Objects\VerticalPlatform.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <Compile Include="Code\Environment\RectangleCollision.cs" />
     <Compile Include="Code\Sound\Sound.cs" />

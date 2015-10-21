@@ -50,6 +50,8 @@ namespace KeysToInsanity.Code.Base
 
         public void setEnd(int x, int y, KeysToInsanity.Boundary b)
         {
+            endX = x;
+            endY = y;
             end = b;
         }
 

@@ -8,6 +8,8 @@ namespace KeysToInsanity.Code.Base
     class Level
     {
         public Stage[] stages;
+        public int stageWithKey = 0;
+        public int stageWithDoor = 0;
         private string levelName = "";
 
         public Level(string name, int stages)
@@ -18,6 +20,12 @@ namespace KeysToInsanity.Code.Base
 
         public void addStage(Stage stage, int index)
         {
+            if (stage.key != null)
+                stageWithKey = index;
+
+            if (stage.door != null)
+                stageWithDoor = index;
+
             stages[index] = stage;
         }
 

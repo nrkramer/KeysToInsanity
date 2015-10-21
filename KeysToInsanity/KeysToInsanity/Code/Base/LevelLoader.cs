@@ -268,12 +268,23 @@ namespace KeysToInsanity.Code.Base
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
             bool direction = bool.Parse(r.GetAttribute("direction"));
 
-            HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
-            platform.spritePos = new Vector2(x, y);
-            platform.spriteSize = new Point(w, h);
-            platform.center = x;
+            if (direction)
+            {
+                HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
+                platform.spritePos = new Vector2(x, y);
+                platform.spriteSize = new Point(w, h);
+                platform.center = x;
 
-            return platform;
+                return platform;
+            } else
+            {
+                VerticalPlatform platform = new VerticalPlatform(game, speed, distance);
+                platform.spritePos = new Vector2(x, y);
+                platform.spriteSize = new Point(w, h);
+                platform.center = y;
+
+                return platform;
+            }
         }
 
         public LightEffect ParseLightEffect(XmlReader r)
