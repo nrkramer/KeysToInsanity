@@ -10,10 +10,10 @@ namespace KeysToInsanity.Code.Objects
     class HorizontalPlatform : Platform
     {
 
-        private float center;
+        private float center = 0.0f;
         private bool neverStop = false;
-        private float moveSpeed;
-        private float moveDistance;
+        private float moveSpeed = 0.0f;
+        private float moveDistance = 0.0f;
         private bool direction = true;
 
         //a type of platform that will move side to side
