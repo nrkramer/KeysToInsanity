@@ -228,6 +228,10 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
+                foreach (Platform f in loader.level.stages[stageIndex].platforms)
+                {
+                    f.Update(gameTime);
+                }
                 theGentleman.handleInput(gameTime); // input
                 foreach (Character c in loader.level.stages[stageIndex].characters)
                 {
