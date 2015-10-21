@@ -5,6 +5,21 @@ namespace KeysToInsanity.Code
 {
     class RectangleCollision
     {
+        public static void update(BasicSprite character, BasicSprite thing, GameTime time)
+        {
+            character.velocity = collisionWithSlip(character, thing, time);
+            character.updatePosition();
+        }
+
+        public static void update(BasicSprite character, SpriteContainer staticSprites, GameTime time)
+        {
+            for (int i = staticSprites.Count - 1; i >= 0; i--)
+            {
+                character.velocity = collisionWithSlip(character, staticSprites[i], time);
+            }
+            character.updatePosition();
+        }
+
         public static void update(SpriteContainer characterSprites, SpriteContainer staticSprites, GameTime time)
         {
             foreach (BasicSprite cs in characterSprites)

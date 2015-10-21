@@ -10,11 +10,44 @@ namespace KeysToInsanity.Code
         public float jumpTime = 0.0f;
         private bool grounded = false;
 
-        public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
+        public void Update(GameTime gameTime, BasicSprite sprite)
         {
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * (frameTime - jumpTime);
 
+            //gravity is applied to every sprite in the game here so that there is a universal gravity
+            if (downVel <= 9.8f)
+            {
+                if (sprite.ToString() == "KeysToInsanity.Code.TheGentleman")
+                {
+                    if ((((TheGentleman)sprite).isJumping() == false) && (grounded == true))
+                    {
+                        sprite.velocity.setY(0.0f);
+                    }
+                    else
+                    {
+                        sprite.velocity.setY(sprite.velocity.getY() + downVel);
+                    }
+                }
+                else
+                {
+                    if (grounded == true)
+                    {
+                        sprite.velocity.setY(0.0f);
+                    }
+                    else
+                    {
+                        sprite.velocity.setY(sprite.velocity.getY() + downVel);
+                    }
+                }
+                grounded = false;
+            }
+        }
+        
+        public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
+        {
+            float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            float downVel = gravity * (frameTime - jumpTime);
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)

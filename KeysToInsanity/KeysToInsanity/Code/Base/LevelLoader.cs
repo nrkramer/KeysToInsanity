@@ -20,7 +20,7 @@ namespace KeysToInsanity.Code.Base
 
         private Game game;
         private HUD gameHud;
-        private Level level;
+        public Level level;
 
         public LevelLoader(Game game, string xmlFile, HUD hud)
         {

@@ -1,5 +1,7 @@
 ﻿using KeysToInsanity.Code;
+using KeysToInsanity.Code.Base;
 using KeysToInsanity.Code.Entitys;
+using KeysToInsanity.Code.Environment;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
 using KeysToInsanity.Code.Objects;
@@ -19,12 +21,13 @@ namespace KeysToInsanity
     /// </summary>
     public class KeysToInsanity : Game
     {
-        enum GameState
+        public enum GameState
         {
             StartMenu,
             Playing,
             Paused
         }
+
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
@@ -33,19 +36,22 @@ namespace KeysToInsanity
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        private LevelLoader loader;
+        private int stageIndex = 0;
 
-        private BasicBackground background; // background
+        /*private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
         private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
         private SpriteContainer lightEffects = new SpriteContainer(); // light effects
-        private TheGentleman theGentleman; // Our main character sprite
         private Nurse nurse;
-        private AttackDog dog;
+        private AttackDog dog;*/
+
+        private TheGentleman theGentleman; // Our main character sprite
         private HUD hud;
 
-        private Door testDoor;
+        //private Door testDoor;
 
         private BasicInput input; // Our input handler
 
@@ -53,7 +59,7 @@ namespace KeysToInsanity
 
         private Sound testSound;
 
-        private horizontalPlatform platformH;
+        //private horizontalPlatform platformH;
 
         //Used for the menu
         private BasicSprite startButton;
@@ -74,7 +80,7 @@ namespace KeysToInsanity
         private GameState gameState;
         private bool gotKey;
 
-        Vector2 Scale = Vector2.One;
+        //Vector2 Scale = Vector2.One;
 
         public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time);
 
@@ -105,9 +111,8 @@ namespace KeysToInsanity
             //Enabling mouse pointer
             IsMouseVisible = true;
 
-
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -122,7 +127,7 @@ namespace KeysToInsanity
             {
                 gotKey = true;
                 //Console.WriteLine("A Key was picked up!");
-                testDoor.setOpen(true);
+                //testDoor.setOpen(true);
             }
 
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
@@ -166,21 +171,21 @@ namespace KeysToInsanity
 
             // Gentleman
             theGentleman = new TheGentleman(this);
-            theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this, 300);
+            /*nurse = new Nurse(this, 300);
             nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300, 560);
+            nurse.spritePos = new Vector2(300, 560);*/
             //dog = new AttackDog(this);
             //dog.addTo(characterSprites);
-            //dog.spritePos = new Vector2(250, 100);             
-
-
-
+            //dog.spritePos = new Vector2(250, 100);      
 
             // Heads up display (HUD)
             hud = new HUD(this);
+
+            // Load level
+            //Console.WriteLine(this.Content.RootDirectory);
+            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
 
             /* static sprites - test code. To be replaced by a level loader (XML maybe)
             background = new BasicBackground(this, "padded_background");
@@ -285,17 +290,32 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
-                nurse.Update(gameTime);
+                //nurse.Update(gameTime);
                 //dog.Update(gameTime);
+
                 theGentleman.handleInput(gameTime); // input
+
                 hud.Update(gameTime);
-                physics.Update(gameTime, characterSprites); // physics
-                RectangleCollision.update(characterSprites, staticSprites, gameTime); // collision
-                //platformH.Update(gameTime, hPlatforms); // horizontal movement for platforms
-                //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 
+                // non-gentleman character physics
+                physics.Update(gameTime, loader.level.stages[stageIndex].characters);
 
-                if (theGentleman.spritePos.X < 0) // background slide
+                // gentleman physics
+                physics.Update(gameTime, theGentleman);
+
+                // collision for non-gentleman characters (doesn't check for key and doors)
+                RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
+
+                // collision for gentleman against static sprites
+                RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].statics, gameTime);
+
+                // collision for gentleman against doors and keys
+                if (loader.level.stages[stageIndex].key != null)
+                    RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].key, gameTime);
+                if (loader.level.stages[stageIndex].door != null)
+                    RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].door, gameTime);
+
+                /*if (theGentleman.spritePos.X < 0) // background slide
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
                 }
@@ -311,7 +331,7 @@ namespace KeysToInsanity
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
                 }
-
+                */
 
                 base.Update(gameTime);
             }
@@ -345,44 +365,48 @@ namespace KeysToInsanity
             //checks if the gameState is at playing, draws the game
             if (gameState == GameState.Playing)
             {
-
-                background.draw(spriteBatch);
-                foreach (BasicSprite s in staticSprites)
+                if (loader.level != null)
                 {
-                    s.draw(spriteBatch);
-                }
-                foreach (AnimatedSprite s in characterSprites)
-                {
-                    s.draw(spriteBatch);
-                }
-                /*foreach (BasicSprite s in hPlatforms)
-                 {
-                     s.draw(spriteBatch);
-                 }*/
+                    Stage s = loader.level.stages[stageIndex];
+                    if (s != null)
+                    {
+                        s.background.draw(spriteBatch);
+                        foreach (BasicSprite st in s.statics)
+                        {
+                            st.draw(spriteBatch);
+                        }
 
-                nurse.draw(spriteBatch);
-                //dog.draw(spriteBatch);
+                        foreach (BasicSprite pl in s.platforms)
+                        {
+                            pl.draw(spriteBatch);
+                        }
 
-                //allows us to make the light effects in the game
-                foreach (BasicSprite s in lightEffects)
-                {
-                    s.draw(spriteBatch);
-                }
-                hud.draw(spriteBatch);
+                        if (s.key != null)
+                            s.key.draw(spriteBatch);
 
-                if (gotKey == true)
-                {
-                    string output = "You got a key!";
-                    // Vector2 FontOrigin = Font1.MeasureString(output) / 2;
-                    // spriteBatch.DrawString(Font1, output, FontPos, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
+                        if (s.door != null)
+                            s.door.draw(spriteBatch);
+
+                        foreach (AnimatedSprite sp in s.characters)
+                        {
+                            sp.draw(spriteBatch);
+                        }
+
+                        theGentleman.draw(spriteBatch);
+
+                        foreach (LightEffect le in s.lights)
+                        {
+                            le.draw(spriteBatch);
+                        }
+
+                        hud.draw(spriteBatch);
+                    }
                 }
             }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
-
-
-
         }
 
         void MouseClicked(int x, int y)
