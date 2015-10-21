@@ -99,7 +99,7 @@ namespace KeysToInsanity.Code.Base
                             s.addStatic(ParseCheckpoint(r));
                             break;
                         case "Key":
-                            s.addStatic(ParseKey(r));
+                            s.setKey(ParseKey(r));
                             break;
                         case "Door":
                             s.setDoor(ParseDoor(r));
