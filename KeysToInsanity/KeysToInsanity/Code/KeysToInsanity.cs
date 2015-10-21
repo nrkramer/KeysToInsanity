@@ -182,8 +182,8 @@ namespace KeysToInsanity
             // Heads up display (HUD)
             hud = new HUD(this);
 
-            // static sprites - test code. To be replaced by a level loader (XML maybe)
-            /*background = new BasicBackground(this, "padded_background");
+            /* static sprites - test code. To be replaced by a level loader (XML maybe)
+            background = new BasicBackground(this, "padded_background");
             BasicSprite leftWall = new BasicSprite(this, "padded_wall_left", true);
             leftWall.spritePos = new Vector2(0, 0);
             leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
