@@ -14,11 +14,7 @@ namespace KeysToInsanity.Code.Objects
         private bool neverStop = false;
         private float moveSpeed;
         private float moveDistance;
-        private bool p2Flag;
-        private bool p1Flag;
         private bool direction = true;
-        private float p1;
-        private float p2;
 
         //a type of platform that will move side to side
         public HorizontalPlatform(Game game, float moveSpeed, float moveDistance) : base(game, "platform", true)
