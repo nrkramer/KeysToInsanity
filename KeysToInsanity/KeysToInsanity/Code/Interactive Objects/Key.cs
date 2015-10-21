@@ -30,7 +30,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
             updatePosition();
             if (spritePos.Y <= 5)
             {
-                spritePos = new Vector2(spritePos.X, 5);
+                spritePos = new Vector2(spritePos.X - 7, 5);
                 timer.Stop();
             }
         }

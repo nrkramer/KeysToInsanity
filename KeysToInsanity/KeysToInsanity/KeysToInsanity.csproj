@@ -56,7 +56,9 @@
     <Compile Include="Code\Base\AnimatedSprite.cs" />
     <Compile Include="Code\Base\Animation.cs" />
     <Compile Include="Code\Base\AnimationFrame.cs" />
+    <Compile Include="Code\Base\Level.cs" />
     <Compile Include="Code\Base\LevelLoader.cs" />
+    <Compile Include="Code\Base\Stage.cs" />
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
     <Compile Include="Code\Entitys\Rats.cs" />

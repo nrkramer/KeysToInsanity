@@ -11,7 +11,7 @@ namespace KeysToInsanity.Code.Environment
     {
         Color color = Color.White;
 
-        public LightEffect(Game game, String effect) : base(game, effect, false)
+        public LightEffect(Game game, string effect) : base(game, effect, false)
         {
         }
 

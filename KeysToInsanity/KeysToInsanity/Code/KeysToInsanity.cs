@@ -26,7 +26,7 @@ namespace KeysToInsanity
             Paused
         }
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -82,10 +82,9 @@ namespace KeysToInsanity
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
             if (!graphics.IsFullScreen)
             {
-                graphics.ToggleFullScreen();
+                //graphics.ToggleFullScreen();
             }
             Content.RootDirectory = "Content";
-
 
             graphics.ApplyChanges();
         }

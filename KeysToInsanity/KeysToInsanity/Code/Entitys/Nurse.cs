@@ -18,12 +18,11 @@ namespace KeysToInsanity.Code.Entitys
 
         
 
-        public Nurse(Game game,float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        public Nurse(Game game, float center) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
-            center = posX;
-            Console.WriteLine("Center is" +center);
-            Console.WriteLine("Sprite Pos is"+getSpriteXPos());
+            this.center = center;
+            Console.WriteLine("Center is" + center);
             patrolDistance = 0f;
             patrolSpeed = 1.0f;
             direction = true;
