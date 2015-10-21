@@ -14,6 +14,7 @@ namespace KeysToInsanity.Code.Base
         public BasicBackground background;
         public SpriteContainer statics = new SpriteContainer();
         public SpriteContainer platforms = new SpriteContainer();
+        public SpriteContainer collidables = new SpriteContainer();
         public Key key;
         public Door door;
         public SpriteContainer characters = new SpriteContainer();
@@ -60,6 +61,7 @@ namespace KeysToInsanity.Code.Base
         public void addStatic(BasicSprite s)
         {
             s.addTo(statics);
+            s.addTo(collidables);
         }
 
         public void addLight(LightEffect l)
@@ -70,6 +72,7 @@ namespace KeysToInsanity.Code.Base
         public void addPlatform(Platform p)
         {
             p.addTo(platforms);
+            p.addTo(collidables);
         }
 
         public void setKey(Key k)
@@ -81,6 +84,7 @@ namespace KeysToInsanity.Code.Base
         public void setDoor(Door d)
         {
             d.addTo(statics);
+            d.addTo(collidables);
             door = d;
         }
 

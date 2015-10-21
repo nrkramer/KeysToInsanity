@@ -243,7 +243,7 @@ namespace KeysToInsanity
                 physics.Update(gameTime, loader.level.stages[stageIndex].characters);
 
                 // collision for gentleman against static sprites
-                RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].statics, gameTime);
+                RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
 
                 // collision for non-gentleman characters (doesn't check for key and doors)
                 RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
@@ -278,6 +278,7 @@ namespace KeysToInsanity
             }
         }
 
+        // magic. do not change
         public bool checkOpposingBoundaries(Boundary b1, Boundary b2)
         {
             if ((b1 == Boundary.Left && b2 == Boundary.Right) || (b2 == Boundary.Left && b1 == Boundary.Right))
@@ -295,7 +296,7 @@ namespace KeysToInsanity
             else return false;
         }
 
-        // check the gentleman has checked the stage
+        // check the gentleman has left the stage
         public bool checkStageBoundary(Boundary b)
         {
             switch (b)
@@ -362,9 +363,9 @@ namespace KeysToInsanity
                         }
 
                         foreach (BasicSprite pl in s.platforms)
-                {
+                        {
                             pl.draw(spriteBatch);
-                }
+                        }
 
                         if (s.key != null)
                             s.key.draw(spriteBatch);
