@@ -259,7 +259,14 @@ namespace KeysToInsanity.Code.Base
 
         public void ParsePlatform(XmlReader r)
         {
+            int x = ParseExpression(r.GetAttribute("x"), fullX);
+            int y = ParseExpression(r.GetAttribute("y"), fullY);
+            int w = ParseExpression(r.GetAttribute("w"), fullX);
+            int h = ParseExpression(r.GetAttribute("h"), fullY);
+            int distance = ParseExpression(r.GetAttribute("distance"), 0);
+            int speed = ParseExpression(r.GetAttribute("speed"), 0);
 
+            
         }
 
         public LightEffect ParseLightEffect(XmlReader r)

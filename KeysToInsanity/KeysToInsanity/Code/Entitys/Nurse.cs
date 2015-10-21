@@ -34,10 +34,10 @@ namespace KeysToInsanity.Code.Entitys
 
                 velocity = Velocity.FromDirection(0.0f, patrolSpeed);
                 if (getSpriteXPos() > center + patrolDistance)
-            {
-                direction = false;
-                //Console.WriteLine(direction);
-            }
+                {
+                    direction = false;
+                    //Console.WriteLine(direction);
+                }
             }
             else
             {

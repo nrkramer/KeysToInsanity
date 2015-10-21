@@ -14,11 +14,13 @@ namespace KeysToInsanity.Code.Interactive_Objects
         private bool onHUD = false;
         private HUD hud; // hud to add key to
         private Timer timer = new Timer();
+        private Game game; // game reference
 
         //the main objective of the game: collecting the keys 
         public Key(Game game, HUD hud) : base(game, "key", false)
         {
-            spriteSize = new Point(50, 50);
+            this.game = game;
+            spriteSize = new Point(45, 45);
             this.hud = hud;
             timer.Elapsed += new ElapsedEventHandler(move_to_interface_event);
             timer.Interval = 5;
@@ -28,9 +30,9 @@ namespace KeysToInsanity.Code.Interactive_Objects
         private void move_to_interface_event(object source, ElapsedEventArgs e)
         {
             updatePosition();
-            if (spritePos.Y <= 5)
+            if (spritePos.Y <= 10)
             {
-                spritePos = new Vector2(spritePos.X - 7, 5);
+                spritePos = new Vector2(game.GraphicsDevice.Viewport.Width - 52, 10);
                 timer.Stop();
             }
         }
@@ -44,7 +46,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
                 container.Remove(this);
                 hud.addKey(this);
                 onHUD = true;
-                double angle = Math.Atan2(5 - spritePos.Y, 745 - spritePos.X) * 180.0 / Math.PI;
+                double angle = Math.Atan2(10 - spritePos.Y, game.GraphicsDevice.Viewport.Width - 52 - spritePos.X) * 180.0 / Math.PI;
                 velocity = Velocity.FromDirection((float)angle, 10.0f);
                 timer.Start();
             }

@@ -38,7 +38,7 @@ namespace KeysToInsanity
         }
 
         // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -268,7 +268,6 @@ namespace KeysToInsanity
                 // check gentleman has fallen somewhere he shouldnt have
                 if (checkOpposingBoundaries(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex].end))
                 {
-                    Console.WriteLine("yes");
                     if (enteredStageFromStart)
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                     else
