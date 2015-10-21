@@ -89,7 +89,7 @@
       <Static type ="platform" x="300" y="f-210" w="200" h="75" collide="true"/>
       <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="false"/>
       <Key x="450" y="f-285"/>
-      <Door x="f-10" y="f-100" w="10" h="101" />
+      <Door x="f-10" y="f-100" w="10" h="100" />
       <Background type="padded_background" />
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>-->
