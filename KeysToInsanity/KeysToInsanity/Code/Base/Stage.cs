@@ -19,24 +19,24 @@ namespace KeysToInsanity.Code.Base
         }
 
         // stage information - gets emptied and refilled after each stage load
-        private SpriteContainer characters;
-        private SpriteContainer statics;
-        private SpriteContainer lights;
-        private SpriteContainer platforms;
-        private BasicBackground background;
-        private Key key;
-        private Door door;
+        public SpriteContainer characters;
+        public SpriteContainer statics;
+        public SpriteContainer lights;
+        public SpriteContainer platforms;
+        public BasicBackground background;
+        public Key key;
+        public Door door;
 
-        private Boundary start;
-        private int startX = 0;
-        private int startY = 0;
+        public Boundary start;
+        public int startX = 0;
+        public int startY = 0;
 
-        private Boundary end;
+        public Boundary end;
 
-        private int stageX = 0;
-        private int stageY = 0;
-        private int stageWidth = 0;
-        private int stageHeight = 0;
+        public int stageX = 0;
+        public int stageY = 0;
+        public int stageWidth = 0;
+        public int stageHeight = 0;
 
         public Stage(int x, int y, int w, int h)
         {
