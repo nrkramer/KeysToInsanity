@@ -5,7 +5,7 @@
       <Start x="c" y="300" boundary="none" />
       <Character type="Nurse" x="50" y="10" patrol="30"/>
       <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide="true"/>
-      <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide="true"/>
+      <Static type ="padded_floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="true"/>
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true"/> 
       <Background type="padded_background"/>
@@ -15,10 +15,10 @@
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-10"/>
-      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide ="1"/>
-      <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide ="1"/>
-      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="1"/>
-      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/>
+      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide ="true"/>
+      <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide ="true"/>
+      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="true"/>
+      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true"/>
       <Background type="padded_background"/>
     </Stage>
     <!--

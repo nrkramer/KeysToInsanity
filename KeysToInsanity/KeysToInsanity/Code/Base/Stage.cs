@@ -20,12 +20,12 @@ namespace KeysToInsanity.Code.Base
 
         // stage information - gets emptied and refilled after each stage load
         public BasicBackground background;
-        public SpriteContainer statics;
-        public SpriteContainer platforms;
+        public SpriteContainer statics = new SpriteContainer();
+        public SpriteContainer platforms = new SpriteContainer();
         public Key key;
         public Door door;
-        public SpriteContainer characters;
-        public SpriteContainer lights;
+        public SpriteContainer characters = new SpriteContainer();
+        public SpriteContainer lights = new SpriteContainer();
 
         public Boundary start;
         public int startX = 0;

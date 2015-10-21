@@ -67,7 +67,8 @@ namespace KeysToInsanity
         // wishes to remove itself from that container, therefore not get drawn or something
         public void addTo(SpriteContainer container)
         {
-            container.Add(this);
+            if (container != null)
+                container.Add(this);
             this.container = container;
         }
 

@@ -25,6 +25,8 @@ namespace KeysToInsanity.Code.Base
         public LevelLoader(Game game, string xmlFile, HUD hud)
         {
             this.game = game; // get a reference to the game
+            fullX = game.GraphicsDevice.Viewport.Width;
+            fullY = game.GraphicsDevice.Viewport.Height;
             gameHud = hud;
 
             using (XmlReader r = XmlReader.Create(xmlFile)) // make sure the load succeeds
@@ -138,27 +140,33 @@ namespace KeysToInsanity.Code.Base
         public int ParseExpression(string exp, int value)
         {
             // To be replaced by NCalc
-            exp = Regex.Replace(exp, @"\s+", ""); // remove whitespace
-            if (char.IsNumber(exp[0]))
-                return int.Parse(exp);
-            else
+            if (exp != null)
             {
-                if (exp[0] == 'c') // center
-                    value /= 2;
-
-                if (((exp[0] == 'c') || (exp[0] == 'f')) && exp.Length == 1)
-                    return value;
-
-                if (exp[1] == '+')
-                    return value + int.Parse(exp.Substring(2));
-                else if (exp[1] == '-')
-                    return value - int.Parse(exp.Substring(2));
-                else if (exp[1] == '*')
-                    return value * int.Parse(exp.Substring(2));
-                else if (exp[1] == '/')
-                    return value / int.Parse(exp.Substring(2));
+                exp = Regex.Replace(exp, @"\s+", ""); // remove whitespace
+                if (char.IsNumber(exp[0]))
+                    return int.Parse(exp);
                 else
-                    return value;
+                {
+                    if (exp[0] == 'c') // center
+                        value /= 2;
+
+                    if (((exp[0] == 'c') || (exp[0] == 'f')) && exp.Length == 1)
+                        return value;
+
+                    if (exp[1] == '+')
+                        return value + int.Parse(exp.Substring(2));
+                    else if (exp[1] == '-')
+                        return value - int.Parse(exp.Substring(2));
+                    else if (exp[1] == '*')
+                        return value * int.Parse(exp.Substring(2));
+                    else if (exp[1] == '/')
+                        return value / int.Parse(exp.Substring(2));
+                    else
+                        return value;
+                }
+            } else
+            {
+                return 0;
             }
         }
 
@@ -207,12 +215,12 @@ namespace KeysToInsanity.Code.Base
             return s;
         }
 
-        public BasicSprite ParseCheckpoint(XmlReader r)
+        public HatHanger ParseCheckpoint(XmlReader r)
         {
             int x = ParseExpression(r.GetAttribute("x"), fullX);
             int y = ParseExpression(r.GetAttribute("y"), fullY);
 
-            BasicSprite s = new BasicSprite(game, "hat_hangar_2", false);
+            HatHanger s = new HatHanger(game);
             s.spritePos = new Vector2(x, y);
 
             return s;
@@ -236,6 +244,8 @@ namespace KeysToInsanity.Code.Base
             int h = ParseExpression(r.GetAttribute("h"), fullY);
 
             Door d = new Door(game);
+            d.spritePos = new Vector2(x, y);
+            d.spriteSize = new Point(w, h);
 
             return d;
         }
