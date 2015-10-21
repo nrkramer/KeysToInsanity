@@ -23,30 +23,25 @@ namespace KeysToInsanity.Code.Objects
         //a type of platform that will move side to side
         public HorizontalPlatform(Game game, float moveSpeed, float moveDistance) : base(game, "platform", true)
         {
-            spriteSize = new Point(150, 50);
             center = getSpriteXPos();
             this.moveDistance = moveDistance;
             this.moveSpeed = moveSpeed;
-            p1Flag = false;
-            p2Flag = false;
             direction = true;
         }
 
         //allows the platform to move itself in the desired direction
         public override void Update(GameTime gameTime)
         {
-                p1 = center - moveDistance;
-                p2 = center + moveDistance;
                 if (direction == true)
                 {
-                    velocity = Velocity.FromCoordinates(0.0f, -moveSpeed);
+                    velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
                     if (getSpriteXPos() > center + moveDistance)
                     {
                         direction = false;
                     }
                     else
                     {
-                        velocity = Velocity.FromDirection(0.0f, -moveSpeed);
+                        velocity = Velocity.FromDirection(moveSpeed, 0.0f);
                     }
                     if (getSpriteXPos() < center - moveDistance)
                     {
