@@ -83,7 +83,7 @@ namespace KeysToInsanity.Code.Base
                     switch (r.Name)
                     {
                         case "Start":
-                            s.setStart(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("Y"), fullY), ParseBoundary(r));
+                            s.setStart(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
                             break;
                         case "Character":
                             s.addCharacter(ParseCharacter(r));
@@ -115,6 +115,9 @@ namespace KeysToInsanity.Code.Base
                         default:
                             break;
                     }
+                if (r.NodeType == XmlNodeType.EndElement)
+                    if (r.Name == "Stage") // end of stage
+                        return;
             }
         }
 

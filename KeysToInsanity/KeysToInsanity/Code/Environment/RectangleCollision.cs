@@ -88,8 +88,6 @@ namespace KeysToInsanity.Code
                     else
                         vf2 = v1.getDirection().Y;
 
-                    Console.WriteLine(vf2);
-
                     if (Math.Abs(vf2) < 1.0f) // stupid floats
                         vf2 = 0.0f;
 

@@ -80,11 +80,13 @@ namespace KeysToInsanity.Code.Base
 
         public void setKey(Key k)
         {
+            k.addTo(statics);
             key = k;
         }
 
         public void setDoor(Door d)
         {
+            d.addTo(statics);
             door = d;
         }
 

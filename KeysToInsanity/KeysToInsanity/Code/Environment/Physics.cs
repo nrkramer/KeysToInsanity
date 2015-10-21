@@ -52,34 +52,10 @@ namespace KeysToInsanity.Code
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
             {
-
                 if (downVel <= 9.8f)
                 {
-                    if (i.ToString() == "KeysToInsanity.Code.TheGentleman")
-                    {
-                        if ((((TheGentleman)i).isJumping() == false) && (grounded == true))
-                        {
-                            i.velocity.setY(0.0f);
-                        }
-                        else
-                        {
-                            i.velocity.setY(i.velocity.getY() + downVel);
-                            
-                        }
-                    }
-                    else
-                    {
-                        if (grounded == true)
-                        {
-                            i.velocity.setY(0.0f);
-                        }
-                        else
-                        {
-                            i.velocity.setY(i.velocity.getY() + downVel);
-                        }
-                    }
+                    i.velocity.setY(i.velocity.getY() + downVel);
                 }
-                grounded = false;
             }           
         }
 

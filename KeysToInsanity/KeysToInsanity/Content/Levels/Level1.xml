@@ -1,25 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <XML>
   <Level name = "Level 1" stages="7">
-    <Stage x="0" y="0" w="f" h ="f">
+    <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="300" boundary="none" />
-      <Character type="Nurse" x="50" y="10" patrol="30"/>
-      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide="true"/>
-      <Static type ="padded_floor" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="true"/>
-      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true"/> 
-      <Background type="padded_background"/>
-      <Checkpoint x="400" y="f-15"/>
-      <Door x="f" y="f-20" w="10" h="70"/>
+      <Character type="Nurse" x="50" y="10" patrol="30" />
+      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide="true" />
+      <Static type ="padded_floor" x="0" y="f-10" w="f" h="40" collide="true" />
+      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f-100" collide="true" />
+      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true" /> 
+      <Background type="padded_background" />
+      <Checkpoint x="400" y="f-15" />
+      <Door x="f-70" y="f-100" w="10" h="70" />
       <End boundary="right" />
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="f-10"/>
-      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide ="true"/>
-      <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide ="true"/>
-      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="true"/>
-      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true"/>
-      <Background type="padded_background"/>
+      <Start x="200" y="f-300" boundary="left" />
+      <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide ="true" />
+      <Static type ="padded_floor" x="0" y="f-10" w="f" h="10" collide ="true" />
+      <Static type ="padded_wall_right" x="f-10" y="0" w="10" h="f" collide="true" />
+      <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="true" />
+      <Background type="padded_background" />
+      <End boundary="right" />
     </Stage>
     <!--
     <Stage x="0" y="0" w="f" h="f">

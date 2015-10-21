@@ -172,82 +172,17 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.spritePos = new Vector2(370, 300);
-            theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            /*nurse = new Nurse(this, 300);
-            nurse.addTo(characterSprites);
-            nurse.spritePos = new Vector2(300, 560);*/
-            //dog = new AttackDog(this);
-            //dog.addTo(characterSprites);
-            //dog.spritePos = new Vector2(250, 100);             
+            theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);            
 
             // Heads up display (HUD)
             hud = new HUD(this);
 
             // Load level
-            //Console.WriteLine(this.Content.RootDirectory);
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
 
-            /* static sprites - test code. To be replaced by a level loader (XML maybe)
-            background = new BasicBackground(this, "padded_background");
-            BasicSprite leftWall = new BasicSprite(this, "padded_wall_left", true);
-            leftWall.spritePos = new Vector2(0, 0);
-            leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
-            BasicSprite rightWall = new BasicSprite(this, "padded_wall_right", true);
-            rightWall.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 30, 0);
-            rightWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height - 150);
-            BasicSprite ceiling = new BasicSprite(this, "padded_ceiling", true);
-            ceiling.spritePos = new Vector2(0, 0);
-            ceiling.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
-            testDoor = new Door(this);
-            testDoor.spritePos = new Vector2(GraphicsDevice.Viewport.Width - 25, GraphicsDevice.Viewport.Height - 150);
-            testDoor.spriteSize = new Point(25, 120);
-            BasicSprite floor = new BasicSprite(this, "padded_floor", true);
-            floor.spritePos = new Vector2(0, GraphicsDevice.Viewport.Height - 30);
-            floor.spriteSize = new Point(GraphicsDevice.Viewport.Width, 30);
-            Key key = new Key(this, hud); // key requires a HUD to go to
-            key.spritePos = new Vector2(30, GraphicsDevice.Viewport.Height - 80);
-            key.collisionCallback += new CollisionEventHandler(collisionEvents);
-            HatHanger hanger = new HatHanger(this);
-            hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
-            /*BasicSprite bed = new BasicSprite(this, "bed", false);
-            bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
-            bed.spriteSize = new Point(70, 55);
-            platformH = new horizontalPlatform(this);
-            platformH.spritePos = new Vector2(200, GraphicsDevice.Viewport.Height - 200);
-            BasicSprite topHat = new BasicSprite(this, "TopHat", false);
-            topHat.spritePos = new Vector2(400, GraphicsDevice.Viewport.Height-98);
-            topHat.spriteSize = new Point(22, 22);
-
-            //we add them to the SpriteContainers here
-           /* floor.addTo(staticSprites);
-            rightWall.addTo(staticSprites);
-            leftWall.addTo(staticSprites);
-            ceiling.addTo(staticSprites);
-            key.addTo(staticSprites);
-            hanger.addTo(staticSprites);
-            //topHat.addTo(staticSprites);
-            // bed.addTo(staticSprites);
-            testDoor.addTo(staticSprites);
-            //platformH.addTo(staticSprites);        
-            testDoor.doorLight.addTo(lightEffects);*/
-
-            /* for now, the input is created here, however later we will want
-               to create it earlier in order to provide input before everything is loaded
-            */
             input = new BasicInput(this, theGentleman);
 
-
-            //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
-            //MediaPlayer.Play(testSound);
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Font1 = Content.Load<SpriteFont>("Fonts/Kootenay");
-            //FontPos = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
-
-            // TODO: use this.Content to load your game content here
-            // ^ this is now being done in our Basic classes
-
-
         }
 
         /// <summary>
@@ -290,18 +225,15 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
-                //nurse.Update(gameTime);
-                //dog.Update(gameTime);
-
                 theGentleman.handleInput(gameTime); // input
 
                 hud.Update(gameTime);
 
-                // non-gentleman character physics
-                physics.Update(gameTime, loader.level.stages[stageIndex].characters);
-
                 // gentleman physics
                 physics.Update(gameTime, theGentleman);
+
+                // non-gentleman character physics
+                physics.Update(gameTime, loader.level.stages[stageIndex].characters);
 
                 // collision for non-gentleman characters (doesn't check for key and doors)
                 RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
@@ -309,11 +241,12 @@ namespace KeysToInsanity
                 // collision for gentleman against static sprites
                 RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].statics, gameTime);
 
-                // collision for gentleman against doors and keys
-                if (loader.level.stages[stageIndex].key != null)
-                    RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].key, gameTime);
-                if (loader.level.stages[stageIndex].door != null)
-                    RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].door, gameTime);
+                // check gentleman has past the end stage boundary
+                if (endStageCheck())
+                {
+                    stageIndex++;
+                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                }
 
                 /*if (theGentleman.spritePos.X < 0) // background slide
                 {
@@ -335,6 +268,32 @@ namespace KeysToInsanity
 
                 base.Update(gameTime);
             }
+        }
+
+        // check the gentleman has past the stage end boundary
+        public bool endStageCheck()
+        {
+            switch (loader.level.stages[stageIndex].end)
+            {
+                case Stage.Boundary.Left:
+                    if (theGentleman.spritePos.X + theGentleman.spriteSize.X < loader.level.stages[stageIndex].stageX)
+                        return true;
+                    break;
+                case Stage.Boundary.Right:
+                    if (theGentleman.spritePos.X > loader.level.stages[stageIndex].stageWidth)
+                        return true;
+                    break;
+                case Stage.Boundary.Top:
+                    if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y < loader.level.stages[stageIndex].stageY)
+                        return true;
+                    break;
+                case Stage.Boundary.Bottom:
+                    if (theGentleman.spritePos.Y > loader.level.stages[stageIndex].stageHeight)
+                        return true;
+                    break;
+            }
+
+            return false;
         }
 
         /// <summary>

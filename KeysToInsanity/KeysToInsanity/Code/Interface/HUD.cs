@@ -11,7 +11,6 @@ namespace KeysToInsanity.Code.Interface
         private new RenderTarget2D spriteTex; // This hides BasicSprite's Texture2D, which RenderTarget2D inherits
         private GraphicsDevice gd;
         private SpriteContainer hudSprites = new SpriteContainer();
-        private int InsanityMeter = 0;
         InsanityBar hud_insanity_color;
 
         // This class is kind of weird
@@ -46,7 +45,7 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.spritePos = new Vector2(211, 0);
 
             hud_insanity_color = new InsanityBar(game);
-            hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
+            hud_insanity_color.spriteSize = new Point(0, 32);
             hud_insanity_color.spritePos = new Vector2(210, 0);
 
 
@@ -61,13 +60,7 @@ namespace KeysToInsanity.Code.Interface
 
         public void Update(GameTime time)
         {
-            int frameTime = (int)time.TotalGameTime.TotalSeconds;
-            if (frameTime <= 202)
-            {
-                InsanityMeter = frameTime;
-                hud_insanity_color.spriteSize = new Point(InsanityMeter, 32);
-            }
-            
+            hud_insanity_color.Update(time);
         }
 
         // This draws the HUD to it's texture
