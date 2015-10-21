@@ -8,7 +8,6 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" /> 
       <Background type="padded_background" />
-      <Key x="450" y="f-100"/>
       <Checkpoint x="500" y="f-105" />
       <End x="f-60" y="f-60" boundary="right" />
     </Stage>
@@ -31,7 +30,6 @@
       <Static type ="platform" x="c+10" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+100" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+200" y="c-100" w="60" h="25" collide="true"/>
-      <Character type="Nurse" x="400" y="570"/>
       <Background type="padded_background"/>
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>
@@ -86,9 +84,9 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
       <Static type ="ceiling" x="50" y="0" w="f" h="10" collide="true" /> 
-      <Static type ="platform" x="100" y="f-50" w="400" h="75" collide="true"/>
-      <Static type ="platform" x="200" y="f-130" w="300" h="75" collide="true"/>
-      <Static type ="platform" x="300" y="f-210" w="200" h="75" collide="true"/>
+      <Static type ="platform" x="100" y="f-50" w="400" h="78" collide="true"/>
+      <Static type ="platform" x="200" y="f-130" w="300" h="78" collide="true"/>
+      <Static type ="platform" x="300" y="f-210" w="200" h="78" collide="true"/>
       <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="false"/>
       <Key x="450" y="f-285"/>
       <Door x="f-10" y="f-100" w="10" h="100" />
