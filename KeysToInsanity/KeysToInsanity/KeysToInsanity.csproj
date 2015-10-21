@@ -84,7 +84,7 @@
     <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\Interface\InsanityBar.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
-    <Compile Include="Code\Objects\horizontalPlatform.cs" />
+    <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
     <Compile Include="Code\ProgramMain.cs" />
     <Compile Include="Code\Environment\RectangleCollision.cs" />
@@ -184,6 +184,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\platform2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\resume.png">

@@ -7,7 +7,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Objects
 {
 
-    class horizontalPlatform : Platform
+    class HorizontalPlatform : Platform
     {
 
         private float center;
@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code.Objects
         private float p2;
 
         //a type of platform that will move side to side
-        public horizontalPlatform(Game game) : base(game, "platform", true)
+        public HorizontalPlatform(Game game, float moveSpeed, float moveDistance) : base(game, "platform", true)
         {
             spriteSize = new Point(150, 50);
             center = getSpriteXPos();
