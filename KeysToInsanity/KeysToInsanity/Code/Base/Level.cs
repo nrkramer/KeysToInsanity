@@ -16,7 +16,7 @@ namespace KeysToInsanity.Code.Base
             levelName = name;
         }
 
-        public void setStage(Stage stage, int index)
+        public void addStage(Stage stage, int index)
         {
             stages[index] = stage;
         }

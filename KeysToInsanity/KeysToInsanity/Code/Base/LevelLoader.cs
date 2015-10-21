@@ -20,6 +20,7 @@ namespace KeysToInsanity.Code.Base
 
         private Game game;
         private HUD gameHud;
+        private Level level;
 
         public LevelLoader(Game game, string xmlFile, HUD hud)
         {
@@ -35,6 +36,7 @@ namespace KeysToInsanity.Code.Base
                         switch (r.Name)
                         {
                             case "Level":
+                                level = new Level(r.GetAttribute("name"), int.Parse(r.GetAttribute("stages")));
                                 ParseLevel(r);
                                 break;
                             default:
@@ -48,6 +50,7 @@ namespace KeysToInsanity.Code.Base
         //reads through the XML file until the next "Stage" appears, generating everything it reads in as parts that make up the stage as a whole
         public void ParseLevel(XmlReader r)
         {
+            int i = 0;
             while (r.Read())
             {
                 if (r.NodeType == XmlNodeType.Element)
@@ -56,6 +59,8 @@ namespace KeysToInsanity.Code.Base
                         case "Stage":
                             Stage s = new Stage(int.Parse(r.GetAttribute("x")), int.Parse(r.GetAttribute("y")), ParseExpression(r.GetAttribute("w"), fullX), ParseExpression(r.GetAttribute("h"), fullY));
                             ParseStage(r, s);
+                            level.addStage(s, i);
+                            i++;
                             // get stage info and parse it
                             break;
                         default:

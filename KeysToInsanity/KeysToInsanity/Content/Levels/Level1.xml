@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <XML>
-  <Level name = "Level 1" Stages = "7">
+  <Level name = "Level 1" stages="7">
     <Stage x="0" y="0" w="f" h ="f">
       <Start x="c" y="300" boundary="none" />
       <Character type="Nurse" x="50" y="10" patrol="30"/>
@@ -21,6 +21,7 @@
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/>
       <Background type="padded_background"/>
     </Stage>
+    <!--
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="20"/>
       <Static type ="padded_wall_left" x="0" y="0" w="10" h="f" collide ="1"/>
@@ -62,6 +63,6 @@
       <Static type ="padded_ceiling" x="0" y="10" w="f" h="10" collide="1"/>
       <Checkpoint x="400" y="f-15" collide ="0"/>
       <Background type="padded_background"/>
-    </Stage>
+    </Stage>-->
   </Level>
 </XML>
