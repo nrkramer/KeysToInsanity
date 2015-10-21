@@ -83,7 +83,7 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-           /* if (!graphics.IsFullScreen)
+           /*if (!graphics.IsFullScreen)
             {
                 //graphics.ToggleFullScreen();
             }
@@ -173,7 +173,7 @@ namespace KeysToInsanity
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300, 560);
             //dog = new AttackDog(this);
-            // dog.addTo(characterSprites);
+            //dog.addTo(characterSprites);
             //dog.spritePos = new Vector2(250, 100);             
 
 
@@ -204,11 +204,14 @@ namespace KeysToInsanity
             key.collisionCallback += new CollisionEventHandler(collisionEvents);
             HatHanger hanger = new HatHanger(this);
             hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
-            BasicSprite bed = new BasicSprite(this, "bed", false);
+            /*BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
-            bed.spriteSize = new Point(70, 55);
+            bed.spriteSize = new Point(70, 55);*/
             platformH = new horizontalPlatform(this);
-            platformH.spritePos = new Vector2(349, GraphicsDevice.Viewport.Height - 200);
+            platformH.spritePos = new Vector2(200, GraphicsDevice.Viewport.Height - 200);
+            BasicSprite topHat = new BasicSprite(this, "TopHat", false);
+            topHat.spritePos = new Vector2(400, GraphicsDevice.Viewport.Height-98);
+            topHat.spriteSize = new Point(22, 22);
 
             //we add them to the SpriteContainers here
             floor.addTo(staticSprites);
@@ -217,9 +220,10 @@ namespace KeysToInsanity
             ceiling.addTo(staticSprites);
             key.addTo(staticSprites);
             hanger.addTo(staticSprites);
-            bed.addTo(staticSprites);
+            topHat.addTo(staticSprites);
+            // bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
-            platformH.addTo(staticSprites);
+            //platformH.addTo(staticSprites);        
             testDoor.doorLight.addTo(lightEffects);
 
             /* for now, the input is created here, however later we will want
@@ -356,7 +360,7 @@ namespace KeysToInsanity
                      s.draw(spriteBatch);
                  }*/
 
-                //nurse.draw(spriteBatch);
+                nurse.draw(spriteBatch);
                 //dog.draw(spriteBatch);
 
                 //allows us to make the light effects in the game
