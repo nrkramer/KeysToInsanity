@@ -55,7 +55,7 @@ namespace KeysToInsanity.Code.Base
             end = b;
         }
 
-        public void addCharacter(BasicSprite c)
+        public void addCharacter(AnimatedSprite c)
         {
             c.addTo(characters);
         }
@@ -80,6 +80,7 @@ namespace KeysToInsanity.Code.Base
         public void setKey(Key k)
         {
             k.addTo(statics);
+            k.addTo(collidables);
             key = k;
         }
 
@@ -87,6 +88,7 @@ namespace KeysToInsanity.Code.Base
         {
             d.addTo(statics);
             d.addTo(collidables);
+            addLight(d.doorLight);
             door = d;
         }
 

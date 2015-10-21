@@ -127,7 +127,6 @@ namespace KeysToInsanity
             {
                 gotKey = true;
                 Console.WriteLine("A Key was picked up!");
-                //testDoor.setOpen(true);
             }
 
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
@@ -179,7 +178,7 @@ namespace KeysToInsanity
             // Load level
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
             Console.WriteLine(loader.level.stageWithKey);
-            //loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents);
+            loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents);
 
             input = new BasicInput(this, theGentleman);
 
@@ -279,6 +278,11 @@ namespace KeysToInsanity
                     else
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
                 }
+
+                // check for key
+                if (gotKey)
+                    if (stageIndex == loader.level.stageWithDoor)
+                        loader.level.stages[stageIndex].door.setOpen(true);
 
                 base.Update(gameTime);
             }
@@ -442,10 +446,7 @@ namespace KeysToInsanity
                 //Checking if start button was clicked
                 if (mouseClickR.Intersects(resumeR))
                 {
-
                     gameState = GameState.Playing;
-
-
                 }
                 //Player clicked exit button
                 else if (mouseClickR.Intersects(exitButtonR))

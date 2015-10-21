@@ -8,6 +8,7 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" /> 
       <Background type="padded_background" />
+      <Key x="450" y="f-100"/>
       <Checkpoint x="500" y="f-105" />
       <End x="f-60" y="f-60" boundary="right" />
     </Stage>
@@ -30,6 +31,7 @@
       <Static type ="platform" x="c+10" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+100" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+200" y="c-100" w="60" h="25" collide="true"/>
+      <Character type="Nurse" x="400" y="570"/>
       <Background type="padded_background"/>
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>

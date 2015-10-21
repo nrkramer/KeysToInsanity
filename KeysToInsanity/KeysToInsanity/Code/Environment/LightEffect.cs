@@ -11,8 +11,9 @@ namespace KeysToInsanity.Code.Environment
     {
         Color color = Color.White;
 
-        public LightEffect(Game game, string effect) : base(game, effect, false)
+        public LightEffect(Game game, string effect, Color color) : base(game, effect, false)
         {
+            this.color = color;
         }
 
         public override void draw(SpriteBatch s)
