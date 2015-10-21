@@ -57,7 +57,7 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        //private Sound testSound;
+        private Song testSound;
 
         //private horizontalPlatform platformH;
 
@@ -172,7 +172,7 @@ namespace KeysToInsanity
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.spritePos = new Vector2(370, 300);
-            theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);            
+            theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
 
             // Heads up display (HUD)
             hud = new HUD(this);
@@ -181,6 +181,9 @@ namespace KeysToInsanity
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
 
             input = new BasicInput(this, theGentleman);
+
+            //testSound = Content.Load<Song>("Content\\SoundFx\\Music\\Beethoven_5thSymphony");
+            //MediaPlayer.Play(testSound);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
