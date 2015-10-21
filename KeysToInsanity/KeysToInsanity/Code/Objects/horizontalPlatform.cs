@@ -33,15 +33,13 @@ namespace KeysToInsanity.Code.Objects
         }
 
         //allows the platform to move itself in the desired direction
-        public void Update(GameTime gameTime, SpriteContainer SidewaysPlatforms)
+        public override void Update(GameTime gameTime)
         {
-            foreach (BasicSprite x in SidewaysPlatforms)
-            {
                 p1 = center - moveDistance;
                 p2 = center + moveDistance;
                 if (direction == true)
                 {
-                    x.velocity = Velocity.FromCoordinates(0.0f, -moveSpeed);
+                    velocity = Velocity.FromCoordinates(0.0f, -moveSpeed);
                     if (getSpriteXPos() > center + moveDistance)
                     {
                         direction = false;
@@ -56,7 +54,6 @@ namespace KeysToInsanity.Code.Objects
                     }
                 }
             }
-        }
 
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
