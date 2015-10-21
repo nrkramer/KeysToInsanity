@@ -91,7 +91,7 @@ namespace KeysToInsanity
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
            if (!graphics.IsFullScreen)
             {
-                //graphics.ToggleFullScreen();
+                graphics.ToggleFullScreen();
             }
             Content.RootDirectory = "Content";
 
