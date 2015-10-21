@@ -7,7 +7,7 @@ namespace KeysToInsanity.Code.Base
 {
     class Level
     {
-        private Stage[] stages;
+        public Stage[] stages;
         private string levelName = "";
 
         public Level(string name, int stages)
@@ -19,6 +19,11 @@ namespace KeysToInsanity.Code.Base
         public void addStage(Stage stage, int index)
         {
             stages[index] = stage;
+        }
+
+        public string getLevelName()
+        {
+            return levelName;
         }
     }
 }

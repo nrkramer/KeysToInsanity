@@ -15,12 +15,12 @@ namespace KeysToInsanity.Code.Base
 {
     class LevelLoader
     {
-        private int fullX = 0; // used when parsing expressions
-        private int fullY = 0; // used when parsing expressions
+        public int fullX = 0; // used when parsing expressions
+        public int fullY = 0; // used when parsing expressions
 
-        private Game game;
-        private HUD gameHud;
-        private Level level;
+        public Game game;
+        public HUD gameHud;
+        public Level level;
 
         public LevelLoader(Game game, string xmlFile, HUD hud)
         {

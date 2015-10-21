@@ -1,4 +1,5 @@
 ﻿using KeysToInsanity.Code;
+using KeysToInsanity.Code.Base;
 using KeysToInsanity.Code.Entitys;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Interface;
@@ -33,16 +34,17 @@ namespace KeysToInsanity
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        private LevelLoader loader;
 
-        private BasicBackground background; // background
+        /*private BasicBackground background; // background
         private SpriteContainer staticSprites = new SpriteContainer();
         private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
         private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
         private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
-        private SpriteContainer lightEffects = new SpriteContainer(); // light effects
+        private SpriteContainer lightEffects = new SpriteContainer(); // light effects*/
         private TheGentleman theGentleman; // Our main character sprite
-        private Nurse nurse;
-        private AttackDog dog;
+        /*private Nurse nurse;
+        private AttackDog dog;*/
         private HUD hud;
 
         private Door testDoor;
@@ -51,9 +53,9 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        private Sound testSound;
+        //private Sound testSound;
 
-        private horizontalPlatform platformH;
+        //private horizontalPlatform platformH;
 
         //Used for the menu
         private BasicSprite startButton;
@@ -107,7 +109,7 @@ namespace KeysToInsanity
 
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -166,10 +168,9 @@ namespace KeysToInsanity
 
             // Gentleman
             theGentleman = new TheGentleman(this);
-            theGentleman.addTo(characterSprites);
             theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
-            nurse = new Nurse(this, 300);
+            /*nurse = new Nurse(this, 300);
             nurse.addTo(characterSprites);
             nurse.spritePos = new Vector2(300, 560);
             //dog = new AttackDog(this);
@@ -179,8 +180,12 @@ namespace KeysToInsanity
 
 
 
-            // Heads up display (HUD)
+            // Heads up display (HUD)*/
             hud = new HUD(this);
+
+            //Load Level
+            loader = new LevelLoader(this, "Level1.xml", hud);
+
 
             /* static sprites - test code. To be replaced by a level loader (XML maybe)
             background = new BasicBackground(this, "padded_background");
@@ -285,7 +290,7 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
-                nurse.Update(gameTime);
+                //nurse.Update(gameTime);
                 //dog.Update(gameTime);
                 theGentleman.handleInput(gameTime); // input
                 hud.Update(gameTime);
@@ -295,7 +300,7 @@ namespace KeysToInsanity
                 //RectangleCollision.update(characterSprites, hPlatforms, gameTime);
 
 
-                if (theGentleman.spritePos.X < 0) // background slide
+                /*if (theGentleman.spritePos.X < 0) // background slide
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
                 }
@@ -310,7 +315,7 @@ namespace KeysToInsanity
                 else if (theGentleman.spritePos.Y < 0)
                 {
                     background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-                }
+                }*/
 
 
                 base.Update(gameTime);
@@ -345,8 +350,15 @@ namespace KeysToInsanity
             //checks if the gameState is at playing, draws the game
             if (gameState == GameState.Playing)
             {
-
-                background.draw(spriteBatch);
+                if(loader.level != null)
+                {
+                    Stage s = loader.level.stages[0];
+                    if (s != null)
+                    {
+                        
+                    }
+                }
+                //background.draw(spriteBatch);
                 foreach (BasicSprite s in staticSprites)
                 {
                     s.draw(spriteBatch);
@@ -360,7 +372,7 @@ namespace KeysToInsanity
                      s.draw(spriteBatch);
                  }*/
 
-                nurse.draw(spriteBatch);
+                //nurse.draw(spriteBatch);
                 //dog.draw(spriteBatch);
 
                 //allows us to make the light effects in the game
