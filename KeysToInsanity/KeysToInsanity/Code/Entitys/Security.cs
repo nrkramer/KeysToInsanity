@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KeysToInsanity.Code.Entitys;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace KeysToInsanity.Code
 {
-    class Security : AnimatedSprite
+    class Security : Character
     {
 
         private float center;
@@ -19,7 +20,7 @@ namespace KeysToInsanity.Code
             direction = true;
         }
 
-        protected void Update(GameTime time)
+        public override void Update(GameTime time)
         {
             // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
             // Console.WriteLine("Center is" + center);

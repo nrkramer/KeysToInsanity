@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Entitys
 {
-    class Cop : AnimatedSprite
+    class Cop : Character
     {
         //Cops position
         private float center;      
@@ -26,7 +26,7 @@ namespace KeysToInsanity.Code.Entitys
         
 
 
-        public void Update(GameTime time)
+        public override void Update(GameTime time)
         {
            /* if (theGentleman.getSpriteXPos() > center+range)
             {
