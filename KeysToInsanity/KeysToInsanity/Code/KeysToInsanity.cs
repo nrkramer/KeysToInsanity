@@ -83,7 +83,7 @@ namespace KeysToInsanity
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
-           /*if (!graphics.IsFullScreen)
+           if (!graphics.IsFullScreen)
             {
                 //graphics.ToggleFullScreen();
             }
@@ -183,7 +183,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // static sprites - test code. To be replaced by a level loader (XML maybe)
-            background = new BasicBackground(this, "padded_background");
+            /*background = new BasicBackground(this, "padded_background");
             BasicSprite leftWall = new BasicSprite(this, "padded_wall_left", true);
             leftWall.spritePos = new Vector2(0, 0);
             leftWall.spriteSize = new Point(30, GraphicsDevice.Viewport.Height);
@@ -206,7 +206,7 @@ namespace KeysToInsanity
             hanger.spritePos = new Vector2(550, GraphicsDevice.Viewport.Height - 120);
             /*BasicSprite bed = new BasicSprite(this, "bed", false);
             bed.spritePos = new Vector2(350, GraphicsDevice.Viewport.Height - 60);
-            bed.spriteSize = new Point(70, 55);*/
+            bed.spriteSize = new Point(70, 55);
             platformH = new horizontalPlatform(this);
             platformH.spritePos = new Vector2(200, GraphicsDevice.Viewport.Height - 200);
             BasicSprite topHat = new BasicSprite(this, "TopHat", false);
@@ -214,17 +214,17 @@ namespace KeysToInsanity
             topHat.spriteSize = new Point(22, 22);
 
             //we add them to the SpriteContainers here
-            floor.addTo(staticSprites);
+           /* floor.addTo(staticSprites);
             rightWall.addTo(staticSprites);
             leftWall.addTo(staticSprites);
             ceiling.addTo(staticSprites);
             key.addTo(staticSprites);
             hanger.addTo(staticSprites);
-            topHat.addTo(staticSprites);
+            //topHat.addTo(staticSprites);
             // bed.addTo(staticSprites);
             testDoor.addTo(staticSprites);
             //platformH.addTo(staticSprites);        
-            testDoor.doorLight.addTo(lightEffects);
+            testDoor.doorLight.addTo(lightEffects);*/
 
             /* for now, the input is created here, however later we will want
                to create it earlier in order to provide input before everything is loaded
