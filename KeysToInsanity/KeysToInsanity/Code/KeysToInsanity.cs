@@ -57,7 +57,7 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        private Sound testSound;
+        //private Sound testSound;
 
         //private horizontalPlatform platformH;
 
@@ -178,7 +178,7 @@ namespace KeysToInsanity
             nurse.spritePos = new Vector2(300, 560);*/
             //dog = new AttackDog(this);
             //dog.addTo(characterSprites);
-            //dog.spritePos = new Vector2(250, 100);      
+            //dog.spritePos = new Vector2(250, 100);             
 
             // Heads up display (HUD)
             hud = new HUD(this);
@@ -377,9 +377,9 @@ namespace KeysToInsanity
                         }
 
                         foreach (BasicSprite pl in s.platforms)
-                        {
+                {
                             pl.draw(spriteBatch);
-                        }
+                }
 
                         if (s.key != null)
                             s.key.draw(spriteBatch);
@@ -388,18 +388,18 @@ namespace KeysToInsanity
                             s.door.draw(spriteBatch);
 
                         foreach (AnimatedSprite sp in s.characters)
-                        {
+                {
                             sp.draw(spriteBatch);
-                        }
+                }
 
                         theGentleman.draw(spriteBatch);
 
                         foreach (LightEffect le in s.lights)
-                        {
+                {
                             le.draw(spriteBatch);
-                        }
+                }
 
-                        hud.draw(spriteBatch);
+                hud.draw(spriteBatch);
                     }
                 }
             }
