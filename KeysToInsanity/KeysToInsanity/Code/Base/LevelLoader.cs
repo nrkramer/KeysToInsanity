@@ -186,20 +186,27 @@ namespace KeysToInsanity.Code.Base
                 case "Nurse":
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Nurse nurse = new Nurse(game, x, int.Parse(r.GetAttribute("patrol")), 2.0f);
+                    Nurse nurse = new Nurse(game, x);
                     nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":
-                    AttackDog dog = new AttackDog(game, int.Parse(r.GetAttribute("patrol")));
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
+                    AttackDog dog = new AttackDog(game,x);
+                    dog.spritePos = new Vector2(x, y);
                     return dog;
                 case "Rats":
-                    Rats rats = new Rats(game, int.Parse(r.GetAttribute("patrol")));
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
+                    Rats rats = new Rats(game, x);
                     return rats;
                 case "Birds":
                     Birds birds = new Birds(game);
                     return birds;
                 case "Security":
-                    Security guard = new Security(game, int.Parse(r.GetAttribute("patrol")));
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("x"), fullX);
+                    Security guard = new Security(game, x);
                     return guard;
                 default:
                     return null;
