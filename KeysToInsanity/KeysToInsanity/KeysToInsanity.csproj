@@ -61,6 +61,8 @@
     <Compile Include="Code\Base\Stage.cs" />
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
+    <Compile Include="Code\Entitys\Bullets.cs" />
+    <Compile Include="Code\Entitys\Cop.cs" />
     <Compile Include="Code\Entitys\Rats.cs" />
     <Compile Include="Code\Environment\BasicBackground.cs" />
     <Compile Include="Code\Base\BasicSprite.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Code\Interactive Objects\Lever.cs" />
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
+    <Compile Include="Code\Interface\InsanityBar.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\horizontalPlatform.cs" />
     <Compile Include="Code\ProgramMain.cs" />
@@ -107,6 +110,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\box.png" />
+    <Content Include="Content\bullet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\closed_door_left_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

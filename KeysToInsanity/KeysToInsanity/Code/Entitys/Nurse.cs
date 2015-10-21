@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
+
 
 namespace KeysToInsanity.Code.Entitys
 {
@@ -29,7 +29,7 @@ namespace KeysToInsanity.Code.Entitys
             
                   }
 
-        public Nurse(Game game,float posX, float patrol, float speed):base(game,"nurse",new Point(22,22),1,0,true)
+        public Nurse(Game game, float posX, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             center = posX;
             patrolDistance = patrol;
@@ -39,7 +39,7 @@ namespace KeysToInsanity.Code.Entitys
         }
 
         
-        public  void Update(GameTime time)
+        public void Update(GameTime time)
         {
            // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
            // Console.WriteLine("Center is" + center);
@@ -47,19 +47,20 @@ namespace KeysToInsanity.Code.Entitys
             if (direction == true)
             {
 
-                velocity =  Velocity.FromDirection(0.0f,patrolSpeed);
-                if (getSpriteXPos()> center+patrolDistance)
+                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
+                if (getSpriteXPos() > center + patrolDistance)
             {
                 direction = false;
                 //Console.WriteLine(direction);
             }
-            }else
+            }
+            else
             {
                 velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
             }
-            if(getSpriteXPos() < center-patrolDistance)
+            if (getSpriteXPos() < center - patrolDistance)
             {
-                direction = false;
+                direction = true;
                 //Console.WriteLine("Center+50");
             }
             
@@ -72,15 +73,16 @@ namespace KeysToInsanity.Code.Entitys
 
             base.onCollide(collided, data, time);
             //Seeing if nurse hit the Gentleman
-            if(collided.ToString() == "KeysToInsanity.Code.TheGentleman")
+            if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 //call method to handle damage and effects
             }
             //Checking to see if nurse hit a floor
             if (collided.collidable)
-            {if(data.Width <= 0)
+            {
+                if (data.Width <= 0)
                 {
-                    velocity = Velocity.FromCoordinates(-this.velocity.getX(),0.0f);
+                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(), 0.0f);
                 }
                 
             }
@@ -96,20 +98,6 @@ namespace KeysToInsanity.Code.Entitys
     }
 }
 
-//AI that I need alan to look over/ using center to move
-/*int sign = random.Next(0, 2);
-            if(getSpriteXPos() == center) {
 
-                this.velocity = Velocity.FromDirection(0.0f, 45f);
-    }
-            //Deciding if we need to move to the left
-            if( getSpriteXPos() <= center+patrolDistance)
-            {
-              //  this.velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-            }else if ( getSpriteXPos() >=center-patrolDistance) //Or to the right
-            {
-                this.velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-}
 
-            updateWithAnimation(time, 0);
-            */
+
