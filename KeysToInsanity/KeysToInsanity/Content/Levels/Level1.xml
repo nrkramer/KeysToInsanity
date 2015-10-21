@@ -6,8 +6,9 @@
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" />
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" /> 
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" />
       <Background type="padded_background" />
+      <Key x="450" y="f-100"/>
       <Checkpoint x="500" y="f-105" />
       <End boundary="right" />
     </Stage>
@@ -89,7 +90,6 @@
       <Static type ="platform" x="200" y="f-130" w="300" h="75" collide="true"/>
       <Static type ="platform" x="300" y="f-210" w="200" h="75" collide="true"/>
       <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="false"/>
-      <Key x="450" y="f-285"/>
       <Door x="f-10" y="f-100" w="10" h="70" />
       <Background type="padded_background" />
     </Stage>-->

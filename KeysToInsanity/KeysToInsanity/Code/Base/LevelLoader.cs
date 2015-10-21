@@ -293,8 +293,14 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
+            string colorString = r.GetAttribute("color");
+            Color c = new Color(int.Parse(colorString.Substring(0, 2), System.Globalization.NumberStyles.AllowHexSpecifier), 
+                int.Parse(colorString.Substring(2,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+                int.Parse(colorString.Substring(4,2), System.Globalization.NumberStyles.AllowHexSpecifier));
 
-            LightEffect e = new LightEffect(game, r.GetAttribute("effect"));
+            Console.WriteLine(c);
+
+            LightEffect e = new LightEffect(game, "Lights\\" + r.GetAttribute("effect"), c);
             e.spritePos = new Vector2(x, y);
             e.spriteSize = new Point(w, h);
 

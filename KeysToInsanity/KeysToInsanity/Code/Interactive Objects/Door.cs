@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
         public Door(Game game) : base(game, "closed_door_left_metal", true)
         {
             openSprite = new BasicSprite(game, "open_door_left_metal", false);
-            doorLight = new LightEffect(game, "open_door_left_light");
+            doorLight = new LightEffect(game, "Lights\\open_door_left_light", Color.White);
             doorLight.hidden = true;
         }
 
