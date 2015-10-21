@@ -15,7 +15,6 @@ namespace KeysToInsanity.Code
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * (frameTime - jumpTime);
 
-            //gravity is applied to every sprite in the game here so that there is a universal gravity
             if (downVel <= 9.8f)
             {
                 if (sprite.ToString() == "KeysToInsanity.Code.TheGentleman")

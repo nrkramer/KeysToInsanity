@@ -61,7 +61,6 @@ namespace KeysToInsanity.Code
                 KeysToInsanity.MOVEMENT_VECTOR.Bounds, Color.Red, (float)velocity.getRotation(),
                 new Vector2(bounds.Width / 2, bounds.Height / 2), SpriteEffects.None, 1.0f);
         }
-        //use an update method to move ai in methods.
 
         // custom animation loading for gentleman... could get complicated
         protected override void loadAnimations()

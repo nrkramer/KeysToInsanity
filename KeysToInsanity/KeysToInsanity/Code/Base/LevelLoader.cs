@@ -121,22 +121,22 @@ namespace KeysToInsanity.Code.Base
             }
         }
 
-        public Stage.Boundary ParseBoundary(XmlReader r)
+        public KeysToInsanity.Boundary ParseBoundary(XmlReader r)
         {
             switch (r.GetAttribute("boundary"))
             {
                 case "none":
-                    return Stage.Boundary.None;
+                    return KeysToInsanity.Boundary.None;
                 case "left":
-                    return Stage.Boundary.Left;
+                    return KeysToInsanity.Boundary.Left;
                 case "right":
-                    return Stage.Boundary.Right;
+                    return KeysToInsanity.Boundary.Right;
                 case "top":
-                    return Stage.Boundary.Top;
+                    return KeysToInsanity.Boundary.Top;
                 case "bottom":
-                    return Stage.Boundary.Bottom;
+                    return KeysToInsanity.Boundary.Bottom;
                 default:
-                    return Stage.Boundary.None;
+                    return KeysToInsanity.Boundary.None;
             }
         }
 
@@ -184,6 +184,9 @@ namespace KeysToInsanity.Code.Base
             {
                 case "Nurse":
                     Nurse nurse = new Nurse(game, int.Parse(r.GetAttribute("patrol")));
+                    int x = ParseExpression(r.GetAttribute("x"), fullX);
+                    int y = ParseExpression(r.GetAttribute("y"), fullY);
+                    nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":
                     AttackDog dog = new AttackDog(game, int.Parse(r.GetAttribute("patrol")));
