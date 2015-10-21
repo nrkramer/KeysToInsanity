@@ -238,6 +238,7 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
 
             Key k = new Key(game, gameHud);
+            k.spritePos = new Vector2(x, y);
 
             return k;
         }

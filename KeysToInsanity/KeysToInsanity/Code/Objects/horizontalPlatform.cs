@@ -7,7 +7,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Objects
 {
 
-    class horizontalPlatform : BasicSprite
+    class horizontalPlatform : Platform
     {
 
         private float center;
@@ -29,6 +29,7 @@ namespace KeysToInsanity.Code.Objects
             moveSpeed = 1.0f;
             p1Flag = false;
             p2Flag = false;
+            direction = true;
         }
 
         //allows the platform to move itself in the desired direction
@@ -40,13 +41,27 @@ namespace KeysToInsanity.Code.Objects
                 p2 = center + moveDistance;
                 if (direction == true)
                 {
-                    x.velocity = Velocity.FromCoordinates(1.0f, 0.0f);
-                }
-                else 
-                {
-                    x.velocity = Velocity.FromCoordinates(-1.0f, 0.0f);
+                    x.velocity = Velocity.FromCoordinates(0.0f, -moveSpeed);
+                    if (getSpriteXPos() > center + moveDistance)
+                    {
+                        direction = false;
+                    }
+                    else
+                    {
+                        velocity = Velocity.FromDirection(0.0f, -moveSpeed);
+                    }
+                    if (getSpriteXPos() < center - moveDistance)
+                    {
+                        direction = true;
+                    }
                 }
             }
+        }
+
+        public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
+        {
+            base.onCollide(collided, data, time);
+            collided.spritePos = new Vector2(collided.spritePos.X + velocity.getX(), collided.spritePos.Y);
         }
     }
 }
