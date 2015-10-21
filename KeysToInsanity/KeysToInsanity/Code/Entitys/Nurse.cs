@@ -15,7 +15,12 @@ namespace KeysToInsanity.Code.Entitys
         private float patrolSpeed;
         
         private bool direction = true;
-
+        public Nurse(Game game,float posX):base(game,"nurse",new Point(22,22),1,0,true)
+        {
+            center = posX;
+            patrolDistance = 10.0f;
+            patrolSpeed = .01f;
+        }
         public Nurse(Game game, float center, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             this.center = center;
@@ -26,7 +31,7 @@ namespace KeysToInsanity.Code.Entitys
         
         public override void Update(GameTime time)
         {
-           // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
+           //Console.WriteLine("Sprite Pos is" + getSpriteXPos());
            // Console.WriteLine("Center is" + center);
             
             if (direction == true)
@@ -36,7 +41,7 @@ namespace KeysToInsanity.Code.Entitys
                 if (getSpriteXPos() > center + patrolDistance)
                 {
                     direction = false;
-                    //Console.WriteLine(direction);
+                   // Console.WriteLine(direction);
                 }
             }
             else

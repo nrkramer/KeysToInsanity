@@ -16,9 +16,9 @@ namespace KeysToInsanity.Code.Entitys
         private float patrolSpeed;
         private bool direction;
 
-        public AttackDog(Game game, float center) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
+        public AttackDog(Game game, float positionX) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
         {
-            this.center = center;
+            positionX = center;
             patrolDistance = 100.0f;
             patrolSpeed = 2.0f;
             direction = true;

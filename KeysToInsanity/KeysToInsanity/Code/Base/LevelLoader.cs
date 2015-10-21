@@ -186,11 +186,11 @@ namespace KeysToInsanity.Code.Base
                 case "Nurse":
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Nurse nurse = new Nurse(game, x, int.Parse(r.GetAttribute("patrol")), 1.0f);
+                    Nurse nurse = new Nurse(game, x);
                     nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":
-                     x = ParseExpression(r.GetAttribute("x"), fullX);
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullY);
                     AttackDog dog = new AttackDog(game,x);
                     dog.spritePos = new Vector2(x, y);
