@@ -17,11 +17,11 @@ namespace KeysToInsanity.Code.Interface
 
         public override void draw(SpriteBatch s)
         {
+            //trying to override the draw method to be able to make the insanity bar "fill in"
             s.Draw(spriteTex,
                new Rectangle(spritePos.ToPoint(), spriteSize),
-               new Rectangle(new Point(0, 0), new Point(spriteSize.X, spriteTex.Bounds.Height)), Color.White, 0.0f,
+               new Rectangle(new Point(0, 0), new Point(spriteSize.X+9, spriteTex.Bounds.Height)), Color.White, 0.0f,
                new Vector2(0, 0), SpriteEffects.None, 1.0f);
-            // Custom Gentleman drawing code.
         }
     }
 }
