@@ -173,13 +173,13 @@ namespace KeysToInsanity.Code.Base
                     AttackDog dog = new AttackDog(game, int.Parse(r.GetAttribute("patrol")));
                     return dog;
                 case "Rats":
-                    Rats rats = new Rats(game);
+                    Rats rats = new Rats(game, int.Parse(r.GetAttribute("patrol")));
                     return rats;
                 case "Birds":
                     Birds birds = new Birds(game);
                     return birds;
                 case "Security":
-                    Security guard = new Security(game);
+                    Security guard = new Security(game, int.Parse(r.GetAttribute("patrol")));
                     return guard;
                 default:
                     return null;
