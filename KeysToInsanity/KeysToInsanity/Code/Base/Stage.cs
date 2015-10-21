@@ -55,7 +55,7 @@ namespace KeysToInsanity.Code.Base
             end = b;
         }
 
-        public void addCharacter(BasicSprite c)
+        public void addCharacter(AnimatedSprite c)
         {
             c.addTo(characters);
         }
