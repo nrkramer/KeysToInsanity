@@ -110,7 +110,7 @@ namespace KeysToInsanity.Code.Base
                             s.addLight(ParseLightEffect(r));
                             break;
                         case "End":
-                            s.setEnd(ParseBoundary(r));
+                            s.setEnd(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
                             break;
                         default:
                             break;
@@ -178,14 +178,14 @@ namespace KeysToInsanity.Code.Base
             return new BasicBackground(game, r.GetAttribute("type"));
         }
 
-        public BasicSprite ParseCharacter(XmlReader r)
+        public Character ParseCharacter(XmlReader r)
         {
             switch(r.GetAttribute("type"))
             {
                 case "Nurse":
-                    Nurse nurse = new Nurse(game, int.Parse(r.GetAttribute("patrol")));
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
+                    Nurse nurse = new Nurse(game, x, int.Parse(r.GetAttribute("patrol")), 2.0f);
                     nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":

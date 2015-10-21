@@ -48,16 +48,8 @@ namespace KeysToInsanity
         private LevelLoader loader;
         private int stageIndex = 0;
 
-        /*private BasicBackground background; // background
-        private SpriteContainer staticSprites = new SpriteContainer();
-        private SpriteContainer characterSprites = new SpriteContainer(); // characters (nurses, gentleman, etc...)
-        private SpriteContainer hPlatforms = new SpriteContainer(); // horizontally moving platforms
-        private SpriteContainer vPlatforms = new SpriteContainer(); // vertically moving platforms
-        private SpriteContainer lightEffects = new SpriteContainer(); // light effects
-        private Nurse nurse;
-        private AttackDog dog;*/
-
         private TheGentleman theGentleman; // Our main character sprite
+        private bool enteredStageFromStart = true;
         private HUD hud;
 
         //private Door testDoor;
@@ -161,7 +153,7 @@ namespace KeysToInsanity
             logo = new BasicSprite(this,"logo",false);
             logo.spritePos = new Vector2(300,20);
             startButton = new BasicSprite(this,"start",false);
-            startButton.spritePos = new Vector2(350, 240);        
+            startButton.spritePos = new Vector2(350, 240);
             exitButton = new BasicSprite(this,"exit",false);
             exitButton.spritePos = new Vector2(350, 290);
             resume = new BasicSprite(this,"resume",false);
@@ -237,6 +229,10 @@ namespace KeysToInsanity
             else if (gameState == GameState.Playing)
             {
                 theGentleman.handleInput(gameTime); // input
+                foreach (Character c in loader.level.stages[stageIndex].characters)
+                {
+                    c.Update(gameTime);
+                }
 
                 hud.Update(gameTime);
 
@@ -256,6 +252,7 @@ namespace KeysToInsanity
                 if (checkStageBoundary(loader.level.stages[stageIndex].end))
                 {
                     stageIndex++;
+                    enteredStageFromStart = true;
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                     physics.resetTime(gameTime);
                 }
@@ -264,11 +261,39 @@ namespace KeysToInsanity
                 if (checkStageBoundary(loader.level.stages[stageIndex].start))
                 {
                     stageIndex--;
-                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    enteredStageFromStart = false;
+                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
+                }
+
+                // check gentleman has fallen somewhere he shouldnt have
+                if (checkOpposingBoundaries(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex].end))
+                {
+                    Console.WriteLine("yes");
+                    if (enteredStageFromStart)
+                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    else
+                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
                 }
 
                 base.Update(gameTime);
             }
+        }
+
+        public bool checkOpposingBoundaries(Boundary b1, Boundary b2)
+        {
+            if ((b1 == Boundary.Left && b2 == Boundary.Right) || (b2 == Boundary.Left && b1 == Boundary.Right))
+                return checkStageBoundary(Boundary.Top) || checkStageBoundary(Boundary.Bottom);
+            else if ((b1 == Boundary.Left && b2 == Boundary.Top) || (b2 == Boundary.Left && b1 == Boundary.Top))
+                return checkStageBoundary(Boundary.Right) || checkStageBoundary(Boundary.Bottom);
+            else if ((b1 == Boundary.Left && b2 == Boundary.Bottom) || (b2 == Boundary.Left && b1 == Boundary.Bottom))
+                return checkStageBoundary(Boundary.Right) || checkStageBoundary(Boundary.Top);
+            else if ((b1 == Boundary.Right && b2 == Boundary.Top) || (b2 == Boundary.Right && b1 == Boundary.Top))
+                return checkStageBoundary(Boundary.Left) || checkStageBoundary(Boundary.Bottom);
+            else if ((b1 == Boundary.Right && b2 == Boundary.Bottom) || (b2 == Boundary.Right && b1 == Boundary.Bottom))
+                return checkStageBoundary(Boundary.Left) || checkStageBoundary(Boundary.Top);
+            else if ((b1 == Boundary.Top && b2 == Boundary.Bottom) || (b2 == Boundary.Top && b1 == Boundary.Bottom))
+                return checkStageBoundary(Boundary.Top) || checkStageBoundary(Boundary.Bottom);
+            else return false;
         }
 
         // check the gentleman has checked the stage

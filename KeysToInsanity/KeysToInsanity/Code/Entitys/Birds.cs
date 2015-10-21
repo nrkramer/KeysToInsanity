@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Entitys
 {
-    class Birds : AnimatedSprite
+    class Birds : Character
     {
         private float center;
 
@@ -16,7 +16,7 @@ namespace KeysToInsanity.Code.Entitys
             center = getSpriteXPos();
         }
 
-        protected void Update()
+        public override void Update(GameTime time)
         {
             if (getSpriteXPos() <= center + 100)
             {

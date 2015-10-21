@@ -46,7 +46,7 @@ namespace KeysToInsanity.Code
         public void Update(GameTime gameTime, SpriteContainer spritesToPhysics)
         {
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            float downVel = gravity * (frameTime - jumpTime);
+            float downVel = gravity * frameTime;
 
             //gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)

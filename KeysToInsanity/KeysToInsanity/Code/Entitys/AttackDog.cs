@@ -8,7 +8,7 @@ namespace KeysToInsanity.Code.Entitys
 {
 
     /*Will try to create a line of sit algoritim for this. Otherwise dogs will be really fast*/
-    class AttackDog : AnimatedSprite
+    class AttackDog : Character
     {
 
         private float center;
@@ -31,7 +31,7 @@ namespace KeysToInsanity.Code.Entitys
             direction = true;
         }
 
-        public void Update(GameTime time)
+        public override void Update(GameTime time)
         {
 
             /*

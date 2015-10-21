@@ -23,6 +23,8 @@ namespace KeysToInsanity.Code.Base
         public int startY = 0;
 
         public KeysToInsanity.Boundary end;
+        public int endX = 0;
+        public int endY = 0;
 
         public int stageX = 0;
         public int stageY = 0;
@@ -44,7 +46,7 @@ namespace KeysToInsanity.Code.Base
             start = b;
         }
 
-        public void setEnd(KeysToInsanity.Boundary b)
+        public void setEnd(int x, int y, KeysToInsanity.Boundary b)
         {
             end = b;
         }

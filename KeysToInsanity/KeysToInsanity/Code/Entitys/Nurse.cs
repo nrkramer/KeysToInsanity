@@ -4,7 +4,7 @@ using System;
 
 namespace KeysToInsanity.Code.Entitys
 {
-    class Nurse : AnimatedSprite
+    class Nurse : Character
     {
  
         //Place were NPC moves around- right boarder of patrol
@@ -14,32 +14,17 @@ namespace KeysToInsanity.Code.Entitys
         //How fast it is coming back
         private float patrolSpeed;
         
-        private bool direction;        
+        private bool direction = true;
 
-        
-
-        public Nurse(Game game, float center) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        public Nurse(Game game, float center, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
-            //Setting the nurse posX to be center
             this.center = center;
-            Console.WriteLine("Center is" + center);
-            patrolDistance = 0f;
-            patrolSpeed = 1.0f;
-            direction = true;
-            
-                  }
-
-        public Nurse(Game game, float posX, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
-        {
-            center = posX;
             patrolDistance = patrol;
             patrolSpeed = speed;
-            direction = true;
-
         }
 
         
-        public void Update(GameTime time)
+        public override void Update(GameTime time)
         {
            // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
            // Console.WriteLine("Center is" + center);
@@ -61,7 +46,6 @@ namespace KeysToInsanity.Code.Entitys
             if (getSpriteXPos() < center - patrolDistance)
             {
                 direction = true;
-                //Console.WriteLine("Center+50");
             }
             
             updateWithAnimation(time, 0);
@@ -70,7 +54,6 @@ namespace KeysToInsanity.Code.Entitys
         //Overriding nurse to get it to cause damage || to get it to stop at obstacles
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
-
             base.onCollide(collided, data, time);
             //Seeing if nurse hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
@@ -82,7 +65,7 @@ namespace KeysToInsanity.Code.Entitys
             {
                 if (data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromCoordinates(-this.velocity.getX(), 0.0f);
+                    velocity = Velocity.FromCoordinates(-velocity.getX(), 0.0f);
                 }
                 
             }

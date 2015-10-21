@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Entitys
 {
-    class Rats : AnimatedSprite
+    class Rats : Character
     {
         private float center;
         private float patrolSpeed;
@@ -28,7 +28,7 @@ namespace KeysToInsanity.Code.Entitys
             direction = true;
         }
 
-        protected void Update(GameTime time)
+        public override void Update(GameTime time)
         {
             if (direction == true)
             {

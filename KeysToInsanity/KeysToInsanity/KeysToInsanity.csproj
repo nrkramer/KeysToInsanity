@@ -62,6 +62,7 @@
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
     <Compile Include="Code\Entitys\Bullets.cs" />
+    <Compile Include="Code\Entitys\Character.cs" />
     <Compile Include="Code\Entitys\Cop.cs" />
     <Compile Include="Code\Entitys\Rats.cs" />
     <Compile Include="Code\Environment\BasicBackground.cs" />
