@@ -6,29 +6,28 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Nurse : AnimatedSprite
     {
-
+ 
         //Place were NPC moves around- right boarder of patrol
         private float center;
         //Far border of patrol
         private float patrolDistance;
         //How fast it is coming back
         private float patrolSpeed;
+        
+        private bool direction;        
 
-        private bool direction;
+        
 
-
-
-        public Nurse(Game game, float posX) : base(game, "nurse", new Point(22, 22), 1, 0, true)
+        public Nurse(Game game, float center) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
             //Setting the nurse posX to be center
-            center = posX;
+            this.center = center;
             Console.WriteLine("Center is" + center);
-            Console.WriteLine("Sprite Pos is" + getSpriteXPos());
-            patrolDistance = 50f;
+            patrolDistance = 0f;
             patrolSpeed = 1.0f;
             direction = true;
-
-        }
+            
+                  }
 
         public Nurse(Game game, float posX, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
         {
@@ -39,21 +38,21 @@ namespace KeysToInsanity.Code.Entitys
 
         }
 
-
+        
         public void Update(GameTime time)
         {
-            // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
-            // Console.WriteLine("Center is" + center);
-
+           // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
+           // Console.WriteLine("Center is" + center);
+            
             if (direction == true)
             {
 
                 velocity = Velocity.FromDirection(0.0f, patrolSpeed);
                 if (getSpriteXPos() > center + patrolDistance)
-                {
-                    direction = false;
-                    //Console.WriteLine(direction);
-                }
+            {
+                direction = false;
+                //Console.WriteLine(direction);
+            }
             }
             else
             {
@@ -64,9 +63,9 @@ namespace KeysToInsanity.Code.Entitys
                 direction = true;
                 //Console.WriteLine("Center+50");
             }
-
+            
             updateWithAnimation(time, 0);
-
+                                                                                      
         }
         //Overriding nurse to get it to cause damage || to get it to stop at obstacles
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
@@ -85,7 +84,7 @@ namespace KeysToInsanity.Code.Entitys
                 {
                     this.velocity = Velocity.FromCoordinates(-this.velocity.getX(), 0.0f);
                 }
-
+                
             }
         }
 
