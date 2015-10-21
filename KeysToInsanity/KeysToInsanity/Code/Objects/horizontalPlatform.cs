@@ -25,8 +25,8 @@ namespace KeysToInsanity.Code.Objects
         {
             spriteSize = new Point(150, 50);
             center = getSpriteXPos();
-            moveDistance = 50f;
-            moveSpeed = 1.0f;
+            this.moveDistance = moveDistance;
+            this.moveSpeed = moveSpeed;
             p1Flag = false;
             p2Flag = false;
             direction = true;
