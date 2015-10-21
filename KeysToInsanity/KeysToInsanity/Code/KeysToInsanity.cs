@@ -57,7 +57,7 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        //private Sound testSound;
+        private Song testSound;
 
         //private horizontalPlatform platformH;
 
@@ -236,8 +236,7 @@ namespace KeysToInsanity
             */
             input = new BasicInput(this, theGentleman);
 
-
-            //Song testSound = Content.Load<Song>("Beethoven_5thSymphony.mp3");
+            //testSound = Content.Load<Song>("Content\\SoundFx\\Music\\Beethoven_5thSymphony");
             //MediaPlayer.Play(testSound);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
