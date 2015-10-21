@@ -9,15 +9,6 @@ namespace KeysToInsanity.Code.Base
 {
     class Stage
     {
-        public enum Boundary
-        {
-            None = 0,
-            Left = 1,
-            Right = 2,
-            Top = 3,
-            Bottom = 4
-        }
-
         // stage information - gets emptied and refilled after each stage load
         public BasicBackground background;
         public SpriteContainer statics = new SpriteContainer();
@@ -27,11 +18,11 @@ namespace KeysToInsanity.Code.Base
         public SpriteContainer characters = new SpriteContainer();
         public SpriteContainer lights = new SpriteContainer();
 
-        public Boundary start;
+        public KeysToInsanity.Boundary start;
         public int startX = 0;
         public int startY = 0;
 
-        public Boundary end;
+        public KeysToInsanity.Boundary end;
 
         public int stageX = 0;
         public int stageY = 0;
@@ -46,14 +37,14 @@ namespace KeysToInsanity.Code.Base
             stageHeight = h;
         }
 
-        public void setStart(int x, int y, Boundary b)
+        public void setStart(int x, int y, KeysToInsanity.Boundary b)
         {
             startX = x;
             startY = y;
             start = b;
         }
 
-        public void setEnd(Boundary b)
+        public void setEnd(KeysToInsanity.Boundary b)
         {
             end = b;
         }

@@ -29,7 +29,6 @@ namespace KeysToInsanity.Code.Interface
             int frameTime = (int)time.TotalGameTime.TotalMilliseconds;
             if ((frameTime / 100) <= 202)
             {
-                Console.WriteLine(frameTime);
                 insanity = frameTime / 100;
                 spriteSize = new Point(insanity, 32);
             }

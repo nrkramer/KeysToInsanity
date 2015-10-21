@@ -28,6 +28,15 @@ namespace KeysToInsanity
             Paused
         }
 
+        public enum Boundary
+        {
+            None = 0,
+            Left = 1,
+            Right = 2,
+            Top = 3,
+            Bottom = 4
+        }
+
         // Some debug values
         public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
@@ -135,7 +144,6 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (Math.Abs(data.Height) >= 1.0f)
                     {
-                        //Console.WriteLine("The Gentleman has collided with the ground.");
                         physics.resetTime(time);
                     }
             }
@@ -238,64 +246,55 @@ namespace KeysToInsanity
                 // non-gentleman character physics
                 physics.Update(gameTime, loader.level.stages[stageIndex].characters);
 
-                // collision for non-gentleman characters (doesn't check for key and doors)
-                RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
-
                 // collision for gentleman against static sprites
                 RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].statics, gameTime);
 
+                // collision for non-gentleman characters (doesn't check for key and doors)
+                RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
+
                 // check gentleman has past the end stage boundary
-                if (endStageCheck())
+                if (checkStageBoundary(loader.level.stages[stageIndex].end))
                 {
                     stageIndex++;
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    physics.resetTime(gameTime);
                 }
 
-                /*if (theGentleman.spritePos.X < 0) // background slide
+                // check gentleman has past the start stage boundary
+                if (checkStageBoundary(loader.level.stages[stageIndex].start))
                 {
-                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_RIGHT);
+                    stageIndex--;
+                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                 }
-                else if (theGentleman.spritePos.X + theGentleman.spriteSize.X > GraphicsDevice.Viewport.Width)
-                {
-                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_LEFT);
-                }
-                else if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y > GraphicsDevice.Viewport.Height)
-                {
-                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_UP);
-                }
-                else if (theGentleman.spritePos.Y < 0)
-                {
-                    background.slide(BasicBackground.SLIDE_DIRECTION.SLIDE_DOWN);
-                }
-                */
 
                 base.Update(gameTime);
             }
         }
 
-        // check the gentleman has past the stage end boundary
-        public bool endStageCheck()
+        // check the gentleman has checked the stage
+        public bool checkStageBoundary(Boundary b)
         {
-            switch (loader.level.stages[stageIndex].end)
+            switch (b)
             {
-                case Stage.Boundary.Left:
+                case Boundary.None:
+                    return false;
+                case Boundary.Left:
                     if (theGentleman.spritePos.X + theGentleman.spriteSize.X < loader.level.stages[stageIndex].stageX)
                         return true;
                     break;
-                case Stage.Boundary.Right:
+                case Boundary.Right:
                     if (theGentleman.spritePos.X > loader.level.stages[stageIndex].stageWidth)
                         return true;
                     break;
-                case Stage.Boundary.Top:
+                case Boundary.Top:
                     if (theGentleman.spritePos.Y + theGentleman.spriteSize.Y < loader.level.stages[stageIndex].stageY)
                         return true;
                     break;
-                case Stage.Boundary.Bottom:
+                case Boundary.Bottom:
                     if (theGentleman.spritePos.Y > loader.level.stages[stageIndex].stageHeight)
                         return true;
                     break;
             }
-
             return false;
         }
 
