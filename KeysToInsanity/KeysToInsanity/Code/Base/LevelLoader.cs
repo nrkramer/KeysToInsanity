@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using KeysToInsanity.Code.Entitys;
 using KeysToInsanity.Code.Interface;
 using KeysToInsanity.Code.Environment;
+using KeysToInsanity.Code.Objects;
 
 namespace KeysToInsanity.Code.Base
 {
@@ -104,7 +105,7 @@ namespace KeysToInsanity.Code.Base
                             s.setDoor(ParseDoor(r));
                             break;
                         case "Platform":
-                            ParsePlatform(r);
+                            s.addPlatform(ParsePlatform(r));
                             break;
                         case "LightEffect":
                             s.addLight(ParseLightEffect(r));
@@ -257,7 +258,7 @@ namespace KeysToInsanity.Code.Base
             return d;
         }
 
-        public void ParsePlatform(XmlReader r)
+        public Platform ParsePlatform(XmlReader r)
         {
             int x = ParseExpression(r.GetAttribute("x"), fullX);
             int y = ParseExpression(r.GetAttribute("y"), fullY);
@@ -265,8 +266,13 @@ namespace KeysToInsanity.Code.Base
             int h = ParseExpression(r.GetAttribute("h"), fullY);
             int distance = ParseExpression(r.GetAttribute("distance"), 0);
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
+            bool direction = bool.Parse(r.GetAttribute("direction"));
 
-            
+            HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
+            platform.spritePos = new Vector2(x, y);
+            platform.spriteSize = new Point(w, h);
+
+            return platform;
         }
 
         public LightEffect ParseLightEffect(XmlReader r)

@@ -1,5 +1,6 @@
 ﻿using KeysToInsanity.Code.Environment;
 using KeysToInsanity.Code.Interactive_Objects;
+using KeysToInsanity.Code.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace KeysToInsanity.Code.Base
             l.addTo(lights);
         }
 
-        public void addPlatform(BasicSprite p)
+        public void addPlatform(Platform p)
         {
             p.addTo(platforms);
         }
