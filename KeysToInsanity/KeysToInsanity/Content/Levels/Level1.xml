@@ -27,6 +27,7 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="200" w="30" h="f" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="platform" x="c-100" y="c+200" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+10" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+100" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+200" y="c-100" w="60" h="25" collide="true"/>
