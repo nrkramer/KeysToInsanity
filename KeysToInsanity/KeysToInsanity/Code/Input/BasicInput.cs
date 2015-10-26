@@ -8,6 +8,7 @@ namespace KeysToInsanity.Code
     {
         private BasicSprite sprite;
         private Game game;
+        bool spacePreviouslyDown = false;
         public KeyboardState kb; // immediate keyboard state
         public KeyboardState OKBS; // original keyboard state
 
@@ -26,32 +27,8 @@ namespace KeysToInsanity.Code
             if (escDown(kb) || gamepadBackPressed(b))
                 game.Exit();
 
-            if (sprite != null)
-            {
-                // here, you can change how fast the sprite moves
-                int xVelocity = 5;
-                int yVelocity = 20;
-
-                int xDiff = 0;
-                int yDiff = 0;
-
-                if (leftDown(kb))
-                    xDiff -= xVelocity;
-                if (rightDown(kb))
-                    xDiff += xVelocity;
-                /*if (upDown(kb))
-                    yDiff -= yVelocity;
-                if (downDown(kb))
-                    yDiff += yVelocity;*/
-                if (spaceDown(kb))
-                    yDiff = -13;
-
-
-                //Velocity jumpVelocity = Velocity.FromDirection(90, yDiff);
-                sprite.velocity = Velocity.FromCoordinates(xDiff, sprite.velocity.getY() + yDiff); //+ jumpVelocity;
-            }
-            //makes it so the user can't hold down the space bar and continuously fly off into space
-            OKBS = kb;
+            if (spaceDown(kb))
+                spacePreviouslyDown = true;
         }
 
         public bool leftDown(KeyboardState kb)
@@ -79,9 +56,21 @@ namespace KeysToInsanity.Code
             return kb.IsKeyDown(Keys.Escape);
         }
 
+        public bool spacePressed()
+        {
+            if (spacePreviouslyDown && spaceDown(kb))
+            {
+                spacePreviouslyDown = false;
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
         public bool spaceDown(KeyboardState kb)
         {
-            return kb.IsKeyDown(Keys.Space) && !OKBS.IsKeyDown(Keys.Space);
+            return kb.IsKeyDown(Keys.Space);
         }
 
         public bool gamepadBackPressed(GamePadButtons b)
