@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <XML>
-  <Level name = "Level 1" stages="8">
+  <Level name = "Level 1" stages="9">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="300" boundary="none" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" />
@@ -65,7 +65,7 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="30" collide="true"/>
       <Static type ="platform" x="c-100" y="0" w="20" h="f-200" collide="true"/>
-      <Static type ="platform" x="c+100" y="100" w="20" h="f" collide="true"/>
+      <Static type ="platform" x="c+100" y="110" w="20" h="f" collide="true"/>
       <Static type ="platform" x="c+60" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c-80" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+60" y="c-100" w="60" h="25" collide="true"/>
@@ -80,11 +80,18 @@
     <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
+      <Start x="c" y="0" boundary="top"/>
+      <Static type ="platform" x="c-75" y="0" w="10" h="f" collide ="true"/>
+      <Static type ="platform" x="c+75" y="0" w="10" h="f" collide="true"/>
+      <Background type="padded_background"/>
+      <End boundary ="bottom"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
      <Start x="20" y="0" boundary="top" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" />
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling" x="50" y="0" w="f" h="10" collide="true" /> 
+      <Static type ="ceiling" x="100" y="0" w="f" h="10" collide="true" /> 
       <Static type ="platform" x="100" y="f-50" w="400" h="78" collide="true"/>
       <Static type ="platform" x="200" y="f-130" w="300" h="78" collide="true"/>
       <Static type ="platform" x="300" y="f-210" w="200" h="78" collide="true"/>
