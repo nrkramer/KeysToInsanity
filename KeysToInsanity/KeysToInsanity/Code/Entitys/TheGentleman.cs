@@ -6,8 +6,7 @@ namespace KeysToInsanity.Code
 {
     class TheGentleman : AnimatedSprite
     {
-        private RenderTarget2D shaderRenderTarget;
-        private Texture2D shaderTexture;
+        private new RenderTarget2D spriteTex; // override default spriteTex (which is a Texture2D)
         private Effect effect;
         private BasicInput input;
 
@@ -15,9 +14,9 @@ namespace KeysToInsanity.Code
 
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
-            shaderRenderTarget = new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight,
+            spriteTex = new RenderTarget2D(game.GraphicsDevice,
+                spriteSize.X,
+                spriteSize.Y,
                 false,
                 game.GraphicsDevice.PresentationParameters.BackBufferFormat,
                 DepthFormat.Depth24);
@@ -67,17 +66,23 @@ namespace KeysToInsanity.Code
         public override void draw(SpriteBatch s)
         {
             // Custom Gentleman drawing code.
-           /* s.GraphicsDevice.SetRenderTarget(shaderRenderTarget);
+            s.GraphicsDevice.SetRenderTarget(spriteTex);
 
-            s.GraphicsDevice.Clear(Color.White);
-
-            effect.CurrentTechnique.Passes[0].Apply();
+            s.GraphicsDevice.Clear(Color.Transparent);
             base.draw(s);
 
             s.GraphicsDevice.SetRenderTarget(null);
-            spriteTex = shaderRenderTarget;*/
 
-            base.draw(s);
+            s.End();
+            s.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+            effect.CurrentTechnique.Passes[0].Apply();
+
+            s.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+
+            s.End();
+
+            s.Begin();
 
             if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
                 drawMovementVector(s);

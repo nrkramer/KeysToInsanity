@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -58,8 +57,6 @@ namespace KeysToInsanity
         private BasicInput input; // Our input handler
 
         private Physics physics = new Physics();
-
-        private Song testSound;
 
         //private horizontalPlatform platformH;
 
@@ -345,7 +342,7 @@ namespace KeysToInsanity
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            spriteBatch.Begin();
             //DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
 
             //Checks if gameState is at StartMenu, draws the start menu
