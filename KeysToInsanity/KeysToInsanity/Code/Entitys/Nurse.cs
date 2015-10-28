@@ -7,6 +7,7 @@ namespace KeysToInsanity.Code.Entitys
     class Nurse : Character
     {
  
+        //made chagnges
         //Place were NPC moves around- right boarder of patrol
         private float center;
         //Far border of patrol
