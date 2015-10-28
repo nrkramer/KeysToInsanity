@@ -167,6 +167,7 @@
     <Content Include="Content\Levels\Level1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Levels\Level2.xml" />
     <Content Include="Content\lever.jpg" />
     <Content Include="Content\Lights\circle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

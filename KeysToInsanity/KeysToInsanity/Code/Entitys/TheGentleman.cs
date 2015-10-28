@@ -11,7 +11,7 @@ namespace KeysToInsanity.Code
         private Effect effect;
         private BasicInput input;
 
-        private bool jumping = false;
+        public bool jumping = false;
 
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
@@ -30,24 +30,33 @@ namespace KeysToInsanity.Code
         {
             //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
+            float xVelocity = velocity.getX();
+            float yVelocity = velocity.getY();
+
             if (input.rightDown(input.kb))
+            {
+                xVelocity = 5.0f;
                 updateWithAnimation(time, 1);
+            }
             else if (input.leftDown(input.kb))
+            {
+                xVelocity = -5.0f;
                 updateWithAnimation(time, 2);
+            }
             else
+            {
+                xVelocity = 0.0f;
                 updateWithAnimation(time, 0);
+            }
 
             //allows the game to know when to apply gravity
-            if (input.spaceDown(input.kb))
+            if (input.spacePressed() && !jumping)
             {
+                yVelocity -= 10.0f;
                 jumping = true;
             }
-        }
 
-        //checks to see if The Gentleman is in the air or not
-        public bool isJumping()
-        {
-            return jumping;
+            velocity = Velocity.FromCoordinates(xVelocity, yVelocity);
         }
 
         public override void onCollide(BasicSprite s, Rectangle data, GameTime time)

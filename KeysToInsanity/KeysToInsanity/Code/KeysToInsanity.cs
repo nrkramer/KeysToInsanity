@@ -99,8 +99,6 @@ namespace KeysToInsanity
             graphics.ApplyChanges();
         }
 
-
-        
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -135,6 +133,8 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (Math.Abs(data.Height) >= 1.0f)
                     {
+                        theGentleman.jumping = false;
+                        theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
                         physics.resetTime(time);
                     }
             }
@@ -180,8 +180,7 @@ namespace KeysToInsanity
 
             // Load level
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
-            Console.WriteLine(loader.level.stageWithKey);
-            loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents);
+            loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
 
@@ -247,7 +246,7 @@ namespace KeysToInsanity
                 hud.Update(gameTime);
 
                 // gentleman physics
-                physics.Update(gameTime, theGentleman);
+                physics.UpdateGentlemanPhysics(gameTime, theGentleman);
 
                 // non-gentleman character physics
                 physics.Update(gameTime, loader.level.stages[stageIndex].characters);
