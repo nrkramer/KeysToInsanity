@@ -66,9 +66,9 @@ namespace KeysToInsanity.Code.Interface
         // This draws the HUD to it's texture
         public void drawHUD(SpriteBatch spriteBatch)
         {
-            gd.SetRenderTarget(spriteTex);
-            gd.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-            gd.Clear(Color.White);
+            //gd.SetRenderTarget(spriteTex);
+            //gd.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+            //gd.Clear(Color.Transparent);
 
             // Draw HUD
             foreach (BasicSprite s in hudSprites)
@@ -76,7 +76,7 @@ namespace KeysToInsanity.Code.Interface
                 s.draw(spriteBatch);
             }
 
-            gd.SetRenderTarget(null);
+            //gd.SetRenderTarget(null);
         }
 
         public override void draw(SpriteBatch spriteBatch)

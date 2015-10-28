@@ -11,7 +11,7 @@ namespace KeysToInsanity
     {
         public Texture2D spriteTex
         {
-            get;
+            get; set;
         }
 
         public Vector2 spritePos

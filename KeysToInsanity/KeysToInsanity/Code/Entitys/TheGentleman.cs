@@ -6,13 +6,24 @@ namespace KeysToInsanity.Code
 {
     class TheGentleman : AnimatedSprite
     {
+        private RenderTarget2D shaderRenderTarget;
+        private Texture2D shaderTexture;
+        private Effect effect;
         private BasicInput input;
 
         private bool jumping = false;
 
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
+            shaderRenderTarget = new RenderTarget2D(game.GraphicsDevice,
+                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
+                game.GraphicsDevice.PresentationParameters.BackBufferHeight,
+                false,
+                game.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
+
             input = new BasicInput(game, this);
+            effect = game.Content.Load<Effect>("Shaders\\Test_shader.mgfx");
         }
 
         public void handleInput(GameTime time)
@@ -46,10 +57,21 @@ namespace KeysToInsanity.Code
 
         public override void draw(SpriteBatch s)
         {
+            // Custom Gentleman drawing code.
+           /* s.GraphicsDevice.SetRenderTarget(shaderRenderTarget);
+
+            s.GraphicsDevice.Clear(Color.White);
+
+            effect.CurrentTechnique.Passes[0].Apply();
             base.draw(s);
+
+            s.GraphicsDevice.SetRenderTarget(null);
+            spriteTex = shaderRenderTarget;*/
+
+            base.draw(s);
+
             if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
                 drawMovementVector(s);
-            // Custom Gentleman drawing code.
         }
 
         //development tool to allow us to see how the Gentleman is moving through a vector arrow

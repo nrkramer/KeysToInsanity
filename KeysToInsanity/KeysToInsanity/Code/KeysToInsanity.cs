@@ -42,6 +42,7 @@ namespace KeysToInsanity
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
+        public static Effect DEFAULT_SHADER;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -166,6 +167,8 @@ namespace KeysToInsanity
 
             if (DRAW_MOVEMENT_VECTORS)
                 MOVEMENT_VECTOR = Content.Load<Texture2D>("arrow");
+
+            DEFAULT_SHADER = Content.Load<Effect>("Shaders\\DefaultShader.mgfx");
 
             // Gentleman
             theGentleman = new TheGentleman(this);
@@ -343,7 +346,8 @@ namespace KeysToInsanity
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            //DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
 
             //Checks if gameState is at StartMenu, draws the start menu
             if (gameState == GameState.StartMenu)
