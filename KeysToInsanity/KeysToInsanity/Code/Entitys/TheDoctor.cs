@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace KeysToInsanity.Code
 {
     class TheDoctor : AnimatedSprite
     {
-
         private float center;
 
         public TheDoctor(Game game) : base(game, "TopHat", new Point (72,71), 1,.25, false)

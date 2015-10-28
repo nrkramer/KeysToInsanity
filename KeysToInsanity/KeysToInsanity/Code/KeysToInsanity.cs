@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -42,6 +41,7 @@ namespace KeysToInsanity
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
+        public static Effect DEFAULT_SHADER;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -58,7 +58,7 @@ namespace KeysToInsanity
 
         private Physics physics = new Physics();
 
-        private Song testSound;
+        private Sound testSound;
 
         //private horizontalPlatform platformH;
 
@@ -167,6 +167,8 @@ namespace KeysToInsanity
             if (DRAW_MOVEMENT_VECTORS)
                 MOVEMENT_VECTOR = Content.Load<Texture2D>("arrow");
 
+            DEFAULT_SHADER = Content.Load<Effect>("Shaders\\DefaultShader.mgfx");
+
             // Gentleman
             theGentleman = new TheGentleman(this);
             theGentleman.spritePos = new Vector2(370, 300);
@@ -181,8 +183,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            //testSound = Content.Load<Song>("Content\\SoundFx\\Music\\Beethoven_5thSymphony");
-            //MediaPlayer.Play(testSound);
+            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session.wav");
+            testSound.play(true);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -343,6 +345,7 @@ namespace KeysToInsanity
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
+            //DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
 
             //Checks if gameState is at StartMenu, draws the start menu
             if (gameState == GameState.StartMenu)
