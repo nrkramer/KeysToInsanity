@@ -13,8 +13,8 @@ namespace KeysToInsanity.Code
         private GraphicsDevice gd;
 
         public int jumps = 2;
-        private int _health = 100;
-        public int health {
+        private float _health = 100.0f;
+        public float health {
             set { _health = value; KeysToInsanity.hud.updateHealth(value); }
             get { return _health; }
         }

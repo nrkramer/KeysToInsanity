@@ -40,7 +40,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -84,6 +84,9 @@ namespace KeysToInsanity
         // Checkpoint logic
         private bool inCheckpoint = false;
         private bool enteredCheckpoint = false;
+
+        // Insanity logic
+        private float insanity = 0.0f;
 
         //Vector2 Scale = Vector2.One;
 
@@ -201,8 +204,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-       //     testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session.wav");
-        //    testSound.play(true);
+            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            testSound.play(true);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -260,6 +263,8 @@ namespace KeysToInsanity
                     c.Update(gameTime);
                 }
 
+                insanity += 0.1f;
+                hud.updateInsanity(insanity);
                 hud.Update(gameTime);
 
                 // gentleman physics

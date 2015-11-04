@@ -76,6 +76,7 @@
     <Compile Include="Code\Base\Level.cs" />
     <Compile Include="Code\Base\LevelLoader.cs" />
     <Compile Include="Code\Base\Stage.cs" />
+    <Compile Include="Code\Interface\DeathScreen.cs" />
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
     <Compile Include="Code\Entitys\Bullets.cs" />
@@ -99,9 +100,7 @@
     <Compile Include="Code\Interactive Objects\Lever.cs" />
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
-    <Compile Include="Code\Interface\InsanityBar.cs" />
-    <Compile Include="Code\Interface\PauseScreen.cs" />
-    <Compile Include="Code\Interface\StartScreen.cs" />
+    <Compile Include="Code\Interface\Bar.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
@@ -311,13 +310,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\Music\Beethovens5th.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\Music\Op9No2Session.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
