@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code
         public float pitch = 0.0f;
         public float pan = 0.0f;
 
-        //should allow songs or music to play while someone is playing the game 
+        //should allow songs or music to play while someone is playing the game
         public Sound(Game game, String soundFileToLoad)
         {
             SoundEffect sfx = game.Content.Load<SoundEffect>(soundFileToLoad);

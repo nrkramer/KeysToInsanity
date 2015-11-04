@@ -11,8 +11,8 @@ namespace KeysToInsanity.Code.Interface
         private new RenderTarget2D spriteTex; // This hides BasicSprite's Texture2D, which RenderTarget2D inherits
         private GraphicsDevice gd;
         private SpriteContainer hudSprites = new SpriteContainer();
-        private InsanityBar insanityBar;
-        private InsanityBar healthBar;
+        private Bar insanityBar;
+        private Bar healthBar;
 
         // This class is kind of weird
         // First of all, all elements are drawn to external texture, why?
@@ -42,12 +42,12 @@ namespace KeysToInsanity.Code.Interface
             hud_insanity_frame.spriteSize = new Point(200, 30);
             hud_insanity_frame.spritePos = new Vector2(211, 0);
 
-            healthBar = new InsanityBar(game, "health_bar_color");
+            healthBar = new Bar(game, "health_bar_color");
             healthBar.spriteSize = new Point(202, 32);
             healthBar.spritePos = new Vector2(0, 0);
             healthBar.level = 100;
 
-            insanityBar = new InsanityBar(game, "insanity_bar_color");
+            insanityBar = new Bar(game, "insanity_bar_color");
             insanityBar.spriteSize = new Point(0, 32);
             insanityBar.spritePos = new Vector2(210, 0);
             insanityBar.level = 0;
@@ -64,6 +64,7 @@ namespace KeysToInsanity.Code.Interface
         public void Update(GameTime time)
         {
             insanityBar.Update(time);
+            healthBar.Update(time);
         }
 
         // This draws the HUD to it's texture
@@ -98,9 +99,14 @@ namespace KeysToInsanity.Code.Interface
         }
 
         // player health update
-        public void updateHealth(int health)
+        public void updateHealth(float health)
         {
             healthBar.level = health;
+        }
+
+        public void updateInsanity(float insanity)
+        {
+            insanityBar.level = insanity;
         }
     }
 }

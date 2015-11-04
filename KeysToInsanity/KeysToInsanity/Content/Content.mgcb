@@ -13,3 +13,21 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin SoundFX/Music/Beethovens5th.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFX/Music/Beethovens5th.wav
+
+#begin SoundFX/Music/Beethoven_5thSymphony.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundFX/Music/Beethoven_5thSymphony.mp3
+
+#begin SoundFX/Music/Op9No2Session.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFX/Music/Op9No2Session.wav
+
