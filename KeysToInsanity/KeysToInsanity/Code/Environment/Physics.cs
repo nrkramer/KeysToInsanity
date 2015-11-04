@@ -30,7 +30,7 @@ namespace KeysToInsanity.Code
             {
                 if (downVel <= 9.8f)
                 {
-                    i.velocity.setY(i.velocity.getY() + downVel);
+                    i.velocity.setY(i.velocity.getY() + downVel); // comment to let me commit
                 }
             }
         }
