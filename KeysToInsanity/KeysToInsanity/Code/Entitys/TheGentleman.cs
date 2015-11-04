@@ -4,22 +4,28 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KeysToInsanity.Code
 {
-    class TheGentleman : AnimatedSprite
+    public class TheGentleman : AnimatedSprite
     {
-        private new RenderTarget2D renderTarget; // override default spriteTex (which is a Texture2D)
+        private RenderTarget2D renderTarget; // override default spriteTex (which is a Texture2D)
         private Effect effect;
         private BasicInput input;
 
-        public bool jumping = false;
+        private GraphicsDevice gd;
+
+        public int jumps = 2;
+        private int _health = 100;
+        public int health {
+            set { _health = value; KeysToInsanity.hud.updateHealth(value); }
+            get { return _health; }
+        }
 
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
-            renderTarget = new RenderTarget2D(game.GraphicsDevice,
+            gd = game.GraphicsDevice;
+
+            renderTarget = new RenderTarget2D(gd,
                 spriteSize.X,
-                spriteSize.Y,
-                false,
-                game.GraphicsDevice.PresentationParameters.BackBufferFormat,
-                DepthFormat.Depth24);
+                spriteSize.Y);
 
             input = new BasicInput(game, this);
             effect = game.Content.Load<Effect>("Shaders\\Test_shader.mgfx");
@@ -49,10 +55,11 @@ namespace KeysToInsanity.Code
             }
 
             //allows the game to know when to apply gravity
-            if (input.spacePressed() && !jumping)
+            if (input.spaceDownOnce() && (jumps > 0))
             {
-                yVelocity -= 10.0f;
-                jumping = true;
+                KeysToInsanity.physics.resetTime(time);
+                yVelocity = -10.0f;
+                jumps -= 1;
             }
 
             velocity = Velocity.FromCoordinates(xVelocity, yVelocity);
@@ -63,26 +70,31 @@ namespace KeysToInsanity.Code
             base.onCollide(s, data, time);
         }
 
+        public void onFallOutOfBounds()
+        {
+            health -= 10;
+        }
+
+        public void renderGentleman(SpriteBatch s)
+        {
+            gd.SetRenderTarget(renderTarget);
+            gd.Clear(Color.Transparent);
+
+            s.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+            Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
+            s.Draw(spriteTex, Vector2.Zero, currentAnimation.CurrentRectangle, new Color(1.0f, 1.0f, 1.0f)); // add source rectangle
+
+            s.End();
+            //spriteTex = renderTarget;
+            gd.SetRenderTarget(null);
+        }
+
         public override void draw(SpriteBatch s)
         {
             // Custom Gentleman drawing code.
-            s.GraphicsDevice.SetRenderTarget(renderTarget);
-
-            s.GraphicsDevice.Clear(Color.Transparent);
-            base.draw(s);
-
-            s.GraphicsDevice.SetRenderTarget(null);
-
-            s.End();
-            s.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-
-            effect.CurrentTechnique.Passes[0].Apply();
-
+            //effect.CurrentTechnique.Passes[0].Apply();
             s.Draw(renderTarget, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
-
-            s.End();
-
-            s.Begin();
 
             if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
                 drawMovementVector(s);

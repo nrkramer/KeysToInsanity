@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KeysToInsanity.Code.Interactive_Objects
 {
-    class Key : BasicSprite
+    public class Key : BasicSprite
     {
         private bool onHUD = false;
         private HUD hud; // hud to add key to

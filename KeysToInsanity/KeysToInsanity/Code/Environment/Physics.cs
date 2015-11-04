@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace KeysToInsanity.Code
 {
-    class Physics
+    public class Physics
     {
-        public float gravity = 4.9f;
+        public float gravity = 3.0f;
         public float jumpTime = 0.0f;
 
         public void UpdateGentlemanPhysics(GameTime gameTime, TheGentleman sprite)
@@ -32,9 +32,8 @@ namespace KeysToInsanity.Code
                 {
                     i.velocity.setY(i.velocity.getY() + downVel);
                 }
-            }           
+            }
         }
-
 
         public void resetTime(GameTime time)
         {

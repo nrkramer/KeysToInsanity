@@ -36,8 +36,8 @@ namespace KeysToInsanity
             Bottom = 4
         }
 
-        // Some debug values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        // Some debug/default values
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -50,13 +50,11 @@ namespace KeysToInsanity
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
-        private HUD hud;
-
-        //private Door testDoor;
+        public static HUD hud;
 
         private BasicInput input; // Our input handler
 
-        private Physics physics = new Physics();
+        public static Physics physics = new Physics();
 
         private Sound testSound;
 
@@ -79,6 +77,10 @@ namespace KeysToInsanity
         MouseState previousMouseState;
         private GameState gameState;
         private bool gotKey;
+
+        // Checkpoint logic
+        private bool inCheckpoint = false;
+        private bool enteredCheckpoint = false;
 
         //Vector2 Scale = Vector2.One;
 
@@ -110,7 +112,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -132,10 +134,23 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (Math.Abs(data.Height) >= 1.0f)
                     {
-                        theGentleman.jumping = false;
+                        theGentleman.jumps = 2;
                         theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
                         physics.resetTime(time);
                     }
+                if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
+                {
+                    theGentleman.health -= 10;
+                }
+                if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
+                {
+                    if (inCheckpoint)
+                        enteredCheckpoint = false;
+                    else
+                        enteredCheckpoint = true;
+
+                    inCheckpoint = true;
+                }
             }
         }
 
@@ -183,8 +198,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session.wav");
-            testSound.play(true);
+       //     testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session.wav");
+        //    testSound.play(true);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -276,6 +291,7 @@ namespace KeysToInsanity
                 // check gentleman has fallen somewhere he shouldnt have
                 if (checkOpposingBoundaries(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex].end))
                 {
+                    theGentleman.health -= 10;
                     if (enteredStageFromStart)
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                     else
@@ -342,9 +358,12 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            hud.drawHUD(spriteBatch); // render HUD texture
+            theGentleman.renderGentleman(spriteBatch);
+
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             //DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
 
             //Checks if gameState is at StartMenu, draws the start menu
@@ -353,7 +372,6 @@ namespace KeysToInsanity
                 logo.draw(spriteBatch);
                 startButton.draw(spriteBatch);
                 exitButton.draw(spriteBatch);
-                
             }
 
             if (gameState == GameState.Paused)
@@ -388,22 +406,21 @@ namespace KeysToInsanity
                             s.door.draw(spriteBatch);
 
                         foreach (AnimatedSprite sp in s.characters)
-                {
+                        {
                             sp.draw(spriteBatch);
-                }
+                        }
 
                         theGentleman.draw(spriteBatch);
 
                         foreach (LightEffect le in s.lights)
-                {
+                        {
                             le.draw(spriteBatch);
-                }
+                        }
 
-                hud.draw(spriteBatch);
+                    hud.draw(spriteBatch);
                     }
                 }
             }
-
             spriteBatch.End();
 
             base.Draw(gameTime);

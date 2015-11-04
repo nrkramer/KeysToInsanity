@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace KeysToInsanity
 {
-    class Animation
+    public class Animation
     {
         List<AnimationFrame> frames = new List<AnimationFrame>();
         TimeSpan timeIntoAnimation;

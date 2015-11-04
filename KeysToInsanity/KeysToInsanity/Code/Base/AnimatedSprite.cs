@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KeysToInsanity.Code
 {
-    class AnimatedSprite : BasicSprite
+    public class AnimatedSprite : BasicSprite
     {
         protected List<Animation> animations = new List<Animation>();
         protected Animation currentAnimation = new Animation();

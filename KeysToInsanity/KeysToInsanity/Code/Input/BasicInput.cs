@@ -26,9 +26,6 @@ namespace KeysToInsanity.Code
             // if either escape is pressed, or, on a gamepad, back is pressed
             if (escDown(kb) || gamepadBackPressed(b))
                 game.Exit();
-
-            if (spaceDown(kb))
-                spacePreviouslyDown = true;
         }
 
         public bool leftDown(KeyboardState kb)
@@ -56,14 +53,15 @@ namespace KeysToInsanity.Code
             return kb.IsKeyDown(Keys.Escape);
         }
 
-        public bool spacePressed()
+        public bool spaceDownOnce() // space is down immediately but doesn't get refired if held
         {
-            if (spacePreviouslyDown && spaceDown(kb))
-            {
-                spacePreviouslyDown = false;
+            if (kb.IsKeyDown(Keys.Space) && !spacePreviouslyDown) {
+                spacePreviouslyDown = true;
                 return true;
-            } else
-            {
+            } else {
+                if (kb.IsKeyUp(Keys.Space))
+                    spacePreviouslyDown = false;
+
                 return false;
             }
         }
