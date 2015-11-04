@@ -100,6 +100,8 @@
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\Interface\InsanityBar.cs" />
+    <Compile Include="Code\Interface\PauseScreen.cs" />
+    <Compile Include="Code\Interface\StartScreen.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
@@ -184,6 +186,10 @@
     <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
     <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
     <Content Include="bin\Windows\Debug\SharpDX.xml" />
+    <Content Include="Content\aboutButton.png" />
+    <Content Include="Content\return.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Shaders\DefaultShader.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

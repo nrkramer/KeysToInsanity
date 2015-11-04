@@ -24,7 +24,10 @@ namespace KeysToInsanity
         {
             StartMenu,
             Playing,
-            Paused
+            Paused,
+            Instruction,
+            Help,
+            Credits
         }
 
         public enum Boundary
@@ -66,11 +69,7 @@ namespace KeysToInsanity
         private BasicSprite logo;
         private BasicSprite resume;
 
-        //Used for position of the menu        
-        private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;
-        private Vector2 logoPosition;
-        private Vector2 resumePosition;
+        
 
         //Setting constants for the menu items
         MouseState mouseState;
