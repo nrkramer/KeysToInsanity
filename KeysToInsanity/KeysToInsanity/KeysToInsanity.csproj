@@ -263,7 +263,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Windows\Debug\Code\" />
+    <Folder Include="bin\Windows\Release\" />
+    <Folder Include="Content\bin\Windows\" />
+    <Folder Include="Content\obj\Windows\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\DefaultShader.mgfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
