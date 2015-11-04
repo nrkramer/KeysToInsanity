@@ -186,7 +186,15 @@
     <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
     <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
     <Content Include="bin\Windows\Debug\SharpDX.xml" />
-    <Content Include="Content\aboutButton.png" />
+    <Content Include="Content\aboutButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\aboutPage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\creditsButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\return.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
