@@ -103,6 +103,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Windows\Debug\Content\4LinkGreen1.png" />
+    <Content Include="bin\Windows\Debug\Content\arrow.png" />
+    <Content Include="bin\Windows\Debug\Content\bed.png" />
+    <Content Include="bin\Windows\Debug\Content\bullet.png" />
+    <Content Include="bin\Windows\Debug\Content\ceiling.png" />
+    <Content Include="bin\Windows\Debug\Content\closed_door_left_metal.png" />
+    <Content Include="bin\Windows\Debug\Content\dogs.png" />
+    <Content Include="bin\Windows\Debug\Content\exit.png" />
+    <Content Include="bin\Windows\Debug\Content\floor.png" />
+    <Content Include="bin\Windows\Debug\Content\Gentleman.png" />
+    <Content Include="bin\Windows\Debug\Content\hat hanger 2.png" />
+    <Content Include="bin\Windows\Debug\Content\health_bar_color.png" />
+    <Content Include="bin\Windows\Debug\Content\health_bar_frame.png" />
+    <Content Include="bin\Windows\Debug\Content\hud_key_frame.png" />
+    <Content Include="bin\Windows\Debug\Content\insanity_bar_color.png" />
+    <Content Include="bin\Windows\Debug\Content\insanity_bar_frame.png" />
+    <Content Include="bin\Windows\Debug\Content\key.png" />
+    <Content Include="bin\Windows\Debug\Content\left_wall.png" />
+    <Content Include="bin\Windows\Debug\Content\Levels\Level1.xml" />
+    <Content Include="bin\Windows\Debug\Content\Lights\circle.png" />
+    <Content Include="bin\Windows\Debug\Content\Lights\open_door_left_light.png" />
+    <Content Include="bin\Windows\Debug\Content\logo.png" />
+    <Content Include="bin\Windows\Debug\Content\nurse.png" />
+    <Content Include="bin\Windows\Debug\Content\open_door_left_metal.png" />
+    <Content Include="bin\Windows\Debug\Content\padded_background.jpg" />
+    <Content Include="bin\Windows\Debug\Content\padded_ceiling.png" />
+    <Content Include="bin\Windows\Debug\Content\padded_floor.png" />
+    <Content Include="bin\Windows\Debug\Content\padded_wall_left.png" />
+    <Content Include="bin\Windows\Debug\Content\padded_wall_right.png" />
+    <Content Include="bin\Windows\Debug\Content\platform.png" />
+    <Content Include="bin\Windows\Debug\Content\resume.png" />
+    <Content Include="bin\Windows\Debug\Content\right_wall.png" />
+    <Content Include="bin\Windows\Debug\Content\Samus_fixed.png" />
+    <Content Include="bin\Windows\Debug\Content\SoundFX\Music\Beethovens5th.wav" />
+    <Content Include="bin\Windows\Debug\Content\SoundFX\Music\Beethoven_5thSymphony.mp3" />
+    <Content Include="bin\Windows\Debug\Content\SoundFX\Music\Op9No2Session.wav" />
+    <Content Include="bin\Windows\Debug\Content\start.png" />
+    <Content Include="bin\Windows\Debug\Content\SuperMetroidSamus.png" />
+    <Content Include="bin\Windows\Debug\Content\Test_Background.png" />
+    <Content Include="bin\Windows\Debug\Content\The Key to Insanity 2.png" />
+    <Content Include="bin\Windows\Debug\Content\TopHat.png" />
+    <Content Include="bin\Windows\Debug\KeysToInsanity.exe" />
+    <Content Include="bin\Windows\Debug\KeysToInsanity.pdb" />
+    <Content Include="bin\Windows\Debug\KeysToInsanity.vshost.exe" />
+    <Content Include="bin\Windows\Debug\MonoGame.Framework.dll" />
+    <Content Include="bin\Windows\Debug\MonoGame.Framework.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct2D1.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct2D1.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D11.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D11.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D9.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.Direct3D9.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.DXGI.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.DXGI.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.MediaFoundation.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.MediaFoundation.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.RawInput.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.RawInput.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.XAudio2.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.XAudio2.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
+    <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
+    <Content Include="bin\Windows\Debug\SharpDX.xml" />
     <Content Include="Content\Shaders\DefaultShader.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -242,11 +306,6 @@
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </MonoGameContentReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -270,6 +329,17 @@
     <Folder Include="Content\obj\Windows\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="bin\Content\SoundFX\Music\Op9No2Session.xnb" />
+    <None Include="bin\Windows\Debug\Content\Content.mgcb" />
+    <None Include="bin\Windows\Debug\Content\Fonts\Kootenay.xnb" />
+    <None Include="bin\Windows\Debug\Content\Shaders\DefaultShader.fx" />
+    <None Include="bin\Windows\Debug\Content\Shaders\DefaultShader.mgfx" />
+    <None Include="bin\Windows\Debug\Content\Shaders\Test_shader.fx" />
+    <None Include="bin\Windows\Debug\Content\Shaders\Test_shader.mgfx" />
+    <None Include="bin\Windows\Debug\KeysToInsanity.vshost.exe.manifest" />
     <None Include="Content\Shaders\DefaultShader.mgfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
