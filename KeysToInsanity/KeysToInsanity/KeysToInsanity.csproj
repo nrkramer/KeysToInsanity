@@ -76,6 +76,7 @@
     <Compile Include="Code\Base\Level.cs" />
     <Compile Include="Code\Base\LevelLoader.cs" />
     <Compile Include="Code\Base\Stage.cs" />
+    <Compile Include="Code\Interface\DeathScreen.cs" />
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
     <Compile Include="Code\Entitys\Bullets.cs" />
