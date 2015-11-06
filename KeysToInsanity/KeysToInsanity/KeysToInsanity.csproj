@@ -76,6 +76,8 @@
     <Compile Include="Code\Base\Level.cs" />
     <Compile Include="Code\Base\LevelLoader.cs" />
     <Compile Include="Code\Base\Stage.cs" />
+    <Compile Include="Code\Interface\AboutScreen.cs" />
+    <Compile Include="Code\Interface\CreditScreen.cs" />
     <Compile Include="Code\Interface\DeathScreen.cs" />
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Birds.cs" />
@@ -101,6 +103,8 @@
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\Interface\Bar.cs" />
+    <Compile Include="Code\Interface\PauseScreen.cs" />
+    <Compile Include="Code\Interface\StartScreen.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
@@ -194,7 +198,13 @@
     <Content Include="Content\creditsButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\creditsPage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\flames.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\miyamoto_sheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\return.png">
