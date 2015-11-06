@@ -57,6 +57,7 @@ namespace KeysToInsanity
         public static Physics physics = new Physics();
 
         private Sound testSound;
+        private Sound landedOnGround;
 
         //private horizontalPlatform platformH;
 
@@ -123,40 +124,6 @@ namespace KeysToInsanity
             base.Initialize();
         }
 
-        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
-        {
-            //collision detection so we can manipulate gravity to simulate real jumping
-            if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
-            {
-                gotKey = true;
-                Console.WriteLine("A Key was picked up!");
-            }
-
-            if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
-            {
-                if (collided.collidable)
-                    if (Math.Abs(data.Height) >= 1.0f)
-                    {
-                        theGentleman.jumps = 2;
-                        theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
-                        physics.resetTime(time);
-                    }
-                if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
-                {
-                    theGentleman.health -= 10;
-                }
-                if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
-                {
-                    if (inCheckpoint)
-                        enteredCheckpoint = false;
-                    else
-                        enteredCheckpoint = true;
-
-                    inCheckpoint = true;
-                }
-            }
-        }
-
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -204,6 +171,8 @@ namespace KeysToInsanity
             testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
             testSound.play(true);
 
+            //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\landed_on_ground");
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
@@ -215,6 +184,42 @@ namespace KeysToInsanity
         {
             // TODO: Unload any non ContentManager content here
             Content.Unload();
+        }
+
+        public void collisionEvents(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time)
+        {
+            //collision detection so we can manipulate gravity to simulate real jumping
+            if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
+            {
+                gotKey = true;
+                Console.WriteLine("A Key was picked up!");
+            }
+
+            if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
+            {
+                if (collided.collidable)
+                    if (Math.Abs(data.Height) >= 1.0f)
+                    {
+                        theGentleman.inAir = false;
+                        theGentleman.jumps = 2;
+                        theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
+                        physics.resetTime(time);
+                        //landedOnGround.play(false);
+                    }
+                if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
+                {
+                    theGentleman.health -= 10;
+                }
+                if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
+                {
+                    if (inCheckpoint)
+                        enteredCheckpoint = false;
+                    else
+                        enteredCheckpoint = true;
+
+                    inCheckpoint = true;
+                }
+            }
         }
 
         /// <summary>
@@ -247,6 +252,9 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
+                //if (theGentleman.health <= 0)
+                    // game over
+
                 foreach (Platform f in loader.level.stages[stageIndex].platforms)
                 {
                     f.Update(gameTime);
@@ -260,7 +268,7 @@ namespace KeysToInsanity
                     c.Update(gameTime);
                 }
 
-                insanity += 0.1f;
+                insanity += 0.02f;
                 hud.updateInsanity(insanity);
                 hud.Update(gameTime);
 
@@ -280,9 +288,13 @@ namespace KeysToInsanity
                 if (checkStageBoundary(loader.level.stages[stageIndex].end))
                 {
                     stageIndex++;
-                    enteredStageFromStart = true;
-                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
-                    physics.resetTime(gameTime);
+                    if (stageIndex < loader.level.stages.Length) {
+                        enteredStageFromStart = true;
+                        // slide background
+                        loader.level.stages[stageIndex].background.slide(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex - 1].background);
+                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                        physics.resetTime(gameTime);
+                    }
                 }
 
                 // check gentleman has past the start stage boundary

@@ -305,8 +305,6 @@ namespace KeysToInsanity.Code.Base
                 int.Parse(colorString.Substring(2,2), System.Globalization.NumberStyles.AllowHexSpecifier),
                 int.Parse(colorString.Substring(4,2), System.Globalization.NumberStyles.AllowHexSpecifier));
 
-            Console.WriteLine(c);
-
             LightEffect e = new LightEffect(game, "Lights\\" + r.GetAttribute("effect"), c);
             e.spritePos = new Vector2(x, y);
             e.spriteSize = new Point(w, h);

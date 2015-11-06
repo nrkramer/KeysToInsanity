@@ -11,17 +11,10 @@ namespace KeysToInsanity.Code
     // Only difference between this class and BasicSprite is that this will always fill the screen
     class BasicBackground : BasicSprite
     {
-        public enum SLIDE_DIRECTION
-        {
-            NO_SLIDE = 0,
-            SLIDE_LEFT = 1,
-            SLIDE_RIGHT = 2,
-            SLIDE_UP = 3,
-            SLIDE_DOWN = 4
-        };
 
-        private SLIDE_DIRECTION sliding = SLIDE_DIRECTION.NO_SLIDE;
+        private KeysToInsanity.Boundary sliding = KeysToInsanity.Boundary.None;
         private Timer slide_timer = new Timer();
+        private BasicBackground previousBackground;
 
         public BasicBackground(Game game, string file) : base(game, file, false)
         {
@@ -37,10 +30,11 @@ namespace KeysToInsanity.Code
             slide_timer.Interval = 5; // Adjust this for faster animation updates
         }
 
-        public void slide(SLIDE_DIRECTION direction)
+        public void slide(KeysToInsanity.Boundary direction, BasicBackground nextBackground)
         {
-            if (sliding == SLIDE_DIRECTION.NO_SLIDE)
+            if (sliding == KeysToInsanity.Boundary.None)
             {
+                this.previousBackground = nextBackground;
                 sliding = direction;
                 // create a timer to update the position and draw the next background chunk
                 slide_timer.Start();
@@ -51,38 +45,42 @@ namespace KeysToInsanity.Code
         {
             switch(sliding)
             {
-                case SLIDE_DIRECTION.SLIDE_LEFT:
+                case KeysToInsanity.Boundary.Left:
                     spritePos = new Vector2(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X < -spriteSize.X)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
+                        this.spriteTex = previousBackground.spriteTex;
+                        sliding = KeysToInsanity.Boundary.None;
                         slide_timer.Stop();
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_RIGHT:
+                case KeysToInsanity.Boundary.Right:
                     spritePos = new Vector2(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
                     if (spritePos.X > spriteSize.X)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
+                        this.spriteTex = previousBackground.spriteTex;
+                        sliding = KeysToInsanity.Boundary.None;
                         slide_timer.Stop();
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_UP:
+                case KeysToInsanity.Boundary.Top:
                     spritePos = new Vector2(spritePos.X, spritePos.Y - 10); // adjust the value here for animation speed
                     if (spritePos.Y < -spriteSize.Y)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
+                        this.spriteTex = previousBackground.spriteTex;
+                        sliding = KeysToInsanity.Boundary.None;
                         slide_timer.Stop();
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_DOWN:
+                case KeysToInsanity.Boundary.Bottom:
                     spritePos = new Vector2(spritePos.X, spritePos.Y + 10); // adjust the value here for animation speed
                     if (spritePos.Y > spriteSize.Y)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
+                        this.spriteTex = previousBackground.spriteTex;
+                        sliding = KeysToInsanity.Boundary.None;
                         slide_timer.Stop();
                         spritePos = new Vector2(0, 0);
                     }
@@ -102,17 +100,17 @@ namespace KeysToInsanity.Code
             // draw the next chunk of background
             switch(sliding)
             {
-                case SLIDE_DIRECTION.SLIDE_DOWN:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y - spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Bottom:
+                    drawBackground(s, previousBackground.spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y - spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_LEFT:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X + spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Left:
+                    drawBackground(s, previousBackground.spriteTex, new Rectangle(new Vector2(spritePos.X + spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X - spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Right:
+                    drawBackground(s, previousBackground.spriteTex, new Rectangle(new Vector2(spritePos.X - spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_UP:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y + spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Top:
+                    drawBackground(s, previousBackground.spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y + spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 default:
                     break;

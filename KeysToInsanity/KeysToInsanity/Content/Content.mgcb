@@ -31,3 +31,9 @@
 /processorParam:Quality=Best
 /build:SoundFX/Music/Op9No2Session.wav
 
+#begin SoundFX/TheGentleman/landed_on_ground.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFX/TheGentleman/landed_on_ground.wav
+
