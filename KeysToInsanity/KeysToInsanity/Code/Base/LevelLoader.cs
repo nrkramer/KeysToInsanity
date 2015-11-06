@@ -92,6 +92,9 @@ namespace KeysToInsanity.Code.Base
                         case "Static":
                             s.addStatic(ParseStatic(r));
                             break;
+                        case "AnimatedStatic":
+                            s.addAnimatedStatic(ParseAnimatedStatic(r));
+                            break;
                         case "Background":
                             s.setBackground(ParseBackground(r));
                             break;
@@ -211,6 +214,24 @@ namespace KeysToInsanity.Code.Base
                 default:
                     return null;
             }
+        }
+
+        public AnimatedSprite ParseAnimatedStatic(XmlReader r)
+        {
+            string asset = r.GetAttribute("type");
+            int x = ParseExpression(r.GetAttribute("x"), fullX);
+            int y = ParseExpression(r.GetAttribute("y"), fullY);
+            int w = ParseExpression(r.GetAttribute("w"), fullX);
+            int h = ParseExpression(r.GetAttribute("h"), fullY);
+            bool collidable = bool.Parse(r.GetAttribute("collide"));
+            int size = int.Parse(r.GetAttribute("width")); // width of one animation
+            double speed = double.Parse(r.GetAttribute("speed"));
+
+            AnimatedSprite s = new AnimatedSprite(game, asset, new Point(size, h), 1, speed, collidable);
+            s.spritePos = new Vector2(x, y);
+            s.spriteSize = new Point(w, h);
+
+            return s;
         }
 
         public BasicSprite ParseStatic(XmlReader r)

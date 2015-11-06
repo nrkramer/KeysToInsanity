@@ -13,6 +13,7 @@ namespace KeysToInsanity.Code.Base
         // stage information - gets emptied and refilled after each stage load
         public BasicBackground background;
         public SpriteContainer statics = new SpriteContainer();
+        public SpriteContainer animatedStatics = new SpriteContainer();
         public SpriteContainer platforms = new SpriteContainer();
         public SpriteContainer collidables = new SpriteContainer();
         public Key key;
@@ -64,6 +65,12 @@ namespace KeysToInsanity.Code.Base
         {
             s.addTo(statics);
             s.addTo(collidables);
+        }
+
+        public void addAnimatedStatic(AnimatedSprite a)
+        {
+            a.addTo(animatedStatics);
+            a.addTo(collidables);
         }
 
         public void addLight(LightEffect l)

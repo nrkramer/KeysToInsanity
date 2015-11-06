@@ -24,7 +24,10 @@ namespace KeysToInsanity
         {
             StartMenu,
             Playing,
-            Paused
+            Paused,
+            Instruction,
+            Help,
+            credits
         }
 
         public enum Boundary
@@ -169,9 +172,9 @@ namespace KeysToInsanity
             input = new BasicInput(this, theGentleman);
 
             testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            testSound.play(true);
+            //testSound.play(true);
 
-            //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\landed_on_ground");
+            //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -253,72 +256,106 @@ namespace KeysToInsanity
             else if (gameState == GameState.Playing)
             {
                 //if (theGentleman.health <= 0)
-                    // game over
+                // game over
 
-                foreach (Platform f in loader.level.stages[stageIndex].platforms)
+                // pause game logic while background is sliding
+                if (loader.level.stages[stageIndex].background.slide == true)
                 {
-                    f.Update(gameTime);
-                    f.updatePosition();
+                    loader.level.stages[stageIndex].background.Update(gameTime);
                 }
-
-                theGentleman.handleInput(gameTime); // input
-
-                foreach (Character c in loader.level.stages[stageIndex].characters)
+                else
                 {
-                    c.Update(gameTime);
-                }
-
-                insanity += 0.02f;
-                hud.updateInsanity(insanity);
-                hud.Update(gameTime);
-
-                // gentleman physics
-                physics.UpdateGentlemanPhysics(gameTime, theGentleman);
-
-                // non-gentleman character physics
-                physics.Update(gameTime, loader.level.stages[stageIndex].characters);
-
-                // collision for gentleman against static sprites
-                RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
-
-                // collision for non-gentleman characters (doesn't check for key and doors)
-                RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
-
-                // check gentleman has past the end stage boundary
-                if (checkStageBoundary(loader.level.stages[stageIndex].end))
-                {
-                    stageIndex++;
-                    if (stageIndex < loader.level.stages.Length) {
-                        enteredStageFromStart = true;
-                        // slide background
-                        loader.level.stages[stageIndex].background.slide(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex - 1].background);
-                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
-                        physics.resetTime(gameTime);
+                    // Animated statics
+                    foreach (AnimatedSprite s in loader.level.stages[stageIndex].animatedStatics)
+                    {
+                        s.updateWithAnimation(gameTime, 0);
                     }
-                }
 
-                // check gentleman has past the start stage boundary
-                if (checkStageBoundary(loader.level.stages[stageIndex].start))
-                {
-                    stageIndex--;
-                    enteredStageFromStart = false;
-                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
-                }
+                    foreach (Platform f in loader.level.stages[stageIndex].platforms)
+                    {
+                        f.Update(gameTime);
+                        f.updatePosition();
+                    }
 
-                // check gentleman has fallen somewhere he shouldnt have
-                if (checkOpposingBoundaries(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex].end))
-                {
-                    theGentleman.health -= 10;
-                    if (enteredStageFromStart)
-                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
-                    else
+                    theGentleman.handleInput(gameTime); // input
+
+                    foreach (Character c in loader.level.stages[stageIndex].characters)
+                    {
+                        c.Update(gameTime);
+                    }
+
+                    insanity += 0.02f;
+                    hud.updateInsanity(insanity);
+                    hud.Update(gameTime);
+
+                    // gentleman physics
+                    physics.UpdateGentlemanPhysics(gameTime, theGentleman);
+
+                    // non-gentleman character physics
+                    physics.Update(gameTime, loader.level.stages[stageIndex].characters);
+
+                    // collision for gentleman against static sprites
+                    RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
+
+                    // collision for non-gentleman characters (doesn't check for key and doors)
+                    RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
+
+                    // check gentleman has past the end stage boundary
+                    if (checkStageBoundary(loader.level.stages[stageIndex].end))
+                    {
+                        stageIndex++;
+                        if (stageIndex < loader.level.stages.Length)
+                        {
+                            enteredStageFromStart = true;
+                            // slide background
+                            loader.level.stages[stageIndex].background.slideIn(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex - 1].background);
+                            // fade in lights
+                            foreach (LightEffect le in loader.level.stages[stageIndex].lights)
+                                le.opacity = 0.0f;
+                            // put gentleman in start position
+                            theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                            physics.resetTime(gameTime);
+                        }
+                    }
+
+                    // check gentleman has past the start stage boundary
+                    if (checkStageBoundary(loader.level.stages[stageIndex].start))
+                    {
+                        stageIndex--;
+                        enteredStageFromStart = false;
+                        // slide background
+                        loader.level.stages[stageIndex].background.slideIn(loader.level.stages[stageIndex].end, loader.level.stages[stageIndex + 1].background);
+                        // fade in lights
+                        foreach (LightEffect le in loader.level.stages[stageIndex].lights)
+                            le.opacity = 0.0f;
+                        // put gentleman in end position
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
-                }
+                    }
 
-                // check for key
-                if (gotKey)
-                    if (stageIndex == loader.level.stageWithDoor)
-                        loader.level.stages[stageIndex].door.setOpen(true);
+                    // fade in lights
+                    foreach (LightEffect le in loader.level.stages[stageIndex].lights)
+                    {
+                        if (le.opacity < 1.0f)
+                            le.opacity += 0.01f;
+                        else
+                            le.opacity = 1.0f;
+                    }
+
+                    // check gentleman has fallen somewhere he shouldnt have
+                    if (checkOpposingBoundaries(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex].end))
+                    {
+                        theGentleman.health -= 10;
+                        if (enteredStageFromStart)
+                            theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                        else
+                            theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
+                    }
+
+                    // check for key
+                    if (gotKey)
+                        if (stageIndex == loader.level.stageWithDoor)
+                            loader.level.stages[stageIndex].door.setOpen(true);
+                }
 
                 base.Update(gameTime);
             }
@@ -409,6 +446,11 @@ namespace KeysToInsanity
                         foreach (BasicSprite st in s.statics)
                         {
                             st.draw(spriteBatch);
+                        }
+
+                        foreach (AnimatedSprite ast in s.animatedStatics)
+                        {
+                            ast.draw(spriteBatch);
                         }
 
                         foreach (BasicSprite pl in s.platforms)
