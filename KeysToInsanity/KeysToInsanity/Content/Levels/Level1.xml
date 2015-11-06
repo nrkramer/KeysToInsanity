@@ -12,7 +12,7 @@
       <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" />
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" />
-      <Checkpoint x="500" y="f-105" />
+      <Checkpoint x="500" y="f-105" /> 
       <End x="f-60" y="f-60" boundary="right" />
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
