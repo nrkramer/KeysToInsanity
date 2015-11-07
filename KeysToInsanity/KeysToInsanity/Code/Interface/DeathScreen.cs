@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace KeysToInsanity.Code
         private Vector2 restartCPButtonPosition;
         private Vector2 restartLButtonPosition;
         private Vector2 exitToMenuPosition;
+
+        //where the mouse is so you can click the button
+        MouseState mouseState;
+        MouseState previousMouseState;
+
 
     }
 }

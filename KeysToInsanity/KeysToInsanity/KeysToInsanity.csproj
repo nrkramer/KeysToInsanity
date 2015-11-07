@@ -185,6 +185,7 @@
     <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
     <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
     <Content Include="bin\Windows\Debug\SharpDX.xml" />
+    <Content Include="Content\Death_Screen_Text.png" />
     <Content Include="Content\Shaders\DefaultShader.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
