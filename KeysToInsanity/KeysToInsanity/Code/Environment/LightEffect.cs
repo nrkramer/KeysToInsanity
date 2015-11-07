@@ -9,7 +9,8 @@ namespace KeysToInsanity.Code.Environment
 {
     class LightEffect : BasicSprite
     {
-        Color color = Color.White;
+        public Color color = Color.White;
+        public float opacity = 1.0f;
 
         public LightEffect(Game game, string effect, Color color) : base(game, effect, false)
         {
@@ -19,7 +20,7 @@ namespace KeysToInsanity.Code.Environment
         public override void draw(SpriteBatch s)
         {
             if ((spriteTex != null) && !hidden)
-                s.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), color);
+                s.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), color * opacity);
         }
     }
 }

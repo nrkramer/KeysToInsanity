@@ -19,6 +19,8 @@ namespace KeysToInsanity.Code
             get { return _health; }
         }
 
+        public bool inAir = false;
+
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
             gd = game.GraphicsDevice;
@@ -38,28 +40,35 @@ namespace KeysToInsanity.Code
             float xVelocity = velocity.getX();
             float yVelocity = velocity.getY();
 
+            //allows the game to know when to apply gravity
+            if (input.spaceDownOnce() && (jumps > 0))
+            {
+                inAir = true;
+                KeysToInsanity.physics.resetTime(time);
+                yVelocity = -10.0f;
+                jumps -= 1;
+            }
+
             if (input.rightDown(input.kb))
             {
                 xVelocity = 5.0f;
-                updateWithAnimation(time, 1);
+                if (inAir)
+                    updateWithAnimation(time, 4);
+                else
+                    updateWithAnimation(time, 1);
             }
             else if (input.leftDown(input.kb))
             {
                 xVelocity = -5.0f;
-                updateWithAnimation(time, 2);
+                if (inAir)
+                    updateWithAnimation(time, 3);
+                else
+                    updateWithAnimation(time, 2);
             }
             else
             {
                 xVelocity = 0.0f;
                 updateWithAnimation(time, 0);
-            }
-
-            //allows the game to know when to apply gravity
-            if (input.spaceDownOnce() && (jumps > 0))
-            {
-                KeysToInsanity.physics.resetTime(time);
-                yVelocity = -10.0f;
-                jumps -= 1;
             }
 
             velocity = Velocity.FromCoordinates(xVelocity, yVelocity);

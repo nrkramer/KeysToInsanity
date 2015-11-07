@@ -14,8 +14,8 @@ namespace KeysToInsanity.Code
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * (frameTime - jumpTime);
 
-            if (downVel >= 9.8f) // terminal velocity
-                downVel = 9.8f;
+            if (downVel >= 1.0f) // terminal velocity
+                downVel = 0.5f;
 
             sprite.velocity.setY(sprite.velocity.getY() + downVel);
         }

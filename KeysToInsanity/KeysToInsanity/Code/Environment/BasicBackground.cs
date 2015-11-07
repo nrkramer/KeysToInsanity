@@ -9,81 +9,89 @@ using System.Timers;
 namespace KeysToInsanity.Code
 {
     // Only difference between this class and BasicSprite is that this will always fill the screen
+    // Now it allows sliding. Soon to allow fading as well.
     class BasicBackground : BasicSprite
     {
-        public enum SLIDE_DIRECTION
-        {
-            NO_SLIDE = 0,
-            SLIDE_LEFT = 1,
-            SLIDE_RIGHT = 2,
-            SLIDE_UP = 3,
-            SLIDE_DOWN = 4
-        };
+        private KeysToInsanity.Boundary sliding = KeysToInsanity.Boundary.None;
+        private Texture2D previousBackgroundTexture;
 
-        private SLIDE_DIRECTION sliding = SLIDE_DIRECTION.NO_SLIDE;
-        private Timer slide_timer = new Timer();
+        public bool slide = false;
 
         public BasicBackground(Game game, string file) : base(game, file, false)
         {
             spriteSize = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
-            slide_timer.Interval = 5; // Adjust this for faster animation updates
         }
 
         // Load sprite from existing texture
-        public BasicBackground(Texture2D tex) : base(tex, false)
-        {
-            slide_timer.Elapsed += new ElapsedEventHandler(slide_timer_event);
-            slide_timer.Interval = 5; // Adjust this for faster animation updates
-        }
+        public BasicBackground(Texture2D tex) : base(tex, false) { }
 
-        public void slide(SLIDE_DIRECTION direction)
+        // slides this background in, drawing the previous one behind it
+        public void slideIn(KeysToInsanity.Boundary direction, BasicBackground previousBackground)
         {
-            if (sliding == SLIDE_DIRECTION.NO_SLIDE)
+            if (sliding == KeysToInsanity.Boundary.None)
             {
+                previousBackgroundTexture = previousBackground.spriteTex;
                 sliding = direction;
-                // create a timer to update the position and draw the next background chunk
-                slide_timer.Start();
+                switch(sliding)
+                {
+                    case KeysToInsanity.Boundary.Left:
+                        spritePos = new Vector2(spritePos.X + spriteSize.X, spritePos.Y);
+                        break;
+                    case KeysToInsanity.Boundary.Right:
+                        spritePos = new Vector2(spritePos.X - spriteSize.X, spritePos.Y);
+                        break;
+                    case KeysToInsanity.Boundary.Top:
+                        spritePos = new Vector2(spritePos.X, spritePos.Y + spriteSize.Y);
+                        break;
+                    case KeysToInsanity.Boundary.Bottom:
+                        spritePos = new Vector2(spritePos.X, spritePos.Y - spriteSize.Y);
+                        break;
+                    default:
+                        break;
+                }
+
+                slide = true;
             }
         }
 
-        private void slide_timer_event(object source, ElapsedEventArgs e)
+        public void Update(GameTime time)
         {
-            switch(sliding)
+            int step = 20;
+            switch (sliding)
             {
-                case SLIDE_DIRECTION.SLIDE_LEFT:
-                    spritePos = new Vector2(spritePos.X - 15, spritePos.Y); // adjust the value here for animation speed
-                    if (spritePos.X < -spriteSize.X)
+                case KeysToInsanity.Boundary.Left:
+                    spritePos = new Vector2(spritePos.X - step, spritePos.Y); // adjust the value here for animation speed
+                    if (spritePos.X <= 0)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
-                        slide_timer.Stop();
+                        sliding = KeysToInsanity.Boundary.None;
+                        slide = false;
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    spritePos = new Vector2(spritePos.X + 15, spritePos.Y); // adjust the value here for animation speed
-                    if (spritePos.X > spriteSize.X)
+                case KeysToInsanity.Boundary.Right:
+                    spritePos = new Vector2(spritePos.X + step, spritePos.Y); // adjust the value here for animation speed
+                    if (spritePos.X >= 0)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
-                        slide_timer.Stop();
+                        sliding = KeysToInsanity.Boundary.None;
+                        slide = false;
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_UP:
-                    spritePos = new Vector2(spritePos.X, spritePos.Y - 10); // adjust the value here for animation speed
-                    if (spritePos.Y < -spriteSize.Y)
+                case KeysToInsanity.Boundary.Top:
+                    spritePos = new Vector2(spritePos.X, spritePos.Y - step); // adjust the value here for animation speed
+                    if (spritePos.Y <= 0)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
-                        slide_timer.Stop();
+                        sliding = KeysToInsanity.Boundary.None;
+                        slide = false;
                         spritePos = new Vector2(0, 0);
                     }
                     break;
-                case SLIDE_DIRECTION.SLIDE_DOWN:
-                    spritePos = new Vector2(spritePos.X, spritePos.Y + 10); // adjust the value here for animation speed
-                    if (spritePos.Y > spriteSize.Y)
+                case KeysToInsanity.Boundary.Bottom:
+                    spritePos = new Vector2(spritePos.X, spritePos.Y + step); // adjust the value here for animation speed
+                    if (spritePos.Y >= 0)
                     {
-                        sliding = SLIDE_DIRECTION.NO_SLIDE;
-                        slide_timer.Stop();
+                        sliding = KeysToInsanity.Boundary.None;
+                        slide = false;
                         spritePos = new Vector2(0, 0);
                     }
                     break;
@@ -102,17 +110,17 @@ namespace KeysToInsanity.Code
             // draw the next chunk of background
             switch(sliding)
             {
-                case SLIDE_DIRECTION.SLIDE_DOWN:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y - spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Bottom:
+                    drawBackground(s, previousBackgroundTexture, new Rectangle(new Vector2(spritePos.X, spritePos.Y + spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_LEFT:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X + spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Left:
+                    drawBackground(s, previousBackgroundTexture, new Rectangle(new Vector2(spritePos.X - spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_RIGHT:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X - spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Right:
+                    drawBackground(s, previousBackgroundTexture, new Rectangle(new Vector2(spritePos.X + spriteSize.X, spritePos.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
-                case SLIDE_DIRECTION.SLIDE_UP:
-                    drawBackground(s, spriteTex, new Rectangle(new Vector2(spritePos.X, spritePos.Y + spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
+                case KeysToInsanity.Boundary.Top:
+                    drawBackground(s, previousBackgroundTexture, new Rectangle(new Vector2(spritePos.X, spritePos.Y - spriteSize.Y).ToPoint(), spriteSize), new Color(1.0f, 1.0f, 1.0f));
                     break;
                 default:
                     break;
