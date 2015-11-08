@@ -1,5 +1,32 @@
-﻿<!--
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <XML>
-<Level name = "Level 2" stages="2">
-  <Stage x="0" y="0" w="f" h="f">
-  !>
+  <Level name = "Level 2" stages="2">
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="c" y="c+300" boundary="none"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="bed" x="c-20" y="f-40" w="50" h="30" collide ="false"/>
+      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="601" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <Background type="sewer_wall"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-75" boundary="left" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="150" w="30" h="f" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="platform" x="0" y="f-10" w="f" h="40" collide ="true"/>
+      <Background type="sewer_wall"/>
+      <Key x="0" y="0"/>
+      <End x="f-60" y="60" boundary="right"/>
+    </Stage>
+  </Level>
+</XML>

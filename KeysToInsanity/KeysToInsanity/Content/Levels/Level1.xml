@@ -3,17 +3,19 @@
   <Level name = "Level 1" stages="10">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="300" boundary="none" />
-      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" />
-      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true" />
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" /> 
-      <Background type="BackgroundSconce" />
-      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" />
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" />
-      <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" />
-      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" />
-      <Checkpoint x="500" y="f-105" /> 
-      <End x="f-60" y="f-60" boundary="right" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
+      <Background type="BackgroundSconce"/>
+      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <Checkpoint x="500" y="f-105"/> 
+      <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left" />
@@ -92,19 +94,28 @@
       <Background type="padded_background"/>
      <End boundary ="bottom"/>
      </Stage>
-     <Stage x="0" y="0" w="f" h="f">
+    <Stage x="0" y="0" w="f" h="f">
       <Start x="20" y="0" boundary="top" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="100" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="0" y="f-10" w="c+150" h="40" collide ="true"/>
+      <Static type ="spikes-H" x="10" y="f-65" w="100" h="55" collide ="true"/>
+      <Static type ="spikes-H" x="110" y="f-65" w="100" h="55" collide ="true"/>
+      <Static type ="spikes-H" x="210" y="f-65" w="100" h="55" collide ="true"/>
+      <Static type ="spikes-H" x="310" y="f-65" w="100" h="55" collide ="true"/>
+      <Static type ="spikes-H" x="410" y="f-65" w="100" h="55" collide ="true"/>
       <Static type ="right_wall" x="c+150" y="210" w="20" h="f" collide="true"/>
+      <Static type ="Vspikes-R" x="495" y="210" w="55" h="100" collide="true"/>
+      <Static type ="Vspikes-R" x="495" y="310" w="55" h="100" collide="true"/>
+      <Static type ="Vspikes-R" x="495" y="410" w="55" h="100" collide="true"/>
+      <Static type ="Vspikes-R" x="495" y="510" w="55" h="80" collide="true"/>
       <Static type ="platform" x="20" y="c+40" w="60" h="25" collide="true"/>
       <Platform x="c-150" y="c+150" w="60" h="25" distance ="75" speed ="2" direction="true"/>
-      <Platform x="c" y="c" w="60" h="25" distance ="75" speed ="3" direction="true"/>
-      <Platform x="c+50" y="c-100" w="60" h="25" distance ="75" speed ="2" direction="true"/>
+      <Platform x="c-20" y="c" w="60" h="25" distance ="75" speed ="3" direction="true"/>
+      <Platform x="c+50" y="c-120" w="60" h="25" distance ="75" speed ="2" direction="true"/>
       <Background type="padded_background"/>
-    <End boundary ="bottom"/>
+      <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top"/>
@@ -127,6 +138,6 @@
       <Door x="f-10" y="f-100" w="10" h="100" />
       <Background type="padded_background" />
       <End x="f-60" y="f-60" boundary ="right"/>
-    </Stage>-->
+    </Stage>
   </Level>
 </XML>
