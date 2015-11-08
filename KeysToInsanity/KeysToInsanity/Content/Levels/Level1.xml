@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <XML>
-  <Level name = "Level 1" stages="9">
+  <Level name = "Level 1" stages="10">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="300" boundary="none" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" />
@@ -17,11 +17,12 @@
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left" />
-      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true" />
-      <Static type ="floor" x="0" y="f-10" w="c-50" h="40" collide ="true" />
-      <Static type ="floor" x="c+50" y="f-10" w="c+30" h="40" collide ="true" />
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="c-100" h="40" collide ="true"/>
+      <Static type ="platform" x="c-10" y="c+200" w="60" h="25" collide="true"/>
+      <Static type ="floor" x="c+150" y="f-10" w="c+100" h="40" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Background type="padded_background" />
       <End x="f" y="60" boundary="right"/>
     </Stage>
@@ -61,7 +62,21 @@
       <Platform x="f-60" y="c" w="60" h="25" distance ="50" speed ="1" direction="false"/>
       <Platform x="c+180" y="c+95" w="60" h="25" distance ="50" speed ="1" direction="false"/>
     <Background type ="padded_background"/>
-    <End x="f-60" y="f-60" boundary ="right"/>
+    <End x="f-5" y="60" boundary ="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="55" boundary="left"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="floor" x="0" y="115" w="c+100" h="f" collide ="true"/>
+      <Static type ="floor" x="f-10" y="f-10" w="f" h="10" collide ="true"/>
+      <Platform x="115" y="100" w="60" h="25" distance ="100" speed ="2" direction="false"/>
+      <Platform x="c-75" y="100" w="60" h="25" distance ="100" speed ="3" direction="false"/>
+      <Platform x="c+200" y="250" w="60" h="25" distance ="75" speed ="1" direction="true"/>
+      <Platform x="c+200" y="350" w="60" h="25" distance ="75" speed ="2" direction="true"/>
+      <Platform x="c+200" y="550" w="60" h="25" distance ="75" speed ="3" direction="true"/>
+      <Background type="padded_background"/>
+    <End x="f" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left"/>
@@ -75,21 +90,28 @@
       <Static type ="platform" x="c-80" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+60" y="c-100" w="60" h="25" collide="true"/>
       <Background type="padded_background"/>
-    <End boundary ="bottom"/>
-    </Stage>
-    <Stage x="0" y="0" w="f" h="f">
-      <Start x="c" y="0" boundary="top"/>
-      <Static type ="platform" x="c-75" y="0" w="10" h="f" collide ="true"/>
-      <Static type ="platform" x="c+75" y="0" w="10" h="f" collide="true"/>
+     <End boundary ="bottom"/>
+     </Stage>
+     <Stage x="0" y="0" w="f" h="f">
+      <Start x="20" y="0" boundary="top" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="100" y="0" w="f" h="10" collide="true"/>
+      <Static type ="floor" x="0" y="f-10" w="c+150" h="40" collide ="true"/>
+      <Static type ="right_wall" x="c+150" y="210" w="20" h="f" collide="true"/>
+      <Static type ="platform" x="20" y="c+40" w="60" h="25" collide="true"/>
+      <Platform x="c-150" y="c+150" w="60" h="25" distance ="75" speed ="2" direction="true"/>
+      <Platform x="c" y="c" w="60" h="25" distance ="75" speed ="3" direction="true"/>
+      <Platform x="c+50" y="c-100" w="60" h="25" distance ="75" speed ="2" direction="true"/>
       <Background type="padded_background"/>
     <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top"/>
-      <Static type ="platform" x="c-75" y="0" w="10" h="f" collide ="true"/>
-      <Static type ="platform" x="c+75" y="0" w="10" h="f" collide="true"/>
+      <Static type ="platform" x="0" y="0" w="c-75" h="f" collide ="true"/>
+      <Static type ="platform" x="c+75" y="0" w="f" h="f" collide="true"/>
       <Background type="padded_background"/>
-      <End boundary ="bottom"/>
+    <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
      <Start x="20" y="0" boundary="top" />
