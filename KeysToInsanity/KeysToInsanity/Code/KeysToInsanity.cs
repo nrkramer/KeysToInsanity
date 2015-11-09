@@ -564,6 +564,31 @@ namespace KeysToInsanity
                     Exit();
                 }
             }
+            
+            else if(gameState == GameState.Help)
+            {
+              Rectangle returnR = new Rectangle(690,20,100,20);
+                if(mouseClickR.Intersects(returnR))
+                {
+                    gameState = GameState.Paused;
+                }  
+            }
+            else if(gameState == GameState.About)
+            {
+                Rectangle returnR = new Rectangle(690, 20, 100, 20);
+                if (mouseClickR.Intersects(returnR))
+                {
+                    gameState = GameState.StartMenu;
+                }
+            }
+            else if (gameState == GameState.Credits)
+            {
+                Rectangle returnR = new Rectangle(690, 20, 100, 20);
+                if(mouseClickR.Intersects(returnR))
+                {
+                    gameState = GameState.StartMenu;
+                }
+            }
         }
 
     }
