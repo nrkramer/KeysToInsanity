@@ -23,6 +23,8 @@ namespace KeysToInsanity
         public Velocity velocity;
         public bool collidable = false;
         public bool hidden = false;
+        public Color color = Color.White;
+        public float opacity = 1.0f;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
         public event KeysToInsanity.CollisionEventHandler collisionCallback;
@@ -118,7 +120,7 @@ namespace KeysToInsanity
             Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
             if ((spriteTex != null) && !hidden)
             {
-                s.Draw(spriteTex, spriteBox, null, Color.White);
+                s.Draw(spriteTex, spriteBox, null, color * opacity);
             }
             if (KeysToInsanity.DRAW_BOUNDING_BOXES)
                 drawBorder(s, spriteBox, 2, borderColor);

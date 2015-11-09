@@ -9,9 +9,6 @@ namespace KeysToInsanity.Code.Environment
 {
     class LightEffect : BasicSprite
     {
-        public Color color = Color.White;
-        public float opacity = 1.0f;
-
         public LightEffect(Game game, string effect, Color color) : base(game, effect, false)
         {
             this.color = color;

@@ -8,9 +8,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Interface
 {
     class StartScreen : BasicSprite
-    {
-        private new RenderTarget2D spriteTex;
-        private GraphicsDevice gd;
+    {     
         private SpriteContainer startSprites = new SpriteContainer();
 
         public StartScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
@@ -23,7 +21,7 @@ namespace KeysToInsanity.Code.Interface
             BasicSprite start = new BasicSprite(game, "start", false);
             start.spritePos = new Vector2(350, 240);
 
-            BasicSprite about = new BasicSprite(game, "about", false);
+            BasicSprite about = new BasicSprite(game, "aboutButton", false);
             about.spritePos = new Vector2(350, 290);
 
             BasicSprite credits = new BasicSprite(game, "creditsButton", false);
@@ -39,21 +37,12 @@ namespace KeysToInsanity.Code.Interface
             exit.addTo(startSprites);
         }
 
-        public void drawStart(SpriteBatch spriteBatch)
+        public void drawMenu(SpriteBatch spriteBatch)
         {
-            gd.SetRenderTarget(spriteTex);
-            gd.Clear(Color.Transparent);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-
             foreach (BasicSprite s in startSprites)
             {
                 s.draw(spriteBatch);
-            }
-
-            spriteBatch.End();
-
-            gd.SetRenderTarget(null);
+            }        
         }
 
         public override void draw(SpriteBatch spriteBatch)

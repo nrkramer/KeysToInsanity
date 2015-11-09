@@ -12,7 +12,8 @@ namespace KeysToInsanity.Code
         //options for what will be on the death screen
         private BasicSprite restartCP;
         private BasicSprite restartL;
-        private BasicSprite exitToMenu;
+        private BasicSprite ReturnToStart;
+
 
         //Used for position of the death screen        
         private Vector2 restartCPButtonPosition;

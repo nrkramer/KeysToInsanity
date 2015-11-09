@@ -20,6 +20,7 @@ namespace KeysToInsanity.Code.Base
         public Door door;
         public SpriteContainer characters = new SpriteContainer();
         public SpriteContainer lights = new SpriteContainer();
+        public SpriteContainer fadeIns = new SpriteContainer();
 
         public KeysToInsanity.Boundary start;
         public int startX = 0;
@@ -65,6 +66,11 @@ namespace KeysToInsanity.Code.Base
         {
             s.addTo(statics);
             s.addTo(collidables);
+        }
+
+        public void addFadeInObject(BasicSprite s)
+        {
+            s.addTo(fadeIns);
         }
 
         public void addAnimatedStatic(AnimatedSprite a)
