@@ -176,7 +176,7 @@ namespace KeysToInsanity
 
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level2.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
