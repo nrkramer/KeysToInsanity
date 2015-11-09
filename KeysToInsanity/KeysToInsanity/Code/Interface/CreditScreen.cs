@@ -9,8 +9,6 @@ namespace KeysToInsanity.Code.Interface
 {
     class CreditScreen : BasicSprite
     {
-        private new RenderTarget2D spriteTex;
-        private GraphicsDevice gd;
         private SpriteContainer creditSprites = new SpriteContainer();
 
         public CreditScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
@@ -27,21 +25,15 @@ namespace KeysToInsanity.Code.Interface
             returnButton.addTo(creditSprites);
         }
 
-        public void drawStart(SpriteBatch spriteBatch)
+        public void drawMenu(SpriteBatch spriteBatch)
         {
-            gd.SetRenderTarget(spriteTex);
-            gd.Clear(Color.Transparent);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             foreach (BasicSprite s in creditSprites)
             {
                 s.draw(spriteBatch);
             }
 
-            spriteBatch.End();
 
-            gd.SetRenderTarget(null);
         }
 
         public override void draw(SpriteBatch spriteBatch)

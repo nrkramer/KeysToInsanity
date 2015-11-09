@@ -8,9 +8,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Interface
 {
     class AboutScreen : BasicSprite
-    {
-        private new RenderTarget2D spriteTex;
-        private GraphicsDevice gd;
+    {       
         private SpriteContainer aboutSprites = new SpriteContainer();
 
         public AboutScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
@@ -29,21 +27,13 @@ namespace KeysToInsanity.Code.Interface
             
         }
 
-        public void drawAbout(SpriteBatch spriteBatch)
+        public void drawMenu(SpriteBatch spriteBatch)
         {
-            gd.SetRenderTarget(spriteTex);
-            gd.Clear(Color.Transparent);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             foreach (BasicSprite s in aboutSprites)
             {
                 s.draw(spriteBatch);
             }
-
-            spriteBatch.End();
-
-            gd.SetRenderTarget(null);
         }
 
         public override void draw(SpriteBatch spriteBatch)

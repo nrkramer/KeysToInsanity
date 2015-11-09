@@ -25,9 +25,9 @@ namespace KeysToInsanity
             StartMenu,
             Playing,
             Paused,
-            Instruction,
+            About,
             Help,
-            credits
+            Credits
         }
 
         public enum Boundary
@@ -54,6 +54,10 @@ namespace KeysToInsanity
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
         public static HUD hud;
+        private StartScreen startMenu;
+        private PauseScreen pauseMenu;
+        private CreditScreen creditScreen;
+        private AboutScreen aboutScreen;
 
         private BasicInput input; // Our input handler
 
@@ -119,7 +123,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -136,6 +140,11 @@ namespace KeysToInsanity
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //Loading the games menu buttons for menu screen
+            startMenu = new StartScreen(this);
+            pauseMenu = new PauseScreen(this);
+            aboutScreen = new AboutScreen(this);
+            creditScreen = new CreditScreen(this);
+
             logo = new BasicSprite(this,"logo",false);
             logo.spritePos = new Vector2(300,20);
             startButton = new BasicSprite(this,"start",false);
@@ -164,6 +173,7 @@ namespace KeysToInsanity
 
             // Heads up display (HUD)
             hud = new HUD(this);
+            
 
             // Load level
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
@@ -247,6 +257,7 @@ namespace KeysToInsanity
             }
             if (gameState == GameState.Paused)
             {
+               
                 if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
@@ -423,16 +434,12 @@ namespace KeysToInsanity
             //Checks if gameState is at StartMenu, draws the start menu
             if (gameState == GameState.StartMenu)
             {
-                logo.draw(spriteBatch);
-                startButton.draw(spriteBatch);
-                exitButton.draw(spriteBatch);
+                startMenu.drawMenu(spriteBatch);
             }
 
             if (gameState == GameState.Paused)
             {
-                logo.draw(spriteBatch);
-                resume.draw(spriteBatch);
-                exitButton.draw(spriteBatch);
+                pauseMenu.drawMenu(spriteBatch);
             }
             //checks if the gameState is at playing, draws the game
             if (gameState == GameState.Playing)
@@ -480,6 +487,18 @@ namespace KeysToInsanity
                     }
                 }
             }
+            if(gameState == GameState.About)
+            {
+                aboutScreen.drawMenu(spriteBatch);
+            }
+            if(gameState == GameState.Help)
+            {
+                aboutScreen.drawMenu(spriteBatch);
+            }
+            if(gameState == GameState.Credits)
+            {
+                creditScreen.drawMenu(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -498,38 +517,49 @@ namespace KeysToInsanity
             //Checks the start menu
             if (gameState == GameState.StartMenu)
             {
-                Rectangle startButtonR = new Rectangle((int)startButton.getSpriteXPos(),
-                    (int)startButton.getSpriteYPos(),100, 20);
-                Console.WriteLine(startButtonR);
-                Rectangle exitButtonR = new Rectangle((int)exitButton.getSpriteXPos(),
-                    (int)exitButton.getSpriteXPos(), 100, 20);
+                //Rectangle for start button
+                Rectangle startR = new Rectangle(350,
+                    240,100, 20);                                                                                                                 
+
+                Rectangle aboutR = new Rectangle(350, 290, 100, 20);
+
+                Rectangle creditR = new Rectangle(350, 340, 100, 20);
+
+                Rectangle exitR = new Rectangle(350,
+                    390, 100, 20);
                 //Checking if start button was clicked
-                if (mouseClickR.Intersects(startButtonR))
+                if (mouseClickR.Intersects(startR))
                 {
 
                     gameState = GameState.Playing;
 
 
-                }
-                //Player clicked exit button
-                else if (mouseClickR.Intersects(exitButtonR))
+                }else if(mouseClickR.Intersects(aboutR))
+                {
+                    gameState = GameState.About;
+                }else if (mouseClickR.Intersects(creditR))
+                {
+                    gameState = GameState.Credits;
+                }else if (mouseClickR.Intersects(exitR)) //Player clicked exit button
                 {
                     Exit();
                 }
             }
             else if (gameState == GameState.Paused)
             {
-                Rectangle resumeR = new Rectangle((int)resume.getSpriteXPos(),
-                    (int)resume.getSpriteYPos(), 100, 20);
-                Rectangle exitButtonR = new Rectangle((int)exitButton.getSpriteXPos(),
-                    (int)exitButton.getSpriteYPos(), 100, 20);
+                Rectangle resumeR = new Rectangle(350,
+                    240, 100, 20);
+                Rectangle helpR = new Rectangle(350, 290, 100, 20);
+                Rectangle exitR = new Rectangle(350,340, 100, 20);
+                    
                 //Checking if start button was clicked
                 if (mouseClickR.Intersects(resumeR))
                 {
                     gameState = GameState.Playing;
-                }
-                //Player clicked exit button
-                else if (mouseClickR.Intersects(exitButtonR))
+                }else if(mouseClickR.Intersects(helpR))
+                {
+                    gameState = GameState.Help;
+                }  else if (mouseClickR.Intersects(exitR))//Player clicked exit button
                 {
                     Exit();
                 }
