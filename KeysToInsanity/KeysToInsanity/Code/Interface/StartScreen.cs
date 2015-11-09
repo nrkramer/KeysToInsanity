@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code.Interface
             BasicSprite start = new BasicSprite(game, "start", false);
             start.spritePos = new Vector2(350, 240);
 
-            BasicSprite about = new BasicSprite(game, "about", false);
+            BasicSprite about = new BasicSprite(game, "aboutButton", false);
             about.spritePos = new Vector2(350, 290);
 
             BasicSprite credits = new BasicSprite(game, "creditsButton", false);
