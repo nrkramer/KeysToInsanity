@@ -92,7 +92,7 @@ namespace KeysToInsanity.Code
             s.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
-            s.Draw(spriteTex, Vector2.Zero, currentAnimation.CurrentRectangle, Color.White); // add source rectangle
+            s.Draw(spriteTex, Vector2.Zero, currentAnimation.CurrentRectangle, new Color(1.0f, 1.0f, 1.0f)); // add source rectangle
 
             s.End();
             //spriteTex = renderTarget;
@@ -103,7 +103,7 @@ namespace KeysToInsanity.Code
         {
             // Custom Gentleman drawing code.
             //effect.CurrentTechnique.Passes[0].Apply();
-            s.Draw(renderTarget, new Rectangle(spritePos.ToPoint(), spriteSize), color * opacity);
+            s.Draw(renderTarget, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
 
             if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
                 drawMovementVector(s);
