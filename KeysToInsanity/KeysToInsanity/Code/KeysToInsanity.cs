@@ -96,7 +96,7 @@ namespace KeysToInsanity
         public KeysToInsanity()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferWidth = 800;    // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
            if (!graphics.IsFullScreen)
             {
@@ -172,7 +172,7 @@ namespace KeysToInsanity
             input = new BasicInput(this, theGentleman);
 
             testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            //testSound.play(true);
+            testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
 
@@ -309,9 +309,9 @@ namespace KeysToInsanity
                             enteredStageFromStart = true;
                             // slide background
                             loader.level.stages[stageIndex].background.slideIn(loader.level.stages[stageIndex].start, loader.level.stages[stageIndex - 1].background);
-                            // fade in lights
-                            foreach (LightEffect le in loader.level.stages[stageIndex].lights)
-                                le.opacity = 0.0f;
+                            // fade in stuff
+                            foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
+                                s.opacity = 0.0f;
                             // put gentleman in start position
                             theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                             physics.resetTime(gameTime);
@@ -325,20 +325,20 @@ namespace KeysToInsanity
                         enteredStageFromStart = false;
                         // slide background
                         loader.level.stages[stageIndex].background.slideIn(loader.level.stages[stageIndex].end, loader.level.stages[stageIndex + 1].background);
-                        // fade in lights
-                        foreach (LightEffect le in loader.level.stages[stageIndex].lights)
-                            le.opacity = 0.0f;
+                        // fade in stuff
+                        foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
+                            s.opacity = 0.0f;
                         // put gentleman in end position
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
                     }
 
                     // fade in lights
-                    foreach (LightEffect le in loader.level.stages[stageIndex].lights)
+                    foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
                     {
-                        if (le.opacity < 1.0f)
-                            le.opacity += 0.01f;
+                        if (s.opacity < 1.0f)
+                            s.opacity += 0.01f;
                         else
-                            le.opacity = 1.0f;
+                            s.opacity = 1.0f;
                     }
 
                     // check gentleman has fallen somewhere he shouldnt have

@@ -59,7 +59,7 @@ namespace KeysToInsanity.Code
             if (spriteTex != null)
             {
                 Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
-                s.Draw(spriteTex, spritePos, currentAnimation.CurrentRectangle, new Color(1.0f, 1.0f, 1.0f)); // add source rectangle
+                s.Draw(spriteTex, spritePos, currentAnimation.CurrentRectangle, color * opacity);
                 if (KeysToInsanity.DRAW_BOUNDING_BOXES)
                     drawBorder(s, spriteBox, 2, Color.Red);
             }

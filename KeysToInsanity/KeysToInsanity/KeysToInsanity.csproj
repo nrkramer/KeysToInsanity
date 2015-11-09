@@ -101,6 +101,7 @@
     <Compile Include="Code\Interface\HUD.cs" />
     <Compile Include="Code\Interface\Interface.cs" />
     <Compile Include="Code\Interface\Bar.cs" />
+    <Compile Include="Code\Interface\LevelSwitcher.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />

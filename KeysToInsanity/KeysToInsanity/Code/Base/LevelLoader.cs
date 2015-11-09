@@ -93,7 +93,12 @@ namespace KeysToInsanity.Code.Base
                             s.addStatic(ParseStatic(r));
                             break;
                         case "AnimatedStatic":
-                            s.addAnimatedStatic(ParseAnimatedStatic(r));
+                            AnimatedSprite asp = ParseAnimatedStatic(r);
+                            s.addAnimatedStatic(asp);
+                            try {
+                                if (bool.Parse(r.GetAttribute("fadein")))
+                                    s.addFadeInObject(asp);
+                            } catch (Exception e) { }
                             break;
                         case "Background":
                             s.setBackground(ParseBackground(r));
@@ -111,7 +116,12 @@ namespace KeysToInsanity.Code.Base
                             s.addPlatform(ParsePlatform(r));
                             break;
                         case "LightEffect":
-                            s.addLight(ParseLightEffect(r));
+                            LightEffect le = ParseLightEffect(r);
+                            s.addLight(le);
+                            try {
+                                if (bool.Parse(r.GetAttribute("fadein")))
+                                    s.addFadeInObject(le);
+                            } catch (Exception e ) { }
                             break;
                         case "End":
                             s.setEnd(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
