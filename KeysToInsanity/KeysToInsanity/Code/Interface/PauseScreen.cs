@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,12 +9,11 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    
+
     class PauseScreen : BasicSprite
     {
-    private new RenderTarget2D spriteTex;
-    private GraphicsDevice gd;
-    private SpriteContainer pauseSprites = new SpriteContainer();
+
+        private SpriteContainer pauseSprites = new SpriteContainer();
 
         public PauseScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
                 game.GraphicsDevice.PresentationParameters.BackBufferWidth,
@@ -21,7 +22,7 @@ namespace KeysToInsanity.Code.Interface
             BasicSprite logo = new BasicSprite(game, "logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite resume = new BasicSprite(game, "resume",false);
+            BasicSprite resume = new BasicSprite(game, "resume", false);
             resume.spritePos = new Vector2(350, 240);
 
             BasicSprite help = new BasicSprite(game, "help", false);
@@ -38,21 +39,14 @@ namespace KeysToInsanity.Code.Interface
         }
 
         // gd.SetRenderTarget(null) clears the back buffer
-        public void drawHUD(SpriteBatch spriteBatch)
+        public void drawMenu(SpriteBatch spriteBatch)
         {
-            gd.SetRenderTarget(spriteTex);
-            gd.Clear(Color.Transparent);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             foreach (BasicSprite s in pauseSprites)
             {
                 s.draw(spriteBatch);
             }
 
-            spriteBatch.End();
-
-            gd.SetRenderTarget(null);
         }
 
         public override void draw(SpriteBatch spriteBatch)
