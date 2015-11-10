@@ -26,10 +26,13 @@ namespace KeysToInsanity
             StartMenu,
             ChooseLevel,
             Playing,
+            loading,
             Paused,
             About,
             Help,
-            Credits
+            Credits,
+            Death
+            
         }
 
         public enum Boundary
@@ -60,6 +63,7 @@ namespace KeysToInsanity
         private PauseScreen pauseMenu;
         private CreditScreen creditScreen;
         private AboutScreen aboutScreen;
+        private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
 
         private string[] levelXMLs;
@@ -73,18 +77,6 @@ namespace KeysToInsanity
         private Sound landedOnGround;
 
         //private horizontalPlatform platformH;
-
-        //Used for the menu
-        private BasicSprite startButton;
-        private BasicSprite exitButton;
-        private BasicSprite logo;
-        private BasicSprite resume;
-
-        //Used for position of the menu        
-        private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;
-        private Vector2 logoPosition;
-        private Vector2 resumePosition;
 
         //Setting constants for the menu items
         MouseState mouseState;
@@ -129,7 +121,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.Playing;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
@@ -151,16 +143,7 @@ namespace KeysToInsanity
             pauseMenu = new PauseScreen(this);
             aboutScreen = new AboutScreen(this);
             creditScreen = new CreditScreen(this);
-            chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
-
-            logo = new BasicSprite(this,"logo",false);
-            logo.spritePos = new Vector2(300,20);
-            startButton = new BasicSprite(this,"start",false);
-            startButton.spritePos = new Vector2(350, 240);
-            exitButton = new BasicSprite(this,"exit",false);
-            exitButton.spritePos = new Vector2(350, 290);
-            resume = new BasicSprite(this,"resume",false);
-            resume.spritePos = new Vector2(350, 240);
+            yourdead = new DeathScreen(this);
 
             //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
             if (DRAW_BOUNDING_BOXES)
@@ -188,8 +171,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            testSound.play(true);
+            //testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            //testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
 
@@ -401,8 +384,8 @@ namespace KeysToInsanity
                 }
             }
 
-            base.Update(gameTime);
-        }
+                base.Update(gameTime);
+            }
 
         // magic. do not change
         public bool checkOpposingBoundaries(Boundary b1, Boundary b2)
@@ -528,6 +511,10 @@ namespace KeysToInsanity
             {
                 chooseLevelMenu.draw(spriteBatch);
             }
+            if(gameState == GameState.Death)
+            {
+                yourdead.drawMenu(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -594,28 +581,49 @@ namespace KeysToInsanity
                 }
             }
             
-            else if(gameState == GameState.Help)
+            else if(gameState == GameState.Help || gameState == GameState.About)
             {
               Rectangle returnR = new Rectangle(690,20,100,20);
-                if(mouseClickR.Intersects(returnR))
+                if(mouseClickR.Intersects(returnR) && gameState == GameState.Help)
                 {
                     gameState = GameState.Paused;
-                }  
-            }
-            else if(gameState == GameState.About)
-            {
-                Rectangle returnR = new Rectangle(690, 20, 100, 20);
-                if (mouseClickR.Intersects(returnR))
+                } else if (mouseClickR.Intersects(returnR)&& gameState == GameState.About)
                 {
                     gameState = GameState.StartMenu;
-                }
+                }  
             }
+       
             else if (gameState == GameState.Credits)
             {
                 Rectangle returnR = new Rectangle(690, 20, 100, 20);
                 if(mouseClickR.Intersects(returnR))
                 {
                     gameState = GameState.StartMenu;
+                }
+            }
+            else if (gameState == GameState.Death)
+            {
+                Rectangle returnStartR = new Rectangle(250, 240, 300, 20);
+                Rectangle restartCPR = new Rectangle(250, 290, 300, 20);
+                Rectangle restartLR = new Rectangle(250, 340, 300, 20);
+                Rectangle chooseLR = new Rectangle(250, 390, 300, 20);
+                Rectangle exitR = new Rectangle(350, 440, 100, 20);
+
+                if (mouseClickR.Intersects(returnStartR))
+                {
+                    gameState = GameState.StartMenu;
+                }else if(mouseClickR.Intersects(restartCPR))
+                {
+
+                }else if(mouseClickR.Intersects(restartLR))
+                {
+
+                }else if (mouseClickR.Intersects(chooseLR))
+                {
+
+                }else if(mouseClickR.Intersects(exitR))
+                {
+                    Exit();
                 }
             }
         }
