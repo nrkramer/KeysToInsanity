@@ -121,7 +121,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
             //Get the mouse state
             mouseState = Mouse.GetState();
