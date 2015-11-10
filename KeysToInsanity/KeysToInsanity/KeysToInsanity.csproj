@@ -382,9 +382,15 @@
     <Content Include="Content\TopHat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\VsingleSpike-H.png" />
-    <Content Include="Content\VsingleSpike-L.png" />
-    <Content Include="Content\VsingleSpike-R.png" />
+    <Content Include="Content\VsingleSpike-H.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\VsingleSpike-L.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\VsingleSpike-R.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Vspikes-L.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
