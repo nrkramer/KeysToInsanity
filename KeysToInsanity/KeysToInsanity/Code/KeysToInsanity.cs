@@ -143,6 +143,7 @@ namespace KeysToInsanity
             pauseMenu = new PauseScreen(this);
             aboutScreen = new AboutScreen(this);
             creditScreen = new CreditScreen(this);
+            chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
             yourdead = new DeathScreen(this);
 
             //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
@@ -166,7 +167,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level2.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
@@ -373,6 +374,7 @@ namespace KeysToInsanity
                 int i = chooseLevelMenu.Update(gameTime, mouseState);
                 if (i >= 0)
                 {
+                    hud.removeKey();
                     loader = new LevelLoader(this, levelXMLs[i], hud);
                     stageIndex = 0;
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
