@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -7,23 +8,56 @@ using System.Text;
 
 namespace KeysToInsanity.Code
 {
-    class DeathScreen
+    class DeathScreen : BasicSprite
     {
-        //options for what will be on the death screen
-        private BasicSprite restartCP;
-        private BasicSprite restartL;
-        private BasicSprite ReturnToStart;
+   
+        
+            private SpriteContainer deathSprites = new SpriteContainer();
 
+            public DeathScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
+                    game.GraphicsDevice.PresentationParameters.BackBufferWidth,
+                    game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+            {
+                BasicSprite  DeathText= new BasicSprite(game, "DeathText", false);
+                DeathText.spritePos = new Vector2(300, 100);
 
-        //Used for position of the death screen        
-        private Vector2 restartCPButtonPosition;
-        private Vector2 restartLButtonPosition;
-        private Vector2 exitToMenuPosition;
+                BasicSprite ReturnToStart = new BasicSprite(game, "returnStart", false);
+                ReturnToStart.spritePos = new Vector2(250, 240);
 
-        //where the mouse is so you can click the button
-        MouseState mouseState;
-        MouseState previousMouseState;
+                BasicSprite restartCP = new BasicSprite(game, "returnCheck", false);
+                restartCP.spritePos = new Vector2(250, 290);
+
+                BasicSprite restartL = new BasicSprite(game, "restartLevel", false);
+                restartL.spritePos = new Vector2(250, 340);
+
+                BasicSprite chooseL = new BasicSprite(game, "chooseLevel", false);
+                chooseL.spritePos = new Vector2(250, 390);
+
+                BasicSprite exit = new BasicSprite(game, "exit", false);
+                exit.spritePos = new Vector2(350, 440);
+
+                DeathText.addTo(deathSprites);
+                restartCP.addTo(deathSprites);
+                restartL.addTo(deathSprites);
+                ReturnToStart.addTo(deathSprites);
+                chooseL.addTo(deathSprites);
+                exit.addTo(deathSprites);
+            }
+
+            public void drawMenu(SpriteBatch spriteBatch)
+            {
+                foreach (BasicSprite s in deathSprites)
+                {
+                    s.draw(spriteBatch);
+                }
+            }
+
+            public override void draw(SpriteBatch spriteBatch)
+            {
+                spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+            }
+        }
 
 
     }
-}
+
