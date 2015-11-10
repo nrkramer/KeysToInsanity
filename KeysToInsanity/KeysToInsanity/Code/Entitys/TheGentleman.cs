@@ -14,7 +14,8 @@ namespace KeysToInsanity.Code
 
         public int jumps = 2;
         private float _health = 100.0f;
-        public float health {
+        public float health
+        {
             set { _health = value; KeysToInsanity.hud.updateHealth(value); }
             get { return _health; }
         }
