@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 
 namespace KeysToInsanity
@@ -23,6 +24,7 @@ namespace KeysToInsanity
         public enum GameState
         {
             StartMenu,
+            ChooseLevel,
             Playing,
             Paused,
             About,
@@ -58,6 +60,10 @@ namespace KeysToInsanity
         private PauseScreen pauseMenu;
         private CreditScreen creditScreen;
         private AboutScreen aboutScreen;
+        private LevelSwitcher chooseLevelMenu;
+
+        private string[] levelXMLs;
+        private uint unlockedLevels = 1;
 
         private BasicInput input; // Our input handler
 
@@ -137,6 +143,7 @@ namespace KeysToInsanity
         /// </summary>
         protected override void LoadContent()
         {
+            levelXMLs = Directory.GetFiles(Content.RootDirectory + "\\Levels\\", "*.xml");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //Loading the games menu buttons for menu screen
@@ -144,6 +151,7 @@ namespace KeysToInsanity
             pauseMenu = new PauseScreen(this);
             aboutScreen = new AboutScreen(this);
             creditScreen = new CreditScreen(this);
+            chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
 
             logo = new BasicSprite(this,"logo",false);
             logo.spritePos = new Vector2(300,20);
@@ -173,7 +181,6 @@ namespace KeysToInsanity
 
             // Heads up display (HUD)
             hud = new HUD(this);
-
 
             // Load level
             loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
@@ -329,6 +336,17 @@ namespace KeysToInsanity
                         }
                     }
 
+                    // check gentleman has completed the level
+                    if (stageIndex >= loader.level.stages.Length)
+                    {
+                        gameState = GameState.ChooseLevel;
+                        if (unlockedLevels < levelXMLs.Length)
+                            unlockedLevels++;
+                        chooseLevelMenu.setUnlockedLevels(unlockedLevels);
+                        base.Update(gameTime);
+                        return;
+                    }
+
                     // check gentleman has past the start stage boundary
                     if (checkStageBoundary(loader.level.stages[stageIndex].start))
                     {
@@ -367,9 +385,23 @@ namespace KeysToInsanity
                         if (stageIndex == loader.level.stageWithDoor)
                             loader.level.stages[stageIndex].door.setOpen(true);
                 }
-
-                base.Update(gameTime);
+            } else if (gameState == GameState.ChooseLevel)
+            {
+                int i = chooseLevelMenu.Update(gameTime, mouseState);
+                if (i >= 0)
+                {
+                    loader = new LevelLoader(this, levelXMLs[i], hud);
+                    stageIndex = 0;
+                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    gotKey = false;
+                    loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
+                    hud.updateHealth(100.0f);
+                    hud.updateInsanity(0.0f);
+                    gameState = GameState.Playing;
+                }
             }
+
+            base.Update(gameTime);
         }
 
         // magic. do not change
@@ -435,14 +467,10 @@ namespace KeysToInsanity
             if (gameState == GameState.StartMenu)
             {
                 startMenu.drawMenu(spriteBatch);
-            }
-
-            if (gameState == GameState.Paused)
+            } else if (gameState == GameState.Paused) // paused
             {
                 pauseMenu.drawMenu(spriteBatch);
-            }
-            //checks if the gameState is at playing, draws the game
-            if (gameState == GameState.Playing)
+            } else if (gameState == GameState.Playing) // playing
             {
                 if (loader.level != null)
                 {
@@ -450,14 +478,15 @@ namespace KeysToInsanity
                     if (s != null)
                     {
                         s.background.draw(spriteBatch);
-                        foreach (BasicSprite st in s.statics)
-                        {
-                            st.draw(spriteBatch);
-                        }
 
                         foreach (AnimatedSprite ast in s.animatedStatics)
                         {
                             ast.draw(spriteBatch);
+                        }
+
+                        foreach (BasicSprite st in s.statics)
+                        {
+                            st.draw(spriteBatch);
                         }
 
                         foreach (BasicSprite pl in s.platforms)
@@ -486,18 +515,18 @@ namespace KeysToInsanity
                     hud.draw(spriteBatch);
                     }
                 }
-            }
-            if(gameState == GameState.About)
+            } else if(gameState == GameState.About) // about
             {
                 aboutScreen.drawMenu(spriteBatch);
-            }
-            if(gameState == GameState.Help)
+            } else if(gameState == GameState.Help) // help
             {
                 aboutScreen.drawMenu(spriteBatch);
-            }
-            if(gameState == GameState.Credits)
+            } else if(gameState == GameState.Credits) // credits
             {
                 creditScreen.drawMenu(spriteBatch);
+            } else if(gameState == GameState.ChooseLevel) // choose level
+            {
+                chooseLevelMenu.draw(spriteBatch);
             }
             spriteBatch.End();
 

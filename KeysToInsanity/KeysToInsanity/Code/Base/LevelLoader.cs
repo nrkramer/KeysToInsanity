@@ -90,7 +90,13 @@ namespace KeysToInsanity.Code.Base
                             s.addCharacter(ParseCharacter(r));
                             break;
                         case "Static":
-                            s.addStatic(ParseStatic(r));
+                            BasicSprite sp = ParseStatic(r);
+                            s.addStatic(sp);
+                            try
+                            {
+                                if (bool.Parse(r.GetAttribute("fadein")))
+                                    s.addFadeInObject(sp);
+                            } catch (ArgumentNullException e) { }
                             break;
                         case "AnimatedStatic":
                             AnimatedSprite asp = ParseAnimatedStatic(r);
@@ -98,7 +104,7 @@ namespace KeysToInsanity.Code.Base
                             try {
                                 if (bool.Parse(r.GetAttribute("fadein")))
                                     s.addFadeInObject(asp);
-                            } catch (Exception e) { }
+                            } catch (ArgumentNullException e) { }
                             break;
                         case "Background":
                             s.setBackground(ParseBackground(r));
@@ -121,7 +127,7 @@ namespace KeysToInsanity.Code.Base
                             try {
                                 if (bool.Parse(r.GetAttribute("fadein")))
                                     s.addFadeInObject(le);
-                            } catch (Exception e ) { }
+                            } catch (ArgumentNullException e ) { }
                             break;
                         case "End":
                             s.setEnd(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
