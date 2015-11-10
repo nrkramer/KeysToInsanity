@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XML>
-  <Level name = "Level 2" stages="4">
+  <Level name = "Level 2" stages="8">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="c+300" boundary="none"/>
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
@@ -13,32 +13,6 @@
       <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
       <AnimatedStatic type="flames" x="601" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
-      <Background type="sewer_wall"/>
-      <Key x="0" y="0"/>
-      <End x="f-60" y="f-60" boundary="right"/>
-    </Stage>
-    <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="f-75" boundary="left"/>
-      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
-      <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="c-30" y="c+200" w="60" h="25" distance ="240" speed ="1" direction="true"/>
-      <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="55" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="155" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="255" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="355" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="455" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="555" y="f-35" w="100" h="35" collide ="false"/>
-      <Static type ="spikes-H" x="655" y="f-35" w="100" h="35" collide ="false"/>
-      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
-      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
-      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
@@ -66,7 +40,7 @@
       <Static type ="spikes-H" x="670" y="115" w="50" h="20" collide ="true"/>
       <Static type ="spikes-H" x="720" y="115" w="50" h="20" collide ="true"/>
       <Static type ="spikes-H" x="770" y="115" w="50" h="20" collide ="true"/>
-      <Platform x="c+75" y="90" w="60" h="25" distance ="330" speed ="2" direction="true"/>
+      <Platform x="c+75" y="90" w="60" h="25" distance ="330" speed ="3" direction="true"/>
       <Platform x="35" y="135" w="60" h="25" distance ="68" speed ="1" direction="false"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="60" boundary="right"/>
@@ -88,6 +62,97 @@
       <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-75" boundary="left"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
+      <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="1" direction="true"/>
+      <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="spikes-H" x="45" y="f-25" w="110" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="155" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="255" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="355" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="455" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
+      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <Background type="sewer_wall"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-75" boundary="left"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
+      <Static type ="floor" x="f-50" y="100" w="f" h="f" collide ="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="50" y="f-115" w="200" h="f" distance ="80" speed ="1" direction="false"/>
+      <Static type="platform" x="250" y="c+50" w="200" h="f" collide="true"/>
+      <Platform x="250" y="115" w="200" h="100" distance ="120" speed ="1" direction="false"/>
+      <Platform x="550" y="115" w="60" h="25" distance ="75" speed ="1" direction="true"/>
+      <Background type="sewer_wall"/>
+      <End x="f-60" y="60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="15" y="f-60" boundary="left"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="f" collide ="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f" collide="true"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="platform" x="400" y="f-50" w="400" h="80" collide="true"/>
+      <Static type ="platform" x="500" y="f-130" w="300" h="80" collide="true"/>
+      <Static type ="platform" x="600" y="f-210" w="200" h="80" collide="true"/>
+      <Background type="sewer_wall"/>
+      <Key x="730" y="f-265"/>
+      <Door x="0" y="f-100" w="10" h="100" />
+      <End x="15" y="f-60" boundary="left"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="f-30" y="45" boundary="right"/>
+      <Static type ="left_wall" x="0" y="0" w="40" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
+      <Static type ="floor" x="f-50" y="100" w="f" h="f" collide ="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="50" y="f-105" w="200" h="f" distance ="100" speed ="1" direction="false"/>
+      <Platform x="50" y="c+50" w="200" h="100" distance ="80" speed ="3" direction="false"/>
+      <Static type="platform" x="340" y="c+50" w="200" h="f" collide="true"/>
+      <Platform x="340" y="115" w="200" h="100" distance ="120" speed ="2" direction="false"/>
+      <Platform x="f-110" y="150" w="60" h="25" distance ="60" speed ="1" direction="false"/>
+      <Background type="sewer_wall"/>
+      <End x="0" y="f-60" boundary="left"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="f-60" y="f-75" boundary="right"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
+      <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="2" direction="true"/>
+      <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
+      <Static type ="spikes-H" x="45" y="f-25" w="110" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="155" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="255" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="355" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="455" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
+      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
+      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
+      <Background type="sewer_wall"/>
+      <End x="60" y="f-75" boundary="left"/>
     </Stage>
   </Level>
 </XML>
