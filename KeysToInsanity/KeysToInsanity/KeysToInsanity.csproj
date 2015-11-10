@@ -216,6 +216,7 @@
     <Content Include="Content\ladder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Levels\Level3.xml" />
     <Content Include="Content\Lights\open_door_right_light.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
