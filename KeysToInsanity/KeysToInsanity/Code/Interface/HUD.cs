@@ -13,6 +13,7 @@ namespace KeysToInsanity.Code.Interface
         private SpriteContainer hudSprites = new SpriteContainer();
         private Bar insanityBar;
         private Bar healthBar;
+        private Key key;
 
         // This class is kind of weird
         // First of all, all elements are drawn to external texture, why?
@@ -95,7 +96,14 @@ namespace KeysToInsanity.Code.Interface
         // player picked up a key
         public void addKey(Key k)
         {
+            key = k;
             k.addTo(hudSprites);
+        }
+
+        public void removeKey()
+        {
+            if (key != null)
+                hudSprites.Remove(key);
         }
 
         // player health update

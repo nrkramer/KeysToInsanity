@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code.Base
 {
     class Stage
     {
-        // stage information - gets emptied and refilled after each stage load
+        // stage information
         public BasicBackground background;
         public SpriteContainer statics = new SpriteContainer();
         public SpriteContainer animatedStatics = new SpriteContainer();
