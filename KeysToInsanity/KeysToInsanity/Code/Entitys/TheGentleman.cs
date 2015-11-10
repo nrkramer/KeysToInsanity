@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code
 
         public bool inAir = false;
 
-        public TheGentleman(Game game) : base(game, "miyamoto_sheet", new Point(32, 48), 4, 0.1, true)
+        public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
             gd = game.GraphicsDevice;
 
@@ -124,23 +124,23 @@ namespace KeysToInsanity.Code
         {
             // idle
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 37, 20), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 32, 48), TimeSpan.FromSeconds(1.0));
 
             // run right
             Animation runRight = new Animation();
-            runRight.AddUniformStrip(new Rectangle(0, 48, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
+            runRight.AddUniformStrip(new Rectangle(1, 48, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
 
             // run left
             Animation runLeft = new Animation();
-            runLeft.AddUniformStrip(new Rectangle(0, 96, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
+            runLeft.AddUniformStrip(new Rectangle(1, 96, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.05));
 
             // fall right
             Animation fallRight = new Animation();
-            fallRight.AddUniformStrip(new Rectangle(0, 144, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
+            fallRight.AddUniformStrip(new Rectangle(1, 144, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
 
             // fall left
             Animation fallLeft = new Animation();
-            fallLeft.AddUniformStrip(new Rectangle(0, 192, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
+            fallLeft.AddUniformStrip(new Rectangle(1, 192, 320, 48), new Point(34, 48), TimeSpan.FromSeconds(0.02));
 
             animations.Add(idle);
             animations.Add(runRight);
