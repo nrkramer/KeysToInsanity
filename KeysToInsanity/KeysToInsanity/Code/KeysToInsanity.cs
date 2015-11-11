@@ -271,6 +271,7 @@ namespace KeysToInsanity
                     gameState = GameState.Death;
                     insanity = 0.0f;
                     theGentleman.health = 100.0f;
+                    stageIndex = 0;
                 }
 
                 // pause game logic while background is sliding
