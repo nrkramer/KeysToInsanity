@@ -257,7 +257,7 @@ namespace KeysToInsanity
             }*/
             if (gameState == GameState.Paused)
             {
-               
+
                 if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
@@ -266,8 +266,12 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Playing)
             {
-                //if (theGentleman.health <= 0)
-                // game over
+                if (theGentleman.health <= 0)
+                {
+                    gameState = GameState.Death;
+                    insanity = 0.0f;
+                    theGentleman.health = 100.0f;
+                }
 
                 // pause game logic while background is sliding
                 if (loader.level.stages[stageIndex].background.slide == true)
@@ -336,6 +340,8 @@ namespace KeysToInsanity
                         if (unlockedLevels < levelXMLs.Length)
                             unlockedLevels++;
                         chooseLevelMenu.setUnlockedLevels(unlockedLevels);
+                        insanity = 0.0f;
+                        theGentleman.health = 100.0f;
                         base.Update(gameTime);
                         return;
                     }
