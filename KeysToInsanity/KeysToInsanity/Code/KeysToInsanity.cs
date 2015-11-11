@@ -172,8 +172,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            testSound.play(true);
+           // testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+           // testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
@@ -249,6 +249,12 @@ namespace KeysToInsanity
                 gameState = GameState.Paused;
 
             }
+
+            /*if(gameState == GameState.StartMenu)
+            {
+                 startMenu.Update(gameTime, mouseState);
+                
+            }*/
             if (gameState == GameState.Paused)
             {
                
