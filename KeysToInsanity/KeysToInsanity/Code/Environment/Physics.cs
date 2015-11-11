@@ -25,19 +25,20 @@ namespace KeysToInsanity.Code
             float frameTime = (float)gameTime.TotalGameTime.TotalSeconds;
             float downVel = gravity * frameTime;
 
-            //gravity is applied to every sprite in the game here so that there is a universal gravity
+            // gravity is applied to every sprite in the game here so that there is a universal gravity
             foreach (BasicSprite i in spritesToPhysics)
             {
-                if (downVel <= 9.8f)
-                {
-                    i.velocity.setY(i.velocity.getY() + downVel); // comment to let me commit
-                }
+                if (downVel >= 2.0f)
+                    downVel = 0.5f;
+
+                i.velocity.setY(i.velocity.getY() + downVel);
             }
         }
 
         public void resetTime(GameTime time)
         {
-            //when the Gentleman hits the ground we can make sure to turn off gravity by resetting the timer, which makes gravity zero until he is in the air again
+            // when the Gentleman hits the ground we can make sure to turn off gravity by resetting the timer, 
+            // which makes gravity zero until he is in the air again
             jumpTime = (float)time.TotalGameTime.TotalSeconds;
         }
     }

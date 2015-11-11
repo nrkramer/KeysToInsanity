@@ -129,6 +129,12 @@ namespace KeysToInsanity.Code.Base
                                     s.addFadeInObject(le);
                             } catch (ArgumentNullException e ) { }
                             break;
+                        case "Hazard":
+                            s.addHazard(ParseHazard(r));
+                            break;
+                        case "Music":
+                            level.setMusic(new Sound(game, r.GetAttribute("file")));
+                            break;
                         case "End":
                             s.setEnd(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
                             break;
@@ -232,6 +238,32 @@ namespace KeysToInsanity.Code.Base
             }
         }
 
+        public Hazard ParseHazard(XmlReader r)
+        {
+            string asset = r.GetAttribute("type");
+            int x = ParseExpression(r.GetAttribute("x"), fullX);
+            int y = ParseExpression(r.GetAttribute("y"), fullY);
+            int w = ParseExpression(r.GetAttribute("w"), fullX);
+            int h = ParseExpression(r.GetAttribute("h"), fullY);
+            bool collidable = bool.Parse(r.GetAttribute("collide"));
+            int width = 0;
+            double speed = 0.0;
+            try {
+                width = int.Parse(r.GetAttribute("width"));
+                speed = double.Parse(r.GetAttribute("speed"));
+            } catch (ArgumentNullException e)
+            {
+                
+            }
+            float damage = float.Parse(r.GetAttribute("damage"));
+
+            Hazard haz = new Hazard(game, asset, new Point(width, h), speed, collidable, damage);
+            haz.spritePos = new Vector2(x, y);
+            haz.spriteSize = new Point(w, h);
+
+            return haz;
+        }
+
         public AnimatedSprite ParseAnimatedStatic(XmlReader r)
         {
             string asset = r.GetAttribute("type");
@@ -240,10 +272,10 @@ namespace KeysToInsanity.Code.Base
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
             bool collidable = bool.Parse(r.GetAttribute("collide"));
-            int size = int.Parse(r.GetAttribute("width")); // width of one animation
+            int width = int.Parse(r.GetAttribute("width")); // width of one animation
             double speed = double.Parse(r.GetAttribute("speed"));
 
-            AnimatedSprite s = new AnimatedSprite(game, asset, new Point(size, h), 1, speed, collidable);
+            AnimatedSprite s = new AnimatedSprite(game, asset, new Point(width, h), 1, speed, collidable);
             s.spritePos = new Vector2(x, y);
             s.spriteSize = new Point(w, h);
 

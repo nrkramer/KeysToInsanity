@@ -11,14 +11,7 @@
       <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="2" direction="true"/>
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="45" y="f-25" w="110" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="155" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="255" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="355" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="455" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
+      <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>     
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00"/>
       <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05"/>
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>

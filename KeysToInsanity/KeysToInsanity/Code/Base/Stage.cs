@@ -90,6 +90,12 @@ namespace KeysToInsanity.Code.Base
             p.addTo(collidables);
         }
 
+        public void addHazard(Hazard h)
+        {
+            h.addTo(animatedStatics);
+            h.addTo(collidables);
+        }
+
         public void setKey(Key k)
         {
             k.addTo(statics);

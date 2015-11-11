@@ -19,16 +19,16 @@ namespace KeysToInsanity.Code.Interface
                 game.GraphicsDevice.PresentationParameters.BackBufferWidth,
                 game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
         {
-            BasicSprite logo = new BasicSprite(game, "logo", false);
+            BasicSprite logo = new BasicSprite(game, "Interface\\logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite resume = new BasicSprite(game, "resume", false);
+            BasicSprite resume = new BasicSprite(game, "Interface\\resume", false);
             resume.spritePos = new Vector2(350, 240);
 
-            BasicSprite help = new BasicSprite(game, "help", false);
+            BasicSprite help = new BasicSprite(game, "Interface\\help", false);
             help.spritePos = new Vector2(350, 290);
 
-            BasicSprite exit = new BasicSprite(game, "exit", false);
+            BasicSprite exit = new BasicSprite(game, "Interface\\exit", false);
             exit.spritePos = new Vector2(350, 340);
 
             logo.addTo(pauseSprites);
