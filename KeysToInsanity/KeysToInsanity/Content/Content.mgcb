@@ -31,9 +31,15 @@
 /processorParam:Quality=Best
 /build:SoundFX/Music/Op9No2Session.wav
 
-#begin SoundFX/Music/LandedOnFloor.wav
+#begin SoundFX/TheGentleman/LandedOnFloor.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundFX/Music/LandedOnFloor.wav
+/build:SoundFX/TheGentleman/LandedOnFloor.wav
+
+#begin SoundFX/campfire-1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFX/campfire-1.mp3
 

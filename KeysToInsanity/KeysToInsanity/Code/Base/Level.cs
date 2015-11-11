@@ -11,11 +11,18 @@ namespace KeysToInsanity.Code.Base
         public int stageWithKey = 0;
         public int stageWithDoor = 0;
         private string levelName = "";
+        private Sound levelMusic;
 
         public Level(string name, int stages)
         {
             this.stages = new Stage[stages];
             levelName = name;
+        }
+
+        public void setMusic(Sound music)
+        {
+            levelMusic = music;
+            levelMusic.play(true);
         }
 
         public void addStage(Stage stage, int index)

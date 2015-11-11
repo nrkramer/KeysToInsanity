@@ -34,16 +34,6 @@ namespace KeysToInsanity.Code
             return v;
         }
 
-        internal static Velocity FromCordinates(float v1, float v2)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal static Velocity FromCordinates()
-        {
-            throw new NotImplementedException();
-        }
-
         //many getters and setters that allow the program to receive different values necessary for different stages of the game
         public Vector2 getDirection()
         {

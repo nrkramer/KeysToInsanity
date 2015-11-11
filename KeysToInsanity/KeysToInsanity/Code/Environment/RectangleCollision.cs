@@ -70,21 +70,22 @@ namespace KeysToInsanity.Code
                     Velocity v2 = Velocity.FromCoordinates(s2.velocity.getDirection().X, 0.0f);
                     Rectangle collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf1 = Math.Round(v1.getDirection().X + (Math.Sign(v1.getDirection().X) * -collision.Width));
+                        vf1 =  v1.getX() - collision.Width * Math.Sign(v1.getDirection().X);
                     else
                         vf1 = v1.getDirection().X;
+
+                    if (Math.Abs(vf1) < 1.0f)
+                        vf1 = 0.0f;
 
                     data.X = collision.X;
                     data.Width = (Math.Sign(v1.getDirection().X)) * collision.Width;
 
                     v1 = Velocity.FromCoordinates(0.0f, s1.velocity.getDirection().Y);
                     v2 = Velocity.FromCoordinates(0.0f, s2.velocity.getDirection().Y);
-                    if (Math.Abs(v1.getY()) < 1.0f) // stupid floats
-                        v1.setY(0.0f);
 
                     collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                     if (collision != Rectangle.Empty)
-                        vf2 = Math.Sign(v1.getDirection().Y) * (v1.getY() - collision.Height);
+                        vf2 = v1.getY() - collision.Height * Math.Sign(v1.getDirection().Y);
                     else
                         vf2 = v1.getDirection().Y;
 

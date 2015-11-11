@@ -172,8 +172,11 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            //testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            //testSound.play(true);
+            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            testSound.play(true);
+
+            //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
+            //landedOnGround.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
 
@@ -202,7 +205,7 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 if (collided.collidable)
-                    if (Math.Abs(data.Height) >= 1.0f)
+                    if (data.Height >= 1.0f)
                     {
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
@@ -369,7 +372,7 @@ namespace KeysToInsanity
                         if (stageIndex == loader.level.stageWithDoor)
                             loader.level.stages[stageIndex].door.setOpen(true);
                 }
-            } else if (gameState == GameState.ChooseLevel)
+            } else if (gameState == GameState.ChooseLevel) // choose level
             {
                 int i = chooseLevelMenu.Update(gameTime, mouseState);
                 if (i >= 0)
