@@ -396,8 +396,8 @@ namespace KeysToInsanity
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                     gotKey = false;
                     loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
-                    hud.updateHealth(100.0f);
-                    hud.updateInsanity(0.0f);
+                    theGentleman.health = 100.0f;
+                    insanity = 0.0f;
                     gameState = GameState.Playing;
                 }
             }
