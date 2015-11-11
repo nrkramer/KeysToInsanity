@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +16,22 @@ namespace KeysToInsanity.Code.Interface
                 game.GraphicsDevice.PresentationParameters.BackBufferWidth,
                 game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
         {
-            BasicSprite logo = new BasicSprite(game, "logo", false);
+            BasicSprite logo = new BasicSprite(game, "Interface\\logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite start = new BasicSprite(game, "start", false);
+            BasicSprite start = new BasicSprite(game, "Interface\\start", false);
             start.spritePos = new Vector2(350, 240);
 
-            BasicSprite about = new BasicSprite(game, "aboutButton", false);
+            BasicSprite about = new BasicSprite(game, "Interface\\aboutButton", false);
             about.spritePos = new Vector2(350, 290);
 
-            BasicSprite credits = new BasicSprite(game, "creditsButton", false);
+            BasicSprite credits = new BasicSprite(game, "Interface\\creditsButton", false);
             credits.spritePos = new Vector2(350, 340);
 
-            BasicSprite exit = new BasicSprite(game, "exit", false);
+            BasicSprite exit = new BasicSprite(game, "Interface\\exit", false);
             exit.spritePos = new Vector2(350, 390);
+
+          
 
             logo.addTo(startSprites);
             start.addTo(startSprites);
@@ -49,5 +52,6 @@ namespace KeysToInsanity.Code.Interface
         {
             spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
         }
+
     }
 }

@@ -106,6 +106,7 @@
     <Compile Include="Code\Interface\Bar.cs" />
     <Compile Include="Code\Interface\LevelSwitcher.cs" />
     <Compile Include="Code\Interface\PauseScreen.cs" />
+    <Compile Include="Code\Interface\Start.cs" />
     <Compile Include="Code\Interface\StartScreen.cs" />
     <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
@@ -191,20 +192,22 @@
     <Content Include="bin\Windows\Debug\SharpDX.XInput.dll" />
     <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
     <Content Include="bin\Windows\Debug\SharpDX.xml" />
-    <Content Include="Content\aboutButton.png">
+    <Content Include="Content\Interface\aboutButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\aboutPage.png">
+    <Content Include="Content\Interface\aboutPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\chooseLevel.png">
+    <Content Include="Content\Interface\chooseLevel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\closed_door_right_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\creditsPage.png" />
-    <Content Include="Content\DeathText.png">
+    <Content Include="Content\Interface\creditsPage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Interface\DeathText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\fixed-miyomato.png">
@@ -213,7 +216,10 @@
     <Content Include="Content\flames_light.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\help.png">
+    <Content Include="Content\Interface\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Interface\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ladder.png">
@@ -227,13 +233,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ParkingLot.png" />
-    <Content Include="Content\restartLevel.png">
+    <Content Include="Content\Interface\restartLevel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\returnCheck.png">
+    <Content Include="Content\Interface\returnCheck.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\returnStart.png">
+    <Content Include="Content\Interface\returnStart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Interface\levelCover.png">
@@ -266,13 +272,13 @@
     <Content Include="Content\spikes-H.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\creditsButton.png">
+    <Content Include="Content\Interface\creditsButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\flames.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\return.png">
+    <Content Include="Content\Interface\return.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sewer_wall.jpg">
@@ -303,7 +309,7 @@
     <Content Include="Content\dogs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\exit.png">
+    <Content Include="Content\Interface\exit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Fonts\Kootenay.xnb">
@@ -344,7 +350,7 @@
     <Content Include="Content\Lights\circle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\logo.png">
+    <Content Include="Content\Interface\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\nurse.png">
@@ -380,7 +386,7 @@
     <Content Include="Content\right_wall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\resume.png">
+    <Content Include="Content\Interface\resume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Samus_fixed.png">
@@ -393,9 +399,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\Music\Op9No2Session.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SuperMetroidSamus.png">

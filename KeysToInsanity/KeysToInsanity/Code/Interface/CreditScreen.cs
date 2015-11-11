@@ -15,10 +15,10 @@ namespace KeysToInsanity.Code.Interface
                 game.GraphicsDevice.PresentationParameters.BackBufferWidth,
                 game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
         {
-            BasicSprite credits = new BasicSprite(game, "creditsPage", false);
+            BasicSprite credits = new BasicSprite(game, "Interface\\creditsPage", false);
             credits.spritePos = new Vector2(10, 100);
 
-            BasicSprite returnButton = new BasicSprite(game, "return", false);
+            BasicSprite returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
 
             credits.addTo(creditSprites);

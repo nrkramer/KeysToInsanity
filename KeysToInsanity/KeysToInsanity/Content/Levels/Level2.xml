@@ -162,7 +162,7 @@
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
       <Background type="sewer_wall"/>
-      <End x="60" y="f-75" boundary="left"/>
+      <End x="30" y="f-75" boundary="left"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="f-60" y="f-60" boundary="right"/>
@@ -177,15 +177,12 @@
       <Static type ="spikes-H" x="420" y="f-55" w="100" h="55" collide ="false"/>
       <Static type ="spikes-H" x="520" y="f-55" w="100" h="55" collide ="false"/>
       <Platform x="620" y="f-115" w="60" h="25" distance ="85" speed ="1" direction="false"/>
-      <Static type ="platform" x="620" y="f-200" w="60" h="25" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="620" y="f-175" w="60" h="15" collide ="false"/>
-      <Static type="VsingleSpike-L" x="680" y="f-200" w="15" h="25" collide ="false"/>
-      <Static type="VsingleSpike-R" x="605" y="f-200" w="15" h="25" collide ="false"/>
+      <Static type ="platform" x="620" y="f-230" w="60" h="25" collide ="true"/>
+      <Static type ="ReverseSpikes-H" x="620" y="f-205" w="60" h="15" collide ="false"/>
       <Static type ="platform" x="c" y="10" w="15" h="125" collide="true"/>
       <Static type="Vspikes-L" x="c+15" y="10" w="15" h="40" collide="true"/>
       <Static type="Vspikes-L" x="c+15" y="50" w="15" h="40" collide="true"/>
       <Static type="Vspikes-L" x="c+15" y="90" w="15" h="40" collide="true"/>
-      <Static type="SingleReverseSpike-H" x="c" y="135" w="15" h="15" collide="true"/>
       <Static type ="platform" x="c" y="c-50" w="15" h="f-315" collide ="true"/>
       <Static type="Vspikes-L" x="c+15" y="c-50" w="15" h="40" collide="true"/>
       <Static type="Vspikes-L" x="c+15" y="c-10" w="15" h="40" collide="true"/>
