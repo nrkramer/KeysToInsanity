@@ -12,63 +12,44 @@ namespace KeysToInsanity.Code.Entitys
     {
 
         private float center;
-        private float patrolDistance;
-        private float patrolSpeed;
+        private float moveSpeed;
+        private float moveDistance;
         private bool direction;
+        private float damage = 10;
 
-        public AttackDog(Game game, float positionX) : base(game, "dogs", new Point(47,27 ), 3, .25, true)
+       
+        public AttackDog(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"dogs",new Point(22,22),1,0,true)
         {
-            positionX = center;
-            patrolDistance = 100.0f;
-            patrolSpeed = 2.0f;
-            direction = true;
+            // ****** DO NOT CHANGE MAKES IT WORK ********
+            center = XPos;
+            //********************************************
+            this.moveDistance = moveDistance;
+            this.moveSpeed = moveSpeed;
         }
-        public AttackDog(Game game,float posX, float patrol, float speed) : base (game, "dogs", new Point(47,27),3,.25,true)
-        {
-            center = posX;
-            patrolDistance = patrol;
-            patrolSpeed = speed;
-            direction = true;
-        }
+
+
 
         public override void Update(GameTime time)
         {
-
-            /*
-            G1 |   C     | G2
-            If Genteman is at G1, the dog needs to attack Gentleman, but not go past boundary.
-            So the control statement has to be less than or equal to C plus 100. 
-            Likewise if the Gentleman is at G2, the dog has to get him,but not go past the boundry. 
-            So  it is greater than or equal to center plus 100.
-            */
-
-            /*if (KeysToInsanity.theGentleman.getSpriteXPos() <= center+100)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, 6.0f);
-            }
-            if (KeysToInsanity.theGentleman.SpritePos.get() >= center-100)
-            {
-                this.velocity = Velocity.FromDirection(0.0f, 6.0f);
-            }*/
-
+            Console.WriteLine(direction);
+            Console.WriteLine("Center" + center);
+            Console.WriteLine("XPOS" + getSpriteXPos());
             if (direction == true)
             {
-
-                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                if (getSpriteXPos() > center + patrolDistance)
+                velocity = Velocity.FromCoordinates(moveSpeed, 0.0f);
+                if (getSpriteXPos() > center + moveDistance)
                 {
                     direction = false;
-                    //Console.WriteLine(direction);
                 }
             }
             else
             {
-                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-            }
-            if (getSpriteXPos() < center - patrolDistance)
-            {
-                direction = true;
-                //Console.WriteLine("Center+50");
+                if (getSpriteXPos() < center - moveDistance)
+                {
+                    direction = true;
+                }
+                velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
+
             }
             updateWithAnimation(time, 0);
             updateWithAnimation(time, 1);
@@ -80,7 +61,7 @@ namespace KeysToInsanity.Code.Entitys
             base.onCollide(collided, data, time);
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                //Will use damage class to deduct gentleman
+                ((TheGentleman)collided).health -= damage;
             }
 
             if (collided.collidable)

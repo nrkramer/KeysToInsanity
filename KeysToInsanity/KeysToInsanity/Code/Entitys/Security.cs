@@ -8,41 +8,42 @@ namespace KeysToInsanity.Code
     {
 
         private float center;
-        private float patrolSpeed;
-        private float patrolDistance;
+        private float moveSpeed;
+        private float moveDistance;
         private bool direction;
-        public Security(Game game,float posX) : base(game, "TopHat",new Point (72,71),1,.25, false)
+        private float damage = 5;
+
+
+        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"TopHat",new Point(22,22),1,0,true)
         {
-            //Setting Xpos
-            center = posX;
-            patrolDistance = 50.0f;
-            patrolSpeed = 0.50f;
-            direction = true;
+            // ****** DO NOT CHANGE MAKES IT WORK ********
+            center = XPos;
+            //********************************************
+
+            this.moveDistance = moveDistance;
+            this.moveSpeed = moveSpeed;
         }
+
+
 
         public override void Update(GameTime time)
         {
-            // Console.WriteLine("Sprite Pos is" + getSpriteXPos());
-            // Console.WriteLine("Center is" + center);
-
             if (direction == true)
             {
-
-                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                if (getSpriteXPos() > center + patrolDistance)
+                velocity = Velocity.FromCoordinates(moveSpeed, 0.0f);
+                if (getSpriteXPos() > center + moveDistance)
                 {
                     direction = false;
-                    //Console.WriteLine(direction);
                 }
             }
             else
             {
-                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-            }
-            if (getSpriteXPos() < center - patrolDistance)
-            {
-                direction = true;
-                //Console.WriteLine("Center+50");
+                if (getSpriteXPos() < center - moveDistance)
+                {
+                    direction = true;
+                }
+                velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
+
             }
 
             updateWithAnimation(time, 0);
@@ -55,7 +56,7 @@ namespace KeysToInsanity.Code
             //Seeing if security hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                //call method to handle damage and effects
+                ((TheGentleman)collided).health -= damage;
             }
             //Checking to see if security hit a object
             if (collided.collidable)

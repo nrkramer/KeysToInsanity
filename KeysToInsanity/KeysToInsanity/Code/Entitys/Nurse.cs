@@ -6,54 +6,48 @@ namespace KeysToInsanity.Code.Entitys
 {
     class Nurse : Character
     {
- 
+
         //made chagnges
         //Place were NPC moves around- right boarder of patrol
-        private float center;
-        //Far border of patrol
-        private float patrolDistance;
-        //How fast it is coming back
-        private float patrolSpeed;
-        
+        public float center;
+        private float moveSpeed = 0.0f;
+        private float moveDistance = 0.0f;
         private bool direction = true;
-        public Nurse(Game game,float posX):base(game,"nurse",new Point(22,22),1,0,true)
-        {
-            center = posX;
-            patrolDistance = 10.0f;
-            patrolSpeed = .01f;
+        private float damage = 2;
+
+        public Nurse(Game game, float moveSpeed, float moveDistance,float XPos) :base(game,"nurse",new Point(22,22),1,0,true)
+        { 
+            // ****** DO NOT CHANGE MAKES IT WORK ********
+            center = XPos;
+            //********************************************
+            this.moveDistance = moveDistance;
+            this.moveSpeed = moveSpeed;
         }
-        public Nurse(Game game, float center, float patrol, float speed) : base(game, "nurse", new Point(22, 22), 1, 0, true)
-        {
-            this.center = center;
-            patrolDistance = patrol;
-            patrolSpeed = speed;
-        }
+       
 
         
         public override void Update(GameTime time)
         {
-           //Console.WriteLine("Sprite Pos is" + getSpriteXPos());
-           // Console.WriteLine("Center is" + center);
-            
+            //Console.WriteLine(direction);
+            //Console.WriteLine("Center"+ center);
+           // Console.WriteLine("XPOS" + getSpriteXPos());
             if (direction == true)
             {
-
-                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                if (getSpriteXPos() > center + patrolDistance)
+                velocity = Velocity.FromCoordinates(moveSpeed, 0.0f);
+                if (getSpriteXPos() > center + moveDistance)
                 {
                     direction = false;
-                   // Console.WriteLine(direction);
                 }
             }
             else
             {
-                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
+                if (getSpriteXPos() < center - moveDistance)
+                {
+                    direction = true;
+                }velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
+                
             }
-            if (getSpriteXPos() < center - patrolDistance)
-            {
-                direction = true;
-            }
-            
+
             updateWithAnimation(time, 0);
                                                                                       
         }
@@ -64,7 +58,7 @@ namespace KeysToInsanity.Code.Entitys
             //Seeing if nurse hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                //call method to handle damage and effects
+                ((TheGentleman)collided).health -= damage;
             }
             //Checking to see if nurse hit a floor
             if (collided.collidable)
