@@ -28,7 +28,7 @@ namespace KeysToInsanity.Code.Interface
             logo.spritePos = new Vector2(300, 20);
 
             resume = new BasicSprite(game, "Interface\\resume", false);
-            resume.spritePos = new Vector2(350, 240);
+            resume.spritePos = new Vector2(300, 240);
 
             help = new BasicSprite(game, "Interface\\InstructionsButton", false);
             help.spritePos = new Vector2(300, 290);
@@ -38,7 +38,7 @@ namespace KeysToInsanity.Code.Interface
 
             // calculate clickZones
             clickZones = new Rectangle[3];
-            clickZones[0] = new Rectangle(350, 240, 100, 20);
+            clickZones[0] = new Rectangle(300, 240, 100, 20);
             clickZones[1] = new Rectangle(300, 290, 200, 20);
             clickZones[2] = new Rectangle(300, 340, 200, 20);
            

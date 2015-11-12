@@ -266,6 +266,11 @@ namespace KeysToInsanity
                 {
                     Exit();
                 }
+                //REMOVE BELOW IF STATMENT WHEN RELEASING GAME
+                if(i==5)
+                {
+                    gameState = GameState.ChooseLevel;
+                }
                 
             }else if (gameState == GameState.Paused)
             {
@@ -453,6 +458,10 @@ namespace KeysToInsanity
                 int i = yourdead.Update(gameTime, mouseState);
                 if (i==0) //Sends user back to start.
                 {
+                   
+                        hud.removeKey();
+                        gotKey = false;
+                    
                     gameState = GameState.StartMenu;
                 }
                 else if (i==1) //Need to allow user to restart at checkpoint.

@@ -16,6 +16,8 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite instructButton;
         private BasicSprite creditsButton;
         private BasicSprite exitButton;
+        //REMOVE WHEN READY TO RELEASE GAME
+        private BasicSprite chooseLevel;
 
         private Rectangle[] clickZones;
       
@@ -39,23 +41,27 @@ namespace KeysToInsanity.Code.Interface
 
             exitButton = new BasicSprite(game, "Interface\\exit", false);
             exitButton.spritePos = new Vector2(300, 440);
+            //REMOVE WHEN RELEASING GAME
+            chooseLevel = new BasicSprite(game, "Interface\\chooseLevel", false);
+            chooseLevel.spritePos = new Vector2(300, 490);
 
 
 
-            // calculate clickZones
-            clickZones = new Rectangle[5];
+            // calculate clickZones CHANGE BACK TO FIVE WHEN GAME RELEASE HAPPENS
+            clickZones = new Rectangle[6];
             clickZones[0] = new Rectangle(300,240,200,20);
             clickZones[1] = new Rectangle(350,290,100,20);
             clickZones[2] = new Rectangle(300,340,300,20);
             clickZones[3] = new Rectangle(350,390,100,20);
             clickZones[4] = new Rectangle(300,440,200,20);
+            clickZones[5] = new Rectangle(300,490,200,20);
 
         }
 
         public int Update(GameTime time, MouseState state)
         {
-            // mouse stuff
-            for (int i = 0; i < 5; i++)
+            // mouse stuff CHANGE BACK TO i<5 WHEN RELEASING GAME
+            for (int i = 0; i < 6; i++)
             {
                 if (clickZones[i].Contains(state.Position))
                 {

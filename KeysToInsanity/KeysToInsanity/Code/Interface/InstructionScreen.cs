@@ -16,7 +16,7 @@ namespace KeysToInsanity.Code.Interface
 
         public InstructionScreen(Game game)
         {
-            instruct = new BasicSprite(game, "Interface\\InstructionsPage", false);
+            instruct = new BasicSprite(game, "Interface\\Instructions", false);
             instruct.spritePos = new Vector2(0, 100);
 
             returnButton = new BasicSprite(game, "Interface\\return", false);

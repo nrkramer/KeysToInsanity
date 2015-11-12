@@ -198,7 +198,7 @@
     <Content Include="Content\Interface\aboutPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Interface\InstructionsPage.png">
+    <Content Include="Content\Interface\Instructions.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Interface\chooseLevel.png">
