@@ -25,11 +25,11 @@ namespace KeysToInsanity
         {
             StartMenu,
             ChooseLevel,
-            Playing,
-            loading,
+            Playing,          
             Paused,
             About,
             Help,
+            Instructions,
             Credits,
             Death
             
@@ -63,6 +63,7 @@ namespace KeysToInsanity
         private PauseScreen pauseMenu;
         private CreditScreen creditScreen;
         private AboutScreen aboutScreen;
+        private InstructionScreen instructScreen;
         private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
 
@@ -142,6 +143,7 @@ namespace KeysToInsanity
             startMenu = new StartScreen(this);
             pauseMenu = new PauseScreen(this);
             aboutScreen = new AboutScreen(this);
+            instructScreen = new InstructionScreen(this);
             creditScreen = new CreditScreen(this);
             chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
             yourdead = new DeathScreen(this);
@@ -237,32 +239,48 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
             //allows the game to know when the user has used the mouse to start the game
-            mouseState = Mouse.GetState();
-            if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
-            {
-                MouseClicked(mouseState.X, mouseState.Y);
-            }
+            mouseState = Mouse.GetState();          
             previousMouseState = mouseState;
             //pause menu            
             if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
             {
                 gameState = GameState.Paused;
-
             }
 
-            /*if(gameState == GameState.StartMenu)
+            if(gameState == GameState.StartMenu)
             {
-                 startMenu.Update(gameTime, mouseState);
+                   int i = startMenu.Update(gameTime, mouseState);
+                if (i == 0)
+                {                    
+                    gameState = GameState.Playing; //Starting game
+                }else if(i == 1) //Sending user to info on game
+                {
+                    gameState = GameState.About;
+                }else if(i == 2) //Sending user to instructions for game
+                {
+                    gameState = GameState.Instructions;
+                }else if(i == 3) //SEnding user to the credits page.
+                {
+                    gameState = GameState.Credits;
+                }else if(i == 4)
+                {
+                    Exit();
+                }
                 
-            }*/
-            if (gameState == GameState.Paused)
+            }else if (gameState == GameState.Paused)
             {
 
-                if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+                int i = pauseMenu.Update(gameTime, mouseState);
+                if(i==0) //Sending user back to game
                 {
-                    MouseClicked(mouseState.X, mouseState.Y);
+                    gameState = GameState.Playing;
+                }else if(i==1) //sending user to help menu
+                {
+                    gameState = GameState.Help;
+                }else if (i == 2)
+                {
+                    Exit();
                 }
-                previousMouseState = mouseState;
             }
             else if (gameState == GameState.Playing)
             {
@@ -401,6 +419,58 @@ namespace KeysToInsanity
                     insanity = 0.0f;
                     gameState = GameState.Playing;
                 }
+            }else if(gameState == GameState.Credits) //Sending user back to start menu
+            {
+                int i = creditScreen.Update(gameTime, mouseState);
+                if(i==0)
+                {
+                    gameState = GameState.StartMenu;
+                }
+            }else if(gameState == GameState.Instructions) // Sending user to start menu
+            {
+                int i = instructScreen.Update(gameTime, mouseState);
+                if(i ==0)
+                {
+                    gameState = GameState.StartMenu;
+                }
+            }else if(gameState == GameState.Help) //Same as instructions, but need to go to pause menu
+            {
+                int i = instructScreen.Update(gameTime, mouseState);
+                if (i == 0)
+                {
+                    gameState = GameState.Paused;
+                }
+            }else if(gameState == GameState.About)//Sending user back to startmenu
+            {
+                int i = aboutScreen.Update(gameTime, mouseState);
+                if(i ==0)
+                    {
+                        gameState = GameState.StartMenu;
+                    }
+            }
+            else if(gameState == GameState.Death)
+            {
+                int i = yourdead.Update(gameTime, mouseState);
+                if (i==0) //Sends user back to start.
+                {
+                    gameState = GameState.StartMenu;
+                }
+                else if (i==1) //Need to allow user to restart at checkpoint.
+                {
+
+                }
+                else if (i==2) //Need to add restart level ability
+                {
+
+                }
+                else if (i==3) //Allows user to select level
+                {
+                    gameState = GameState.ChooseLevel;
+                }
+                else if (i==4)
+                {
+                    Exit();
+                }
             }
 
                 base.Update(gameTime);
@@ -522,13 +592,16 @@ namespace KeysToInsanity
                 aboutScreen.drawMenu(spriteBatch);
             } else if(gameState == GameState.Help) // help
             {
-                aboutScreen.drawMenu(spriteBatch);
+                instructScreen.drawMenu(spriteBatch);
             } else if(gameState == GameState.Credits) // credits
             {
                 creditScreen.drawMenu(spriteBatch);
             } else if(gameState == GameState.ChooseLevel) // choose level
             {
                 chooseLevelMenu.draw(spriteBatch);
+            }else if(gameState == GameState.Instructions)
+            {
+                instructScreen.drawMenu(spriteBatch);
             }
             if(gameState == GameState.Death)
             {
@@ -537,115 +610,6 @@ namespace KeysToInsanity
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        void MouseClicked(int x, int y)
-        {
-            //Creates a rectangle around where the mouse clicked
-            Rectangle mouseClickR = new Rectangle(x, y, 10, 10);
-            if (graphics.IsFullScreen)
-            {
-                mouseClickR.X = (int)(mouseClickR.X * (GraphicsDevice.Viewport.Bounds.Width / (float)Window.ClientBounds.Width));
-                mouseClickR.Y = (int)(mouseClickR.Y * (GraphicsDevice.Viewport.Bounds.Height / (float)Window.ClientBounds.Height));
-            }
-
-            //Checks the start menu
-            if (gameState == GameState.StartMenu)
-            {
-                //Rectangle for start button
-                Rectangle startR = new Rectangle(350,
-                    240,100, 20);                                                                                                                 
-
-                Rectangle aboutR = new Rectangle(350, 290, 100, 20);
-
-                Rectangle creditR = new Rectangle(350, 340, 100, 20);
-
-                Rectangle exitR = new Rectangle(350,
-                    390, 100, 20);
-                //Checking if start button was clicked
-                if (mouseClickR.Intersects(startR))
-                {
-
-                    gameState = GameState.Playing;
-
-
-                }else if(mouseClickR.Intersects(aboutR))
-                {
-                    gameState = GameState.About;
-                }else if (mouseClickR.Intersects(creditR))
-                {
-                    gameState = GameState.Credits;
-                }else if (mouseClickR.Intersects(exitR)) //Player clicked exit button
-                {
-                    Exit();
-                }
-            }
-            else if (gameState == GameState.Paused)
-            {
-                Rectangle resumeR = new Rectangle(350,
-                    240, 100, 20);
-                Rectangle helpR = new Rectangle(350, 290, 100, 20);
-                Rectangle exitR = new Rectangle(350,340, 100, 20);
-                    
-                //Checking if start button was clicked
-                if (mouseClickR.Intersects(resumeR))
-                {
-                    gameState = GameState.Playing;
-                }else if(mouseClickR.Intersects(helpR))
-                {
-                    gameState = GameState.Help;
-                }  else if (mouseClickR.Intersects(exitR))//Player clicked exit button
-                {
-                    Exit();
-                }
-            }
-            
-            else if(gameState == GameState.Help || gameState == GameState.About)
-            {
-              Rectangle returnR = new Rectangle(690,20,100,20);
-                if(mouseClickR.Intersects(returnR) && gameState == GameState.Help)
-                {
-                    gameState = GameState.Paused;
-                } else if (mouseClickR.Intersects(returnR)&& gameState == GameState.About)
-                {
-                    gameState = GameState.StartMenu;
-                }  
-            }
-       
-            else if (gameState == GameState.Credits)
-            {
-                Rectangle returnR = new Rectangle(690, 20, 100, 20);
-                if(mouseClickR.Intersects(returnR))
-                {
-                    gameState = GameState.StartMenu;
-                }
-            }
-            else if (gameState == GameState.Death)
-            {
-                Rectangle returnStartR = new Rectangle(250, 240, 300, 20);
-                Rectangle restartCPR = new Rectangle(250, 290, 300, 20);
-                Rectangle restartLR = new Rectangle(250, 340, 300, 20);
-                Rectangle chooseLR = new Rectangle(250, 390, 300, 20);
-                Rectangle exitR = new Rectangle(350, 440, 100, 20);
-
-                if (mouseClickR.Intersects(returnStartR))
-                {
-                    gameState = GameState.StartMenu;
-                }else if(mouseClickR.Intersects(restartCPR))
-                {
-
-                }else if(mouseClickR.Intersects(restartLR))
-                {
-
-                }else if (mouseClickR.Intersects(chooseLR))
-                {
-
-                }else if(mouseClickR.Intersects(exitR))
-                {
-                    Exit();
-                }
-            }
-        }
-
+        }   
     }
 }

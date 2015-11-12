@@ -8,21 +8,20 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    class CreditScreen
+    class InstructionScreen
     {
-        BasicSprite credits;
-        BasicSprite returnButton;
-
+        private BasicSprite instruct;
+        private BasicSprite returnButton;
         private Rectangle[] clickZones;
 
-
-        public CreditScreen(Game game)
+        public InstructionScreen(Game game)
         {
-            credits = new BasicSprite(game, "Interface\\creditsPage", false);
-            credits.spritePos = new Vector2(10, 100);
+            instruct = new BasicSprite(game, "Interface\\InstructionsPage", false);
+            instruct.spritePos = new Vector2(0, 100);
 
             returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
+
             clickZones = new Rectangle[1];
             clickZones[0] = new Rectangle(690, 20, 100, 20);
 
@@ -51,9 +50,10 @@ namespace KeysToInsanity.Code.Interface
 
         public void drawMenu(SpriteBatch s)
         {
-            credits.draw(s);
+            instruct.draw(s);
             returnButton.draw(s);
 
         }
     }
 }
+
