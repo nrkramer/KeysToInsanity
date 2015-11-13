@@ -13,7 +13,7 @@ namespace KeysToInsanity.Code.Entitys
         private float moveSpeed = 0.0f;
         private float moveDistance = 0.0f;
         private bool direction = true;
-        private float damage = 2;
+        private float damage = 5;
 
         public Nurse(Game game, float moveSpeed, float moveDistance,float XPos) :base(game,"nurse",new Point(22,22),1,0,true)
         { 

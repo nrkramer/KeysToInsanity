@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Entitys
         private float moveSpeed;
         private float moveDistance;
         private bool direction;
-        private float damage = 10;
+        private float damage = 20;
 
        
         public AttackDog(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"dogs",new Point(22,22),1,0,true)

@@ -12,7 +12,7 @@ namespace KeysToInsanity.Code.Entitys
         private float moveSpeed;
         private float moveDistance;
         private bool direction;
-        private float damage = 4;
+        private float damage = 10;
 
 
         public Rats(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"TopHat",new Point(22,22),1,0,true)
