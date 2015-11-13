@@ -208,23 +208,6 @@ namespace KeysToInsanity.Code.Base
         {
             switch(r.GetAttribute("type"))
             {
-               /* int x = ParseExpression(r.GetAttribute("x"), fullX);
-            int y = ParseExpression(r.GetAttribute("y"), fullY);
-            int w = ParseExpression(r.GetAttribute("w"), fullX);
-            int h = ParseExpression(r.GetAttribute("h"), fullY);
-            int distance = ParseExpression(r.GetAttribute("distance"), 0);
-            int speed = ParseExpression(r.GetAttribute("speed"), 0);
-            bool direction = bool.Parse(r.GetAttribute("direction"));
-
-            if (direction)
-            {
-                HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
-                platform.spritePos = new Vector2(x, y);
-                platform.spriteSize = new Point(w, h);
-                platform.center = x;
-
-                return platform;
-            }*/
                 case "Nurse":
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
@@ -247,10 +230,7 @@ namespace KeysToInsanity.Code.Base
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Rats rats = new Rats(game, speed,distance,x);
-                    return rats;
-                case "Birds":
-                    Birds birds = new Birds(game);
-                    return birds;
+                    return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("x"), fullX);
