@@ -14,7 +14,7 @@ namespace KeysToInsanity.Code
         private float damage = 10;
 
 
-        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"TopHat",new Point(22,22),1,0,true)
+        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"security",new Point(22,22),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
@@ -58,22 +58,21 @@ namespace KeysToInsanity.Code
             {
                 ((TheGentleman)collided).health -= damage;
             }
-            //Checking to see if security hit a object
             if (collided.collidable)
             {
                 if (data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                    velocity = Velocity.FromCoordinates(-velocity.getX(), 0.0f);
                 }
+
 
             }
         }
 
-
         protected override void loadAnimations()
         {
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 72, 71), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 50, 79), TimeSpan.FromSeconds(1.0));
             animations.Add(idle);
         }
     }

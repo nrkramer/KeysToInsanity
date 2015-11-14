@@ -68,8 +68,9 @@ namespace KeysToInsanity.Code.Entitys
             {
                 if (data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                    velocity = Velocity.FromCoordinates(-velocity.getX(), 0.0f);
                 }
+
             }
         }
 

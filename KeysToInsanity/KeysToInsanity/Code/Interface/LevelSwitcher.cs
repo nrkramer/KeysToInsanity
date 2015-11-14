@@ -16,9 +16,9 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite levelHover; // mouse hover background
         private BasicSprite levelCover; // cover to hide locked levels
 
-        private uint totalLevels = 2; // uint is unsigned int
+        private uint totalLevels = 3; // uint is unsigned int
         private uint level = 0;
-        private uint unlocked = 1;
+        private uint unlocked = 4;
 
         private bool showHighlight = false;
 

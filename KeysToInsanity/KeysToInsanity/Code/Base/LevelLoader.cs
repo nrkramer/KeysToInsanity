@@ -233,11 +233,18 @@ namespace KeysToInsanity.Code.Base
                     return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Security guard = new Security(game, speed,distance,x);
                     return guard;
+                case "Cars":
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Cars car = new Cars(game, speed, distance, x);                        
+                    return car;
                 default:
                     return null;
             }
@@ -348,6 +355,7 @@ namespace KeysToInsanity.Code.Base
             int distance = ParseExpression(r.GetAttribute("distance"), 0);
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
             bool direction = bool.Parse(r.GetAttribute("direction"));
+            
 
             if (direction)
             {

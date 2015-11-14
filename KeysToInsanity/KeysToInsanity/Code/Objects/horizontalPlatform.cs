@@ -22,6 +22,8 @@ namespace KeysToInsanity.Code.Objects
             this.moveSpeed = moveSpeed;
         }
 
+
+
         //allows the platform to move itself in the desired direction
         public override void Update(GameTime gameTime)
         {

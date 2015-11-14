@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Entitys
         private float damage = 100;
 
 
-        public Cars (Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"TopHat",new Point(22,22),1,0,true)
+        public Cars (Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"pixelCar",new Point(22,22),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
@@ -57,12 +57,14 @@ namespace KeysToInsanity.Code.Entitys
                 ((TheGentleman)collided).health -= damage;
             }
 
+
             if (collided.collidable)
             {
                 if (data.Width <= 0)
                 {
-                    this.velocity = Velocity.FromDirection(0.0f, 0.0f);
+                    velocity = Velocity.FromCoordinates(-velocity.getX(), 0.0f);
                 }
+
             }
         }
 
