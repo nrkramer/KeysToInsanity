@@ -246,14 +246,14 @@ namespace KeysToInsanity.Code.Base
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
             bool collidable = bool.Parse(r.GetAttribute("collide"));
-            int width = 0;
-            double speed = 0.0;
+            int width = w;
+            double speed = 0.05;
             try {
                 width = int.Parse(r.GetAttribute("width"));
                 speed = double.Parse(r.GetAttribute("speed"));
             } catch (ArgumentNullException e)
             {
-                
+
             }
             float damage = float.Parse(r.GetAttribute("damage"));
 

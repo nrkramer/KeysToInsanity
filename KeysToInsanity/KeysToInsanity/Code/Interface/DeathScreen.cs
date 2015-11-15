@@ -10,8 +10,6 @@ namespace KeysToInsanity.Code
 {
     class DeathScreen : BasicSprite
     {
-   
-        
             private SpriteContainer deathSprites = new SpriteContainer();
 
             public DeathScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
@@ -56,8 +54,11 @@ namespace KeysToInsanity.Code
             {
                 spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
             }
+
+        public void MouseClicked(Point pos)
+        {
+
         }
-
-
     }
+}
 

@@ -40,5 +40,10 @@ namespace KeysToInsanity.Code.Interface
         {
             spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
         }
+
+        public void MouseClicked(Point pos)
+        {
+
+        }
     }
 }

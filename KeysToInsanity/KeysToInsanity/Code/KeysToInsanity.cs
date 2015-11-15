@@ -81,6 +81,7 @@ namespace KeysToInsanity
         //Setting constants for the menu items
         MouseState mouseState;
         MouseState previousMouseState;
+        KeyboardState keyboardState;
         private GameState gameState;
         private bool gotKey;
 
@@ -123,9 +124,10 @@ namespace KeysToInsanity
             //set the gamestate to the start menu
             gameState = GameState.StartMenu;
 
-            //Get the mouse state
+            //Get input states
             mouseState = Mouse.GetState();
             previousMouseState = mouseState;
+            keyboardState = Keyboard.GetState();
             base.Initialize();
         }
 
@@ -172,8 +174,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-           // testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-           // testSound.play(true);
+            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
@@ -236,17 +238,24 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //allows the game to know when the user has used the mouse to start the game
+            // mouse info
             mouseState = Mouse.GetState();
+            keyboardState = Keyboard.GetState();
+            bool mouseClicked = false;
+            Point mouseCoords = new Point(mouseState.X, mouseState.Y);
             if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
             {
-                MouseClicked(mouseState.X, mouseState.Y);
+                mouseClicked = true;
             }
             previousMouseState = mouseState;
-            //pause menu            
-            if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
+
+            // global keyboard switches
+            if (keyboardState.IsKeyDown(Keys.P))
             {
                 gameState = GameState.Paused;
+
+            } else if (keyboardState.IsKeyDown(Keys.H))
+            {
 
             }
 
@@ -257,7 +266,6 @@ namespace KeysToInsanity
             }*/
             if (gameState == GameState.Paused)
             {
-
                 if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
                 {
                     MouseClicked(mouseState.X, mouseState.Y);
@@ -272,6 +280,7 @@ namespace KeysToInsanity
                     insanity = 0.0f;
                     theGentleman.health = 100.0f;
                     stageIndex = 0;
+                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                 }
 
                 // pause game logic while background is sliding
@@ -293,7 +302,7 @@ namespace KeysToInsanity
                         f.updatePosition();
                     }
 
-                    theGentleman.handleInput(gameTime); // input
+                    theGentleman.handleInput(gameTime); // gentleman input
 
                     foreach (Character c in loader.level.stages[stageIndex].characters)
                     {
@@ -313,7 +322,7 @@ namespace KeysToInsanity
                     // collision for gentleman against static sprites
                     RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
 
-                    // collision for non-gentleman characters (doesn't check for key and doors)
+                    // collision for non-gentleman characters
                     RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
 
                     // check gentleman has past the end stage boundary

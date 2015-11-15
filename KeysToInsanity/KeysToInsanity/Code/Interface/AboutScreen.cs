@@ -21,15 +21,12 @@ namespace KeysToInsanity.Code.Interface
             BasicSprite returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
 
-
             about.addTo(aboutSprites);
             returnButton.addTo(aboutSprites);
-            
         }
 
         public void drawMenu(SpriteBatch spriteBatch)
         {
-
             foreach (BasicSprite s in aboutSprites)
             {
                 s.draw(spriteBatch);
@@ -39,6 +36,11 @@ namespace KeysToInsanity.Code.Interface
         public override void draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+        }
+
+        public void MouseClicked(Point pos)
+        {
+
         }
     }
 }
