@@ -9,45 +9,42 @@ namespace KeysToInsanity.Code.Entitys
     class Rats : Character
     {
         private float center;
-        private float patrolSpeed;
-        private float patrolDistance;
+        private float moveSpeed;
+        private float moveDistance;
         private bool direction;
-        //Basic fast NPC, will try to hit player, no line of sight algorithim
-        public Rats(Game game, float xPos) : base(game, "TopHat", new Point(72, 71), 1, .25, false)
+        private float damage = 10;
+
+
+        public Rats(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"Rat",new Point(22,22),1,0,true)
         {
-            center = xPos;
-            patrolDistance = 100.0f;
-            patrolSpeed = 5.0f;
-            direction = true;
+            // ****** DO NOT CHANGE MAKES IT WORK ********
+            center = XPos;
+            //********************************************
+
+            this.moveDistance = moveDistance;
+            this.moveSpeed = moveSpeed;
         }
-        public Rats(Game game,float xPos,float patrol,float speed) : base(game, "TopHat",new Point(72,71),1,.25,false)
-        {
-            center = xPos;
-            patrolSpeed = speed;
-            patrolDistance = patrol;
-            direction = true;
-        }
+
+
 
         public override void Update(GameTime time)
         {
             if (direction == true)
             {
-
-                velocity = Velocity.FromDirection(0.0f, patrolSpeed);
-                if (getSpriteXPos() > center + patrolDistance)
+                velocity = Velocity.FromCoordinates(moveSpeed, 0.0f);
+                if (getSpriteXPos() > center + moveDistance)
                 {
                     direction = false;
-                    //Console.WriteLine(direction);
                 }
             }
             else
             {
-                velocity = Velocity.FromDirection(0.0f, -patrolSpeed);
-            }
-            if (getSpriteXPos() < center - patrolDistance)
-            {
-                direction = true;
-                //Console.WriteLine("Center+50");
+                if (getSpriteXPos() < center - moveDistance)
+                {
+                    direction = true;
+                }
+                velocity = Velocity.FromCoordinates(-moveSpeed, 0.0f);
+
             }
             updateWithAnimation(time,0);
         }
@@ -57,7 +54,7 @@ namespace KeysToInsanity.Code.Entitys
             base.onCollide(collided, data, time);
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-
+                ((TheGentleman)collided).health -= damage;
             }
 
             if (collided.collidable)
@@ -72,7 +69,7 @@ namespace KeysToInsanity.Code.Entitys
         protected override void loadAnimations()
         {
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 72, 71), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 32, 32), TimeSpan.FromSeconds(1.0));
             animations.Add(idle);
         }
     }

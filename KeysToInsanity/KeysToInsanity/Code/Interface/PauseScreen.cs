@@ -6,52 +6,74 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 
 namespace KeysToInsanity.Code.Interface
 {
 
-    class PauseScreen : BasicSprite
+    class PauseScreen
     {
 
-        private SpriteContainer pauseSprites = new SpriteContainer();
+        
+        BasicSprite logo;
+        BasicSprite resume;
+        BasicSprite help;
+        BasicSprite exit;
 
-        public PauseScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+        private Rectangle[] clickZones;
+
+        public PauseScreen(Game game)
         {
-            BasicSprite logo = new BasicSprite(game, "Interface\\logo", false);
+            logo = new BasicSprite(game, "Interface\\logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite resume = new BasicSprite(game, "Interface\\resume", false);
-            resume.spritePos = new Vector2(350, 240);
+            resume = new BasicSprite(game, "Interface\\resume", false);
+            resume.spritePos = new Vector2(300, 240);
 
-            BasicSprite help = new BasicSprite(game, "Interface\\help", false);
-            help.spritePos = new Vector2(350, 290);
+            help = new BasicSprite(game, "Interface\\InstructionsButton", false);
+            help.spritePos = new Vector2(300, 290);
 
-            BasicSprite exit = new BasicSprite(game, "Interface\\exit", false);
-            exit.spritePos = new Vector2(350, 340);
+            exit = new BasicSprite(game, "Interface\\exit", false);
+            exit.spritePos = new Vector2(300, 340);
 
-            logo.addTo(pauseSprites);
-            resume.addTo(pauseSprites);
-            help.addTo(pauseSprites);
-            exit.addTo(pauseSprites);
+            // calculate clickZones
+            clickZones = new Rectangle[3];
+            clickZones[0] = new Rectangle(300, 240, 100, 20);
+            clickZones[1] = new Rectangle(300, 290, 200, 20);
+            clickZones[2] = new Rectangle(300, 340, 200, 20);
+           
 
         }
 
-        // gd.SetRenderTarget(null) clears the back buffer
-        public void drawMenu(SpriteBatch spriteBatch)
-        {
 
-            foreach (BasicSprite s in pauseSprites)
+        public int Update(GameTime time, MouseState state)
+        {
+            // mouse stuff
+            for (int i = 0; i < 3; i++)
             {
-                s.draw(spriteBatch);
+                if (clickZones[i].Contains(state.Position))
+                {
+                    // user a button
+                    if ((state.LeftButton == ButtonState.Pressed))
+                        return i; // selected button
+
+                    i = clickZones.Length; // break out of loop cleanly
+                }
+
             }
 
+            return -1;
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+
+
+        public void drawMenu(SpriteBatch s)
         {
-            spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+            logo.draw(s);
+            resume.draw(s);
+            help.draw(s);
+            exit.draw(s);
+            
         }
     }
 }

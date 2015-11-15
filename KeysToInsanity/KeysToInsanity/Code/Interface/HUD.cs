@@ -115,6 +115,7 @@ namespace KeysToInsanity.Code.Interface
         public void updateInsanity(float insanity)
         {
             insanityBar.level = insanity;
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,38 +8,52 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    class AboutScreen : BasicSprite
+    class AboutScreen
     {       
-        private SpriteContainer aboutSprites = new SpriteContainer();
+        
+        private BasicSprite about;
+        private BasicSprite returnButton;
+        private Rectangle[] clickZones;
 
-        public AboutScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+        public AboutScreen(Game game)
         {
-            BasicSprite about = new BasicSprite(game, "Interface\\aboutPage", false);
+            about = new BasicSprite(game, "Interface\\aboutPage", false);
             about.spritePos = new Vector2(0, 100);
 
-            BasicSprite returnButton = new BasicSprite(game, "Interface\\return", false);
+            returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
 
-
-            about.addTo(aboutSprites);
-            returnButton.addTo(aboutSprites);
+            clickZones = new Rectangle[1];
+            clickZones[0] = new Rectangle(690, 20, 100, 20);
             
         }
 
-        public void drawMenu(SpriteBatch spriteBatch)
+        public int Update(GameTime time, MouseState state)
         {
-
-            foreach (BasicSprite s in aboutSprites)
+            // mouse stuff
+            for (int i = 0; i < 1; i++)
             {
-                s.draw(spriteBatch);
+                if (clickZones[i].Contains(state.Position))
+                {
+                    // user a button
+                    if ((state.LeftButton == ButtonState.Pressed))
+                        return i; // selected button
+
+                    i = clickZones.Length; // break out of loop cleanly
+                }
+
             }
+
+            return -1;
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+
+
+        public void drawMenu(SpriteBatch s)
         {
-            spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+            about.draw(s);
+            returnButton.draw(s);
+           
         }
     }
 }

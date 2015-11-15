@@ -8,6 +8,7 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
       <Background type="tileBackground"/>
+      <Character type ="Nurse" x="200" y="f-20" distance="10" speed="2"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
@@ -20,6 +21,7 @@
       <Checkpoint x="500" y="f-105"/> 
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
+    
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>

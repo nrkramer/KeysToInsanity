@@ -211,28 +211,43 @@ namespace KeysToInsanity.Code.Base
                 case "Nurse":
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Nurse nurse = new Nurse(game, x);
+                    int distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    int speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Nurse nurse = new Nurse(game, speed,distance,x);
                     nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullY);
-                    AttackDog dog = new AttackDog(game,x);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    AttackDog dog = new AttackDog(game,speed,distance,x);
                     dog.spritePos = new Vector2(x, y);
                     return dog;
                 case "Rats":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Rats rats = new Rats(game, x);
-                    return rats;
-                case "Birds":
-                    Birds birds = new Birds(game);
-                    return birds;
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Rats rats = new Rats(game, speed,distance,x);
+                    rats.spritePos = new Vector2(x, y);
+                    return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("x"), fullX);
-                    Security guard = new Security(game, x);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Security guard = new Security(game, speed,distance,x);
+                    guard.spritePos = new Vector2(x, y);
                     return guard;
+                case "Cars":
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Cars car = new Cars(game, speed, distance, x);
+                    car.spritePos = new Vector2(x, y);
+                    return car;
                 default:
                     return null;
             }
@@ -343,6 +358,7 @@ namespace KeysToInsanity.Code.Base
             int distance = ParseExpression(r.GetAttribute("distance"), 0);
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
             bool direction = bool.Parse(r.GetAttribute("direction"));
+            
 
             if (direction)
             {
