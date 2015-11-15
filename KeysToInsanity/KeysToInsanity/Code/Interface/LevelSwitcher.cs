@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Interface
 
         private uint totalLevels = 3; // uint is unsigned int
         private uint level = 0;
-        private uint unlocked = 4;
+        private uint unlocked = 3;
 
         private bool showHighlight = false;
 

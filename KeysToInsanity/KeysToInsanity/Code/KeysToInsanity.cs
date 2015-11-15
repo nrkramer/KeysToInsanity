@@ -68,7 +68,7 @@ namespace KeysToInsanity
         private LevelSwitcher chooseLevelMenu;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 1;
+        private uint unlockedLevels = 3;
 
         private BasicInput input; // Our input handler
 

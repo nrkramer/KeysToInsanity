@@ -230,6 +230,7 @@ namespace KeysToInsanity.Code.Base
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Rats rats = new Rats(game, speed,distance,x);
+                    rats.spritePos = new Vector2(x, y);
                     return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
@@ -237,13 +238,15 @@ namespace KeysToInsanity.Code.Base
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Security guard = new Security(game, speed,distance,x);
+                    guard.spritePos = new Vector2(x, y);
                     return guard;
                 case "Cars":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullX);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
-                    Cars car = new Cars(game, speed, distance, x);                        
+                    Cars car = new Cars(game, speed, distance, x);
+                    car.spritePos = new Vector2(x, y);
                     return car;
                 default:
                     return null;
