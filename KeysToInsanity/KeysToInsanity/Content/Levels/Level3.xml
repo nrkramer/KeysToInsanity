@@ -34,7 +34,6 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="platform" x="c-200" y="f-120" w="75" h="20" collide="true"/>
       <Static type ="platform" x="c-10" y="f-200" w="100" h="20" collide="true"/>
-      <Static type ="platform" x="c+200" y="f-120" w="75" h="20" collide="true"/>
       <Character type ="Cars" x="c" y="f-30" distance="200" speed ="5"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -75,6 +74,41 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+       <Static type ="spikes-H" x="100" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="110" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="300" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="310" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="500" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="510" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="700" y="f-50" w="30" h="50" collide ="true"/>
+       <Static type ="spikes-H" x="710" y="f-50" w="30" h="50" collide ="true"/>
+       <Character type="Nurse" x ="410" y="f-30" distance="10" speed="1"/>  
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
+    
+     <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="0" boundary="left"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="400" h="40" collide="true"/>
+      <Static type ="floor" x="700" y="f-10" w="400" h="40" collide="true"/>      
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
+      <Platform x="c-150" y="c+150" w="60" h="25" distance ="30" speed ="1" direction="true"/>
+      <Platform x="c+180" y="c+250" w="80" h="25" distance ="30" speed ="1" direction="true"/>
+       <Character type="Nurse" x ="c-100" y="f-30" distance="10" speed="1"/>       
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
+    
+     <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="0" boundary="left"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="100" h="40" collide="true"/>
+      <Static type ="floor" x="600" y="f-10" w="200" h="40" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-250" y="c+200" w="400" h="25" distance ="30" speed ="1" direction="true"/>    
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
@@ -85,26 +119,8 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+       <Character type ="Cars" x="200" y="f-30" distance ="100" speed="1" />
+      <Character type ="Cars" x="600" y="f-30" distance ="100" speed="5" />
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
@@ -115,16 +131,25 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Character type ="AttackDog" x="c-200" y="f-20" distance="50" speed="2"/>
+      <Character type ="AttackDog" x="c" y="f-20" distance="500" speed="3"/> 
+      <Character type ="AttackDog" x ="c+200" y="f-20" distance="50" speed= "2"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
-    
      <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="0" boundary="left"/>
+    
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="spikes-H" x="100" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="spikes-H" x="110" y="f-50" w="30" h="50" collide ="true"/>
+      <Character type ="AttackDog" x="400" y="f-20" distance="50" speed="3"/>
+      <Character type ="AttackDog" x="550" y="f-20" distance="50" speed="3"/> 
+      <Static type ="spikes-H" x="700" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="spikes-H" x="710" y="f-50" w="30" h="50" collide ="true"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
