@@ -271,8 +271,8 @@ namespace KeysToInsanity
                     gameState = GameState.Death;
                     insanity = 0.0f;
                     theGentleman.health = 100.0f;
-                    stageIndex = 0;
-                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    //stageIndex = 0;
+                    //theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                 }
 
                 // pause game logic while background is sliding
