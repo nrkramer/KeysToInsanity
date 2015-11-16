@@ -234,7 +234,7 @@ namespace KeysToInsanity.Code.Base
                     return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Security guard = new Security(game, speed,distance,x);
@@ -242,7 +242,7 @@ namespace KeysToInsanity.Code.Base
                     return guard;
                 case "Cars":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Cars car = new Cars(game, speed, distance, x);
@@ -357,12 +357,12 @@ namespace KeysToInsanity.Code.Base
             int h = ParseExpression(r.GetAttribute("h"), fullY);
             int distance = ParseExpression(r.GetAttribute("distance"), 0);
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
-            bool direction = bool.Parse(r.GetAttribute("direction"));
-            
+            bool direction = bool.Parse(r.GetAttribute("direction"));          
+            string asset = r.GetAttribute("file");
 
             if (direction)
             {
-                HorizontalPlatform platform = new HorizontalPlatform(game, speed, distance);
+                HorizontalPlatform platform = new HorizontalPlatform(game,asset, speed, distance);
                 platform.spritePos = new Vector2(x, y);
                 platform.spriteSize = new Point(w, h);
                 platform.center = x;
@@ -370,7 +370,7 @@ namespace KeysToInsanity.Code.Base
                 return platform;
             } else
             {
-                VerticalPlatform platform = new VerticalPlatform(game, speed, distance);
+                VerticalPlatform platform = new VerticalPlatform(game,asset,speed, distance);
                 platform.spritePos = new Vector2(x, y);
                 platform.spriteSize = new Point(w, h);
                 platform.center = y;

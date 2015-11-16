@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Objects
         private bool direction = true;
 
         //a type of platform that will move up to down
-        public VerticalPlatform(Game game, float moveSpeed, float moveDistance) : base(game, "platform", true)
+        public VerticalPlatform(Game game, string file,float moveSpeed, float moveDistance) : base(game, file, true)
         {
             this.moveDistance = moveDistance;
             this.moveSpeed = moveSpeed;

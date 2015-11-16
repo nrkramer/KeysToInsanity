@@ -47,8 +47,8 @@
       <Static type ="spikes-H" x="670" y="115" w="50" h="20" collide ="true"/>
       <Static type ="spikes-H" x="720" y="115" w="50" h="20" collide ="true"/>
       <Static type ="spikes-H" x="770" y="115" w="50" h="20" collide ="true"/>
-      <Platform x="c+75" y="90" w="60" h="25" distance ="330" speed ="2" direction="true"/>
-      <Platform x="35" y="135" w="60" h="25" distance ="68" speed ="1" direction="false"/>
+      <Platform x="c+75" y="90" w="60" h="25" distance ="330" speed ="2" direction="true" file="platform"/>
+      <Platform x="35" y="135" w="60" h="25" distance ="68" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="60" boundary="right"/>
     </Stage>
@@ -64,9 +64,9 @@
       <Static type ="spikes-H" x="320" y="f-55" w="100" h="55" collide ="false"/>
       <Static type ="spikes-H" x="420" y="f-55" w="100" h="55" collide ="false"/>
       <Static type ="spikes-H" x="520" y="f-55" w="100" h="55" collide ="false"/>
-      <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true"/>
-      <Platform x="c+50" y="c" w="60" h="25" distance ="75" speed ="2" direction="true"/>
-      <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false"/>
+      <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
+      <Platform x="c+50" y="c" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
+      <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
@@ -77,7 +77,7 @@
       <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="1" direction="true"/>
+      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="1" direction="true" file="platform"/>
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
@@ -101,10 +101,10 @@
       <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
       <Static type ="floor" x="f-50" y="100" w="f" h="f" collide ="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="50" y="f-115" w="200" h="f" distance ="80" speed ="1" direction="false"/>
+      <Platform x="50" y="f-115" w="200" h="f" distance ="80" speed ="1" direction="false" file="platform"/>
       <Static type="platform" x="250" y="c+50" w="200" h="f" collide="true"/>
-      <Platform x="250" y="115" w="200" h="100" distance ="120" speed ="1" direction="false"/>
-      <Platform x="550" y="115" w="60" h="25" distance ="75" speed ="1" direction="true"/>
+      <Platform x="250" y="115" w="200" h="100" distance ="120" speed ="1" direction="false" file="platform"/>
+      <Platform x="550" y="115" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="f-60" y="60" boundary="right"/>
     </Stage>
@@ -128,11 +128,11 @@
       <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
       <Static type ="floor" x="f-50" y="100" w="f" h="f" collide ="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="50" y="f-105" w="200" h="f" distance ="100" speed ="1" direction="false"/>
-      <Platform x="50" y="c-50" w="200" h="100" distance ="100" speed ="2" direction="false"/>
+      <Platform x="50" y="f-105" w="200" h="f" distance ="100" speed ="1" direction="false" file="platform"/>
+      <Platform x="50" y="c-50" w="200" h="100" distance ="100" speed ="2" direction="false" file="platform"/>
       <Static type="platform" x="340" y="c+50" w="200" h="f" collide="true"/>
-      <Platform x="340" y="115" w="200" h="100" distance ="120" speed ="2" direction="false"/>
-      <Platform x="f-110" y="150" w="60" h="25" distance ="60" speed ="1" direction="false"/>
+      <Platform x="340" y="115" w="200" h="100" distance ="120" speed ="2" direction="false" file="platform"/>
+      <Platform x="f-110" y="150" w="60" h="25" distance ="60" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="0" y="f-60" boundary="left"/>
     </Stage>
@@ -143,7 +143,7 @@
       <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="3" direction="true"/>
+      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="3" direction="true" file="platform"/>
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="spikes-H" x="160" y="c+160" w="60" h="15" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
@@ -176,7 +176,7 @@
       <Static type ="spikes-H" x="320" y="f-55" w="100" h="55" collide ="false"/>
       <Static type ="spikes-H" x="420" y="f-55" w="100" h="55" collide ="false"/>
       <Static type ="spikes-H" x="520" y="f-55" w="100" h="55" collide ="false"/>
-      <Platform x="620" y="f-115" w="60" h="25" distance ="85" speed ="1" direction="false"/>
+      <Platform x="620" y="f-115" w="60" h="25" distance ="85" speed ="1" direction="false" file="platform"/>
       <Static type ="platform" x="620" y="f-230" w="60" h="25" collide ="true"/>
       <Static type ="ReverseSpikes-H" x="620" y="f-205" w="60" h="15" collide ="false"/>
       <Static type ="platform" x="c" y="10" w="15" h="125" collide="true"/>
@@ -192,9 +192,9 @@
       <Static type="Vspikes-L" x="c+15" y="c+150" w="15" h="40" collide="true"/>
       <Static type="Vspikes-L" x="c+15" y="c+190" w="15" h="40" collide="true"/>
       <Static type="singleSpike-H" x="c" y="c-65" w="15" h="15" collide="true"/>
-      <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true"/>
-      <Platform x="c+100" y="c" w="60" h="25" distance ="75" speed ="2" direction="true"/>
-      <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false"/>
+      <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
+      <Platform x="c+100" y="c" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
+      <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="40" y="60" boundary="left"/>
     </Stage>
@@ -275,12 +275,12 @@
       <Static type ="platform" x="150" y="f-210" w="f-160" h="10" collide ="true"/>
       <Static type ="platform" x="10" y="f-310" w="c+164" h="10" collide ="true"/>
       <Static type ="platform" x="120" y="120" w="f" h="10" collide ="true"/>
-      <Platform x="35" y="155" w="60" h="25" distance ="72" speed ="1" direction="false"/>
-      <Platform x="c-200" y="225" w="60" h="25" distance ="80" speed ="1" direction="true"/>
-      <Platform x="c-60" y="225" w="60" h="25" distance ="180" speed ="2" direction="true"/>
-      <Platform x="c" y="365" w="60" h="25" distance ="260" speed ="2" direction="true"/>
+      <Platform x="35" y="155" w="60" h="25" distance ="72" speed ="1" direction="false" file="platform"/>
+      <Platform x="c-200" y="225" w="60" h="25" distance ="80" speed ="1" direction="true" file="platform"/>
+      <Platform x="c-60" y="225" w="60" h="25" distance ="180" speed ="2" direction="true" file="platform"/>
+      <Platform x="c" y="365" w="60" h="25" distance ="260" speed ="2" direction="true" file="platform"/>
       <Static type="platform" x="35" y="385" w="60" h="25" distance ="50" collide="true"/>
-      <Platform x="c-100" y="465" w="60" h="25" distance ="220" speed ="2" direction="true"/>
+      <Platform x="c-100" y="465" w="60" h="25" distance ="220" speed ="2" direction="true" file="platform"/>
       <Background type="sewer_wall"/>
       <End x="60" y="f-60" boundary="left"/>
     </Stage>
