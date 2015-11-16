@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Objects
         private bool direction = true;
 
         //a type of platform that will move side to side
-        public HorizontalPlatform(Game game, float moveSpeed, float moveDistance) : base(game, "platform", true)
+        public HorizontalPlatform(Game game,string file, float moveSpeed, float moveDistance) : base(game, file, true)
         {
             center = getSpriteXPos();
             this.moveDistance = moveDistance;

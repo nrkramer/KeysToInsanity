@@ -11,7 +11,7 @@ namespace KeysToInsanity.Code.Entitys
         private float center;
         private float moveSpeed;
         private float moveDistance;
-        private bool direction;
+        private bool direction =true;
         private float damage = 100;
 
 
