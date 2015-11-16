@@ -137,9 +137,9 @@
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
     
+     <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="0" boundary="left"/>  
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
@@ -153,8 +153,7 @@
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
-  
-  
+    
     <Stage x="0" y="0" w="f" h="f">
      <Start x="0" y="0" boundary="left" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide="true" />
