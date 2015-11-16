@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Entitys
         private float damage = 10;
 
 
-        public Rats(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"Rat",new Point(22,22),1,0,true)
+        public Rats(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"Rat",new Point(30,30),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
@@ -69,7 +69,7 @@ namespace KeysToInsanity.Code.Entitys
         protected override void loadAnimations()
         {
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 32, 32), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 30, 30), TimeSpan.FromSeconds(1.0));
             animations.Add(idle);
         }
     }

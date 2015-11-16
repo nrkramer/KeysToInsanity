@@ -18,7 +18,7 @@ namespace KeysToInsanity.Code.Entitys
         private float damage = 20;
 
        
-        public AttackDog(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"dogs",new Point(22,22),1,0,true)
+        public AttackDog(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"dogs",new Point(47,27),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;

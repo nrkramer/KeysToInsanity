@@ -234,7 +234,7 @@ namespace KeysToInsanity.Code.Base
                     return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Security guard = new Security(game, speed,distance,x);
@@ -242,7 +242,7 @@ namespace KeysToInsanity.Code.Base
                     return guard;
                 case "Cars":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullY);
                     distance = ParseExpression(r.GetAttribute("distance"), 0);
                     speed = ParseExpression(r.GetAttribute("speed"), 0);
                     Cars car = new Cars(game, speed, distance, x);

@@ -7,6 +7,12 @@
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
     </Stage>
@@ -34,6 +40,8 @@
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="Concrete" x="c-200" y="f-120" w="75" h="20" collide="true"/>
       <Static type ="Concrete" x="c-10" y="f-200" w="100" h="20" collide="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Character type ="Cars" x="c" y="f-20" distance="200" speed ="5"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -46,7 +54,12 @@
       <Static type ="floor_con" x="f-100" y="f-10" w="500" h="20" collide ="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Character type="AttackDog" x="200" y ="f-50" distance ="50" speed ="5"/>
+      
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Character type="AttackDog" x="200" y ="f-30" distance ="50" speed ="5"/>
       <Character type="AttackDog" x="450" y ="f-30" distance ="40" speed ="5"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -62,7 +75,7 @@
       <Static type ="Concrete" x ="150" y="f-80" w="10"  h ="80" collide ="true"/>
       <Static type ="Concrete" x ="350" y="f-220" w="200"  h ="20" collide ="true"/>
       <Static type ="Concrete" x ="350" y="f-220" w="10"  h ="160" collide ="true"/>
-      <Character type ="Cars" x="250" y="f-90" distance ="40" speed="1" />
+      <Character type ="Security" x="250" y="f-100" distance ="40" speed="1" />
       <Character type ="Cars" x="500" y="f-30" distance ="100" speed="5" />
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -82,7 +95,7 @@
        <Static type ="TrafficCones" x="510" y="f-50" w="30" h="50" collide ="true"/>
        <Static type ="TrafficCones" x="700" y="f-50" w="30" h="50" collide ="true"/>
        <Static type ="TrafficCones" x="710" y="f-50" w="30" h="50" collide ="true"/>
-       <Character type="Nurse" x ="410" y="f-30" distance="10" speed="1"/>  
+       <Character type="Security" x ="410" y="f-30" distance="10" speed="1"/>  
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
@@ -96,7 +109,7 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
       <Platform x="c-150" y="c+150" w="60" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>
       <Platform x="c+180" y="c+250" w="80" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>
-       <Character type="Nurse" x ="c-100" y="f-30" distance="10" speed="1"/>       
+       <Character type="Security" x ="c-100" y="f-30" distance="10" speed="1"/>       
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
@@ -108,6 +121,8 @@
       <Static type ="floor_con" x="600" y="f-10" w="200" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+       <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Platform x="c-250" y="c+200" w="400" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>    
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -119,7 +134,13 @@
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-       <Character type ="Cars" x="200" y="f-30" distance ="100" speed="1" />
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Character type ="Cars" x="200" y="f-30" distance ="100" speed="1" />
       <Character type ="Cars" x="600" y="f-30" distance ="100" speed="5" />
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
@@ -131,6 +152,12 @@
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Character type ="AttackDog" x="c-200" y="f-20" distance="50" speed="2"/>
       <Character type ="AttackDog" x="c" y="f-20" distance="50" speed="3"/> 
       <Character type ="AttackDog" x ="c+200" y="f-20" distance="50" speed= "2"/>
@@ -159,7 +186,11 @@
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide="true" />
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true" />      
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true" />
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Door x="f-10" y="f-100" w="10" h="100" />
       <Background type="ParkingLot" />
       <End x="f-60" y="f-60" boundary ="right"/>
