@@ -167,10 +167,10 @@
     
      <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="spikes-H" x="100" y="f-50" w="30" h="50" collide ="true"/>
       <Static type ="spikes-H" x="110" y="f-50" w="30" h="50" collide ="true"/>
       <Character type ="AttackDog" x="400" y="f-20" distance="50" speed="3"/>
