@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XML>
+  <Level name = "Level 1" stages="2">
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="c" y="300" boundary="none" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type="LanternPole" x="c-300" y="c+50" w="40" h="240" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="c+50" w="40" h="240" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="c+50" w="40" h="240" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
+      <Key x="0" y="0"/>
+      <Background type="snowBackground" />
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-50" boundary="left" />
+      <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor" x="0" y="f-10" w="100" h="40" collide ="true"/>
+      <Static type ="iceblock" x="c-100" y="c+200" w="200" h="20" collide="true"/>
+      <Static type ="box" x="c+80" y="c+175" w="30" h="25" collide="true"/>
+      <Static type ="floor" x="f-100" y="f-10" w="110" h="40" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Background type="snowBackground" />
+      <End x="f" y="60" boundary="right"/>
+    </Stage>
+  </Level>
+</XML>
