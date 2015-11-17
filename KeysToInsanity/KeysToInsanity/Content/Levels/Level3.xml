@@ -16,30 +16,15 @@
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
     </Stage>
+    
+  
 
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
+      <Start x="0" y="f-40" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Character type ="AttackDog" x="c-200" y="f-20" distance="75" speed="2"/>      
-      <Character type ="AttackDog" x ="c+200" y="f-20" distance="60" speed= "5"/>
-      <Static type="Concrete" x="c" y="f-120" w="120" h ="30" collide ="true"/>
-      <Static type="Concrete" x="c+100" y="f-120" w="20" h="120" collide ="true"/>
-      <Key x="c+50" y="f-50"/>
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-    <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type ="Concrete" x="c-200" y="f-120" w="75" h="20" collide="true"/>
-      <Static type ="Concrete" x="c-10" y="f-200" w="100" h="20" collide="true"/>
       <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Character type ="Cars" x="c" y="f-20" distance="200" speed ="5"/>
@@ -47,132 +32,135 @@
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
     
-    <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="600" h="20" collide ="true"/>
-      <Static type ="floor_con" x="f-100" y="f-10" w="500" h="20" collide ="true"/>
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      
-      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Character type="AttackDog" x="200" y ="f-30" distance ="50" speed ="5"/>
-      <Character type="AttackDog" x="450" y ="f-30" distance ="40" speed ="5"/>
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-    <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
+      <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type ="Concrete" x ="150" y="f-80" w="400"  h ="20" collide ="true"/>
-      <Static type ="Concrete" x ="150" y="f-80" w="10"  h ="80" collide ="true"/>
-      <Static type ="Concrete" x ="350" y="f-220" w="200"  h ="20" collide ="true"/>
-      <Static type ="Concrete" x ="350" y="f-220" w="10"  h ="160" collide ="true"/>
-      <Character type ="Security" x="250" y="f-100" distance ="40" speed="1" />
+      <Static type="Concrete" x="c+30" y="f-180" w="200" h="120" collide ="true"/>
+      <Static type="Concrete" x="c-100" y="f-180" w="300" h="30" collide ="true"/>
+      <Platform x="c-300" y="f-90" w="350" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Character type ="Cars" x="c" y="f-180" distance="50" speed ="2"/>
+      <Key x="c-20" y="f-60"/>
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
+        
+      <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="100" h="f" collide="true"/>
+      <Static type ="floor_con" x="600" y="f-10" w="200" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>  
+      <Static type ="Concrete" x="c-310" y="f-120" w="350" h="200" collide="true"/>
+      <Static type ="Concrete" x="c+190" y="f-300" w="50" h="800" collide="true"/>
+      <Static type ="Concrete" x="c-310" y="f-300" w="350" h="100" collide="true"/>      
+      <Platform x="c+50" y="f-100" w="50" h="20" distance ="70" speed ="1" direction="false" file="Concrete"/>
+      <Platform x="c-310" y="f-200" w="350" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+    </Stage>
+    
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="TrafficCones" x="100" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="110" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="300" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="310" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="500" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="510" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="700" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="710" y="f-50" w="30" h="50" collide ="true"/>
+      <Character type="Security" x ="410" y="f-30" distance="10" speed="1"/>  
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
+    
+      <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="Concrete" x ="150" y="f-80" w="150"  h ="70" collide ="true"/>
+      <Static type ="Concrete" x ="350" y="f-220" w="200"  h ="160" collide ="true"/>
+      <Platform x="300" y="f-260" w="50" h="200" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Character type ="Security" x="220" y="f-100" distance ="40" speed="2" />
       <Character type ="Cars" x="500" y="f-30" distance ="100" speed="5" />
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
     
      <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-       <Static type ="TrafficCones" x="100" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="110" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="300" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="310" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="500" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="510" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="700" y="f-50" w="30" h="50" collide ="true"/>
-       <Static type ="TrafficCones" x="710" y="f-50" w="30" h="50" collide ="true"/>
-       <Character type="Security" x ="410" y="f-30" distance="10" speed="1"/>  
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="400" h="40" collide="true"/>
-      <Static type ="floor_con" x="700" y="f-10" w="400" h="40" collide="true"/>      
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
-      <Platform x="c-150" y="c+150" w="60" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>
-      <Platform x="c+180" y="c+250" w="80" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>
-       <Character type="Security" x ="c-100" y="f-30" distance="10" speed="1"/>       
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-    
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
+      <Start x="0" y="f-40" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor_con" x="0" y="f-10" w="100" h="40" collide="true"/>
-      <Static type ="floor_con" x="600" y="f-10" w="200" h="40" collide="true"/>
+      <Static type ="floor_con" x="c" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-       <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Platform x="c-250" y="c+200" w="400" h="25" distance ="30" speed ="1" direction="true" file="Concrete"/>    
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-300" y="f-120" w="100" h="20" distance ="100" speed ="2" direction="true" file="Concrete"/>
+      <Platform x="c-100" y="f-120" w="50" h="20" distance ="50" speed ="3" direction="false" file="Concrete"/>
+      <Static type ="Concrete" x="c" y="f-120" w="200" h="20" collide="true"/>
+      <Static type ="Concrete" x="c+200" y="f-120" w="50" h="20" collide="false"/>
+      <Static type ="Concrete" x="c+250" y="f-120" w="100" h="20" collide="true"/>
+      <Character type="Security" x ="c+125" y="f-30" distance="125" speed="2"/> 
+      <Character type="Security" x ="c+250" y="f-30" distance="75" speed="1"/>  
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
     
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
+       <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-       <Character type ="Cars" x="200" y="f-30" distance ="100" speed="1" />
-      <Character type ="Cars" x="600" y="f-30" distance ="100" speed="5" />
-      <Background type="ParkingLot"/>
-      <End x="60" y="f-60" boundary="right"/>
-      </Stage>
-
-     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
-      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Character type ="AttackDog" x="c-200" y="f-20" distance="50" speed="2"/>
-      <Character type ="AttackDog" x="c" y="f-20" distance="50" speed="3"/> 
+      <Platform x="c-300" y="f-90" w="100" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Platform x="c-300" y="f-140" w="100" h="20" distance ="40" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-300" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Character type ="AttackDog" x="c-100" y="f-20" distance="50" speed="2"/>
+      <Character type ="AttackDog" x="c" y="f-20" distance="70" speed="4"/> 
       <Character type ="AttackDog" x ="c+200" y="f-20" distance="50" speed= "2"/>
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
     
+     
+
      <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="0" boundary="left"/>
+      <Start x="0" y="f-40" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type ="spikes-H" x="100" y="f-50" w="30" h="50" collide ="true"/>
-      <Static type ="spikes-H" x="110" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Character type ="Cars" x="200" y="f-30" distance ="150" speed="3" />
+      <Character type ="Cars" x="600" y="f-30" distance ="100" speed="5" />
+      <Character type ="Cars" x="500" y="f-30" distance ="150" speed="3" />
+      <Character type ="Cars" x="400" y="f-30" distance ="100" speed="5" />
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
+    
+     <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="TrafficCones" x="100" y="f-50" w="30" h="50" collide ="true"/>
+      <Static type ="TrafficCones" x="110" y="f-50" w="30" h="50" collide ="true"/>
       <Character type ="AttackDog" x="400" y="f-20" distance="50" speed="3"/>
       <Character type ="AttackDog" x="550" y="f-20" distance="50" speed="3"/> 
       <Static type ="TrafficCones" x="700" y="f-50" w="30" h="50" collide ="true"/>
@@ -180,9 +168,32 @@
       <Background type="ParkingLot"/>
       <End x="60" y="f-60" boundary="right"/>
       </Stage>
+    
+      <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-330" y="f-90" w="100" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Platform x="c-330" y="f-140" w="100" h="20" distance ="40" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-330" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-30" y="f-90" w="100" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Platform x="c-30" y="f-140" w="100" h="20" distance ="40" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-30" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+270" y="f-90" w="100" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
+      <Platform x="c+270" y="f-140" w="100" h="20" distance ="40" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+270" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Character type ="AttackDog" x="c-100" y="f-20" distance="50" speed="2"/>     
+      <Character type ="AttackDog" x ="c+200" y="f-20" distance="50" speed= "2"/>
+      <Character type ="Security" x="c-130" y="f-20" distance="100" speed="1"/>     
+      <Character type ="Security" x ="c+170" y="f-20" distance="100" speed= "1"/>
+      <Background type="ParkingLot"/>
+      <End x="60" y="f-60" boundary="right"/>
+      </Stage>
   
     <Stage x="0" y="0" w="f" h="f">
-     <Start x="0" y="0" boundary="left" />
+     <Start x="0" y="f-40" boundary="left" />
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide="true" />
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true" />

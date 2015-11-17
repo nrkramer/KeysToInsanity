@@ -14,7 +14,7 @@ namespace KeysToInsanity.Code
         private float damage = 10;
 
 
-        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"security",new Point(25,40),1,0,true)
+        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"security",new Point(22,22),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
@@ -72,7 +72,7 @@ namespace KeysToInsanity.Code
         protected override void loadAnimations()
         {
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 25, 40), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 22, 22), TimeSpan.FromSeconds(1.0));
             animations.Add(idle);
         }
     }
