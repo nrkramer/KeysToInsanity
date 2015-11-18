@@ -10,15 +10,15 @@
       <Background type="tileBackground"/>
       <Character type ="Nurse" x="200" y="f-20" distance="10" speed="2"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+    
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" />
-      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+   
       <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
-      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
       <Checkpoint x="500" y="f-105"/> 
       <End x="f-60" y="f-60" boundary="right"/>
