@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XML>
-  <Level name = "Level 1" stages="4">
+  <Level name = "Level 1" stages="5">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="300" boundary="none" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
@@ -92,8 +92,36 @@
       <Platform x="120" y="c+200" w="200" h="20" distance ="60" speed ="1" direction="false" file="iceblock"/>
       <Platform x="320" y="c+230" w="200" h="20" distance ="60" speed ="2" direction="false" file="iceblock"/>
       <Static type ="iceblock" x="520" y="c" w="f" h="20" collide="true"/>
+      <Platform x="630" y="c-100" w="60" h="25" distance ="60" speed ="1" direction="false" file="iceblock"/>
       <Background type="snowBackground"/>
       <End x="f-5" y="50" boundary ="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="50" boundary="left"/>
+      <Static type ="left_wall" x="0" y="100" w="10" h="f" collide ="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="floor" x="f-100" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="iceblock" x="10" y="100" w="400" h="20" collide="true"/>
+      <Static type ="iceblock" x="c+100" y="300" w="290" h="20" collide="true"/>
+      <Static type ="iceblock" x="c-200" y="300" w="320" h="20" collide="true"/>
+      <Static type ="iceblock" x="c+100" y="300" w="20" h="200" collide="true"/>
+      <Static type ="iceblock" x="c-200" y="300" w="20" h="230" collide="true"/>
+      <Platform x="c-50" y="f-25" w="60" h="20" distance ="250" speed ="1" direction="true" file="platform"/>
+      <Static type ="iceblock" x="c-50" y="300" w="20" h="230" collide="true"/>
+      <Static type ="iceblock" x="c-125" y="425" w="20" h="160" collide="true"/>
+      <Static type="singleSpike-H" x="c-125" y="415" w="20" h="15" collide="true"/>
+      <Static type ="iceblock" x="c+25" y="425" w="20" h="160" collide="true"/>
+      <Static type="singleSpike-H" x="c+25" y="415" w="20" h="15" collide="true"/>
+      <Static type ="ReverseSpikes-H" x="c-30" y="320" w="65" h="20" collide ="true"/>
+      <Static type ="ReverseSpikes-H" x="c+35" y="320" w="65" h="20" collide ="true"/>
+      <Static type ="ReverseSpikes-H" x="c-180" y="320" w="65" h="20" collide ="true"/>
+      <Static type ="ReverseSpikes-H" x="c-115" y="320" w="65" h="20" collide ="true"/>
+      <Platform x="f" y="10" w="610" h="300" distance ="600" speed ="2" direction="true" file="iceblock"/>
+      <Static type ="iceblock" x="f-120" y="f-150" w="20" h="150" collide="true"/>
+      <Static type ="iceblock" x="f-200" y="f-150" w="100" h="20" collide="true"/>
+      <Background type="snowBackground" />
+      <End x="f" y="f-50" boundary="right"/>
     </Stage>
   </Level>
 </XML>
