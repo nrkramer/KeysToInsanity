@@ -137,11 +137,11 @@ namespace KeysToInsanity.Code
 
             // fall right
             Animation fallRight = new Animation();
-            fallRight.AddUniformStrip(new Rectangle(0, 128, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
+            fallRight.AddUniformStrip(new Rectangle(0, 172, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 
-            // fall left
+            // fall left 0, 172, 56, 33
             Animation fallLeft = new Animation();
-            fallLeft.AddUniformStrip(new Rectangle(0, 172, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
+            fallLeft.AddUniformStrip(new Rectangle(0, 128, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 
             animations.Add(idle);
             animations.Add(runRight);
