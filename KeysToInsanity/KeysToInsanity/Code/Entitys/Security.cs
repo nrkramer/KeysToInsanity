@@ -72,7 +72,7 @@ namespace KeysToInsanity.Code
         protected override void loadAnimations()
         {
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 50, 79), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 22, 22), TimeSpan.FromSeconds(1.0));
             animations.Add(idle);
         }
     }

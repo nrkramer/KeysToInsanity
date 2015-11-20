@@ -8,18 +8,17 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
       <Background type="tileBackground"/>
-      <Character type ="Nurse" x="200" y="f-20" distance="10" speed="2"/>
-      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/> 
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" />
+      <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
-      <Checkpoint x="500" y="f-105"/> 
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />  
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
+      <Checkpoint x="500" y="f-110"/> 
       <End x="f-60" y="f-60" boundary="right"/>
-    </Stage>
-    
+    </Stage>   
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
@@ -51,7 +50,7 @@
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="platform" x="c-10" y="c+100" w="60" h="25" collide="true"/>
-      <Platform x="c-100" y="c" w="60" h="25" distance ="50" speed ="1" direction="true"/>
+      <Platform x="c-100" y="c" w="60" h="25" distance ="50" speed ="1" direction="true" file="platform"/>
       <Static type ="platform" x="c-200" y="c-100" w="60" h="25" collide="true"/>
       <Background type="tileBackground"/>
     <End x="f" y="60" boundary ="right"/>
@@ -62,10 +61,10 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="0" y="f-10" w="100" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="200" w="30" h="f" collide="true"/>
-      <Platform x="c-100" y="c+200" w="60" h="25" distance ="50" speed ="1" direction="true"/>
-      <Platform x="c+60" y="c+75" w ="60" h="25" distance ="50" speed ="2" direction="true"/>
-      <Platform x="f-60" y="c" w="60" h="25" distance ="50" speed ="1" direction="false"/>
-      <Platform x="c+180" y="c+95" w="60" h="25" distance ="50" speed ="1" direction="false"/>
+      <Platform x="c-100" y="c+200" w="60" h="25" distance ="50" speed ="1" direction="true" file="platform" />
+      <Platform x="c+60" y="c+75" w ="60" h="25" distance ="50" speed ="2" direction="true" file="platform" />
+      <Platform x="f-60" y="c" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
+      <Platform x="c+180" y="c+95" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform" />
     <Background type ="tileBackground"/>
     <End x="f-5" y="60" boundary ="right"/>
     </Stage>
@@ -75,11 +74,11 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="0" y="115" w="c+100" h="f" collide ="true"/>
       <Static type ="floor" x="f-10" y="f-10" w="f" h="10" collide ="true"/>
-      <Platform x="115" y="100" w="60" h="25" distance ="100" speed ="2" direction="false"/>
-      <Platform x="c-75" y="100" w="60" h="25" distance ="100" speed ="3" direction="false"/>
-      <Platform x="c+200" y="250" w="60" h="25" distance ="75" speed ="1" direction="true"/>
-      <Platform x="c+200" y="350" w="60" h="25" distance ="75" speed ="2" direction="true"/>
-      <Platform x="c+200" y="550" w="60" h="25" distance ="75" speed ="3" direction="true"/>
+      <Platform x="115" y="100" w="60" h="25" distance ="100" speed ="2" direction="false" file="platform"/>
+      <Platform x="c-75" y="100" w="60" h="25" distance ="100" speed ="3" direction="false" file="platform"/>
+      <Platform x="c+200" y="250" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
+      <Platform x="c+200" y="350" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
+      <Platform x="c+200" y="550" w="60" h="25" distance ="75" speed ="3" direction="true" file="platform"/>
       <Background type="tileBackground"/>
     <End x="f" y="f-60" boundary="right"/>
     </Stage>
@@ -114,9 +113,9 @@
       <Static type ="Vspikes-R" x="495" y="410" w="55" h="100" collide="true"/>
       <Static type ="Vspikes-R" x="495" y="510" w="55" h="80" collide="true"/>
       <Static type ="platform" x="20" y="c+40" w="60" h="25" collide="true"/>
-      <Platform x="c-150" y="c+150" w="60" h="25" distance ="75" speed ="2" direction="true"/>
-      <Platform x="c-20" y="c" w="60" h="25" distance ="75" speed ="3" direction="true"/>
-      <Platform x="c+50" y="c-120" w="60" h="25" distance ="75" speed ="2" direction="true"/>
+      <Platform x="c-150" y="c+150" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
+      <Platform x="c-20" y="c" w="60" h="25" distance ="75" speed ="3" direction="true" file="platform"/>
+      <Platform x="c+50" y="c-120" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
       <Background type="tileBackground"/>
       <End boundary ="bottom"/>
     </Stage>

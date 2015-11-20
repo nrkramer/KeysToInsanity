@@ -68,7 +68,7 @@ namespace KeysToInsanity
         private LevelSwitcher chooseLevelMenu;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 1;
+        private uint unlockedLevels = 3;
 
         private BasicInput input; // Our input handler
 
@@ -171,7 +171,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level3.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
