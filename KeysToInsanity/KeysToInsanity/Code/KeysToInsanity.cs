@@ -213,7 +213,8 @@ namespace KeysToInsanity
                     {
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
-                        theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
+                        theGentleman.velocity.setY(0.0f);
+                        theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, collided.spritePos.Y - theGentleman.spriteSize.Y);
                         physics.resetTime(time);
                         //landedOnGround.play(false);
                     }
