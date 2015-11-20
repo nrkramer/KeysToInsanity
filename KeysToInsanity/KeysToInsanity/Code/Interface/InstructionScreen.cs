@@ -8,17 +8,16 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    class CreditScreen
+    class InstructionScreen
     {
-        private BasicSprite credits;
+        private BasicSprite instruct;
         private BasicSprite returnButton;
 
-        private Rectangle returnR = new Rectangle(690, 20, 100, 20);
-        
-        public CreditScreen(Game game)
+        // See comment in CreditScreen class
+        public InstructionScreen(Game game)
         {
-            credits = new BasicSprite(game, "Interface\\creditsPage", false);
-            credits.spritePos = new Vector2(10, 100);
+            instruct = new BasicSprite(game, "Interface\\Instructions", false);
+            instruct.spritePos = new Vector2(0, 100);
 
             returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
@@ -26,16 +25,17 @@ namespace KeysToInsanity.Code.Interface
 
         public void drawMenu(SpriteBatch s)
         {
-            credits.draw(s);
+            instruct.draw(s);
             returnButton.draw(s);
         }
 
         public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            if (returnR.Contains(pos))
-                return KeysToInsanity.GameState.StartMenu;
+            if (new Rectangle(returnButton.spritePos.ToPoint(), returnButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Paused;
 
-            return KeysToInsanity.GameState.Credits;
+            return KeysToInsanity.GameState.Instructions;
         }
     }
 }
+

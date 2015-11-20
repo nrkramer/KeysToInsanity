@@ -25,6 +25,8 @@ namespace KeysToInsanity
         public bool hidden = false;
         public Color color = Color.White;
         public float opacity = 1.0f;
+        public bool slippery = false;
+        public float friction = 2.0f;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
         public event KeysToInsanity.CollisionEventHandler collisionCallback;
@@ -38,7 +40,6 @@ namespace KeysToInsanity
             try
             {
                 spriteTex = game.Content.Load<Texture2D>(file); // load the texture
-
                 spritePos = new Vector2(0, 0); // initial position
                 spriteSize = spriteTex.Bounds.Size; // get the size from the texture size
                 velocity = Velocity.Zero;
@@ -98,10 +99,24 @@ namespace KeysToInsanity
 
         // gets collision data
         // first parameter is who i've collided with
-        public virtual void onCollide(BasicSprite collided, Rectangle data, GameTime time)
+        public virtual void onCollide(BasicSprite s, Rectangle data, GameTime time)
         {
             if (collisionCallback != null)
-                collisionCallback(this, collided, data, time);
+                collisionCallback(this, s, data, time);
+
+            if (s.collidable)
+            {
+                if (data.Height >= 1)
+                {
+                    if (!s.slippery)
+                    {
+                        if ((velocity.getX() <= -1.0f) || (velocity.getX() >= 1.0f))
+                            velocity.setX(velocity.getX() / friction);
+                        else
+                            velocity.setX(0.0f);
+                    }
+                }
+            }
         }
 
         public float getSpriteXPos()

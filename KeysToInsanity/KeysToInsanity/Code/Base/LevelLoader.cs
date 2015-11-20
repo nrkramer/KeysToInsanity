@@ -80,6 +80,7 @@ namespace KeysToInsanity.Code.Base
         {
             while (r.Read())
             {
+                string text = "";
                 if (r.NodeType == XmlNodeType.Element)
                     switch (r.Name)
                     {
@@ -91,20 +92,25 @@ namespace KeysToInsanity.Code.Base
                             break;
                         case "Static":
                             BasicSprite sp = ParseStatic(r);
+                            text = r.GetAttribute("slippery");
+                            if (text != null)
+                                sp.slippery = bool.Parse(text);
+
                             s.addStatic(sp);
-                            try
-                            {
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
                                 if (bool.Parse(r.GetAttribute("fadein")))
                                     s.addFadeInObject(sp);
-                            } catch (ArgumentNullException e) { }
                             break;
                         case "AnimatedStatic":
                             AnimatedSprite asp = ParseAnimatedStatic(r);
                             s.addAnimatedStatic(asp);
-                            try {
-                                if (bool.Parse(r.GetAttribute("fadein")))
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
+                                if (bool.Parse(text))
                                     s.addFadeInObject(asp);
-                            } catch (ArgumentNullException e) { }
                             break;
                         case "Background":
                             s.setBackground(ParseBackground(r));
@@ -119,15 +125,23 @@ namespace KeysToInsanity.Code.Base
                             s.setDoor(ParseDoor(r));
                             break;
                         case "Platform":
-                            s.addPlatform(ParsePlatform(r));
+                            Platform p = ParsePlatform(r);
+
+                            text = r.GetAttribute("slippery");
+                            if (text != null)
+                                p.slippery = bool.Parse(text);
+
+                            s.addPlatform(p);
                             break;
                         case "LightEffect":
                             LightEffect le = ParseLightEffect(r);
                             s.addLight(le);
-                            try {
-                                if (bool.Parse(r.GetAttribute("fadein")))
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
+                                if (bool.Parse(text))
                                     s.addFadeInObject(le);
-                            } catch (ArgumentNullException e ) { }
+
                             break;
                         case "Hazard":
                             s.addHazard(ParseHazard(r));
@@ -211,28 +225,40 @@ namespace KeysToInsanity.Code.Base
                 case "Nurse":
                     int x = ParseExpression(r.GetAttribute("x"), fullX);
                     int y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Nurse nurse = new Nurse(game, x);
+                    int distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    int speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Nurse nurse = new Nurse(game, speed,distance,x);
                     nurse.spritePos = new Vector2(x, y);
                     return nurse;
                 case "AttackDog":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullY);
-                    AttackDog dog = new AttackDog(game,x);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    AttackDog dog = new AttackDog(game,speed,distance,x);
                     dog.spritePos = new Vector2(x, y);
                     return dog;
                 case "Rats":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
                     y = ParseExpression(r.GetAttribute("y"), fullY);
-                    Rats rats = new Rats(game, x);
-                    return rats;
-                case "Birds":
-                    Birds birds = new Birds(game);
-                    return birds;
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Rats rats = new Rats(game, speed,distance,x);
+                    return rats;                
                 case "Security":
                     x = ParseExpression(r.GetAttribute("x"), fullX);
-                    y = ParseExpression(r.GetAttribute("x"), fullX);
-                    Security guard = new Security(game, x);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Security guard = new Security(game, speed,distance,x);
                     return guard;
+                case "Cars":
+                    x = ParseExpression(r.GetAttribute("x"), fullX);
+                    y = ParseExpression(r.GetAttribute("y"), fullX);
+                    distance = ParseExpression(r.GetAttribute("distance"), 0);
+                    speed = ParseExpression(r.GetAttribute("speed"), 0);
+                    Cars car = new Cars(game, speed, distance, x);                        
+                    return car;
                 default:
                     return null;
             }
@@ -343,6 +369,7 @@ namespace KeysToInsanity.Code.Base
             int distance = ParseExpression(r.GetAttribute("distance"), 0);
             int speed = ParseExpression(r.GetAttribute("speed"), 0);
             bool direction = bool.Parse(r.GetAttribute("direction"));
+            
 
             if (direction)
             {

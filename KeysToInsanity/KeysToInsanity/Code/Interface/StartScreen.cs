@@ -8,54 +8,77 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    class StartScreen : BasicSprite
+    class StartScreen
     {     
-        private SpriteContainer startSprites = new SpriteContainer();
+        private BasicSprite logo;
+        private BasicSprite startButton;
+        private BasicSprite aboutButton;
+        private BasicSprite instructButton;
+        private BasicSprite creditsButton;
+        private BasicSprite exitButton;
+        //REMOVE WHEN READY TO RELEASE GAME
+        private BasicSprite chooseLevel;
 
-        public StartScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+        private Rectangle[] clickZones;
+
+        public StartScreen(Game game)
         {
-            BasicSprite logo = new BasicSprite(game, "Interface\\logo", false);
+            // load sprites
+            logo = new BasicSprite(game, "Interface\\logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite start = new BasicSprite(game, "Interface\\start", false);
-            start.spritePos = new Vector2(350, 240);
+            startButton = new BasicSprite(game, "Interface\\start", false);
+            startButton.spritePos = new Vector2(300, 240);
 
-            BasicSprite about = new BasicSprite(game, "Interface\\aboutButton", false);
-            about.spritePos = new Vector2(350, 290);
+            aboutButton = new BasicSprite(game, "Interface\\aboutButton", false);
+            aboutButton.spritePos = new Vector2(350, 290);
 
-            BasicSprite credits = new BasicSprite(game, "Interface\\creditsButton", false);
-            credits.spritePos = new Vector2(350, 340);
+            instructButton = new BasicSprite(game, "Interface\\InstructionsButton", false);
+            instructButton.spritePos = new Vector2(300, 340);
 
-            BasicSprite exit = new BasicSprite(game, "Interface\\exit", false);
-            exit.spritePos = new Vector2(350, 390);
+            creditsButton = new BasicSprite(game, "Interface\\creditsButton", false);
+            creditsButton.spritePos = new Vector2(350, 390);
 
-          
-
-            logo.addTo(startSprites);
-            start.addTo(startSprites);
-            about.addTo(startSprites);
-            credits.addTo(startSprites);
-            exit.addTo(startSprites);
+            exitButton = new BasicSprite(game, "Interface\\exit", false);
+            exitButton.spritePos = new Vector2(300, 440);
+            //REMOVE WHEN RELEASING GAME
+            chooseLevel = new BasicSprite(game, "Interface\\chooseLevel", false);
+            chooseLevel.spritePos = new Vector2(300, 490);
         }
 
-        public void drawMenu(SpriteBatch spriteBatch)
+        public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            foreach (BasicSprite s in startSprites)
-            {
-                s.draw(spriteBatch);
-            }        
+            if (new Rectangle(startButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Playing;
+
+            if (new Rectangle(aboutButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.About;
+
+            if (new Rectangle(instructButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Instructions;
+
+            if (new Rectangle(creditsButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Credits;
+
+            if (new Rectangle(chooseLevel.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.ChooseLevel;
+
+            //if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+            // exit game
+
+            return KeysToInsanity.GameState.StartMenu; 
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+        public void drawMenu(SpriteBatch s)
         {
-            spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
-        }
-
-        public void MouseClicked(Point pos)
-        {
-
+            logo.draw(s);
+            startButton.draw(s);
+            aboutButton.draw(s);
+            instructButton.draw(s);
+            creditsButton.draw(s);
+            exitButton.draw(s);
         }
     }
 }
+
+

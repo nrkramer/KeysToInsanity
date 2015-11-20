@@ -14,6 +14,10 @@ namespace KeysToInsanity.Code
 
         public int jumps = 2;
         private float _health = 100.0f;
+        public bool invincible = false;
+        private int total_invincibility_time = 2; // 2 seconds
+        private GameTime invincibility_time;
+
         public float health
         {
             set { _health = value; KeysToInsanity.hud.updateHealth(value); }
@@ -24,6 +28,8 @@ namespace KeysToInsanity.Code
 
         public TheGentleman(Game game) : base(game, "Samus_fixed", new Point(32, 48), 4, 0.1, true)
         {
+            friction = 3.0f;
+
             gd = game.GraphicsDevice;
 
             renderTarget = new RenderTarget2D(gd,
@@ -34,8 +40,18 @@ namespace KeysToInsanity.Code
             effect = game.Content.Load<Effect>("Shaders\\Test_shader.mgfx");
         }
 
-        public void handleInput(GameTime time)
+        public void Update(GameTime time)
         {
+            if (invincible)
+                invincibility_time = time;
+            else
+                invincibility_time = new GameTime();
+
+            if ((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds) >= total_invincibility_time)
+            {
+                invincible = false;
+            }
+
             //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
             float xVelocity = velocity.getX();
@@ -52,23 +68,32 @@ namespace KeysToInsanity.Code
 
             if (input.rightDown(input.kb))
             {
-                xVelocity = 5.0f;
                 if (inAir)
+                {
+                    xVelocity = 5.0f;
                     updateWithAnimation(time, 4);
+                }
                 else
+                {
+                    xVelocity = 5.0f;
                     updateWithAnimation(time, 1);
+                }
             }
             else if (input.leftDown(input.kb))
             {
-                xVelocity = -5.0f;
                 if (inAir)
+                {
+                    xVelocity = -5.0f;
                     updateWithAnimation(time, 3);
+                }
                 else
+                {
+                    xVelocity = -5.0f;
                     updateWithAnimation(time, 2);
+                }
             }
             else
             {
-                xVelocity = 0.0f;
                 updateWithAnimation(time, 0);
             }
 
@@ -149,7 +174,5 @@ namespace KeysToInsanity.Code
             animations.Add(fallRight);
             animations.Add(fallLeft);
         }
-
-
     }
 }

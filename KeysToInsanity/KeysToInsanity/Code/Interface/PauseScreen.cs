@@ -2,61 +2,60 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 
 namespace KeysToInsanity.Code.Interface
 {
 
-    class PauseScreen : BasicSprite
+    class PauseScreen
     {
+        private Rectangle resumeR = new Rectangle(350, 240, 100, 20);
+        private Rectangle helpR = new Rectangle(350, 290, 100, 20);
+        private Rectangle exitR = new Rectangle(350, 340, 100, 20);
 
-        private SpriteContainer pauseSprites = new SpriteContainer();
+        private BasicSprite logo;
+        private BasicSprite resume;
+        private BasicSprite help;
+        private BasicSprite exit;
 
-        public PauseScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+        private Rectangle[] clickZones;
+
+        // See comment in CreditScreen class
+        public PauseScreen(Game game)
         {
-            BasicSprite logo = new BasicSprite(game, "Interface\\logo", false);
+            logo = new BasicSprite(game, "Interface\\logo", false);
             logo.spritePos = new Vector2(300, 20);
 
-            BasicSprite resume = new BasicSprite(game, "Interface\\resume", false);
-            resume.spritePos = new Vector2(350, 240);
+            resume = new BasicSprite(game, "Interface\\resume", false);
+            resume.spritePos = new Vector2(300, 240);
 
-            BasicSprite help = new BasicSprite(game, "Interface\\help", false);
-            help.spritePos = new Vector2(350, 290);
+            help = new BasicSprite(game, "Interface\\InstructionsButton", false);
+            help.spritePos = new Vector2(300, 290);
 
-            BasicSprite exit = new BasicSprite(game, "Interface\\exit", false);
-            exit.spritePos = new Vector2(350, 340);
-
-            logo.addTo(pauseSprites);
-            resume.addTo(pauseSprites);
-            help.addTo(pauseSprites);
-            exit.addTo(pauseSprites);
-
+            exit = new BasicSprite(game, "Interface\\exit", false);
+            exit.spritePos = new Vector2(300, 340);
+        }
+        
+        public void drawMenu(SpriteBatch s)
+        {
+            logo.draw(s);
+            resume.draw(s);
+            help.draw(s);
+            exit.draw(s);
+            
         }
 
-        // gd.SetRenderTarget(null) clears the back buffer
-        public void drawMenu(SpriteBatch spriteBatch)
+        public KeysToInsanity.GameState MouseClicked(Point pos)
         {
+            if (resumeR.Contains(pos))
+                return KeysToInsanity.GameState.Playing;
+            else if (helpR.Contains(pos))
+                return KeysToInsanity.GameState.Help;
+            // else if (exitR.Contains(pos)) exit
 
-            foreach (BasicSprite s in pauseSprites)
-            {
-                s.draw(spriteBatch);
-            }
-
-        }
-
-        public override void draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
-        }
-
-        public void MouseClicked(Point pos)
-        {
-
+            return KeysToInsanity.GameState.Paused;
         }
     }
 }

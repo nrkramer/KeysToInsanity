@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +8,19 @@ using System.Text;
 
 namespace KeysToInsanity.Code.Interface
 {
-    class AboutScreen : BasicSprite
+    class AboutScreen
     {       
+
+        private BasicSprite about;
+        private BasicSprite returnButton;
         private SpriteContainer aboutSprites = new SpriteContainer();
 
-        public AboutScreen(Game game) : base(new RenderTarget2D(game.GraphicsDevice,
-                game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                game.GraphicsDevice.PresentationParameters.BackBufferHeight), false)
+        public AboutScreen(Game game)
         {
-            BasicSprite about = new BasicSprite(game, "Interface\\aboutPage", false);
+            about = new BasicSprite(game, "Interface\\aboutPage", false);
             about.spritePos = new Vector2(0, 100);
 
-            BasicSprite returnButton = new BasicSprite(game, "Interface\\return", false);
+            returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
 
             about.addTo(aboutSprites);
@@ -28,19 +30,15 @@ namespace KeysToInsanity.Code.Interface
         public void drawMenu(SpriteBatch spriteBatch)
         {
             foreach (BasicSprite s in aboutSprites)
-            {
                 s.draw(spriteBatch);
-            }
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+        public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            spriteBatch.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
-        }
+            if (new Rectangle(returnButton.spritePos.ToPoint(), returnButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.StartMenu;
 
-        public void MouseClicked(Point pos)
-        {
-
+            return KeysToInsanity.GameState.About;
         }
     }
 }
