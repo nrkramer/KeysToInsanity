@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
@@ -13,15 +11,18 @@ namespace KeysToInsanity.Code.Interface
 
     class PauseScreen
     {
+        private Rectangle resumeR = new Rectangle(350, 240, 100, 20);
+        private Rectangle helpR = new Rectangle(350, 290, 100, 20);
+        private Rectangle exitR = new Rectangle(350, 340, 100, 20);
 
-        
-        BasicSprite logo;
-        BasicSprite resume;
-        BasicSprite help;
-        BasicSprite exit;
+        private BasicSprite logo;
+        private BasicSprite resume;
+        private BasicSprite help;
+        private BasicSprite exit;
 
         private Rectangle[] clickZones;
 
+        // See comment in CreditScreen class
         public PauseScreen(Game game)
         {
             logo = new BasicSprite(game, "Interface\\logo", false);
@@ -35,38 +36,8 @@ namespace KeysToInsanity.Code.Interface
 
             exit = new BasicSprite(game, "Interface\\exit", false);
             exit.spritePos = new Vector2(300, 340);
-
-            // calculate clickZones
-            clickZones = new Rectangle[3];
-            clickZones[0] = new Rectangle(300, 240, 100, 20);
-            clickZones[1] = new Rectangle(300, 290, 200, 20);
-            clickZones[2] = new Rectangle(300, 340, 200, 20);
-           
-
         }
-
-
-        public int Update(GameTime time, MouseState state)
-        {
-            // mouse stuff
-            for (int i = 0; i < 3; i++)
-            {
-                if (clickZones[i].Contains(state.Position))
-                {
-                    // user a button
-                    if ((state.LeftButton == ButtonState.Pressed))
-                        return i; // selected button
-
-                    i = clickZones.Length; // break out of loop cleanly
-                }
-
-            }
-
-            return -1;
-        }
-
-
-
+        
         public void drawMenu(SpriteBatch s)
         {
             logo.draw(s);
@@ -74,6 +45,17 @@ namespace KeysToInsanity.Code.Interface
             help.draw(s);
             exit.draw(s);
             
+        }
+
+        public KeysToInsanity.GameState MouseClicked(Point pos)
+        {
+            if (resumeR.Contains(pos))
+                return KeysToInsanity.GameState.Playing;
+            else if (helpR.Contains(pos))
+                return KeysToInsanity.GameState.Help;
+            // else if (exitR.Contains(pos)) exit
+
+            return KeysToInsanity.GameState.Paused;
         }
     }
 }

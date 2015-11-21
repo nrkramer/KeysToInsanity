@@ -62,12 +62,14 @@ namespace KeysToInsanity.Code
 
         public void setY(float ySpeed)
         {
-            direction.Y = ySpeed;
+            direction = new Vector2(getX(), ySpeed);
+            speed = direction.Length();
         }
 
         public void setX(float xSpeed)
         {
-            direction.X = xSpeed;
+            direction = new Vector2(xSpeed, getY());
+            speed = direction.Length();
         }
 
         public override String ToString()

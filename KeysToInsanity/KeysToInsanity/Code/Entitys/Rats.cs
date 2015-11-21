@@ -54,7 +54,11 @@ namespace KeysToInsanity.Code.Entitys
             base.onCollide(collided, data, time);
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                ((TheGentleman)collided).health -= damage;
+                TheGentleman tg = (TheGentleman)collided;
+                if (!tg.invincible)
+                {
+                    tg.health -= damage;
+                }
             }
 
             if (collided.collidable)

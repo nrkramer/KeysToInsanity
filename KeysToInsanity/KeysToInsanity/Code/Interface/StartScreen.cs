@@ -9,7 +9,7 @@ using System.Text;
 namespace KeysToInsanity.Code.Interface
 {
     class StartScreen
-    {
+    {     
         private BasicSprite logo;
         private BasicSprite startButton;
         private BasicSprite aboutButton;
@@ -20,7 +20,7 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite chooseLevel;
 
         private Rectangle[] clickZones;
-      
+
         public StartScreen(Game game)
         {
             // load sprites
@@ -41,43 +41,24 @@ namespace KeysToInsanity.Code.Interface
 
             exitButton = new BasicSprite(game, "Interface\\exit", false);
             exitButton.spritePos = new Vector2(300, 440);
-            //REMOVE WHEN RELEASING GAME
-            chooseLevel = new BasicSprite(game, "Interface\\chooseLevel", false);
-            chooseLevel.spritePos = new Vector2(300, 490);
-
-
-
-            // calculate clickZones CHANGE BACK TO FIVE WHEN GAME RELEASE HAPPENS
-            clickZones = new Rectangle[6];
-            clickZones[0] = new Rectangle(300,240,200,20);
-            clickZones[1] = new Rectangle(350,290,100,20);
-            clickZones[2] = new Rectangle(300,340,300,20);
-            clickZones[3] = new Rectangle(350,390,100,20);
-            clickZones[4] = new Rectangle(300,440,200,20);
-            clickZones[5] = new Rectangle(300,490,200,20);
-
         }
 
-        public int Update(GameTime time, MouseState state)
+        public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            // mouse stuff CHANGE BACK TO i<5 WHEN RELEASING GAME
-            for (int i = 0; i < 6; i++)
-            {
-                if (clickZones[i].Contains(state.Position))
-                {
-                    // user a button
-                    if ((state.LeftButton == ButtonState.Pressed))
-                        return i; // selected button
+            if (new Rectangle(startButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Playing;
 
-                    i = clickZones.Length; // break out of loop cleanly
-                }
-               
-            }
+            if (new Rectangle(aboutButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.About;
 
-            return -1;
+            if (new Rectangle(instructButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Instructions;
+
+            //if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                //exit();
+
+            return KeysToInsanity.GameState.StartMenu; 
         }
-
-
 
         public void drawMenu(SpriteBatch s)
         {

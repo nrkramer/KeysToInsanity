@@ -10,10 +10,10 @@ namespace KeysToInsanity.Code.Interface
 {
     class AboutScreen
     {       
-        
+
         private BasicSprite about;
         private BasicSprite returnButton;
-        private Rectangle[] clickZones;
+        private SpriteContainer aboutSprites = new SpriteContainer();
 
         public AboutScreen(Game game)
         {
@@ -23,37 +23,22 @@ namespace KeysToInsanity.Code.Interface
             returnButton = new BasicSprite(game, "Interface\\return", false);
             returnButton.spritePos = new Vector2(690, 20);
 
-            clickZones = new Rectangle[1];
-            clickZones[0] = new Rectangle(690, 20, 100, 20);
-            
+            about.addTo(aboutSprites);
+            returnButton.addTo(aboutSprites);
         }
 
-        public int Update(GameTime time, MouseState state)
+        public void drawMenu(SpriteBatch spriteBatch)
         {
-            // mouse stuff
-            for (int i = 0; i < 1; i++)
-            {
-                if (clickZones[i].Contains(state.Position))
-                {
-                    // user a button
-                    if ((state.LeftButton == ButtonState.Pressed))
-                        return i; // selected button
-
-                    i = clickZones.Length; // break out of loop cleanly
-                }
-
-            }
-
-            return -1;
+            foreach (BasicSprite s in aboutSprites)
+                s.draw(spriteBatch);
         }
 
-
-
-        public void drawMenu(SpriteBatch s)
+        public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            about.draw(s);
-            returnButton.draw(s);
-           
+            if (new Rectangle(returnButton.spritePos.ToPoint(), returnButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.StartMenu;
+
+            return KeysToInsanity.GameState.About;
         }
     }
 }

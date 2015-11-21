@@ -80,6 +80,7 @@ namespace KeysToInsanity.Code.Base
         {
             while (r.Read())
             {
+                string text = "";
                 if (r.NodeType == XmlNodeType.Element)
                     switch (r.Name)
                     {
@@ -91,20 +92,25 @@ namespace KeysToInsanity.Code.Base
                             break;
                         case "Static":
                             BasicSprite sp = ParseStatic(r);
+                            text = r.GetAttribute("friction");
+                            if (text != null)
+                                sp.friction = float.Parse(text);
+
                             s.addStatic(sp);
-                            try
-                            {
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
                                 if (bool.Parse(r.GetAttribute("fadein")))
                                     s.addFadeInObject(sp);
-                            } catch (ArgumentNullException e) { }
                             break;
                         case "AnimatedStatic":
                             AnimatedSprite asp = ParseAnimatedStatic(r);
                             s.addAnimatedStatic(asp);
-                            try {
-                                if (bool.Parse(r.GetAttribute("fadein")))
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
+                                if (bool.Parse(text))
                                     s.addFadeInObject(asp);
-                            } catch (ArgumentNullException e) { }
                             break;
                         case "Background":
                             s.setBackground(ParseBackground(r));
@@ -119,15 +125,23 @@ namespace KeysToInsanity.Code.Base
                             s.setDoor(ParseDoor(r));
                             break;
                         case "Platform":
-                            s.addPlatform(ParsePlatform(r));
+                            Platform p = ParsePlatform(r);
+
+                            text = r.GetAttribute("friction");
+                            if (text != null)
+                                p.friction = float.Parse(text);
+
+                            s.addPlatform(p);
                             break;
                         case "LightEffect":
                             LightEffect le = ParseLightEffect(r);
                             s.addLight(le);
-                            try {
-                                if (bool.Parse(r.GetAttribute("fadein")))
+
+                            text = r.GetAttribute("fadein");
+                            if (text != null)
+                                if (bool.Parse(text))
                                     s.addFadeInObject(le);
-                            } catch (ArgumentNullException e ) { }
+
                             break;
                         case "Hazard":
                             s.addHazard(ParseHazard(r));
@@ -261,15 +275,17 @@ namespace KeysToInsanity.Code.Base
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
             bool collidable = bool.Parse(r.GetAttribute("collide"));
-            int width = 0;
-            double speed = 0.0;
-            try {
-                width = int.Parse(r.GetAttribute("width"));
-                speed = double.Parse(r.GetAttribute("speed"));
-            } catch (ArgumentNullException e)
-            {
-                
-            }
+            int width = w;
+            double speed = 0.05;
+            
+            // optionally animated
+            string text = r.GetAttribute("width");
+            if (text != null)
+                width = int.Parse(text);
+            text = r.GetAttribute("speed");
+            if (text != null)
+                speed = double.Parse(text);
+
             float damage = float.Parse(r.GetAttribute("damage"));
 
             Hazard haz = new Hazard(game, asset, new Point(width, h), speed, collidable, damage);
@@ -341,8 +357,9 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
+            string orientation = r.GetAttribute("orientation");
 
-            Door d = new Door(game);
+            Door d = new Door(game, orientation);
             d.spritePos = new Vector2(x, y);
             d.spriteSize = new Point(w, h);
 

@@ -21,7 +21,14 @@ namespace KeysToInsanity.Code.Interactive_Objects
             base.onCollide(collided, data, time);
 
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
-                ((TheGentleman)collided).health -= damage;
+            {
+                TheGentleman tg = (TheGentleman)collided;
+                if (!tg.invincible)
+                {
+                    tg.invincible = true;
+                    tg.health -= damage;
+                }
+            }
         }
     }
 }

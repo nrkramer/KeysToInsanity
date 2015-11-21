@@ -82,6 +82,7 @@ namespace KeysToInsanity
         //Setting constants for the menu items
         MouseState mouseState;
         MouseState previousMouseState;
+        KeyboardState keyboardState;
         private GameState gameState;
         private bool gotKey;
 
@@ -122,11 +123,12 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.StartMenu;
 
-            //Get the mouse state
+            //Get input states
             mouseState = Mouse.GetState();
             previousMouseState = mouseState;
+            keyboardState = Keyboard.GetState();
             base.Initialize();
         }
 
@@ -211,7 +213,8 @@ namespace KeysToInsanity
                     {
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
-                        theGentleman.velocity = Velocity.FromCoordinates(theGentleman.velocity.getX(), 0.0f);
+                        theGentleman.velocity.setY(0.0f);
+                        theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, collided.spritePos.Y - theGentleman.spriteSize.Y);
                         physics.resetTime(time);
                         //landedOnGround.play(false);
                     }
@@ -238,55 +241,52 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //allows the game to know when the user has used the mouse to start the game
+            // mouse info
             mouseState = Mouse.GetState();          
+            keyboardState = Keyboard.GetState();
+            bool mouseClicked = false;
+            Point mouseCoords = new Point(mouseState.X, mouseState.Y);
+            if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+            {
+                mouseClicked = true;
+            }
             previousMouseState = mouseState;
-            //pause menu            
-            if (Keyboard.GetState().IsKeyDown(Keys.P) == true)
+
+            // global keyboard switches
+            if (keyboardState.IsKeyDown(Keys.P))
             {
                 gameState = GameState.Paused;
+
+            } else if (keyboardState.IsKeyDown(Keys.H))
+            {
+                // show help
             }
 
-            if(gameState == GameState.StartMenu)
+            if (gameState == GameState.StartMenu)
             {
-                   int i = startMenu.Update(gameTime, mouseState);
-                if (i == 0)
+                if (mouseClicked)
+                    gameState = startMenu.MouseClicked(mouseCoords);
+            }
+            else if (gameState == GameState.Paused)
                 {                    
-                    gameState = GameState.Playing; //Starting game
-                }else if(i == 1) //Sending user to info on game
-                {
-                    gameState = GameState.About;
-                }else if(i == 2) //Sending user to instructions for game
-                {
-                    gameState = GameState.Instructions;
-                }else if(i == 3) //SEnding user to the credits page.
-                {
-                    gameState = GameState.Credits;
-                }else if(i == 4)
-                {
-                    Exit();
-                }
-                //REMOVE BELOW IF STATMENT WHEN RELEASING GAME
-                if(i==5)
-                {
-                    gameState = GameState.ChooseLevel;
-                }
-                
-            }else if (gameState == GameState.Paused)
-            {
-
-                int i = pauseMenu.Update(gameTime, mouseState);
-                if(i==0) //Sending user back to game
-                {
-                    gameState = GameState.Playing;
-                }else if(i==1) //sending user to help menu
-                {
-                    gameState = GameState.Help;
-                }else if (i == 2)
-                {
-                    Exit();
-                }
+                if (mouseClicked)
+                    gameState = pauseMenu.MouseClicked(mouseCoords);
             }
+            else if (gameState == GameState.About)
+                {
+                if (mouseClicked)
+                    gameState = aboutScreen.MouseClicked(mouseCoords);
+                }
+            else if (gameState == GameState.Death)
+                {
+                if (mouseClicked)
+                    gameState = yourdead.MouseClicked(mouseCoords);
+                }
+            else if (gameState == GameState.Instructions)
+            {
+                if (mouseClicked)
+                    gameState = instructScreen.MouseClicked(mouseCoords);
+                }
             else if (gameState == GameState.Playing)
             {
                 if (theGentleman.health <= 0)
@@ -317,7 +317,7 @@ namespace KeysToInsanity
                         f.updatePosition();
                     }
 
-                    theGentleman.handleInput(gameTime); // input
+                    theGentleman.Update(gameTime); // gentleman input
 
                     foreach (Character c in loader.level.stages[stageIndex].characters)
                     {
@@ -337,7 +337,7 @@ namespace KeysToInsanity
                     // collision for gentleman against static sprites
                     RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
 
-                    // collision for non-gentleman characters (doesn't check for key and doors)
+                    // collision for non-gentleman characters
                     RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
 
                     // check gentleman has past the end stage boundary
@@ -423,70 +423,6 @@ namespace KeysToInsanity
                     theGentleman.health = 100.0f;
                     insanity = 0.0f;
                     gameState = GameState.Playing;
-                }
-            }else if(gameState == GameState.Credits) //Sending user back to start menu
-            {
-                int i = creditScreen.Update(gameTime, mouseState);
-                if(i==0)
-                {
-                    gameState = GameState.StartMenu;
-                }
-            }else if(gameState == GameState.Instructions) // Sending user to start menu
-            {
-                int i = instructScreen.Update(gameTime, mouseState);
-                if(i ==0)
-                {
-                    gameState = GameState.StartMenu;
-                }
-            }else if(gameState == GameState.Help) //Same as instructions, but need to go to pause menu
-            {
-                int i = instructScreen.Update(gameTime, mouseState);
-                if (i == 0)
-                {
-                    gameState = GameState.Paused;
-                }
-            }else if(gameState == GameState.About)//Sending user back to startmenu
-            {
-                int i = aboutScreen.Update(gameTime, mouseState);
-                if(i ==0)
-                    {
-                        gameState = GameState.StartMenu;
-                    }
-            }
-            else if(gameState == GameState.Death)
-            {
-                int i = yourdead.Update(gameTime, mouseState);
-                if (i==0) //Sends user back to start.
-                {
-                   
-                        hud.removeKey();
-                        gotKey = false;
-                    
-                    gameState = GameState.StartMenu;
-                }
-                else if (i==1) //Need to allow user to restart at checkpoint.
-                {
-
-                }
-                else if (i==2) //Need to add restart level ability
-                {
-                    hud.removeKey();
-                    loader = new LevelLoader(this, levelXMLs[i], hud);
-                    stageIndex = 0;
-                    theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
-                    gotKey = false;
-                    loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
-                    theGentleman.health = 100.0f;
-                    insanity = 0.0f;
-                    gameState = GameState.Playing;
-                }
-                else if (i==3) //Allows user to select level
-                {
-                    gameState = GameState.ChooseLevel;
-                }
-                else if (i==4)
-                {
-                    Exit();
                 }
             }
 
@@ -604,23 +540,28 @@ namespace KeysToInsanity
                     hud.draw(spriteBatch);
                     }
                 }
-            } else if(gameState == GameState.About) // about
+            }
+            else if (gameState == GameState.About) // about
             {
                 aboutScreen.drawMenu(spriteBatch);
-            } else if(gameState == GameState.Help) // help
-            {
-                instructScreen.drawMenu(spriteBatch);
-            } else if(gameState == GameState.Credits) // credits
-            {
-                creditScreen.drawMenu(spriteBatch);
-            } else if(gameState == GameState.ChooseLevel) // choose level
-            {
-                chooseLevelMenu.draw(spriteBatch);
-            }else if(gameState == GameState.Instructions)
+            }
+            else if (gameState == GameState.Help) // help
             {
                 instructScreen.drawMenu(spriteBatch);
             }
-            if(gameState == GameState.Death)
+            else if (gameState == GameState.Credits) // credits
+            {
+                creditScreen.drawMenu(spriteBatch);
+            }
+            else if (gameState == GameState.ChooseLevel) // choose level
+            {
+                chooseLevelMenu.draw(spriteBatch);
+            }
+            else if (gameState == GameState.Instructions)
+            {
+                instructScreen.drawMenu(spriteBatch);
+            }
+            else if(gameState == GameState.Death)
             {
                 yourdead.drawMenu(spriteBatch);
             }
