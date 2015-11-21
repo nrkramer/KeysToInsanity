@@ -243,7 +243,7 @@
       <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Door x="f-10" y="f-100" w="10" h="100" />
+      <Door x="f-10" y="f-100" w="10" h="100" orientation="left" />
       <Background type="ParkingLot" />
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>

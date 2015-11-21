@@ -93,7 +93,7 @@ namespace KeysToInsanity.Code
 
                 collision = Rectangle.Intersect(new Rectangle(s1.getUpdatePositionFromVelocity(v1).ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePositionFromVelocity(v2).ToPoint(), s2.spriteSize));
                 if (collision != Rectangle.Empty)
-                    vfy = v1.getY() - collision.Height * Math.Sign(v1.getY());
+                    vfy = v1.getY() - (collision.Height * Math.Sign(v1.getY()));
                 else
                     vfy = v1.getY();
 

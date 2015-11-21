@@ -355,8 +355,9 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
+            string orientation = r.GetAttribute("orientation");
 
-            Door d = new Door(game);
+            Door d = new Door(game, orientation);
             d.spritePos = new Vector2(x, y);
             d.spriteSize = new Point(w, h);
 

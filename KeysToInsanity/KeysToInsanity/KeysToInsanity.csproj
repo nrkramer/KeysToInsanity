@@ -107,7 +107,6 @@
     <Compile Include="Code\Interface\LevelSwitcher.cs" />
     <Compile Include="Code\Interface\PauseScreen.cs" />
     <Compile Include="Code\Interface\StartScreen.cs" />
-    <Compile Include="Code\KeysToInsanity.cs" />
     <Compile Include="Code\Objects\HorizontalPlatform.cs" />
     <Compile Include="Code\Objects\Platform.cs" />
     <Compile Include="Code\Objects\VerticalPlatform.cs" />

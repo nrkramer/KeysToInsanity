@@ -15,10 +15,10 @@ namespace KeysToInsanity.Code.Interactive_Objects
         private bool open = false;
 
         //doors that will open when the player has acquired the key
-        public Door(Game game) : base(game, "closed_door_left_metal", true)
+        public Door(Game game, string orientation) : base(game, "closed_door_" + orientation + "_metal", true)
         {
-            openSprite = new BasicSprite(game, "open_door_left_metal", false);
-            doorLight = new LightEffect(game, "Lights\\open_door_left_light", Color.White);
+            openSprite = new BasicSprite(game, "open_door_" + orientation + "_metal", false);
+            doorLight = new LightEffect(game, "Lights\\open_door_" + orientation + "_light", Color.White);
             doorLight.hidden = true;
         }
 
