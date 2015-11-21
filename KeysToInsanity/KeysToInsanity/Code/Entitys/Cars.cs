@@ -60,7 +60,11 @@ namespace KeysToInsanity.Code.Entitys
             //Seeing if nurse hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                ((TheGentleman)collided).health -= damage;
+                TheGentleman tg = (TheGentleman)collided;
+                if (!tg.invincible)
+                {               
+                    tg.health -= damage;
+                }
             }
             //Checking to see if nurse hit a floor
             if (collided.collidable)

@@ -41,9 +41,6 @@ namespace KeysToInsanity.Code.Interface
 
             exitButton = new BasicSprite(game, "Interface\\exit", false);
             exitButton.spritePos = new Vector2(300, 440);
-            //REMOVE WHEN RELEASING GAME
-            chooseLevel = new BasicSprite(game, "Interface\\chooseLevel", false);
-            chooseLevel.spritePos = new Vector2(300, 490);
         }
 
         public KeysToInsanity.GameState MouseClicked(Point pos)
@@ -57,14 +54,8 @@ namespace KeysToInsanity.Code.Interface
             if (new Rectangle(instructButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Instructions;
 
-            if (new Rectangle(creditsButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
-                return KeysToInsanity.GameState.Credits;
-
-            if (new Rectangle(chooseLevel.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
-                return KeysToInsanity.GameState.ChooseLevel;
-
             //if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
-            // exit game
+                //exit();
 
             return KeysToInsanity.GameState.StartMenu; 
         }

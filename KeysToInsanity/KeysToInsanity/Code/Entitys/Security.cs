@@ -56,7 +56,11 @@ namespace KeysToInsanity.Code
             //Seeing if security hit the Gentleman
             if (collided.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
-                ((TheGentleman)collided).health -= damage;
+                TheGentleman tg = (TheGentleman)collided;
+                if (!tg.invincible)
+                {
+                    tg.health -= damage;
+                }
             }
             if (collided.collidable)
             {

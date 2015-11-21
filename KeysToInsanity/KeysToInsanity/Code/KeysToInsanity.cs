@@ -171,13 +171,13 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level3.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
 
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            testSound.play(true);
+           // testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+           // testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
