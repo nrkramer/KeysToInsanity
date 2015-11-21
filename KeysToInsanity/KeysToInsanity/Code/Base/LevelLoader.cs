@@ -92,9 +92,9 @@ namespace KeysToInsanity.Code.Base
                             break;
                         case "Static":
                             BasicSprite sp = ParseStatic(r);
-                            text = r.GetAttribute("slippery");
+                            text = r.GetAttribute("friction");
                             if (text != null)
-                                sp.slippery = bool.Parse(text);
+                                sp.friction = float.Parse(text);
 
                             s.addStatic(sp);
 
@@ -127,9 +127,9 @@ namespace KeysToInsanity.Code.Base
                         case "Platform":
                             Platform p = ParsePlatform(r);
 
-                            text = r.GetAttribute("slippery");
+                            text = r.GetAttribute("friction");
                             if (text != null)
-                                p.slippery = bool.Parse(text);
+                                p.friction = float.Parse(text);
 
                             s.addPlatform(p);
                             break;
@@ -277,13 +277,15 @@ namespace KeysToInsanity.Code.Base
             bool collidable = bool.Parse(r.GetAttribute("collide"));
             int width = w;
             double speed = 0.05;
-            try {
-                width = int.Parse(r.GetAttribute("width"));
-                speed = double.Parse(r.GetAttribute("speed"));
-            } catch (ArgumentNullException e)
-            {
+            
+            // optionally animated
+            string text = r.GetAttribute("width");
+            if (text != null)
+                width = int.Parse(text);
+            text = r.GetAttribute("speed");
+            if (text != null)
+                speed = double.Parse(text);
 
-            }
             float damage = float.Parse(r.GetAttribute("damage"));
 
             Hazard haz = new Hazard(game, asset, new Point(width, h), speed, collidable, damage);

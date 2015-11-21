@@ -25,7 +25,6 @@ namespace KeysToInsanity
         public bool hidden = false;
         public Color color = Color.White;
         public float opacity = 1.0f;
-        public bool slippery = false;
         public float friction = 2.0f;
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
@@ -103,18 +102,18 @@ namespace KeysToInsanity
         {
             if (collisionCallback != null)
                 collisionCallback(this, s, data, time);
+        }
 
+        protected void applyFriction(BasicSprite s, Rectangle data)
+        {
             if (s.collidable)
             {
                 if (data.Height >= 1)
                 {
-                    if (!s.slippery)
-                    {
-                        if ((velocity.getX() <= -1.0f) || (velocity.getX() >= 1.0f))
-                            velocity.setX(velocity.getX() / friction);
-                        else
-                            velocity.setX(0.0f);
-                    }
+                    if ((velocity.getX() <= -1.0f) || (velocity.getX() >= 1.0f))
+                        velocity.setX(velocity.getX() / s.friction);
+                    else
+                        velocity.setX(0.0f);
                 }
             }
         }

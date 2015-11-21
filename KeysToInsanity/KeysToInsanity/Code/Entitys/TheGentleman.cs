@@ -103,6 +103,8 @@ namespace KeysToInsanity.Code
         public override void onCollide(BasicSprite s, Rectangle data, GameTime time)
         {
             base.onCollide(s, data, time);
+
+            applyFriction(s, data);
         }
 
         public void onFallOutOfBounds()
