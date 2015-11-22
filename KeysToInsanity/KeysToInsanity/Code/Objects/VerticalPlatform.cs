@@ -45,9 +45,11 @@ namespace KeysToInsanity.Code.Objects
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
             base.onCollide(collided, data, time);
+            
+            // only if on top
             if (data.Height >= 1.0f)
             {
-                collided.velocity += velocity;
+                collided.updatePositionFromVelocity(Velocity.FromCoordinates(0.0f, collided.velocity.getY() + velocity.getY()));
             }
         }
     }

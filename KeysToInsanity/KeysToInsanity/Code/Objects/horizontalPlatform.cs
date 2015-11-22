@@ -48,7 +48,8 @@ namespace KeysToInsanity.Code.Objects
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
             base.onCollide(collided, data, time);
-            collided.spritePos = new Vector2(collided.spritePos.X + velocity.getX(), collided.spritePos.Y);
+
+            collided.updatePositionFromVelocity(velocity);
         }
     }
 }

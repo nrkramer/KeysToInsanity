@@ -42,6 +42,7 @@ namespace KeysToInsanity.Code
 
         public void Update(GameTime time)
         {
+
             if (invincible)
                 invincibility_time = time;
             else
@@ -54,7 +55,7 @@ namespace KeysToInsanity.Code
 
             //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
-            float xVelocity = velocity.getX();
+            float xVelocity = velocity.getX() * friction; // reduce speed by frictional %
             float yVelocity = velocity.getY();
 
             //allows the game to know when to apply gravity
@@ -104,7 +105,7 @@ namespace KeysToInsanity.Code
         {
             base.onCollide(s, data, time);
 
-            applyFriction(s, data);
+            friction = s.friction;
         }
 
         public void onFallOutOfBounds()
@@ -132,6 +133,9 @@ namespace KeysToInsanity.Code
             // Custom Gentleman drawing code.
             //effect.CurrentTechnique.Passes[0].Apply();
             s.Draw(renderTarget, new Rectangle(spritePos.ToPoint(), spriteSize), Color.White);
+
+            if (KeysToInsanity.DRAW_BOUNDING_BOXES)
+                drawBorder(s, new Rectangle(spritePos.ToPoint(), spriteSize), 2, Color.AliceBlue);
 
             if (KeysToInsanity.DRAW_MOVEMENT_VECTORS)
                 drawMovementVector(s);
@@ -166,7 +170,7 @@ namespace KeysToInsanity.Code
             Animation fallRight = new Animation();
             fallRight.AddUniformStrip(new Rectangle(0, 172, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 
-            // fall left 0, 172, 56, 33
+            // fall left
             Animation fallLeft = new Animation();
             fallLeft.AddUniformStrip(new Rectangle(0, 128, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 

@@ -45,7 +45,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -66,6 +66,7 @@ namespace KeysToInsanity
         private InstructionScreen instructScreen;
         private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
+        private bool showHelp = false;
 
         private string[] levelXMLs;
         private uint unlockedLevels = 3;
@@ -244,6 +245,7 @@ namespace KeysToInsanity
             // mouse info
             mouseState = Mouse.GetState();
             keyboardState = Keyboard.GetState();
+            showHelp = false;
             bool mouseClicked = false;
             Point mouseCoords = new Point(mouseState.X, mouseState.Y);
             if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
@@ -260,6 +262,7 @@ namespace KeysToInsanity
             } else if (keyboardState.IsKeyDown(Keys.H))
             {
                 // show help
+                showHelp = true;
             }
 
             if (gameState == GameState.StartMenu)
@@ -540,6 +543,8 @@ namespace KeysToInsanity
                     hud.draw(spriteBatch);
                     }
                 }
+                if (showHelp)
+                    instructScreen.instruct.draw(spriteBatch);
             }
             else if (gameState == GameState.About) // about
             {

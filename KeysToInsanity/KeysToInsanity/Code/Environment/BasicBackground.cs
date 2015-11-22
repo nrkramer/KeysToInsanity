@@ -22,6 +22,12 @@ namespace KeysToInsanity.Code
             spriteSize = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
         }
 
+        // for parallax background
+        public BasicBackground(Game game, string file1, string file2) : base(game, file1, false)
+        {
+
+        }
+
         // Load sprite from existing texture
         public BasicBackground(Texture2D tex) : base(tex, false) { }
 

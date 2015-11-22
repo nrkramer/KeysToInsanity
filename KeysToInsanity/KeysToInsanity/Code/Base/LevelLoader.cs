@@ -215,7 +215,14 @@ namespace KeysToInsanity.Code.Base
 
         public BasicBackground ParseBackground(XmlReader r)
         {
-            return new BasicBackground(game, r.GetAttribute("type"));
+            BasicBackground b;
+            string text = r.GetAttribute("type2");
+            if (text != null)
+                b = new BasicBackground(game, r.GetAttribute("type1"), text);
+            else
+                b = new BasicBackground(game, r.GetAttribute("type"));
+
+            return b;
         }
 
         public Character ParseCharacter(XmlReader r)
