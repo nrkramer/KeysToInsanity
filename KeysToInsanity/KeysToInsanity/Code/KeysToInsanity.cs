@@ -31,7 +31,8 @@ namespace KeysToInsanity
             Help,
             Instructions,
             Credits,
-            Death
+            Death,
+            Exit
             
         }
 
@@ -260,6 +261,10 @@ namespace KeysToInsanity
             } else if (keyboardState.IsKeyDown(Keys.H))
             {
                 // show help
+            }
+            if(gameState == GameState.Exit)
+            {
+                Exit();
             }
 
             if (gameState == GameState.StartMenu)
