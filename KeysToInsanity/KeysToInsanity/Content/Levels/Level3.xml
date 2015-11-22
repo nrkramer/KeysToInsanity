@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <xml>
-  <Level name ="Level 3" stages="13">
+  <Level name ="Level 3" stages="12">
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="c" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f" collide ="true"/>
@@ -16,28 +16,6 @@
       <Background type="ParkingLot"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
-    
- <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="f-40" boundary="left"/>
-      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
-      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type="Concrete" x="c-100" y="f-180" w="400" h="40" collide ="true"/>
-     <Static type="Concrete" x="c+200" y="f-180" w="100" h="120" collide ="true"/>     
-     <Static type="Concrete" x="c" y="f-400" w="50" h="20" collide ="true"/>
-     <Static type="Concrete" x="c-100" y="f-440" w="50" h="20" collide ="false"/> 
-     <Static type="Concrete" x="c-200" y="f-460" w="50" h="20" collide ="true"/>
-     <Static type="Concrete" x="c-350" y="f-500" w="120" h="20" collide ="true"/>
-      <Platform x="c-300" y="f-90" w="320" h="200" distance ="60" speed ="3" direction="false" file="Concrete"/>
-     <Platform x="c+300" y="f-400" w="100" h="250" distance ="150" speed ="2" direction="false" file="Concrete"/>
-     <Platform x="c+120" y="f-420" w="100" h="20" distance ="40" speed ="2" direction="true" file="Concrete"/>
-      <Key x="c-350" y="f-540"/>
-      <Checkpoint x="c+100" y="f-110"/> 
-      <Background type="ParkingLot"/>
-      <End x="f-60" y="f-60" boundary="right"/>
-      </Stage>
-    
 
      <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-40" boundary="left"/>
