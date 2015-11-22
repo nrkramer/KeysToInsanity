@@ -362,6 +362,7 @@
     <Content Include="Content\SoundFX\campfire-1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\SoundFX\Music\Sewer_Music.wav" />
     <Content Include="Content\SoundFX\Music\Thoughtful Piano Theme.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
