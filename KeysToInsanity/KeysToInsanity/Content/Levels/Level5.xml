@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<xml>
+  <Level name ="Level 5" stages="5">
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="c" y="c" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
+      <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+      <Key x="c" y="c"/>
+      <Background type="ParkingLot"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-300" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-300" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-300" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-320" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-320" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-320" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c-280" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-280" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-280" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-260" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-260" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-260" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+
+      <Platform x="c-100" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-100" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-100" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-80" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-80" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-80" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c-60" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-60" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-60" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-40" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-40" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-40" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+
+      <Platform x="c+100" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+100" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+100" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+120" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+120" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+120" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c+140" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+140" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+140" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+160" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+160" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+160" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+
+      <Platform x="c+240" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+240" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+240" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+260" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+260" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+260" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c+280" y="f-90" w="20" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+280" y="f-140" w="20" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+280" y="f-300" w="20" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+300" y="f-90" w="20" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+300" y="f-140" w="20" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+300" y="f-300" w="20" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Background type="ParkingLot"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-200" y="f-90" w="100" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-200" y="f-140" w="100" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-200" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c" y="f-90" w="100" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c" y="f-140" w="100" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c" y="f-300" w="100" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c+200" y="f-90" w="100" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+200" y="f-140" w="100" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+200" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Background type="ParkingLot"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+
+    <Stage x="0" y="0" w="f" h="f">
+      <Start x="0" y="f-40" boundary="left"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
+      <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true"/>
+      <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true"/>
+      <Platform x="c-250" y="f-90" w="100" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c-250" y="f-140" w="100" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-250" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-100" y="f-90" w="100" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c-100" y="f-140" w="100" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c-100" y="f-300" w="100" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c+100" y="f-90" w="100" h="20" distance ="60" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+100" y="f-140" w="100" h="20" distance ="40" speed ="5" direction="false" file="Concrete"/>
+      <Platform x="c+100" y="f-300" w="100" h="150" distance ="30" speed ="6" direction="false" file="Concrete"/>
+      <Platform x="c+250" y="f-90" w="100" h="20" distance ="60" speed ="3" direction="false" file="Concrete"/>
+      <Platform x="c+250" y="f-140" w="100" h="20" distance ="40" speed ="4" direction="false" file="Concrete"/>
+      <Platform x="c+250" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
+      <Background type="ParkingLot"/>
+      <End x="f-60" y="f-60" boundary="right"/>
+    </Stage>
+    
+<Stage x="0" y="0" w="f" h="f">
+  <Start x="0" y="f-40" boundary="left" />
+  <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide="true" />
+  <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true" />
+  <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true" />
+  <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true" />
+  <Static type="LanternPole" x="c-300" y="f-96" w="40" h="87" collide="false" />
+  <LightEffect effect="circle" x="c-305" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+  <Static type="LanternPole" x="c" y="f-96" w="40" h="87" collide="false" />
+  <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
+  <Door x="f-10" y="f-100" w="10" h="100" orientation="left" />
+  <Background type="BankVault" />
+  <End x="f-60" y="f-60" boundary ="right"/>
+</Stage>
+</Level>
+</xml>

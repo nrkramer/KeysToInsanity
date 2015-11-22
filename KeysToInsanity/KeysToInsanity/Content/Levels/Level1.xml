@@ -7,7 +7,7 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
-      <Background type="tileBackground"/>
+      <Background type="Level1Text"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
@@ -16,7 +16,8 @@
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
       <Checkpoint x="500" y="f-110"/> 
       <End x="f-60" y="f-60" boundary="right"/>
-    </Stage>
+    </Stage>   
+ 
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-75" boundary="left" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>

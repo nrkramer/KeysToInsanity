@@ -32,7 +32,8 @@ namespace KeysToInsanity
             Instructions,
             Credits,
             Death,
-            Exit
+            Exit,
+            Win
             
         }
 
@@ -56,6 +57,7 @@ namespace KeysToInsanity
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
         private int stageIndex = 0;
+        private int levelsPlayed = 0;
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
@@ -67,6 +69,7 @@ namespace KeysToInsanity
         private InstructionScreen instructScreen;
         private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
+        private WinScreen winScreen;
 
         private string[] levelXMLs;
         private uint unlockedLevels = 3;
@@ -150,6 +153,7 @@ namespace KeysToInsanity
             creditScreen = new CreditScreen(this);
             chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
             yourdead = new DeathScreen(this);
+            winScreen = new WinScreen(this);
 
             //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
             if (DRAW_BOUNDING_BOXES)
@@ -292,6 +296,11 @@ namespace KeysToInsanity
                 if (mouseClicked)
                     gameState = instructScreen.MouseClicked(mouseCoords);
                 }
+            else if(gameState == GameState.Win)
+            {
+                if (mouseClicked)
+                    gameState = winScreen.MouseClicked(mouseCoords);
+            }
             else if (gameState == GameState.Playing)
             {
                 if (theGentleman.health <= 0)
@@ -367,8 +376,15 @@ namespace KeysToInsanity
                     if (stageIndex >= loader.level.stages.Length)
                     {
                         gameState = GameState.ChooseLevel;
+                        levelsPlayed++;
                         if (unlockedLevels < levelXMLs.Length)
                             unlockedLevels++;
+                        
+                        if(levelsPlayed >4)
+                        {
+                            levelsPlayed = 0;
+                            gameState = GameState.Win;
+                        }
                         chooseLevelMenu.setUnlockedLevels(unlockedLevels);
                         insanity = 0.0f;
                         theGentleman.health = 100.0f;
@@ -569,6 +585,10 @@ namespace KeysToInsanity
             else if(gameState == GameState.Death)
             {
                 yourdead.drawMenu(spriteBatch);
+            }
+            else if(gameState == GameState.Win)
+            {
+                winScreen.drawMenu(spriteBatch);
             }
             spriteBatch.End();
 
