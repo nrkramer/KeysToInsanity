@@ -14,7 +14,7 @@
       <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
-      <Checkpoint x="500" y="f-110"/> 
+      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>   
  
