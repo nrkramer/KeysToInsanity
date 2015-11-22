@@ -46,17 +46,17 @@
       <Static type ="Vspikes-R" x="f-35" y="f-270" w="25" h="60" collide ="true"/>
       <Static type ="Vspikes-R" x="f-35" y="f-330" w="25" h="60" collide ="true"/>
       <Static type ="Vspikes-R" x="f-35" y="f-390" w="25" h="60" collide ="true"/>
-      <Platform x="455" y="c+90" w="20" h="40" distance ="100" speed ="3" direction="true" file="platform"/>
+      <Platform x="455" y="c+90" w="20" h="40" distance ="100" speed ="3" direction="true" file="iceblock"/>
       <Static type="Vspikes-L" x="330" y="c" w="20" h="65" collide="true"/>
       <Static type="Vspikes-L" x="330" y="c+65" w="20" h="65" collide="true"/>
-      <Platform x="150" y="c-60" w="25" h="60" distance ="100" speed ="4" direction="true" file="platform"/>
+      <Platform x="150" y="c-60" w="25" h="60" distance ="100" speed ="4" direction="true" file="iceblock"/>
       <Static type="Vspikes-L" x="10" y="10" w="20" h="60" collide="true"/>
       <Static type="Vspikes-L" x="10" y="70" w="20" h="60" collide="true"/>
       <Static type="Vspikes-L" x="10" y="130" w="20" h="60" collide="true"/>
       <Static type="Vspikes-L" x="10" y="190" w="20" h="60" collide="true"/>
       <Static type="Vspikes-L" x="10" y="250" w="20" h="55" collide="true"/>
-      <Platform x="390" y="c-100" w="50" h="20" distance ="80" speed ="1" direction="true" file="iceblock"/>
-      <Platform x="520" y="c-175" w="50" h="20" distance ="80" speed ="2" direction="true" file="iceblock"/>
+      <Platform x="390" y="c-100" w="50" h="20" distance ="80" speed ="1" direction="true" file="platform"/>
+      <Platform x="520" y="c-175" w="50" h="20" distance ="80" speed ="2" direction="true" file="platform"/>
       <Background type ="snowBackground"/>
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
@@ -139,7 +139,7 @@
       <Platform x="450" y="400" w="40" h="25" distance ="100" speed ="2" direction="true" file="platform"/>
       <Platform x="450" y="f-60" w="40" h="25" distance ="100" speed ="2" direction="true" file="platform"/>
       <Checkpoint x="100" y="f-110"/>
-      <Door x="f-10" y="f-100" w="10" h="100" />
+      <Door x="f-10" y="f-100" w="10" h="100" orientation="left"/>
       <Key x="60" y="f-70"/>
       <Background type="snowBackground" />
       <End x="f-5" y="f-50" boundary="right"/>
@@ -248,17 +248,19 @@
       <Start x="c" y="0" boundary="top" />
       <Static type ="left_wall_con" x="0" y="0" w="c-75" h="f" collide ="true"/>
       <Static type ="right_wall_con" x="c+75" y="0" w="f" h="f" collide="true"/>
-      <Background type="tileBackground"/>
+      <Background type="blackBackground"/>
       <End boundary="bottom"/>
     </Stage>
-    <Stage x="0" y="0" w="f" h="f">
+  <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top" />
-      <Static type ="left_wall_con" x="0" y="0" w="c-50" h="f" collide ="true"/>
+      <Static type ="left_wall_con" x="0" y="0" w="10" h="f" collide ="true"/>
       <Static type ="floor_con" x="0" y="c+50" w="f" h="f" collide="true"/>
       <Static type ="ceiling_con" x="c+75" y="0" w="f" h="10" collide="true"/>
+      <Static type ="ceiling_con" x="0" y="0" w="c-75" h="10" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="c-100" collide="true"/>
       <Static type ="bed" x="c-25" y="c+20" w="50" h="30" collide ="false"/>
-      <Background type="tileBackground"/>
+      <Background type="blackBackground"/>
+      <Checkpoint x="f-100" y="c-50"/>
       <End boundary="right"/>
     </Stage>
   </Level>
