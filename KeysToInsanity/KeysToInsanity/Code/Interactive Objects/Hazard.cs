@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code.Interactive_Objects
     {
         private float damage = 10;
 
-        public Hazard(Game game, string file, Point animatedSpriteSize, double animationSpeed, bool collidable, float damage) : base(game, file, animatedSpriteSize, 1, animationSpeed, collidable)
+        public Hazard(Game game, string file, bool collidable, float damage,float x, float y) : base(game, file, new Point((int)x, (int)y), 1, 0, collidable)
         {
             this.damage = damage;
         }

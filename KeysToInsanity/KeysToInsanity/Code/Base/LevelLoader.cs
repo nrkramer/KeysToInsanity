@@ -274,21 +274,10 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
-            bool collidable = bool.Parse(r.GetAttribute("collide"));
-            int width = w;
-            double speed = 0.05;
-            
-            // optionally animated
-            string text = r.GetAttribute("width");
-            if (text != null)
-                width = int.Parse(text);
-            text = r.GetAttribute("speed");
-            if (text != null)
-                speed = double.Parse(text);
-
+            bool collidable = bool.Parse(r.GetAttribute("collide"));      
             float damage = float.Parse(r.GetAttribute("damage"));
 
-            Hazard haz = new Hazard(game, asset, new Point(width, h), speed, collidable, damage);
+            Hazard haz = new Hazard(game, asset, collidable, damage,x,y);
             haz.spritePos = new Vector2(x, y);
             haz.spriteSize = new Point(w, h);
 
