@@ -50,8 +50,11 @@ namespace KeysToInsanity.Code
 
         public void updateWithAnimation(GameTime time, int index)
         {
-            currentAnimation = animations[index];
-            animations[index].Update(time);
+            if (animations.Count > 0)
+            {
+                currentAnimation = animations[index];
+                animations[index].Update(time);
+            }
         }
 
         public override void draw(SpriteBatch s)

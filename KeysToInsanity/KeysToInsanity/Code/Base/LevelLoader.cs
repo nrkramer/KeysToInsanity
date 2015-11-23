@@ -215,7 +215,14 @@ namespace KeysToInsanity.Code.Base
 
         public BasicBackground ParseBackground(XmlReader r)
         {
-            return new BasicBackground(game, r.GetAttribute("type"));
+            BasicBackground b;
+            string text = r.GetAttribute("type2");
+            if (text != null)
+                b = new BasicBackground(game, r.GetAttribute("type1"), text);
+            else
+                b = new BasicBackground(game, r.GetAttribute("type"));
+
+            return b;
         }
 
         public Character ParseCharacter(XmlReader r)
@@ -274,10 +281,20 @@ namespace KeysToInsanity.Code.Base
             int y = ParseExpression(r.GetAttribute("y"), fullY);
             int w = ParseExpression(r.GetAttribute("w"), fullX);
             int h = ParseExpression(r.GetAttribute("h"), fullY);
-            bool collidable = bool.Parse(r.GetAttribute("collide"));      
+
+            int width = w; // width of one animation
+            double speed = 1.0; // speed of one animation frame
+            string s = r.GetAttribute("width");
+            if (s != null)
+                width = int.Parse(s);
+            s = r.GetAttribute("speed");
+            if (s != null)
+                speed = double.Parse(s);
+
+            bool collidable = bool.Parse(r.GetAttribute("collide"));
             float damage = float.Parse(r.GetAttribute("damage"));
 
-            Hazard haz = new Hazard(game, asset, collidable, damage,x,y);
+            Hazard haz = new Hazard(game, asset, new Point(width, h), speed, collidable, damage);
             haz.spritePos = new Vector2(x, y);
             haz.spriteSize = new Point(w, h);
 

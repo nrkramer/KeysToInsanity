@@ -10,7 +10,7 @@ namespace KeysToInsanity.Code.Interface
 {
     class InstructionScreen
     {
-        private BasicSprite instruct;
+        public BasicSprite instruct;
         private BasicSprite returnButton;
 
         // See comment in CreditScreen class

@@ -5,12 +5,6 @@ namespace KeysToInsanity.Code
 {
     class RectangleCollision
     {
-        /*public static void update(BasicSprite character, BasicSprite thing, GameTime time)
-        {
-            character.velocity = collisionWithSlip(character, thing, time);
-            character.updatePosition();
-        }*/
-
         private static Rectangle data = new Rectangle();
 
         public static void update(BasicSprite character, SpriteContainer staticSprites, GameTime time)

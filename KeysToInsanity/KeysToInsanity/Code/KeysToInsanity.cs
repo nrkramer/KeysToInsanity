@@ -25,7 +25,7 @@ namespace KeysToInsanity
         {
             StartMenu,
             ChooseLevel,
-            Playing,          
+            Playing,
             Paused,
             About,
             Help,
@@ -47,7 +47,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -70,6 +70,7 @@ namespace KeysToInsanity
         private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
         private WinScreen winScreen;
+        private bool showHelp = false;
 
         private string[] levelXMLs;
         private uint unlockedLevels = 3;
@@ -247,8 +248,9 @@ namespace KeysToInsanity
         protected override void Update(GameTime gameTime)
         {
             // mouse info
-            mouseState = Mouse.GetState();          
+            mouseState = Mouse.GetState();
             keyboardState = Keyboard.GetState();
+            showHelp = false;
             bool mouseClicked = false;
             Point mouseCoords = new Point(mouseState.X, mouseState.Y);
             if (previousMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
@@ -265,6 +267,7 @@ namespace KeysToInsanity
             } else if (keyboardState.IsKeyDown(Keys.H))
             {
                 // show help
+                showHelp = true;
             }
             if(gameState == GameState.Exit)
             {
@@ -277,25 +280,25 @@ namespace KeysToInsanity
                     gameState = startMenu.MouseClicked(mouseCoords);
             }
             else if (gameState == GameState.Paused)
-                {                    
+            {
                 if (mouseClicked)
                     gameState = pauseMenu.MouseClicked(mouseCoords);
             }
             else if (gameState == GameState.About)
-                {
+            {
                 if (mouseClicked)
                     gameState = aboutScreen.MouseClicked(mouseCoords);
-                }
+            }
             else if (gameState == GameState.Death)
-                {
+            {
                 if (mouseClicked)
                     gameState = yourdead.MouseClicked(mouseCoords);
-                }
+            }
             else if (gameState == GameState.Instructions)
             {
                 if (mouseClicked)
                     gameState = instructScreen.MouseClicked(mouseCoords);
-                }
+            }
             else if(gameState == GameState.Win)
             {
                 if (mouseClicked)
@@ -376,15 +379,8 @@ namespace KeysToInsanity
                     if (stageIndex >= loader.level.stages.Length)
                     {
                         gameState = GameState.ChooseLevel;
-                        levelsPlayed++;
                         if (unlockedLevels < levelXMLs.Length)
                             unlockedLevels++;
-                        
-                        if(levelsPlayed >4)
-                        {
-                            levelsPlayed = 0;
-                            gameState = GameState.Win;
-                        }
                         chooseLevelMenu.setUnlockedLevels(unlockedLevels);
                         insanity = 0.0f;
                         theGentleman.health = 100.0f;
@@ -443,6 +439,9 @@ namespace KeysToInsanity
                     loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
                     theGentleman.health = 100.0f;
                     insanity = 0.0f;
+                    // fade in stuff
+                    foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
+                        s.opacity = 0.0f;
                     gameState = GameState.Playing;
                 }
             }
@@ -561,6 +560,8 @@ namespace KeysToInsanity
                     hud.draw(spriteBatch);
                     }
                 }
+                if (showHelp)
+                    instructScreen.instruct.draw(spriteBatch);
             }
             else if (gameState == GameState.About) // about
             {
@@ -593,6 +594,6 @@ namespace KeysToInsanity
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }   
+        }
     }
 }
