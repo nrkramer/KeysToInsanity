@@ -9,9 +9,9 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
       <Background type="tileBackground"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" fadein="true"/>
+      <Static type="sconce" x="170" y="c+40" w="40" h="87" collide="false" fadein="true"/>
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false" fadein="true"/>
+      <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false"/>
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" fadein="true"/>
       <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
@@ -134,7 +134,7 @@
       <Static type ="platform" x="100" y="f-50" w="400" h="78" collide="true"/>
       <Static type ="platform" x="200" y="f-130" w="300" h="78" collide="true"/>
       <Static type ="platform" x="300" y="f-210" w="200" h="78" collide="true"/>
-      <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="false"/>
+      <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="true"/>
       <Key x="450" y="f-285"/>
       <Door x="f-10" y="f-100" w="10" h="100" orientation="left" />
       <Background type="tileBackground" />

@@ -37,15 +37,15 @@
       <Static type ="iceblock" x="10" y="c" w="300" h="20" collide="true"/>
       <Static type ="iceblock" x="310" y="c" w="20" h="150" collide="true"/>
       <Static type ="iceblock" x="330" y="c+130" w="250" h="20" collide="true"/>
-      <Static type ="spikes-H" x="610" y="f-35" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="670" y="f-35" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="730" y="f-35" w="60" h="25" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-90" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-150" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-210" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-270" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-330" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-35" y="f-390" w="25" h="60" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="610" y="f-35" w="60" h="25" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="670" y="f-35" w="60" h="25" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="730" y="f-35" w="60" h="25" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-90" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-150" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-210" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-270" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-330" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-35" y="f-390" w="25" h="60" collide ="true"/>
       <Platform x="455" y="c+90" w="20" h="40" distance ="100" speed ="3" direction="true" file="iceblock"/>
       <Static type="Vspikes-L" x="330" y="c" w="20" h="65" collide="true"/>
       <Static type="Vspikes-L" x="330" y="c+65" w="20" h="65" collide="true"/>
@@ -69,24 +69,24 @@
       <Static type ="iceblock" x="10" y="100" w="150" h="20" collide="true"/>
       <Static type ="iceblock" x="150" y="100" w="20" h="100" collide="true"/>
       <Static type ="iceblock" x="150" y="180" w="150" h="20" collide="true"/>
-      <Static type ="Vspikes-R" x="c-15" y="10" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="c-15" y="70" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="c-15" y="130" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="c-15" y="190" w="25" h="60" collide ="true"/>
-      <Static type ="Vspikes-R" x="c-15" y="250" w="25" h="60" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="150" y="200" w="75" h="15" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="225" y="200" w="75" h="15" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="c-15" y="10" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="c-15" y="70" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="c-15" y="130" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="c-15" y="190" w="25" h="60" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="c-15" y="250" w="25" h="60" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="150" y="200" w="75" h="15" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="225" y="200" w="75" h="15" collide ="true"/>
       <Static type ="iceblock" x="120" y="c+10" w="300" h="20" collide="true"/>
       <Platform x="250" y="c-30" w="20" h="40" distance ="90" speed ="2" direction="true" file="iceblock"/>
       <Platform x="250" y="c-70" w="20" h="40" distance ="90" speed ="3" direction="true" file="iceblock"/>
       <Static type ="iceblock" x="120" y="c+10" w="20" h="100" collide="true"/>
       <Static type ="iceblock" x="120" y="c+90" w="400" h="20" collide="true"/>
-      <Static type ="ReverseSpikes-H" x="120" y="c+110" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="185" y="c+110" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="250" y="c+110" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="315" y="c+110" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="380" y="c+110" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="445" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="120" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="185" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="250" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="315" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="380" y="c+110" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="445" y="c+110" w="65" h="20" collide ="true"/>
       <Static type ="platform" x="10" y="c+250" w="40" h="25" collide="true"/>
       <Platform x="120" y="c+220" w="400" h="20" distance ="80" speed ="1" direction="false" file="iceblock"/>
       <Static type ="iceblock" x="520" y="c" w="f" h="20" collide="true"/>
@@ -108,13 +108,13 @@
       <Platform x="c-50" y="f-25" w="60" h="20" distance ="250" speed ="1" direction="true" file="platform"/>
       <Static type ="iceblock" x="c-50" y="300" w="20" h="230" collide="true"/>
       <Static type ="iceblock" x="c-125" y="425" w="20" h="160" collide="true"/>
-      <Static type="singleSpike-H" x="c-125" y="415" w="20" h="15" collide="true"/>
+      <Hazard type="singleSpike-H" damage="10" x="c-125" y="415" w="20" h="15" collide="true"/>
       <Static type ="iceblock" x="c+25" y="425" w="20" h="160" collide="true"/>
-      <Static type="singleSpike-H" x="c+25" y="415" w="20" h="15" collide="true"/>
-      <Static type ="ReverseSpikes-H" x="c-30" y="320" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="c+35" y="320" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="c-180" y="320" w="65" h="20" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="c-115" y="320" w="65" h="20" collide ="true"/>
+      <Hazard type="singleSpike-H" damage="10" x="c+25" y="415" w="20" h="15" collide="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="c-30" y="320" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="c+35" y="320" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="c-180" y="320" w="65" h="20" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="c-115" y="320" w="65" h="20" collide ="true"/>
       <Platform x="f" y="10" w="610" h="300" distance ="600" speed ="2" direction="true" file="iceblock"/>
       <Static type ="iceblock" x="f-120" y="f-150" w="20" h="150" collide="true"/>
       <Static type ="iceblock" x="f-200" y="f-150" w="100" h="20" collide="true"/>
@@ -190,19 +190,19 @@
       <Platform x="510" y="c" w="280" h="650" distance ="300" speed ="1" direction="false" file="iceblock"/>
       <Static type="iceblock" x="650" y="60" w="10" h="50" collide="true"/>
       <Static type="iceblock" x="650" y="100" w="140" h="10" collide="true"/>
-      <Static type ="ReverseSpikes-H" x="650" y="110" w="70" h="10" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="720" y="110" w="70" h="10" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="650" y="110" w="70" h="10" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="720" y="110" w="70" h="10" collide ="true"/>
       <Static type="iceblock" x="650" y="170" w="10" h="100" collide="true"/>
       <Static type="iceblock" x="510" y="170" w="150" h="10" collide="true"/>
-      <Static type ="ReverseSpikes-H" x="510" y="180" w="70" h="10" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="580" y="180" w="70" h="10" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="510" y="180" w="70" h="10" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="580" y="180" w="70" h="10" collide ="true"/>
       <Static type="iceblock" x="650" y="310" w="10" h="100" collide="true"/>
       <Static type="iceblock" x="650" y="310" w="140" h="10" collide="true"/>
-      <Static type ="ReverseSpikes-H" x="660" y="320" w="65" h="10" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="725" y="320" w="65" h="10" collide ="true"/>
-      <Static type ="Vspikes-L" x="510" y="10" w="10" h="55" collide="true"/>
-      <Static type ="Vspikes-L" x="510" y="65" w="10" h="55" collide="true"/>
-      <Static type ="Vspikes-L" x="510" y="120" w="10" h="55" collide="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="660" y="320" w="65" h="10" collide ="true"/>
+      <Hazard type="ReverseSpikes-H" damage="10" x="725" y="320" w="65" h="10" collide ="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="510" y="10" w="10" h="55" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="510" y="65" w="10" h="55" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="510" y="120" w="10" h="55" collide="true"/>
       <Background type="snowBackground" />
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
@@ -257,7 +257,7 @@
       <Static type ="ceiling_con" x="c+75" y="0" w="f" h="10" collide="true"/>
       <Static type ="ceiling_con" x="0" y="0" w="c-75" h="10" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="c-100" collide="true"/>
-      <Static type ="bed" x="c-25" y="c+20" w="50" h="30" collide ="false"/>
+      <Static type ="bed" x="c-25" y="c+20" w="50" h="30" collide ="true"/>
       <Background type="blackBackground"/>
       <End boundary="right"/>
     </Stage>
