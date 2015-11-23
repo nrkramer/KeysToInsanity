@@ -128,7 +128,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.ChooseLevel;
+            gameState = GameState.Playing;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -177,7 +177,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level5.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);

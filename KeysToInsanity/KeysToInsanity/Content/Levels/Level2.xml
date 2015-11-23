@@ -89,7 +89,7 @@
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="0" y="f-75" boundary="left"/>
+      <Start x="0" y="f-50" boundary="left"/>
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor" x="0" y="f-10" w="40" h="40" collide ="true"/>
       <Static type ="floor" x="f-50" y="100" w="f" h="f" collide ="true"/>
@@ -149,7 +149,7 @@
       <Static type ="floor" x="f-50" y="f-10" w="f" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="3" direction="true" file="platform"/>
+      <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="2" direction="true" file="platform"/>
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="spikes-H" x="160" y="c+160" w="60" h="15" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>

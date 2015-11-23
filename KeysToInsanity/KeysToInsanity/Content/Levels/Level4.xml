@@ -25,7 +25,7 @@
       <Static type ="floor" x="f-100" y="f-10" w="110" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Background type="snowBackground" />
+      <Background type="snowBackground"/>
       <End x="f" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -208,7 +208,7 @@
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="20" y="60" boundary="left" />
+      <Start x="20" y="50" boundary="left" />
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="iceblock" x="0" y="100" w="20" h="240" collide="true"/>
       <Static type ="iceblock" x="0" y="320" w="200" h="20" collide="true"/>
@@ -260,7 +260,6 @@
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="c-100" collide="true"/>
       <Static type ="bed" x="c-25" y="c+20" w="50" h="30" collide ="false"/>
       <Background type="blackBackground"/>
-      <Checkpoint x="f-100" y="c-50"/>
       <End boundary="right"/>
     </Stage>
   </Level>
