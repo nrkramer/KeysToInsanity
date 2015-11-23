@@ -128,6 +128,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\creditsPage.png" />
+    <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.wma" />
+    <Content Include="Credits.txt" />
     <Content Include="bin\Windows\Debug\Content\4LinkGreen1.png" />
     <Content Include="bin\Windows\Debug\Content\arrow.png" />
     <Content Include="bin\Windows\Debug\Content\bed.png" />
@@ -198,6 +201,12 @@
     <Content Include="Content\blackBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\blackBorder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\boulder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\box.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -205,6 +214,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\darkStone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndingText8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EndText9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\fireball.png">
@@ -231,7 +267,7 @@
     <Content Include="Content\Interface\WinText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\lava.png">
+    <Content Include="Content\lavaSprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Level1Text.png">
@@ -255,8 +291,12 @@
     </Content>
     <Content Include="Content\Levels\Level5.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\miyomato.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\lava.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\right_wall.png">
@@ -290,9 +330,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Interface\DeathText.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\fixed-miyomato.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\flames_light.png">
@@ -370,18 +407,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundFX\campfire-1.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\Music\Battle Theme III v3.0.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\Music\Thoughtful Piano Theme.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\TheGentleman\LandedOnFloor.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\Music\The_Cave_of_Ancient_Warriors_1_a.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\spikes-H.png">
@@ -473,15 +498,6 @@
     <Content Include="Content\Interface\resume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SoundFX\Music\Beethovens5th.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SoundFX\Music\Op9No2Session.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\tileBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -527,6 +543,7 @@
     <Folder Include="bin\Windows\Release\" />
     <Folder Include="Content\bin\Windows\" />
     <Folder Include="Content\obj\Windows\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Content\SoundFX\Music\Op9No2Session.xnb" />
@@ -547,6 +564,13 @@
     <None Include="Content\Shaders\Test_shader.mgfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\SoundFX\Music\Battle Theme III v3.0.xnb" />
+    <None Include="Content\SoundFX\Music\Beethovens5th.xnb" />
+    <None Include="Content\SoundFX\Music\Beethoven_5thSymphony.xnb" />
+    <None Include="Content\SoundFX\Music\Op9No2Session.xnb" />
+    <None Include="Content\SoundFX\Music\The_Cave_of_Ancient_Warriors_1_a.xnb" />
+    <None Include="Content\SoundFX\Music\Thoughtful Piano Theme.xnb" />
+    <None Include="Content\SoundFX\TheGentleman\LandedOnFloor.xnb" />
     <None Include="KeysToInsanity.zargo" />
     <None Include="KeysToInsanitySRS.docx" />
   </ItemGroup>

@@ -161,7 +161,7 @@ namespace KeysToInsanity
             if (DRAW_BOUNDING_BOXES)
             {
                 BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
-                BOUNDING_BOX.SetData(new[] { Color.White });
+                //BOUNDING_BOX.SetData(new[] { Color.White });
             }
 
             if (DRAW_MOVEMENT_VECTORS)
