@@ -16,7 +16,7 @@
       <Background type="Level3Text"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
-
+      
      <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-50" boundary="left"/>
       <Static type ="left_wall_con" x="0" y="0" w="10" h="f-100" collide ="true"/>
@@ -178,8 +178,7 @@
       <Static type ="Concrete" x="c+300" y="f-320" w="50" h="20" collide="false"/>
       <Static type ="Concrete" x="c" y="f-420" w="180" h="20" collide="true"/>
       <Static type ="Concrete" x="c" y="f-440" w="20" h="580" collide="true"/>
-      <Static type ="Concrete" x="c+350" y="f-480" w="60" h="380" collide="true"/>      
-      <Character type="Security" x ="c+250" y="f-30" distance="100" speed="1"/>  
+      <Static type ="Concrete" x="c+350" y="f-480" w="60" h="380" collide="true"/>        
       <Background type="ParkingLot"/>
       <End x="f-60" y="f-60" boundary="right"/>
       </Stage>         
