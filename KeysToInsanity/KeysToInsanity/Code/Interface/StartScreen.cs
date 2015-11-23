@@ -16,10 +16,6 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite instructButton;
         private BasicSprite creditsButton;
         private BasicSprite exitButton;
-        //REMOVE WHEN READY TO RELEASE GAME
-        private BasicSprite chooseLevel;
-
-        private Rectangle[] clickZones;
 
         public StartScreen(Game game)
         {
@@ -53,6 +49,8 @@ namespace KeysToInsanity.Code.Interface
 
             if (new Rectangle(instructButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Instructions;
+            if (new Rectangle(creditsButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Credits;
 
             if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Exit;
