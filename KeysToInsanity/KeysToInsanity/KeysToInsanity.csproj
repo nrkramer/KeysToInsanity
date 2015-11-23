@@ -564,13 +564,30 @@
     <None Include="Content\Shaders\Test_shader.mgfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\SoundFX\Music\Battle Theme III v3.0.xnb" />
-    <None Include="Content\SoundFX\Music\Beethovens5th.xnb" />
-    <None Include="Content\SoundFX\Music\Beethoven_5thSymphony.xnb" />
-    <None Include="Content\SoundFX\Music\Op9No2Session.xnb" />
-    <None Include="Content\SoundFX\Music\The_Cave_of_Ancient_Warriors_1_a.xnb" />
-    <None Include="Content\SoundFX\Music\Thoughtful Piano Theme.xnb" />
-    <None Include="Content\SoundFX\TheGentleman\LandedOnFloor.xnb" />
+    <None Include="Content\SoundFX\campfire-1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\Battle Theme III v3.0.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\Beethovens5th.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\Beethoven_5thSymphony.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\Op9No2Session.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\The_Cave_of_Ancient_Warriors_1_a.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\Music\Thoughtful Piano Theme.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\SoundFX\TheGentleman\LandedOnFloor.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="KeysToInsanity.zargo" />
     <None Include="KeysToInsanitySRS.docx" />
   </ItemGroup>

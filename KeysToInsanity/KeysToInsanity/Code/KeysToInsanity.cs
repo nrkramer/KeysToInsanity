@@ -47,7 +47,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -161,7 +161,7 @@ namespace KeysToInsanity
             if (DRAW_BOUNDING_BOXES)
             {
                 BOUNDING_BOX = new Texture2D(GraphicsDevice, 1, 1);
-                //BOUNDING_BOX.SetData(new[] { Color.White });
+                BOUNDING_BOX.SetData(new[] { Color.White });
             }
 
             if (DRAW_MOVEMENT_VECTORS)
@@ -191,7 +191,8 @@ namespace KeysToInsanity
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
 
-            //landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");//
+            landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
+            landedOnGround.pitch = 1.0f;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -220,12 +221,14 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (data.Height >= 1.0f)
                     {
+                        //if (theGentleman.inAir)
+                          //  landedOnGround.play(false);
+
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
                         theGentleman.velocity.setY(0.0f);
                         theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, collided.spritePos.Y - theGentleman.spriteSize.Y);
                         physics.resetTime(time);
-                        //landedOnGround.play(false);
                     }
                 if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
                 {
@@ -233,10 +236,10 @@ namespace KeysToInsanity
                 }
                 if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
                 {
-                    if (inCheckpoint)
-                        enteredCheckpoint = false;
-                    else
+                    if (inCheckpoint && !enteredCheckpoint)
                         enteredCheckpoint = true;
+                    else
+                        enteredCheckpoint = false;
 
                     inCheckpoint = true;
                 }
@@ -347,6 +350,9 @@ namespace KeysToInsanity
                     insanity += 0.02f;
                     hud.updateInsanity(insanity);
                     hud.Update(gameTime);
+
+                    if (enteredCheckpoint)
+                        Console.WriteLine("Entered a checkpoint");
 
                     // gentleman physics
                     physics.UpdateGentlemanPhysics(gameTime, theGentleman);

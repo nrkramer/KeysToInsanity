@@ -141,8 +141,9 @@ namespace KeysToInsanity
             {
                 s.Draw(spriteTex, spriteBox, null, color * opacity);
             }
-            //if (KeysToInsanity.DRAW_BOUNDING_BOXES)
-                //drawBorder(s, spriteBox, 2, borderColor);
+
+            if (KeysToInsanity.DRAW_BOUNDING_BOXES)
+                drawBorder(s, spriteBox, 2, borderColor);
         }
 
         protected void drawBorder(SpriteBatch s, Rectangle box, int borderWidth, Color color)

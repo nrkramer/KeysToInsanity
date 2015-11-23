@@ -19,10 +19,11 @@ namespace KeysToInsanity.Code
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;
             this.animationSpeed = animationSpeed;
+            if (animatedSpriteSize.X > spriteTex.Width)
+                this.animatedSpriteSize.X = spriteTex.Width;
             spriteSize = animatedSpriteSize;
-            if (spriteAnimations == 1)
-                animatedSpriteSize = new Point(spriteTex.Width, spriteTex.Height);
             loadAnimations();
+            updateWithAnimation(new GameTime(), 0);
         }
 
         public AnimatedSprite(Texture2D tex, Point animatedSpriteSize, int spriteAnimations, double animationSpeed, bool collidable) : base(tex, collidable)
@@ -43,7 +44,7 @@ namespace KeysToInsanity.Code
             for (int i = 0; i < spriteAnimations; i++)
             {
                 animations.Add(new Animation());
-                for (int j = 0; j < animatedSpriteSize.X / spriteTex.Width; j++)
+                for (int j = 0; j < spriteTex.Width / animatedSpriteSize.X; j++)
                 {
                     animations[i].AddFrame(
                         new Rectangle(j * animatedSpriteSize.X, i * animatedSpriteSize.Y, animatedSpriteSize.X, animatedSpriteSize.Y),
@@ -66,7 +67,7 @@ namespace KeysToInsanity.Code
             if (spriteTex != null)
             {
                 Rectangle spriteBox = new Rectangle(spritePos.ToPoint(), spriteSize);
-                s.Draw(spriteTex, spritePos, currentAnimation.CurrentRectangle, color * opacity);
+                s.Draw(spriteTex, new Rectangle(spritePos.ToPoint(), spriteSize), currentAnimation.CurrentRectangle, color * opacity);
                 if (KeysToInsanity.DRAW_BOUNDING_BOXES)
                     drawBorder(s, spriteBox, 2, Color.Red);
             }

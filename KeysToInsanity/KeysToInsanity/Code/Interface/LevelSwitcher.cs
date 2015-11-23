@@ -35,7 +35,7 @@ namespace KeysToInsanity.Code.Interface
             // load sprites
             background = new BasicSprite(game, "Interface\\LevelSwitcher", false);
             background.spritePos = new Vector2(0, 0);
-            background.spriteSize = new Point(800, 800);
+            background.spriteSize = new Point(800, 850);
 
             layer2 = new BasicSprite(game, "Interface\\levelSwitcherLayer2", false);
             layer2.spritePos = new Vector2(0, 0);
@@ -72,8 +72,8 @@ namespace KeysToInsanity.Code.Interface
         public int Update(GameTime time, MouseState state)
         {
             deltaY = state.ScrollWheelValue;
-            if (deltaY < -360)
-                deltaY = -360;
+            if (deltaY < -400)
+                deltaY = -400;
             if (deltaY > 10)
                 deltaY = 10;
 
