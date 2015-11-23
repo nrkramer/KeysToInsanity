@@ -88,8 +88,7 @@
       <Static type ="ReverseSpikes-H" x="380" y="c+110" w="65" h="20" collide ="true"/>
       <Static type ="ReverseSpikes-H" x="445" y="c+110" w="65" h="20" collide ="true"/>
       <Static type ="platform" x="10" y="c+250" w="40" h="25" collide="true"/>
-      <Platform x="120" y="c+220" w="200" h="20" distance ="80" speed ="1" direction="false" file="iceblock"/>
-      <Platform x="320" y="c+220" w="200" h="20" distance ="80" speed ="1" direction="false" file="iceblock"/>
+      <Platform x="120" y="c+220" w="400" h="20" distance ="80" speed ="1" direction="false" file="iceblock"/>
       <Static type ="iceblock" x="520" y="c" w="f" h="20" collide="true"/>
       <Platform x="630" y="c-100" w="60" h="25" distance ="60" speed ="1" direction="false" file="iceblock"/>
       <Background type="snowBackground"/>

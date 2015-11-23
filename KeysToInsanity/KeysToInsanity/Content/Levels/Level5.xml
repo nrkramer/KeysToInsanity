@@ -11,7 +11,6 @@
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
       <Background type="Level5Text"/>
-      <Key x="0" y="0"/>
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -205,7 +204,7 @@
       <Static type ="darkStone" x="90" y="490" w="10" h="110" collide="true"/>
       <Static type ="darkStone" x="f-600" y="540" w="70" h="10" collide="true"/>
       <Static type ="darkStone" x="90" y="490" w="10" h="110" collide="true"/>
-      <Platform x="f" y="450" w="800" h="140" distance ="800" speed ="3" direction="true" file="lava"/>
+      <Platform x="f" y="450" w="800" h="140" distance ="800" speed ="5" direction="true" file="lava"/>
       <Background type="blackbackground"/>
       <End boundary="bottom"/>
     </Stage>
@@ -213,13 +212,14 @@
       <Start x="50" y="0" boundary="top"/>
       <Static type ="ceiling_con" x="100" y="0" w="f" h="10" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="100" w="10" h="f" collide="true"/>
+      <Static type ="lava" x="0" y="10" w="10" h="f" collide ="false"/>
       <Static type ="lava" x="0" y="f-10" w="790" h="40" collide ="false"/>
       <Platform x="40" y="240" w="50" h="f" distance ="100" speed ="1" direction="false" file="darkStone"/>
       <Platform x="240" y="340" w="30" h="f" distance ="100" speed ="2" direction="false" file="darkStone"/>
       <Static type ="Concrete" x="450" y="200" w="20" h="40" collide="true" fadein="true"/>
       <Static type ="Concrete" x="640" y="200" w="15" h="40" collide="true" fadein="true"/>
       <Background type="blackbackground"/>
-      <End boundary="right"/>
+      <End x="f" y="50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="5" y="68" boundary="left"/>
@@ -234,7 +234,7 @@
       <Static type ="Concrete" x="f-100" y="f-10" w="100" h="40" collide="true"/>
       <Static type ="lava" x="30" y="f-10" w="670" h="40" collide ="false"/>
       <Background type="blackbackground"/>
-      <End boundary="right"/>
+      <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
       <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-50" boundary="left" />
@@ -242,13 +242,15 @@
       <Static type ="floor_con" x="0" y="f-10" w="f" h="40" collide="true" />
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="f-100" collide="true" />
       <Static type ="ceiling_con" x="0" y="0" w="f" h="10" collide="true" />
+      <Key x="f-200" y="f-80"/>
+      <Door x="f-10" y="f-100" w="10" h="100" orientation="left"/>
       <Background type="BankVault" />
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-50" boundary="left" />
       <Static type ="blackborder" x="0" y="f-10" w="f" h="40" collide="true" />
-      <Static type ="arrow" x="f-200" y="f-300" w="200" h="100" collide="false" />
+      <Static type ="arrow" x="f-200" y="f-300" w="200" h="100" collide="false" fadein="true"/>
       <Background type="EndingText1"/>
       <End x="f-5" y="f-50" boundary ="right"/>
     </Stage>
@@ -293,13 +295,13 @@
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top" />
-      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
-      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
-      <Static type ="ceiling" x="0" y="0" w="c-75" h="10" collide="true"/>
-      <Static type ="ceiling" x="c+75" y="0" w="f" h="10" collide="true"/>
+      <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true" fadein="true"/>
+      <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true" fadein="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" fadein="true"/>
+      <Static type ="ceiling" x="0" y="0" w="c-75" h="10" collide="true" fadein="true"/>
+      <Static type ="ceiling" x="c+75" y="0" w="f" h="10" collide="true" fadein="true"/>
       <Background type="EndText9"/>
-      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
+      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false" fadein="true"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
   </Level>

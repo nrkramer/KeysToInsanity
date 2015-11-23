@@ -17,7 +17,7 @@
       <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
       <Checkpoint x="c+100" y="f-110" />
       <End x="f-60" y="f-60" boundary="right"/>
-    </Stage>
+    </Stage>   
     <Stage x="0" y="0" w="f" h="f">
       <Start x="0" y="f-50" boundary="left" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>

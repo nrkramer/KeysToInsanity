@@ -128,6 +128,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Characters\fixed_dogs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\fixed_nurse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\fixed_pixelCar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\fixed_security.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\creditsPage.png" />
     <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.wma" />
     <Content Include="Credits.txt" />
@@ -293,7 +305,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\miyomato.png">
+    <Content Include="Content\Characters\miyomato.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\lava.png">
@@ -308,7 +320,7 @@
     <Content Include="Content\left_wall_con.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Rat.png">
+    <Content Include="Content\Characters\Rat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Interface\aboutButton.png">
@@ -381,7 +393,7 @@
     <Content Include="Content\Interface\levelSwitcherLayer2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\PixelCar.png">
+    <Content Include="Content\Characters\PixelCar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sconce.png">
@@ -390,7 +402,7 @@
     <Content Include="Content\ReverseSpikes-H.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\security.png">
+    <Content Include="Content\Characters\security.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\right_wall.png">
@@ -436,7 +448,7 @@
     <Content Include="Content\closed_door_left_metal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\dogs.png">
+    <Content Include="Content\Characters\dogs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Interface\exit.png">
@@ -480,7 +492,7 @@
     <Content Include="Content\Interface\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\nurse.png">
+    <Content Include="Content\Characters\nurse.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Lights\open_door_left_light.png">

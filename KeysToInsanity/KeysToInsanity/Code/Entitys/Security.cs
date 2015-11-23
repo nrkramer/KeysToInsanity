@@ -14,7 +14,7 @@ namespace KeysToInsanity.Code
         private float damage = 10;
 
 
-        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"security",new Point(22,22),1,0,true)
+        public Security(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"Characters\\security",new Point(22,22),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
