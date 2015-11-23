@@ -36,12 +36,12 @@
       <Static type ="darkStone" x="f-110" y="300" w="10" h="f" collide="true"/>
       <Static type ="darkStone" x="f-110" y="290" w="30" h="10" collide="true"/>
       <Static type ="darkStone" x="f-30" y="290" w="30" h="10" collide="true"/>
-      <Static type ="Vspikes-R" x="f-20" y="300" w="10" h="65" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-20" y="365" w="10" h="65" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-20" y="430" w="10" h="70" collide ="true"/>
-      <Static type="Vspikes-L" x="f-100" y="300" w="10" h="65" collide="true"/>
-      <Static type="Vspikes-L" x="f-100" y="365" w="10" h="65" collide="true"/>
-      <Static type="Vspikes-L" x="f-100" y="430" w="10" h="70" collide="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-20" y="300" w="10" h="65" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-20" y="365" w="10" h="65" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-20" y="430" w="10" h="70" collide ="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="f-100" y="300" w="10" h="65" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="f-100" y="365" w="10" h="65" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="f-100" y="430" w="10" h="70" collide="true"/>
       <Background type="blackbackground"/>
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
@@ -301,7 +301,7 @@
       <Static type ="ceiling" x="0" y="0" w="c-75" h="10" collide="true" fadein="true"/>
       <Static type ="ceiling" x="c+75" y="0" w="f" h="10" collide="true" fadein="true"/>
       <Background type="EndText9"/>
-      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false" fadein="true"/>
+      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="true"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
   </Level>

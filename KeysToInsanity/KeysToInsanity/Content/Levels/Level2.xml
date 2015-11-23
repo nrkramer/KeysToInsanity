@@ -26,20 +26,20 @@
       <Static type ="platform" x="150" y="f-210" w="f-160" h="10" collide ="true"/>
       <Static type ="platform" x="10" y="f-310" w="c+150" h="10" collide ="true"/>
       <Static type ="platform" x="120" y="135" w="f" h="10" collide ="true"/>
-      <Static type ="spikes-H" x="120" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="170" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="220" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="270" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="320" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="370" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="420" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="470" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="520" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="570" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="620" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="670" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="720" y="115" w="50" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="770" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="120" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="170" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="220" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="270" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="320" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="370" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="420" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="470" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="520" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="570" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="620" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="670" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="720" y="115" w="50" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="770" y="115" w="50" h="20" collide ="true"/>
       <Platform x="c+75" y="90" w="60" h="25" distance ="330" speed ="2" direction="true" file="platform"/>
       <Platform x="35" y="135" w="60" h="25" distance ="68" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
@@ -51,12 +51,12 @@
       <Static type ="right_wall" x="f-10" y="0" w="20" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="620" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="spikes-H" x="20" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="120" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="220" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="320" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="420" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="520" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="20" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="120" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="220" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="320" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="420" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="520" y="f-55" w="100" h="55" collide ="false"/>
       <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
       <Platform x="c+50" y="c" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
       <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
@@ -74,13 +74,13 @@
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
       <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="45" y="f-25" w="110" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="155" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="255" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="355" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="455" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="45" y="f-25" w="110" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="155" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="255" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="355" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="455" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="555" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="655" y="f-25" w="100" h="25" collide ="false"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
@@ -151,18 +151,18 @@
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Platform x="c-40" y="c+200" w="60" h="25" distance ="255" speed ="2" direction="true" file="platform"/>
       <Static type ="platform" x="160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="160" y="c+160" w="60" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="160" y="c+160" w="60" h="15" collide ="true"/>
       <Static type ="platform" x="c-50" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="c-50" y="c+160" w="60" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="c-50" y="c+160" w="60" h="15" collide ="true"/>
       <Static type ="platform" x="c+160" y="c+175" w="60" h="25" collide ="true"/>
-      <Static type ="spikes-H" x="c+160" y="c+160" w="60" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="45" y="f-25" w="110" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="155" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="255" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="355" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="455" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
-      <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="c+160" y="c+160" w="60" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="45" y="f-25" w="110" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="155" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="255" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="355" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="455" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="555" y="f-25" w="100" h="25" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="655" y="f-25" w="100" h="25" collide ="false"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
@@ -176,28 +176,28 @@
       <Static type ="right_wall" x="f-10" y="0" w="20" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="620" y="f-10" w="f" h="40" collide="true"/>
-      <Static type ="spikes-H" x="20" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="120" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="220" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="320" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="420" y="f-55" w="100" h="55" collide ="false"/>
-      <Static type ="spikes-H" x="520" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="20" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="120" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="220" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="320" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="420" y="f-55" w="100" h="55" collide ="false"/>
+      <Hazard type="spikes-H" damage="10" x="520" y="f-55" w="100" h="55" collide ="false"/>
       <Platform x="620" y="f-115" w="60" h="25" distance ="85" speed ="1" direction="false" file="platform"/>
       <Static type ="platform" x="620" y="f-230" w="60" h="25" collide ="true"/>
-      <Static type ="ReverseSpikes-H" x="620" y="f-205" w="60" h="15" collide ="false"/>
+      <Hazard type ="ReverseSpikes-H" damage="10" x="620" y="f-205" w="60" h="15" collide ="false"/>
       <Static type ="platform" x="c" y="10" w="15" h="125" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="10" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="50" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="90" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="10" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="50" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="90" w="15" h="40" collide="true"/>
       <Static type ="platform" x="c" y="c-50" w="15" h="f-315" collide ="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c-50" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c-10" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c+30" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c+70" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c+110" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c+150" w="15" h="40" collide="true"/>
-      <Static type="Vspikes-L" x="c+15" y="c+190" w="15" h="40" collide="true"/>
-      <Static type="singleSpike-H" x="c" y="c-65" w="15" h="15" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c-50" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c-10" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c+30" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c+70" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c+110" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c+150" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="c+15" y="c+190" w="15" h="40" collide="true"/>
+      <Hazard type="singleSpike-H" damage="10" x="c" y="c-65" w="15" h="15" collide="true"/>
       <Platform x="c-150" y="c" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
       <Platform x="c+100" y="c" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
       <Platform x="20" y="150" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
@@ -210,73 +210,73 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="115" w="30" h="f" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="10" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="50" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="90" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="130" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="170" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="210" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="250" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="300" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="340" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="380" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="420" w="15" h="40" collide="true"/>
-      <Static type ="Vspikes-L" x="10" y="460" w="15" h="30" collide="true"/>
-      <Static type ="spikes-H" x="15" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="55" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="95" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="135" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="175" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="215" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="255" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="295" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="335" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="375" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="415" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="455" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="495" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="535" y="f-330" w="40" h="20" collide ="true"/>
-      <Static type ="spikes-H" x="15" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="55" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="95" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="135" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="175" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="215" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="255" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="295" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="335" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="375" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="415" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="455" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="495" y="f-125" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="535" y="f-125" w="30" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="150" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="190" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="230" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="270" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="310" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="350" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="390" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="430" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="470" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="510" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="550" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="590" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="430" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="470" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="510" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="550" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="590" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="630" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="670" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="710" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="spikes-H" x="750" y="f-225" w="40" h="15" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="135" w="15" h="40" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="175" w="15" h="40" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="215" w="15" h="40" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="255" w="15" h="40" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="295" w="15" h="40" collide ="true"/>
-      <Static type ="Vspikes-R" x="f-25" y="335" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="10" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="50" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="90" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="130" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="170" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="210" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="250" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="300" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="340" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="380" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="420" w="15" h="40" collide="true"/>
+      <Hazard type="Vspikes-L" damage="10" x="10" y="460" w="15" h="30" collide="true"/>
+      <Hazard type="spikes-H" damage="10" x="15" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="55" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="95" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="135" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="175" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="215" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="255" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="295" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="335" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="375" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="415" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="455" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="495" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="535" y="f-330" w="40" h="20" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="15" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="55" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="95" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="135" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="175" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="215" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="255" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="295" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="335" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="375" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="415" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="455" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="495" y="f-125" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="535" y="f-125" w="30" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="150" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="190" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="230" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="270" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="310" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="350" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="390" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="430" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="470" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="510" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="550" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="590" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="430" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="470" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="510" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="550" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="590" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="630" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="670" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="710" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="spikes-H" damage="10" x="750" y="f-225" w="40" h="15" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="135" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="175" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="215" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="255" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="295" w="15" h="40" collide ="true"/>
+      <Hazard type="Vspikes-R" damage="10" x="f-25" y="335" w="15" h="40" collide ="true"/>
       <Static type ="platform" x="10" y="f-110" w="c+150" h="10" collide ="true"/>
       <Static type ="platform" x="150" y="f-210" w="f-160" h="10" collide ="true"/>
       <Static type ="platform" x="10" y="f-310" w="c+164" h="10" collide ="true"/>
