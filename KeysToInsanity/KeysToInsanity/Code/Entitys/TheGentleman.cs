@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Xna.Framework.Graphics;
+using KeysToInsanity.Code.Interactive_Objects;
 
 namespace KeysToInsanity.Code
 {
@@ -16,7 +17,7 @@ namespace KeysToInsanity.Code
         private float _health = 100.0f;
         public bool invincible = false;
         private int total_invincibility_time = 2; // 2 seconds
-        private GameTime invincibility_time;
+        private GameTime invincibility_time = new GameTime();
 
         public float health
         {
@@ -44,13 +45,12 @@ namespace KeysToInsanity.Code
         {
             if (invincible)
                 invincibility_time = time;
-            else
-                invincibility_time = new GameTime();
-
+                
+            Console.WriteLine((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds));
             if ((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds) >= total_invincibility_time)
             {
-                Console.WriteLine((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds));
                 invincible = false;
+                invincibility_time = new GameTime();
             }
 
             //how The Gentleman is able to know where to move
@@ -106,6 +106,11 @@ namespace KeysToInsanity.Code
             base.onCollide(s, data, time);
 
             friction = s.friction;
+            if (s.ToString() == "KeysToInsanity.Code.Interactive_Objects.Hazard")
+            {
+                health -= ((Hazard)s).damage;
+                invincible = true;
+            }
         }
 
         public void onFallOutOfBounds()

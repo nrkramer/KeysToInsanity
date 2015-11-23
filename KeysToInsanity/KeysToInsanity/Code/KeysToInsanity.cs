@@ -177,7 +177,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level4.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
@@ -439,6 +439,9 @@ namespace KeysToInsanity
                     loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
                     theGentleman.health = 100.0f;
                     insanity = 0.0f;
+                    // fade in stuff
+                    foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
+                        s.opacity = 0.0f;
                     gameState = GameState.Playing;
                 }
             }
