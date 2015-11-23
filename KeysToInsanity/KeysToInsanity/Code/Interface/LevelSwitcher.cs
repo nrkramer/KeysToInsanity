@@ -15,32 +15,45 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite layer2; // level row background
         private BasicSprite levelHover; // mouse hover background
         private BasicSprite levelCover; // cover to hide locked levels
+        private BasicSprite arrowUp; // scroll up
+        private BasicSprite arrowDown; // scroll down
 
         private uint totalLevels = 3; // uint is unsigned int
         private uint level = 0;
-        private uint unlocked = 3;
+        private uint unlocked = 1;
 
         private bool showHighlight = false;
 
         private Rectangle[] clickZones;
         private Vector2[] coverPositions;
 
+        private int deltaY = 0;
+        private int delta = 0;
+
         public LevelSwitcher(Game game, uint startLevel, uint totalLevels)
         {
             // load sprites
             background = new BasicSprite(game, "Interface\\LevelSwitcher", false);
             background.spritePos = new Vector2(0, 0);
-            background.spriteSize = new Point(800, 600);
+            background.spriteSize = new Point(800, 800);
 
             layer2 = new BasicSprite(game, "Interface\\levelSwitcherLayer2", false);
             layer2.spritePos = new Vector2(0, 0);
-            layer2.spriteSize = new Point(800, 600);
+            layer2.spriteSize = new Point(720, 131);
 
             levelHover = new BasicSprite(game, "Interface\\levelHover", false); // don't draw this until mouse is over a target area
             levelHover.spriteSize = new Point(720, 131);
 
-            levelCover = new BasicSprite(game, "Interface\\levelCover", false); // same here
+            levelCover = new BasicSprite(game, "Interface\\levelCover", false);
             levelCover.spriteSize = new Point(150, 100);
+
+            arrowUp = new BasicSprite(game, "arrow", false);
+            arrowUp.spritePos = new Vector2(game.GraphicsDevice.Viewport.Width - 30, 0);
+            arrowUp.spriteSize = new Point(30, 60);
+
+            arrowDown = new BasicSprite(game, "arrow", false);
+            arrowDown.spritePos = new Vector2(game.GraphicsDevice.Viewport.Width - 30, game.GraphicsDevice.Viewport.Height - 60);
+            arrowDown.spriteSize = new Point(30, 60);
 
             level = startLevel;
             this.totalLevels = totalLevels;
@@ -50,7 +63,7 @@ namespace KeysToInsanity.Code.Interface
             for (int i = 0; i < totalLevels; i++)
             {
                 // i * (height of rectangle + space between them)
-                clickZones[i] = new Rectangle(50, 126 + (i * (131 + 15)), 720, 131);
+                clickZones[i] = new Rectangle(50, 126 + (i * (135 + 15)), 720, 131);
             }
 
             setUnlockedLevels(1);
@@ -58,12 +71,28 @@ namespace KeysToInsanity.Code.Interface
 
         public int Update(GameTime time, MouseState state)
         {
+            deltaY = state.ScrollWheelValue;
+            if (deltaY < -360)
+                deltaY = -360;
+            if (deltaY > 10)
+                deltaY = 10;
+
+            if (delta > deltaY)
+                delta -= 20;
+            if (delta < deltaY)
+                delta += 20;
+
+            // position stuff
+            background.spritePos = new Vector2(background.spritePos.X, delta);
+            
             // mouse stuff
             for(int i = 0; i < unlocked; i++)
             {
-                if (clickZones[i].Contains(state.Position))
+                Rectangle inScreenRect = clickZones[i];
+                inScreenRect.Y = inScreenRect.Y + delta;
+                if (inScreenRect.Contains(state.Position))
                 {
-                    levelHover.spritePos = clickZones[i].Location.ToVector2();
+                    levelHover.spritePos = inScreenRect.Location.ToVector2();
                     showHighlight = true;
 
                     // user selected a level
@@ -88,22 +117,27 @@ namespace KeysToInsanity.Code.Interface
             for(int i = (int)totalLevels - (int)unlocked - 1; i >= 0; i--)
             {
                 coverPositions[i] = new Vector2(70, 140 + ((totalLevels - i - 1) * (100 + 50)));
-                Console.WriteLine(i);
             }
         }
 
         public void draw(SpriteBatch s)
         {
             // draw order must always be this
-            layer2.draw(s);
+            for (int i = 0; i < clickZones.Length; i++)
+            {
+                layer2.spritePos = new Vector2(clickZones[i].X, clickZones[i].Y + delta);
+                layer2.draw(s);
+            }
             if (showHighlight)
                 levelHover.draw(s);
             background.draw(s);
             for (int i = (int)totalLevels - (int)unlocked - 1; i >= 0; i--)
             {
-                levelCover.spritePos = coverPositions[i];
+                levelCover.spritePos = new Vector2(coverPositions[i].X, coverPositions[i].Y + delta);
                 levelCover.draw(s);
             }
+            arrowUp.drawRotated(s, 0.0f);
+            arrowDown.drawRotated(s, 180.0f);
         }
     }
 }

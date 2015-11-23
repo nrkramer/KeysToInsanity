@@ -10,14 +10,13 @@ namespace KeysToInsanity.Code
         private RenderTarget2D renderTarget; // override default spriteTex (which is a Texture2D)
         private Effect effect;
         private BasicInput input;
-
         private GraphicsDevice gd;
 
         public int jumps = 2;
         private float _health = 100.0f;
         public bool invincible = false;
-        private int total_invincibility_time = 2; // 2 seconds
-        private GameTime invincibility_time = new GameTime();
+        private int total_invincibility_time = 500; // in milliseconds
+        private double invincibility_time = 0.0;
 
         public float health
         {
@@ -43,15 +42,8 @@ namespace KeysToInsanity.Code
 
         public void Update(GameTime time)
         {
-            if (invincible)
-                invincibility_time = time;
-                
-            Console.WriteLine((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds));
-            if ((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds) >= total_invincibility_time)
-            {
+            if ((time.TotalGameTime.TotalMilliseconds - invincibility_time) >= total_invincibility_time)
                 invincible = false;
-                invincibility_time = new GameTime();
-            }
 
             //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
@@ -106,10 +98,11 @@ namespace KeysToInsanity.Code
             base.onCollide(s, data, time);
 
             friction = s.friction;
-            if (s.ToString() == "KeysToInsanity.Code.Interactive_Objects.Hazard")
+            if ((s.ToString() == "KeysToInsanity.Code.Interactive_Objects.Hazard") && !invincible)
             {
                 health -= ((Hazard)s).damage;
                 invincible = true;
+                invincibility_time = time.TotalGameTime.TotalMilliseconds;
             }
         }
 
@@ -146,7 +139,7 @@ namespace KeysToInsanity.Code
                 drawMovementVector(s);
         }
 
-        //development tool to allow us to see how the Gentleman is moving through a vector arrow
+        // development tool to allow us to see how the Gentleman is moving through a vector arrow
         private void drawMovementVector(SpriteBatch s)
         {
             Rectangle bounds = KeysToInsanity.MOVEMENT_VECTOR.Bounds;

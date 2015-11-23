@@ -104,8 +104,6 @@ namespace KeysToInsanity
                 collisionCallback(this, s, data, time);
         }
 
-        
-
         public void applyFriction(BasicSprite s, Rectangle data)
         {
             if (s.collidable)
@@ -125,6 +123,14 @@ namespace KeysToInsanity
         public float getSpriteYPos()
         {
             return spritePos.Y;
+        }
+
+        public virtual void drawRotated(SpriteBatch s, float degrees)
+        {
+            s.Draw(spriteTex,
+                new Rectangle((spritePos + new Vector2(spriteSize.X / 2.0f, spriteSize.Y / 2.0f)).ToPoint(), spriteSize),
+                new Rectangle(new Point(0, 0), spriteSize), Color.White, degrees,
+                new Vector2(spriteSize.X / 2.0f, spriteSize.Y / 2.0f), SpriteEffects.None, 1.0f);
         }
 
         // "virtual" allows the method to be overriden by subclasses

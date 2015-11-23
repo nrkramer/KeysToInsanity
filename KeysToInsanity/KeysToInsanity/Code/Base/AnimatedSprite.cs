@@ -20,6 +20,8 @@ namespace KeysToInsanity.Code
             this.spriteAnimations = spriteAnimations;
             this.animationSpeed = animationSpeed;
             spriteSize = animatedSpriteSize;
+            if (spriteAnimations == 1)
+                animatedSpriteSize = new Point(spriteTex.Width, spriteTex.Height);
             loadAnimations();
         }
 
@@ -28,6 +30,8 @@ namespace KeysToInsanity.Code
             this.animatedSpriteSize = animatedSpriteSize;
             this.spriteAnimations = spriteAnimations;
             this.animationSpeed = animationSpeed;
+            if (spriteAnimations == 1)
+                animatedSpriteSize = spriteSize;
             spriteSize = animatedSpriteSize;
             loadAnimations();
         }
@@ -39,7 +43,7 @@ namespace KeysToInsanity.Code
             for (int i = 0; i < spriteAnimations; i++)
             {
                 animations.Add(new Animation());
-                for (int j = 0; j < spriteTex.Width / animatedSpriteSize.X; j++)
+                for (int j = 0; j < animatedSpriteSize.X / spriteTex.Width; j++)
                 {
                     animations[i].AddFrame(
                         new Rectangle(j * animatedSpriteSize.X, i * animatedSpriteSize.Y, animatedSpriteSize.X, animatedSpriteSize.Y),

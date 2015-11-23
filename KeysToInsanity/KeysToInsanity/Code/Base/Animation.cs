@@ -68,7 +68,10 @@ namespace KeysToInsanity
 
             double remainder = secondsIntoAnimation % Duration.TotalSeconds;
 
-            timeIntoAnimation = TimeSpan.FromSeconds(remainder);
+            if (!double.IsNaN(remainder))
+                timeIntoAnimation = TimeSpan.FromSeconds(remainder);
+            else
+                timeIntoAnimation = TimeSpan.FromSeconds(0.0);
         }
 
         public Rectangle CurrentRectangle

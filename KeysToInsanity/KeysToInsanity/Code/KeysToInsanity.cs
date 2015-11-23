@@ -47,7 +47,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -73,7 +73,7 @@ namespace KeysToInsanity
         private bool showHelp = false;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 3;
+        private uint unlockedLevels = 5;
 
         private BasicInput input; // Our input handler
 
@@ -128,7 +128,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.Playing;
+            gameState = GameState.ChooseLevel;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -153,6 +153,7 @@ namespace KeysToInsanity
             instructScreen = new InstructionScreen(this);
             creditScreen = new CreditScreen(this);
             chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
+            chooseLevelMenu.setUnlockedLevels(unlockedLevels);
             yourdead = new DeathScreen(this);
             winScreen = new WinScreen(this);
 
@@ -170,15 +171,17 @@ namespace KeysToInsanity
 
             // Gentleman
             theGentleman = new TheGentleman(this);
-            theGentleman.spritePos = new Vector2(370, 300);
             theGentleman.collisionCallback += new CollisionEventHandler(collisionEvents);
 
             // Heads up display (HUD)
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level5.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
+            theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+            foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
+                s.opacity = 0.0f;
 
             input = new BasicInput(this, theGentleman);
 
