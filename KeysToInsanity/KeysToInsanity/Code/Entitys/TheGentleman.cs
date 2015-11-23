@@ -26,7 +26,7 @@ namespace KeysToInsanity.Code
 
         public bool inAir = false;
 
-        public TheGentleman(Game game) : base(game, "miyomato", new Point(20, 32), 4, 0.1, true)
+        public TheGentleman(Game game) : base(game, "Characters\\miyomato", new Point(20, 32), 4, 0.1, true)
         {
             friction = 3.0f;
 

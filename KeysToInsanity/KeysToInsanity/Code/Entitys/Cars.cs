@@ -16,7 +16,7 @@ namespace KeysToInsanity.Code.Entitys
         private bool direction = true;
         private float damage = 50;
 
-        public Cars(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"PixelCar",new Point(100,40),1,0,true)
+        public Cars(Game game, float moveSpeed, float moveDistance, float XPos) :base(game,"Characters\\PixelCar",new Point(100,40),1,0,true)
         {
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;

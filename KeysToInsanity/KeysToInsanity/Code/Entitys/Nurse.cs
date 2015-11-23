@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code.Entitys
         private bool direction = true;
         private float damage = 5;
 
-        public Nurse(Game game, float moveSpeed, float moveDistance,float XPos) :base(game,"nurse",new Point(22,22),1,0,true)
+        public Nurse(Game game, float moveSpeed, float moveDistance,float XPos) :base(game,"Characters\\nurse",new Point(22,22),1,0,true)
         { 
             // ****** DO NOT CHANGE MAKES IT WORK ********
             center = XPos;
