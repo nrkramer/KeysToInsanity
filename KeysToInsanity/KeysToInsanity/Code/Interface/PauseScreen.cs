@@ -20,7 +20,6 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite help;
         private BasicSprite exit;
 
-        private Rectangle[] clickZones;
 
         // See comment in CreditScreen class
         public PauseScreen(Game game)

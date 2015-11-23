@@ -13,7 +13,7 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite credits;
         private BasicSprite returnButton;
 
-        private Rectangle returnR = new Rectangle(690, 20, 100, 20);
+       
         
         public CreditScreen(Game game)
         {
@@ -32,7 +32,7 @@ namespace KeysToInsanity.Code.Interface
 
         public KeysToInsanity.GameState MouseClicked(Point pos)
         {
-            if (returnR.Contains(pos))
+            if (new Rectangle(returnButton.spritePos.ToPoint(), returnButton.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.StartMenu;
 
             return KeysToInsanity.GameState.Credits;
