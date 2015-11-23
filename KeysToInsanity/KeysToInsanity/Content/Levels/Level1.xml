@@ -11,11 +11,11 @@
       <Platform x="c" y="f-100" w="120" h="25" distance ="70" speed ="2" direction="false" file="platform"/>
       <Background type="tileBackground"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
+      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" fadein="true"/>
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false"/>
-      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00"/>
-      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
+      <Hazard type="sconce" x="384" y="c+40" w="40" h="87" collide="false" damage="10"/>
+      <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" fadein="true"/>
       <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>   
