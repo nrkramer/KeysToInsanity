@@ -283,7 +283,7 @@ namespace KeysToInsanity.Code.Base
             int h = ParseExpression(r.GetAttribute("h"), fullY);
 
             int width = w; // width of one animation
-            double speed = 1.0; // speed of one animation frame
+            double speed = 0.25; // speed of one animation frame
             string s = r.GetAttribute("width");
             if (s != null)
                 width = int.Parse(s);

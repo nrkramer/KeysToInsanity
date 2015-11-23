@@ -10,7 +10,6 @@ namespace KeysToInsanity.Code
         private RenderTarget2D renderTarget; // override default spriteTex (which is a Texture2D)
         private Effect effect;
         private BasicInput input;
-
         private GraphicsDevice gd;
 
         public int jumps = 2;
@@ -140,7 +139,7 @@ namespace KeysToInsanity.Code
                 drawMovementVector(s);
         }
 
-        //development tool to allow us to see how the Gentleman is moving through a vector arrow
+        // development tool to allow us to see how the Gentleman is moving through a vector arrow
         private void drawMovementVector(SpriteBatch s)
         {
             Rectangle bounds = KeysToInsanity.MOVEMENT_VECTOR.Bounds;
