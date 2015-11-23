@@ -53,8 +53,8 @@ namespace KeysToInsanity.Code
             if (new Rectangle(chooseL.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.ChooseLevel;
 
-            //if (new Rectangle(exit.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
-            // exit
+            if (new Rectangle(exit.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Exit;
 
             return KeysToInsanity.GameState.Death;
         }

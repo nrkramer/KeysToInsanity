@@ -2,25 +2,18 @@
 <XML>
   <Level name = "Level 2" stages="11">
     <Stage x="0" y="0" w="f" h="f">
-      <Start x="c" y="c" boundary="none"/>
+      <Start x="c" y="f-50" boundary="none"/>
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="c-50" h="10" collide="true"/>
+      <Static type ="ceiling" x="c+50" y="0" w="f" h="10" collide="true"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
-      <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="601" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
-      <Static type ="ladder" x="475" y="f-330" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-370" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-410" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-450" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-490" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-530" w="40" h="50" collide="false"/>
-      <Static type ="ladder" x="475" y="f-580" w="40" h="50" collide="false"/>
-      <Background type="sewer_wall"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
+      <Static type ="platform" x="c-20" y="c-100" w="40" h="25" collide="true"/>      
+      <Background type="Level2Text"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -89,9 +82,9 @@
       <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
       <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
       <Background type="sewer_wall"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
@@ -125,7 +118,8 @@
       <Static type ="platform" x="600" y="f-210" w="200" h="80" collide="true"/>
       <Background type="sewer_wall"/>
       <Key x="730" y="f-265"/>
-      <Door x="0" y="f-100" w="10" h="100" orientation="right" />
+      <Door x="0" y="f-100" w="10" h="100" orientation ="right"/>
+      <Checkpoint x="200" y="f-110"/>
       <End x="15" y="f-60" boundary="left"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -170,9 +164,9 @@
       <Static type ="spikes-H" x="555" y="f-25" w="100" h="25" collide ="false"/>
       <Static type ="spikes-H" x="655" y="f-25" w="100" h="25" collide ="false"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="602" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
       <Background type="sewer_wall"/>
       <End x="30" y="f-50" boundary="left"/>
     </Stage>
@@ -301,27 +295,13 @@
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
-      <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
+      <Static type ="ceiling" x="0" y="0" w="c-50" h="10" collide="true"/>
+      <Static type ="ceiling" x="c+50" y="0" w="f" h="10" collide="true"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="175" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
-      <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="391" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
+      <Static type="sconce" x="169" y="c+40" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <AnimatedStatic type="flames" x="601" y="c-185" w="30" h="260" collide="false" width="30" speed="0.05" fadein="true"/>
-      <Static type ="ladder" x="475" y="f-50" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-90" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-130" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-170" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-210" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-250" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-290" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-330" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-370" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-410" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-450" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-490" w="40" h="40" collide="false"/>
-      <Static type ="ladder" x="475" y="f-530" w="40" h="50" collide="false"/>
-      <Static type ="ladder" x="475" y="f-580" w="40" h="50" collide="false"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
+      <Platform x="c-20" y="c" w="40" h="25" distance ="275" speed ="1" direction="false" file="platform"/>
       <Background type="sewer_wall"/>
       <End boundary="top"/>
     </Stage>

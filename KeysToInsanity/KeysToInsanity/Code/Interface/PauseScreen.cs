@@ -53,8 +53,8 @@ namespace KeysToInsanity.Code.Interface
                 return KeysToInsanity.GameState.Playing;
             else if (helpR.Contains(pos))
                 return KeysToInsanity.GameState.Help;
-            // else if (exitR.Contains(pos)) exit
-
+            else if (exitR.Contains(pos))
+                return KeysToInsanity.GameState.Exit;
             return KeysToInsanity.GameState.Paused;
         }
     }

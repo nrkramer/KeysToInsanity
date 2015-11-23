@@ -25,8 +25,8 @@ namespace KeysToInsanity.Code.Interactive_Objects
                 TheGentleman tg = (TheGentleman)collided;
                 if (!tg.invincible)
                 {
-                    tg.invincible = true;
                     tg.health -= damage;
+                    tg.invincible = true;
                 }
             }
         }

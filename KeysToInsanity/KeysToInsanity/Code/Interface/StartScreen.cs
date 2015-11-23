@@ -54,8 +54,8 @@ namespace KeysToInsanity.Code.Interface
             if (new Rectangle(instructButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Instructions;
 
-            //if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
-                //exit();
+            if (new Rectangle(exitButton.spritePos.ToPoint(), startButton.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Exit;
 
             return KeysToInsanity.GameState.StartMenu; 
         }

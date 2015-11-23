@@ -31,7 +31,9 @@ namespace KeysToInsanity
             Help,
             Instructions,
             Credits,
-            Death
+            Death,
+            Exit,
+            Win
             
         }
 
@@ -55,6 +57,7 @@ namespace KeysToInsanity
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
         private int stageIndex = 0;
+        private int levelsPlayed = 0;
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
@@ -66,6 +69,7 @@ namespace KeysToInsanity
         private InstructionScreen instructScreen;
         private DeathScreen yourdead;
         private LevelSwitcher chooseLevelMenu;
+        private WinScreen winScreen;
         private bool showHelp = false;
 
         private string[] levelXMLs;
@@ -124,7 +128,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
+            gameState = GameState.ChooseLevel;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -150,6 +154,7 @@ namespace KeysToInsanity
             creditScreen = new CreditScreen(this);
             chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
             yourdead = new DeathScreen(this);
+            winScreen = new WinScreen(this);
 
             //to help us understand how the bounding boxes are working and how the vectors are being affected on mostly just the Gentleman
             if (DRAW_BOUNDING_BOXES)
@@ -172,7 +177,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, "Content\\Levels\\Level4.xml", hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
 
             input = new BasicInput(this, theGentleman);
@@ -264,6 +269,10 @@ namespace KeysToInsanity
                 // show help
                 showHelp = true;
             }
+            if(gameState == GameState.Exit)
+            {
+                Exit();
+            }
 
             if (gameState == GameState.StartMenu)
             {
@@ -289,6 +298,11 @@ namespace KeysToInsanity
             {
                 if (mouseClicked)
                     gameState = instructScreen.MouseClicked(mouseCoords);
+            }
+            else if(gameState == GameState.Win)
+            {
+                if (mouseClicked)
+                    gameState = winScreen.MouseClicked(mouseCoords);
             }
             else if (gameState == GameState.Playing)
             {
@@ -569,6 +583,10 @@ namespace KeysToInsanity
             else if(gameState == GameState.Death)
             {
                 yourdead.drawMenu(spriteBatch);
+            }
+            else if(gameState == GameState.Win)
+            {
+                winScreen.drawMenu(spriteBatch);
             }
             spriteBatch.End();
 

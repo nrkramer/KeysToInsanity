@@ -42,7 +42,6 @@ namespace KeysToInsanity.Code
 
         public void Update(GameTime time)
         {
-
             if (invincible)
                 invincibility_time = time;
             else
@@ -50,6 +49,7 @@ namespace KeysToInsanity.Code
 
             if ((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds) >= total_invincibility_time)
             {
+                Console.WriteLine((time.ElapsedGameTime.Seconds - invincibility_time.ElapsedGameTime.Seconds));
                 invincible = false;
             }
 
