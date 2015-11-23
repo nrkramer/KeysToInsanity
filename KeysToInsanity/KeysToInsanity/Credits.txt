@@ -1,0 +1,28 @@
+﻿Credits- If anything on the credits screen doesnot show, it will be here.
+Each listing includes name of file used in game, its creator and a URL to its source.
+All other content listed has been created by either Nolan,Andrew or by Lucas.
+
+The Gentleman miyomato : By larsiusprime at http://opengameart.org/content/super-miyamoto
+Sewer Texture: By Methuselas at http://methuselas.deviantart.com/art/Sewer-Texture-120750388
+Spikes : By dml at http://ceilfire.com/m/542d31b4c8b062674bc07407
+PixelCar: By cyanowl at http://opengameart.org/content/2d-pixel-car-side-view
+Lantern Pole: By Parriah at http://opengameart.org/content/2d-platformer-side-scroller-stone-fence-street-lamp
+Rat: By CalciumTrice at http://opengameart.org/content/animated-rat
+Security: By Doubled at http://pokecharms.com/threads/doubleds-sprite-gallery-part-deux.1060/
+Dogs: By qubodup at http://opengameart.org/content/dog-run-stand-pee-6frames-46x27
+Nurse: By Garfunkel at http://opengameart.org/content/grandma-nurse-walking
+Box: By Alekei at http://opengameart.org/content/box-2
+Thoughtful Piano Theme: By Trinnox at http://opengameart.org/content/thoughtful-piano-theme
+Small Crate: By BlueRobin2 at http://opengameart.org/content/small-crate
+ice block: By digit1024 at http://opengameart.org/content/ice-block
+Snow Texture: By DownDate at http://opengameart.org/content/snow-texture
+Lava : By davesch at http://opengameart.org/content/16x16-and-animated-lava-tile-45-frames
+Sewer Song:  by  Bjon12345abc at http://opengameart.org/content/the-cave-of-ancient-warriors-1a
+Metal panel dark brown alt by: Georges "TRaK" Grondin  at http://opengameart.org/content/metal-panel-dark-brown-alt
+Simple Fireball : By Sogomn at http://opengameart.org/content/simple-fireball
+Level Three Music: By Pugly at http://opengameart.org/content/battle-theme-iii
+Sign Post: By Nemisys at http://opengameart.org/content/lpc-sign-post
+Dark Rock: By toonst49 at http://opengameart.org/content/stone-texture-for-bump-mapping
+Lava2: By n4pgamer at http://opengameart.org/content/seamless-pattern-glowing-coal
+Rock: By MystiqMiu at http://opengameart.org/content/basic-boulder
+
