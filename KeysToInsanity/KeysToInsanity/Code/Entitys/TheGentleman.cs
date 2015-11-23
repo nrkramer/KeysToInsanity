@@ -16,7 +16,7 @@ namespace KeysToInsanity.Code
         public int jumps = 2;
         private float _health = 100.0f;
         public bool invincible = false;
-        private float total_invincibility_time = 0.5f; // half a second
+        private int total_invincibility_time = 500; // in milliseconds
         private double invincibility_time = 0.0;
 
         public float health
@@ -43,7 +43,7 @@ namespace KeysToInsanity.Code
 
         public void Update(GameTime time)
         {
-            if ((time.TotalGameTime.Seconds - invincibility_time) >= (total_invincibility_time - 1))
+            if ((time.TotalGameTime.TotalMilliseconds - invincibility_time) >= total_invincibility_time)
                 invincible = false;
 
             //how The Gentleman is able to know where to move
@@ -103,7 +103,7 @@ namespace KeysToInsanity.Code
             {
                 health -= ((Hazard)s).damage;
                 invincible = true;
-                invincibility_time = time.TotalGameTime.TotalSeconds;
+                invincibility_time = time.TotalGameTime.TotalMilliseconds;
             }
         }
 
