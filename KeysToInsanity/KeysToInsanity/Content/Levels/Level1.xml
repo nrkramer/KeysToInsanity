@@ -7,14 +7,14 @@
       <Static type ="floor" x="0" y="f-10" w="f" h="40" collide="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true" />
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/> 
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog"/>
       <LightEffect effect="circle" x="113" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="170" y="c+40" w="40" h="87" collide="false" fadein="true"/>
+      <Static type="sconce" x="170" y="c+40" w="40" h="87" collide="false"/>
       <LightEffect effect="circle" x="329" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="384" y="c+40" w="40" h="87" collide="false"/>
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
-      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" fadein="true"/>
-      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="false"/>
+      <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
+      <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="true"/>
       <Checkpoint x="c+100" y="f-110" />
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>   
@@ -26,7 +26,7 @@
       <Static type ="floor" x="c+150" y="f-10" w="c+100" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Background type="tileBackground" />
+      <Background type="tileBackground" type2="fog" />
       <End x="f" y="60" boundary="right"/>
     </Stage>
     <Stage x="5" y="0" w="f" h="f">

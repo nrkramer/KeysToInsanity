@@ -11,7 +11,7 @@ namespace KeysToInsanity.Code.Base
     class Stage
     {
         // stage information
-        public BasicBackground background;
+        public ParallaxBackground background;
         public SpriteContainer statics = new SpriteContainer();
         public SpriteContainer animatedStatics = new SpriteContainer();
         public SpriteContainer platforms = new SpriteContainer();
@@ -111,7 +111,7 @@ namespace KeysToInsanity.Code.Base
             door = d;
         }
 
-        public void setBackground(BasicBackground b)
+        public void setBackground(ParallaxBackground b)
         {
             background = b;
         }
