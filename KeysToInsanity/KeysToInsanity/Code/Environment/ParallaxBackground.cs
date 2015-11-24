@@ -21,7 +21,7 @@ namespace KeysToInsanity.Code
         private Rectangle previousRectangle = Rectangle.Empty;
         private Rectangle previousRectangle2 = Rectangle.Empty;
 
-        private int parallax = 500;
+        private int parallax = 0;
 
         public bool slide = false;
 
@@ -79,7 +79,7 @@ namespace KeysToInsanity.Code
         public void Update(GameTime time)
         {
             int step = 20; // adjust the value here for background1 speed
-            int step2 = 32; // adjust the value here for background2 speed
+            int step2 = 8; // adjust the value here for background2 speed
             switch (sliding)
             {
                 case KeysToInsanity.Boundary.Left:
@@ -151,10 +151,9 @@ namespace KeysToInsanity.Code
             // draw this background's parallax
             if (background2Texture != null)
                 s.Draw(background2Texture, background2Rectangle, Color.White);
-            // draw previous backgroun's parallax
-            if (slide)
-                if (previousBackgroundTexture2 != null)
-                    s.Draw(previousBackgroundTexture2, previousRectangle2, Color.White);
+            // draw previous backgroun's parallax, note that sliding doesn't need to be occuring
+            if (previousBackgroundTexture2 != null)
+                s.Draw(previousBackgroundTexture2, previousRectangle2, Color.White);
 
             if (KeysToInsanity.DRAW_BOUNDING_BOXES)
             {
