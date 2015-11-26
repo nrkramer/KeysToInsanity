@@ -47,7 +47,7 @@ namespace KeysToInsanity
         }
 
         // Some debug/default values
-        public static bool DRAW_BOUNDING_BOXES = true; // Draw bounding boxes on all sprites
+        public static bool DRAW_BOUNDING_BOXES = false; // Draw bounding boxes on all sprites
         public static bool DRAW_MOVEMENT_VECTORS = false;
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
@@ -73,7 +73,7 @@ namespace KeysToInsanity
         private bool showHelp = false;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 5;
+        private uint unlockedLevels = 1;
 
         private BasicInput input; // Our input handler
 
@@ -128,7 +128,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.ChooseLevel;
+            gameState = GameState.StartMenu;
 
             //Get input states
             mouseState = Mouse.GetState();
