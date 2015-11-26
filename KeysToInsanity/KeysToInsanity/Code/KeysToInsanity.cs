@@ -93,7 +93,7 @@ namespace KeysToInsanity
 
         // Checkpoint logic
         private bool inCheckpoint = false;
-        private bool enteredCheckpoint = false;
+        private bool wasOutsideCheckpoint = false;
 
         // Insanity logic
         private float insanity = 0.0f;
@@ -234,13 +234,9 @@ namespace KeysToInsanity
                 {
                     theGentleman.health -= 10;
                 }
+                
                 if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
                 {
-                    if (inCheckpoint && !enteredCheckpoint)
-                        enteredCheckpoint = true;
-                    else
-                        enteredCheckpoint = false;
-
                     inCheckpoint = true;
                 }
             }
@@ -321,6 +317,8 @@ namespace KeysToInsanity
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                 }
 
+                inCheckpoint = false;
+
                 // pause game logic while background is sliding
                 if (loader.level.stages[stageIndex].background.slide == true)
                 {
@@ -351,9 +349,6 @@ namespace KeysToInsanity
                     hud.updateInsanity(insanity);
                     hud.Update(gameTime);
 
-                    if (enteredCheckpoint)
-                        Console.WriteLine("Entered a checkpoint");
-
                     // gentleman physics
                     physics.UpdateGentlemanPhysics(gameTime, theGentleman);
 
@@ -365,6 +360,18 @@ namespace KeysToInsanity
 
                     // collision for non-gentleman characters
                     RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
+
+                    // checkpoint
+                    if (wasOutsideCheckpoint && inCheckpoint)
+                    {
+                        // works now
+                        Console.WriteLine("Entered a checkpoint");
+                    }
+
+                    if (!inCheckpoint)
+                        wasOutsideCheckpoint = true;
+                    else
+                        wasOutsideCheckpoint = false;
 
                     // check gentleman has past the end stage boundary
                     if (checkStageBoundary(loader.level.stages[stageIndex].end))

@@ -213,14 +213,14 @@ namespace KeysToInsanity.Code.Base
             }
         }
 
-        public BasicBackground ParseBackground(XmlReader r)
+        public ParallaxBackground ParseBackground(XmlReader r)
         {
-            BasicBackground b;
+            ParallaxBackground b;
             string text = r.GetAttribute("type2");
             if (text != null)
-                b = new BasicBackground(game, r.GetAttribute("type1"), text);
+                b = new ParallaxBackground(game, r.GetAttribute("type"), text);
             else
-                b = new BasicBackground(game, r.GetAttribute("type"));
+                b = new ParallaxBackground(game, r.GetAttribute("type"));
 
             return b;
         }

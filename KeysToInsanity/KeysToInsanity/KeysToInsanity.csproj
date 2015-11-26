@@ -86,7 +86,7 @@
     <Compile Include="Code\Entitys\AttackDog.cs" />
     <Compile Include="Code\Entitys\Character.cs" />
     <Compile Include="Code\Entitys\Rats.cs" />
-    <Compile Include="Code\Environment\BasicBackground.cs" />
+    <Compile Include="Code\Environment\ParallaxBackground.cs" />
     <Compile Include="Code\Base\BasicSprite.cs" />
     <Compile Include="Code\Environment\LightEffect.cs" />
     <Compile Include="Code\Environment\Physics.cs" />
@@ -141,6 +141,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\creditsPage.png" />
+    <Content Include="Content\fog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.wma" />
     <Content Include="Credits.txt" />
     <Content Include="bin\Windows\Debug\Content\4LinkGreen1.png" />
