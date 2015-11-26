@@ -51,7 +51,7 @@ namespace KeysToInsanity.Code.Interface
             if (resumeR.Contains(pos))
                 return KeysToInsanity.GameState.Playing;
             else if (helpR.Contains(pos))
-                return KeysToInsanity.GameState.Help;
+                return KeysToInsanity.GameState.Instructions;
             else if (exitR.Contains(pos))
                 return KeysToInsanity.GameState.Exit;
             return KeysToInsanity.GameState.Paused;

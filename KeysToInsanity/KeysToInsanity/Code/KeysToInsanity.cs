@@ -57,7 +57,7 @@ namespace KeysToInsanity
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
         private int stageIndex = 0;
-        private int levelsPlayed = 0;
+        private int currentLevel = 1;
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
@@ -73,7 +73,7 @@ namespace KeysToInsanity
         private bool showHelp = false;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 5;
+        private uint unlockedLevels = 1;
 
         private BasicInput input; // Our input handler
 
@@ -128,7 +128,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.ChooseLevel;
+            gameState = GameState.StartMenu;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -177,7 +177,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, levelXMLs[currentLevel - 1], hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
             theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
             foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
@@ -185,8 +185,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-           //testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-           //testSound.play(true);
+           testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+           testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
@@ -221,8 +221,8 @@ namespace KeysToInsanity
                 if (collided.collidable)
                     if (data.Height >= 1.0f)
                     {
-                        //if (theGentleman.inAir)
-                          //  landedOnGround.play(false);
+                        if (theGentleman.inAir)
+                            landedOnGround.play(false);
 
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
@@ -300,6 +300,11 @@ namespace KeysToInsanity
             {
                 if (mouseClicked)
                     gameState = instructScreen.MouseClicked(mouseCoords);
+            }
+            else if (gameState == GameState.Credits)
+            {
+                if (mouseClicked)
+                    gameState = creditScreen.MouseClicked(mouseCoords);
             }
             else if(gameState == GameState.Win)
             {
@@ -394,9 +399,12 @@ namespace KeysToInsanity
                     // check gentleman has completed the level
                     if (stageIndex >= loader.level.stages.Length)
                     {
+                        Console.WriteLine(currentLevel);
+                        Console.WriteLine(unlockedLevels);
                         gameState = GameState.ChooseLevel;
                         if (unlockedLevels < levelXMLs.Length)
-                            unlockedLevels++;
+                            if (currentLevel == unlockedLevels)
+                                unlockedLevels++;
                         chooseLevelMenu.setUnlockedLevels(unlockedLevels);
                         insanity = 0.0f;
                         theGentleman.health = 100.0f;
