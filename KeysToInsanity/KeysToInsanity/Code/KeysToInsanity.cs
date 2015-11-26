@@ -73,7 +73,8 @@ namespace KeysToInsanity
         private bool showHelp = false;
 
         private string[] levelXMLs;
-        private uint unlockedLevels = 5;
+        private uint unlockedLevels = 1;
+        private uint currentLevel = 1;
 
         private BasicInput input; // Our input handler
 
@@ -177,7 +178,7 @@ namespace KeysToInsanity
             hud = new HUD(this);
 
             // Load level
-            loader = new LevelLoader(this, "Content\\Levels\\Level1.xml", hud);
+            loader = new LevelLoader(this, levelXMLs[currentLevel - 1], hud);
             loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
             theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
             foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
@@ -219,10 +220,11 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
             {
                 if (collided.collidable)
+                {
                     if (data.Height >= 1.0f)
                     {
                         //if (theGentleman.inAir)
-                          //  landedOnGround.play(false);
+                        //  landedOnGround.play(false);
 
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
@@ -230,6 +232,15 @@ namespace KeysToInsanity
                         theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, collided.spritePos.Y - theGentleman.spriteSize.Y);
                         physics.resetTime(time);
                     }
+
+                    if (data.Width >= 1.0f)
+                    {
+                        if (collided.spriteTex.Name == "box")
+                        {
+                            collided.spritePos = new Vector2(collided.spritePos.X + theGentleman.velocity.getX(), collided.spritePos.Y);
+                        }
+                    }
+                }
                 if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
                 {
                     theGentleman.health -= 10;
@@ -396,7 +407,8 @@ namespace KeysToInsanity
                     {
                         gameState = GameState.ChooseLevel;
                         if (unlockedLevels < levelXMLs.Length)
-                            unlockedLevels++;
+                            if (unlockedLevels == currentLevel)
+                                unlockedLevels++;
                         chooseLevelMenu.setUnlockedLevels(unlockedLevels);
                         insanity = 0.0f;
                         theGentleman.health = 100.0f;
@@ -449,6 +461,7 @@ namespace KeysToInsanity
                 {
                     hud.removeKey();
                     loader = new LevelLoader(this, levelXMLs[i], hud);
+                    currentLevel = (uint)i + 1;
                     stageIndex = 0;
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                     gotKey = false;

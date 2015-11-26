@@ -39,7 +39,7 @@
       <Static type ="platform" x="c+10" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+100" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+200" y="c-100" w="60" h="25" collide="true"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
       <End x="f-5" y="100" boundary ="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h ="f">
@@ -51,7 +51,7 @@
       <Static type ="platform" x="c-10" y="c+100" w="60" h="25" collide="true"/>
       <Platform x="c-100" y="c" w="60" h="25" distance ="50" speed ="1" direction="true" file="platform"/>
       <Static type ="platform" x="c-200" y="c-100" w="60" h="25" collide="true"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
     <End x="f" y="60" boundary ="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h ="f">
@@ -64,7 +64,7 @@
       <Platform x="c+60" y="c+75" w ="60" h="25" distance ="50" speed ="2" direction="true" file="platform" />
       <Platform x="f-60" y="c" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform"/>
       <Platform x="c+180" y="c+95" w="60" h="25" distance ="50" speed ="1" direction="false" file="platform" />
-    <Background type ="tileBackground"/>
+    <Background type ="tileBackground" type2="fog" />
     <End x="f-5" y="60" boundary ="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -78,7 +78,7 @@
       <Platform x="c+200" y="250" w="60" h="25" distance ="75" speed ="1" direction="true" file="platform"/>
       <Platform x="c+200" y="350" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
       <Platform x="c+200" y="550" w="60" h="25" distance ="75" speed ="3" direction="true" file="platform"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
     <End x="f" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -92,7 +92,7 @@
       <Static type ="platform" x="c+60" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c-80" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+60" y="c-100" w="60" h="25" collide="true"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
      <End boundary ="bottom"/>
      </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -115,14 +115,14 @@
       <Platform x="c-150" y="c+150" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
       <Platform x="c-20" y="c" w="60" h="25" distance ="75" speed ="3" direction="true" file="platform"/>
       <Platform x="c+50" y="c-120" w="60" h="25" distance ="75" speed ="2" direction="true" file="platform"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
       <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top"/>
       <Static type ="platform" x="0" y="0" w="c-75" h="f" collide ="true"/>
       <Static type ="platform" x="c+75" y="0" w="f" h="f" collide="true"/>
-      <Background type="tileBackground"/>
+      <Background type="tileBackground" type2="fog" />
     <End boundary ="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -137,7 +137,7 @@
       <Static type ="bed" x="20" y="f-40" w="50" h="30" collide ="true"/>
       <Key x="450" y="f-285"/>
       <Door x="f-10" y="f-100" w="10" h="100" orientation="left" />
-      <Background type="tileBackground" />
+      <Background type="tileBackground" type2="fog" />
       <End x="f-60" y="f-60" boundary ="right"/>
     </Stage>
   </Level>
