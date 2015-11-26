@@ -129,7 +129,7 @@ namespace KeysToInsanity
             IsMouseVisible = true;
 
             //set the gamestate to the start menu
-            gameState = GameState.ChooseLevel;
+            gameState = GameState.StartMenu;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -312,10 +312,15 @@ namespace KeysToInsanity
                 if (mouseClicked)
                     gameState = instructScreen.MouseClicked(mouseCoords);
             }
-            else if(gameState == GameState.Win)
+            else if (gameState == GameState.Win)
             {
                 if (mouseClicked)
                     gameState = winScreen.MouseClicked(mouseCoords);
+            }
+            else if (gameState == GameState.Credits)
+            {
+                if (mouseClicked)
+                    gameState = creditScreen.MouseClicked(mouseCoords);
             }
             else if (gameState == GameState.Playing)
             {
