@@ -95,7 +95,8 @@ namespace KeysToInsanity
         private bool inCheckpoint = false;
         private bool wasOutsideCheckpoint = false;
         private uint checkpointStageIndex = 0;
-        private Vector2 checkpointPosition = new Vector2(300, 400); // center screen
+        private HatHanger currentCheckpoint = null;
+        private Vector2 checkpointPosition = new Vector2(300, 400);
         private float checkpointHealth = 100.0f; // gentleman's health at checkpoint
         private float checkpointInsanity = 0.0f; // insanity at checkpoint
 
@@ -244,8 +245,9 @@ namespace KeysToInsanity
                 
                 if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
                 {
-                    checkpointPosition = collided.spritePos;
+                    currentCheckpoint = (HatHanger)collided;
                     inCheckpoint = true;
+                    checkpointPosition = currentCheckpoint.spritePos;
                 }
             }
         }
@@ -386,9 +388,14 @@ namespace KeysToInsanity
                     // collision for sprites that have gravity, and are collidable
                     RectangleCollision.update(loader.level.stages[stageIndex].gravitySprites, loader.level.stages[stageIndex].statics, gameTime);
 
-                    // checkpoint
+                    // CHECKPOINT LOGIC
+                    if (currentCheckpoint != null)
+                        currentCheckpoint.Update(gameTime);
+
                     if (wasOutsideCheckpoint && inCheckpoint)
                     {
+                        if (currentCheckpoint != null)
+                            currentCheckpoint.playAnimation = true;
                         checkpointStageIndex = stageIndex;
                         checkpointHealth = theGentleman.health;
                         checkpointInsanity = insanity;
@@ -568,46 +575,15 @@ namespace KeysToInsanity
             {
                 if (loader.level != null)
                 {
-                    Stage s = loader.level.stages[stageIndex];
-                    if (s != null)
-                    {
-                        s.background.draw(spriteBatch);
-
-                        foreach (AnimatedSprite ast in s.animatedStatics)
-                        {
-                            ast.draw(spriteBatch);
-                        }
-
-                        foreach (BasicSprite st in s.statics)
-                        {
-                            st.draw(spriteBatch);
-                        }
-
-                        foreach (BasicSprite pl in s.platforms)
-                        {
-                            pl.draw(spriteBatch);
-                        }
-
-                        if (s.key != null)
-                            s.key.draw(spriteBatch);
-
-                        if (s.door != null)
-                            s.door.draw(spriteBatch);
-
-                        foreach (AnimatedSprite sp in s.characters)
-                        {
-                            sp.draw(spriteBatch);
-                        }
-
-                        theGentleman.draw(spriteBatch);
-
-                        foreach (LightEffect le in s.lights)
-                        {
-                            le.draw(spriteBatch);
-                        }
-
+                    // draw stage
+                    loader.level.stages[stageIndex].drawStage(spriteBatch);
+                    // draw gentleman
+                    theGentleman.draw(spriteBatch);
+                    // draw lights
+                    loader.level.stages[stageIndex].drawLights(spriteBatch);
+                    // draw hud
                     hud.draw(spriteBatch);
-                    }
+                    
                 }
                 if (showHelp)
                     instructScreen.instruct.draw(spriteBatch);

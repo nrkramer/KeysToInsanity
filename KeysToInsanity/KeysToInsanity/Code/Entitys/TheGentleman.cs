@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code
         public int jumps = 2;
         private float _health = 100.0f;
         public bool invincible = false;
-        private int total_invincibility_time = 500; // in milliseconds
+        private int total_invincibility_time = 1000; // in milliseconds
         private double invincibility_time = 0.0;
 
         public float health

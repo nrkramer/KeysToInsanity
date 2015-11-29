@@ -49,7 +49,7 @@ namespace KeysToInsanity.Code.Objects
             // only if on top
             if (data.Height >= 1.0f)
             {
-                collided.updatePositionFromVelocity(Velocity.FromCoordinates(0.0f, collided.velocity.getY() + velocity.getY()));
+                collided.updatePositionFromVelocity(Velocity.FromCoordinates(0.0f, velocity.getY()));
             }
         }
     }

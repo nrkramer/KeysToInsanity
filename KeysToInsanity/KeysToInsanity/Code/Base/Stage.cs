@@ -1,6 +1,7 @@
 ﻿using KeysToInsanity.Code.Environment;
 using KeysToInsanity.Code.Interactive_Objects;
 using KeysToInsanity.Code.Objects;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace KeysToInsanity.Code.Base
         public SpriteContainer lights = new SpriteContainer(); // lights
         public SpriteContainer fadeIns = new SpriteContainer(); // anything that you want to fade in visually
         public SpriteContainer gravitySprites = new SpriteContainer(); // any static that is also affected by gravity
+        public SpriteContainer checkpoints = new SpriteContainer();
 
         public KeysToInsanity.Boundary start;
         public int startX = 0;
@@ -117,9 +119,54 @@ namespace KeysToInsanity.Code.Base
             door = d;
         }
 
+        public void addCheckpoint(HatHanger h)
+        {
+            addStatic(h);
+            h.addTo(checkpoints);
+        }
+
         public void setBackground(ParallaxBackground b)
         {
             background = b;
+        }
+
+        public void drawStage(SpriteBatch s)
+        {
+            background.draw(s);
+
+            foreach (AnimatedSprite ast in animatedStatics)
+            {
+                ast.draw(s);
+            }
+
+            foreach (BasicSprite st in statics)
+            {
+                st.draw(s);
+            }
+
+            foreach (BasicSprite pl in platforms)
+            {
+                pl.draw(s);
+            }
+
+            if (key != null)
+                key.draw(s);
+
+            if (door != null)
+                door.draw(s);
+
+            foreach (AnimatedSprite sp in characters)
+            {
+                sp.draw(s);
+            }
+        }
+
+        public void drawLights(SpriteBatch s)
+        {
+            foreach (LightEffect le in lights)
+            {
+                le.draw(s);
+            }
         }
     }
 }

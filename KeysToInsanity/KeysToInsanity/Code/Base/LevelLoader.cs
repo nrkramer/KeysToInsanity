@@ -117,7 +117,7 @@ namespace KeysToInsanity.Code.Base
                             s.setBackground(ParseBackground(r));
                             break;
                         case "Checkpoint":
-                            s.addStatic(ParseCheckpoint(r));
+                            s.addCheckpoint(ParseCheckpoint(r));
                             break;
                         case "Key":
                             s.setKey(ParseKey(r));

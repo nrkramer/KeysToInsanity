@@ -48,7 +48,7 @@ namespace KeysToInsanity.Code.Objects
             base.onCollide(collided, data, time);
             
             // for reasons, collision only happens half the time so we have to multiply the velocity by 2
-            collided.updatePositionFromVelocity(Velocity.FromCoordinates(velocity.getX() * 2, velocity.getY()));
+            collided.updatePositionFromVelocity(Velocity.FromCoordinates(velocity.getX() * 2, 0.0f));
         }
     }
 }
