@@ -12,15 +12,16 @@ namespace KeysToInsanity.Code.Base
     {
         // stage information
         public ParallaxBackground background;
-        public SpriteContainer statics = new SpriteContainer();
-        public SpriteContainer animatedStatics = new SpriteContainer();
-        public SpriteContainer platforms = new SpriteContainer();
-        public SpriteContainer collidables = new SpriteContainer();
-        public Key key;
+        public SpriteContainer statics = new SpriteContainer(); // all statics
+        public SpriteContainer animatedStatics = new SpriteContainer(); // statics that have animations
+        public SpriteContainer platforms = new SpriteContainer(); // platforms
+        public SpriteContainer collidables = new SpriteContainer(); // collidable stuff
+        public Key key; // 1 key and door per level, so these MAY be null
         public Door door;
-        public SpriteContainer characters = new SpriteContainer();
-        public SpriteContainer lights = new SpriteContainer();
-        public SpriteContainer fadeIns = new SpriteContainer();
+        public SpriteContainer characters = new SpriteContainer(); // enemies
+        public SpriteContainer lights = new SpriteContainer(); // lights
+        public SpriteContainer fadeIns = new SpriteContainer(); // anything that you want to fade in visually
+        public SpriteContainer gravitySprites = new SpriteContainer(); // any static that is also affected by gravity
 
         public KeysToInsanity.Boundary start;
         public int startX = 0;
@@ -66,6 +67,11 @@ namespace KeysToInsanity.Code.Base
         {
             s.addTo(statics);
             s.addTo(collidables);
+        }
+
+        public void addGravityObject(BasicSprite s)
+        {
+            s.addTo(gravitySprites);
         }
 
         public void addFadeInObject(BasicSprite s)

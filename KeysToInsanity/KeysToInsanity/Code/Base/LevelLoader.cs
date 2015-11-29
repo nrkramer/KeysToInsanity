@@ -92,15 +92,16 @@ namespace KeysToInsanity.Code.Base
                             break;
                         case "Static":
                             BasicSprite sp = ParseStatic(r);
-                            text = r.GetAttribute("friction");
-                            if (text != null)
-                                sp.friction = float.Parse(text);
-
                             s.addStatic(sp);
+
+                            text = r.GetAttribute("gravity");
+                            if (text != null)
+                                if (bool.Parse(text))
+                                    s.addGravityObject(sp);
 
                             text = r.GetAttribute("fadein");
                             if (text != null)
-                                if (bool.Parse(r.GetAttribute("fadein")))
+                                if (bool.Parse(text))
                                     s.addFadeInObject(sp);
                             break;
                         case "AnimatedStatic":
@@ -331,6 +332,14 @@ namespace KeysToInsanity.Code.Base
             BasicSprite s = new BasicSprite(game, asset, collidable);
             s.spritePos = new Vector2(x, y);
             s.spriteSize = new Point(w, h);
+
+            string text = r.GetAttribute("moveable");
+            if (text != null)
+                s.moveable = bool.Parse(text);
+
+            text = r.GetAttribute("friction");
+            if (text != null)
+                s.friction = float.Parse(text);
 
             return s;
         }

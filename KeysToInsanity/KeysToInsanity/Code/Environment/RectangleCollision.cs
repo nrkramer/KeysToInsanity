@@ -41,15 +41,18 @@ namespace KeysToInsanity.Code
 
         public static bool willCollide(BasicSprite s1, BasicSprite s2, GameTime time)
         {
-            Rectangle r = Rectangle.Intersect(new Rectangle(s1.getUpdatePosition().ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePosition().ToPoint(), s2.spriteSize));
-            if ((r != Rectangle.Empty))
+            if (s1 != s2)
             {
-                if (!(s1.collidable && s2.collidable))
+                Rectangle r = Rectangle.Intersect(new Rectangle(s1.getUpdatePosition().ToPoint(), s1.spriteSize), new Rectangle(s2.getUpdatePosition().ToPoint(), s2.spriteSize));
+                if ((r != Rectangle.Empty))
                 {
-                    s1.onCollide(s2, r, time);
-                    s2.onCollide(s1, r, time);
-                }
+                    if (!(s1.collidable && s2.collidable))
+                    {
+                        s1.onCollide(s2, r, time);
+                        s2.onCollide(s1, r, time);
+                    }
                     return true;
+                }
             }
             return false;
         }

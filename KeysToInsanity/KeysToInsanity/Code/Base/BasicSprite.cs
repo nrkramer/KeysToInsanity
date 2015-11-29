@@ -23,9 +23,10 @@ namespace KeysToInsanity
         public Velocity velocity;
         public bool collidable = false;
         public bool hidden = false;
+        public bool moveable = false; // object can be pushed by other sprites
         public Color color = Color.White;
         public float opacity = 1.0f;
-        public float friction = 0.85f; // 15% friction for most objects
+        public float friction = 0.50f; // 25% friction for most objects
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
         public event KeysToInsanity.CollisionEventHandler collisionCallback;
@@ -98,10 +99,15 @@ namespace KeysToInsanity
 
         // gets collision data
         // first parameter is who i've collided with
+        // data is the rectangle of intersection
         public virtual void onCollide(BasicSprite s, Rectangle data, GameTime time)
         {
             if (collisionCallback != null)
                 collisionCallback(this, s, data, time);
+
+            if (moveable)
+                if (data.Width >= 1)
+                    updatePositionFromVelocity(s.velocity);
         }
 
         public void applyFriction(BasicSprite s, Rectangle data)

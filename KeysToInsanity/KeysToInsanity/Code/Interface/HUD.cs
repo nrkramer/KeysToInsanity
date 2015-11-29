@@ -115,7 +115,14 @@ namespace KeysToInsanity.Code.Interface
         public void updateInsanity(float insanity)
         {
             insanityBar.level = insanity;
+        }
 
+        // reset hud
+        public void resetHUD()
+        {
+            removeKey();
+            updateHealth(100.0f);
+            updateInsanity(0.0f);
         }
     }
 }

@@ -22,8 +22,6 @@ namespace KeysToInsanity.Code.Objects
             this.moveSpeed = moveSpeed;
         }
 
-
-
         //allows the platform to move itself in the desired direction
         public override void Update(GameTime gameTime)
         {
@@ -48,8 +46,9 @@ namespace KeysToInsanity.Code.Objects
         public override void onCollide(BasicSprite collided, Rectangle data, GameTime time)
         {
             base.onCollide(collided, data, time);
-
-            collided.updatePositionFromVelocity(velocity);
+            
+            // for reasons, collision only happens half the time so we have to multiply the velocity by 2
+            collided.updatePositionFromVelocity(Velocity.FromCoordinates(velocity.getX() * 2, velocity.getY()));
         }
     }
 }

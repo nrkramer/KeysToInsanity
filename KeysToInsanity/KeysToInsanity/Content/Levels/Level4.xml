@@ -21,7 +21,7 @@
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor" x="0" y="f-10" w="100" h="40" collide ="true"/>
       <Static type ="iceblock" x="c-100" y="c+200" w="200" h="20" collide="true"/>
-      <Static type ="box" x="c+80" y="c+175" w="30" h="25" collide="true"/>
+      <Static type ="box" x="c+80" y="c+175" w="30" h="25" collide="true" moveable="true" gravity="true"/>
       <Static type ="floor" x="f-100" y="f-10" w="110" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>

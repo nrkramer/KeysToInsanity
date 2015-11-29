@@ -56,8 +56,7 @@ namespace KeysToInsanity
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
-        private int stageIndex = 0;
-        private int levelsPlayed = 0;
+        private uint stageIndex = 0;
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
@@ -74,7 +73,7 @@ namespace KeysToInsanity
 
         private string[] levelXMLs;
         private uint unlockedLevels = 1;
-        private uint currentLevel = 1;
+        private uint currentLevel = 4; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
 
         private BasicInput input; // Our input handler
 
@@ -95,6 +94,8 @@ namespace KeysToInsanity
         // Checkpoint logic
         private bool inCheckpoint = false;
         private bool wasOutsideCheckpoint = false;
+        private uint checkpointStageIndex = 0;
+        private Vector2 checkpointPosition = new Vector2(300, 400); // center screen
 
         // Insanity logic
         private float insanity = 0.0f;
@@ -144,7 +145,7 @@ namespace KeysToInsanity
         /// </summary>
         protected override void LoadContent()
         {
-            levelXMLs = Directory.GetFiles(Content.RootDirectory + "\\Levels\\", "*.xml");
+            levelXMLs = Directory.GetFiles("Content\\Levels\\", "*.xml");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //Loading the games menu buttons for menu screen
@@ -186,8 +187,8 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-           //testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-           //testSound.play(true);
+            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            testSound.play(true);
 
             //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
             //landedOnGround.play(true);
@@ -214,7 +215,6 @@ namespace KeysToInsanity
             if (caller.ToString() == "KeysToInsanity.Code.Interactive_Objects.Key")
             {
                 gotKey = true;
-                Console.WriteLine("A Key was picked up!");
             }
 
             if (caller.ToString() == "KeysToInsanity.Code.TheGentleman")
@@ -223,22 +223,19 @@ namespace KeysToInsanity
                 {
                     if (data.Height >= 1.0f)
                     {
-                        //if (theGentleman.inAir)
-                        //  landedOnGround.play(false);
+                        if (theGentleman.inAir)
+                          landedOnGround.play(false);
 
                         theGentleman.inAir = false;
                         theGentleman.jumps = 2;
                         theGentleman.velocity.setY(0.0f);
                         theGentleman.spritePos = new Vector2(theGentleman.spritePos.X, collided.spritePos.Y - theGentleman.spriteSize.Y);
-                        physics.resetTime(time);
                     }
 
-                    if (data.Width >= 1.0f)
+                    if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.Hazard")
                     {
-                        if (collided.spriteTex.Name == "box")
-                        {
-                            collided.spritePos = new Vector2(collided.spritePos.X + theGentleman.velocity.getX(), collided.spritePos.Y);
-                        }
+                        theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                        theGentleman.jumps = 0;
                     }
                 }
                 if (collided.ToString() == "KeysToInsanity.Code.Nurse") // collided with Nurse
@@ -248,6 +245,7 @@ namespace KeysToInsanity
                 
                 if (collided.ToString() == "KeysToInsanity.Code.Interactive_Objects.HatHanger")
                 {
+                    checkpointPosition = collided.spritePos;
                     inCheckpoint = true;
                 }
             }
@@ -361,7 +359,7 @@ namespace KeysToInsanity
                         c.Update(gameTime);
                     }
 
-                    insanity += 0.02f;
+                    insanity += 0.01f;
                     hud.updateInsanity(insanity);
                     hud.Update(gameTime);
 
@@ -370,6 +368,7 @@ namespace KeysToInsanity
 
                     // non-gentleman character physics
                     physics.Update(gameTime, loader.level.stages[stageIndex].characters);
+                    physics.Update(gameTime, loader.level.stages[stageIndex].gravitySprites);
 
                     // collision for gentleman against static sprites
                     RectangleCollision.update(theGentleman, loader.level.stages[stageIndex].collidables, gameTime);
@@ -377,11 +376,18 @@ namespace KeysToInsanity
                     // collision for non-gentleman characters
                     RectangleCollision.update(loader.level.stages[stageIndex].characters, loader.level.stages[stageIndex].statics, gameTime);
 
+                    // collision for sprites that have gravity, and are collidable
+                    RectangleCollision.update(loader.level.stages[stageIndex].gravitySprites, loader.level.stages[stageIndex].statics, gameTime);
+
                     // checkpoint
                     if (wasOutsideCheckpoint && inCheckpoint)
                     {
                         // works now
                         Console.WriteLine("Entered a checkpoint");
+                        checkpointStageIndex = stageIndex;
+                        Console.WriteLine("Checkpoint position: " + checkpointPosition);
+                        Console.WriteLine("Stage index: " + checkpointStageIndex);
+                        // position is handled in the collision handler
                     }
 
                     if (!inCheckpoint)
@@ -464,15 +470,19 @@ namespace KeysToInsanity
                 int i = chooseLevelMenu.Update(gameTime, mouseState);
                 if (i >= 0)
                 {
-                    hud.removeKey();
-                    loader = new LevelLoader(this, levelXMLs[i], hud);
-                    currentLevel = (uint)i + 1;
-                    stageIndex = 0;
+                    loader = new LevelLoader(this, levelXMLs[i], hud); // load new level
+                    currentLevel = (uint)i + 1; // calculate current level
+                    stageIndex = 0; // set to first stage
+                    // re-position Gentleman
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
+                    // no longer has a key
                     gotKey = false;
+                    // re-assign key collision
                     loader.level.stages[loader.level.stageWithKey].key.collisionCallback += new CollisionEventHandler(collisionEvents); // collision callback for key
+                    // reset health and insanity
                     theGentleman.health = 100.0f;
                     insanity = 0.0f;
+                    hud.resetHUD(); // reset HUD
                     // fade in stuff
                     foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
                         s.opacity = 0.0f;

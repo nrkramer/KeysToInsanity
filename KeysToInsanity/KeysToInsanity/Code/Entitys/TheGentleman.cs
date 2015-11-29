@@ -28,8 +28,6 @@ namespace KeysToInsanity.Code
 
         public TheGentleman(Game game) : base(game, "Characters\\miyomato", new Point(20, 32), 4, 0.1, true)
         {
-            friction = 3.0f;
-
             gd = game.GraphicsDevice;
 
             renderTarget = new RenderTarget2D(gd,
