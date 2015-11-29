@@ -13,10 +13,13 @@ namespace KeysToInsanity.Code.Interactive_Objects
         private BasicSprite openSprite;
         public LightEffect doorLight { get; }
         private bool open = false;
+        private bool left = false;
 
         //doors that will open when the player has acquired the key
         public Door(Game game, string orientation) : base(game, "closed_door_" + orientation + "_metal", true)
         {
+            if (orientation == "left")
+                left = true;
             openSprite = new BasicSprite(game, "open_door_" + orientation + "_metal", false);
             doorLight = new LightEffect(game, "Lights\\open_door_" + orientation + "_light", Color.White);
             doorLight.hidden = true;
@@ -31,9 +34,16 @@ namespace KeysToInsanity.Code.Interactive_Objects
                 // then multiply by the new width or height to get
                 // a scaled version of the new height or width
                 openSprite.spriteSize = new Point((int)((openSprite.spriteSize.X / (float)openSprite.spriteSize.Y) * spriteSize.Y), spriteSize.Y); // make sure this does what we want
-                openSprite.spritePos = new Vector2(spritePos.X - openSprite.spriteSize.X + spriteSize.X, spritePos.Y);
                 doorLight.spriteSize = new Point((int)((doorLight.spriteSize.X / (float)doorLight.spriteSize.Y) * spriteSize.Y), spriteSize.Y);
-                doorLight.spritePos = new Vector2(spritePos.X - doorLight.spriteSize.X + spriteSize.X, spritePos.Y);
+                if (left)
+                {
+                    openSprite.spritePos = new Vector2(spritePos.X - openSprite.spriteSize.X + spriteSize.X, spritePos.Y);
+                    doorLight.spritePos = new Vector2(spritePos.X - doorLight.spriteSize.X + spriteSize.X, spritePos.Y);
+                } else
+                {
+                    openSprite.spritePos = new Vector2(spritePos.X, spritePos.Y);
+                    doorLight.spritePos = new Vector2(spritePos.X, spritePos.Y);
+                }
                 collidable = false;
                 doorLight.hidden = false;
             } else

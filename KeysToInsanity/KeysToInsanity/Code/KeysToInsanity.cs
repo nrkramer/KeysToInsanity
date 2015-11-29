@@ -33,8 +33,8 @@ namespace KeysToInsanity
             Credits,
             Death,
             Exit,
-            Win
-            
+            Win,
+            Checkpoint
         }
 
         public enum Boundary
@@ -56,7 +56,7 @@ namespace KeysToInsanity
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
-        private uint stageIndex = 0;
+        private uint stageIndex = 5;
 
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
@@ -73,7 +73,7 @@ namespace KeysToInsanity
 
         private string[] levelXMLs;
         private uint unlockedLevels = 1;
-        private uint currentLevel = 4; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
+        private uint currentLevel = 2; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
 
         private BasicInput input; // Our input handler
 
@@ -96,6 +96,8 @@ namespace KeysToInsanity
         private bool wasOutsideCheckpoint = false;
         private uint checkpointStageIndex = 0;
         private Vector2 checkpointPosition = new Vector2(300, 400); // center screen
+        private float checkpointHealth = 100.0f; // gentleman's health at checkpoint
+        private float checkpointInsanity = 0.0f; // insanity at checkpoint
 
         // Insanity logic
         private float insanity = 0.0f;
@@ -154,7 +156,7 @@ namespace KeysToInsanity
             aboutScreen = new AboutScreen(this);
             instructScreen = new InstructionScreen(this);
             creditScreen = new CreditScreen(this);
-            chooseLevelMenu = new LevelSwitcher(this, 0, (uint)levelXMLs.Length);
+            chooseLevelMenu = new LevelSwitcher(this, (uint)levelXMLs.Length);
             chooseLevelMenu.setUnlockedLevels(unlockedLevels);
             yourdead = new DeathScreen(this);
             winScreen = new WinScreen(this);
@@ -189,9 +191,6 @@ namespace KeysToInsanity
 
             testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
             testSound.play(true);
-
-            //landedOnGround = new Sound(this, "SoundFX\\campfire-1");
-            //landedOnGround.play(true);
 
             landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
             landedOnGround.pitch = 1.0f;
@@ -320,13 +319,21 @@ namespace KeysToInsanity
                 if (mouseClicked)
                     gameState = creditScreen.MouseClicked(mouseCoords);
             }
+            else if (gameState == GameState.Checkpoint)
+            {
+                theGentleman.spritePos = checkpointPosition;
+                stageIndex = checkpointStageIndex;
+                theGentleman.health = checkpointHealth;
+                insanity = checkpointInsanity;
+                gameState = GameState.Playing;
+            }
             else if (gameState == GameState.Playing)
             {
                 if (theGentleman.health <= 0)
                 {
                     gameState = GameState.Death;
-                    insanity = 0.0f;
                     theGentleman.health = 100.0f;
+                    insanity = 0.0f;
                     stageIndex = 0;
                     theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                 }
@@ -382,11 +389,9 @@ namespace KeysToInsanity
                     // checkpoint
                     if (wasOutsideCheckpoint && inCheckpoint)
                     {
-                        // works now
-                        Console.WriteLine("Entered a checkpoint");
                         checkpointStageIndex = stageIndex;
-                        Console.WriteLine("Checkpoint position: " + checkpointPosition);
-                        Console.WriteLine("Stage index: " + checkpointStageIndex);
+                        checkpointHealth = theGentleman.health;
+                        checkpointInsanity = insanity;
                         // position is handled in the collision handler
                     }
 

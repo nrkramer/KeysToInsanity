@@ -118,7 +118,7 @@
       <Static type ="platform" x="600" y="f-210" w="200" h="80" collide="true"/>
       <Background type="sewer_wall"/>
       <Key x="730" y="f-265"/>
-      <Door x="0" y="f-100" w="10" h="100" orientation ="right"/>
+      <Door x="0" y="f-100" w="10" h="100" orientation="right"/>
       <Checkpoint x="200" y="f-110"/>
       <End x="15" y="f-60" boundary="left"/>
     </Stage>

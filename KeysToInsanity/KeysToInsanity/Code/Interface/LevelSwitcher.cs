@@ -19,7 +19,6 @@ namespace KeysToInsanity.Code.Interface
         private BasicSprite arrowDown; // scroll down
 
         private uint totalLevels = 3; // uint is unsigned int
-        private uint level = 0;
         private uint unlocked = 1;
 
         private bool showHighlight = false;
@@ -30,7 +29,7 @@ namespace KeysToInsanity.Code.Interface
         private int deltaY = 0;
         private int delta = 0;
 
-        public LevelSwitcher(Game game, uint startLevel, uint totalLevels)
+        public LevelSwitcher(Game game, uint totalLevels)
         {
             // load sprites
             background = new BasicSprite(game, "Interface\\LevelSwitcher", false);
@@ -55,7 +54,6 @@ namespace KeysToInsanity.Code.Interface
             arrowDown.spritePos = new Vector2(game.GraphicsDevice.Viewport.Width - 30, game.GraphicsDevice.Viewport.Height - 60);
             arrowDown.spriteSize = new Point(30, 60);
 
-            level = startLevel;
             this.totalLevels = totalLevels;
 
             // calculate clickZones

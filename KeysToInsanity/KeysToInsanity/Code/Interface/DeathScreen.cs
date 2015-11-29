@@ -44,16 +44,16 @@ namespace KeysToInsanity.Code
             if (new Rectangle(ReturnToStart.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.StartMenu;
 
-            if (new Rectangle(restartCP.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
+            if (new Rectangle(restartCP.spritePos.ToPoint(), restartCP.spriteSize).Contains(pos))
+                return KeysToInsanity.GameState.Checkpoint;
+
+            if (new Rectangle(restartL.spritePos.ToPoint(), restartL.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Playing;
 
-            if (new Rectangle(restartL.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
-                return KeysToInsanity.GameState.Playing;
-
-            if (new Rectangle(chooseL.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
+            if (new Rectangle(chooseL.spritePos.ToPoint(), chooseL.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.ChooseLevel;
 
-            if (new Rectangle(exit.spritePos.ToPoint(), ReturnToStart.spriteSize).Contains(pos))
+            if (new Rectangle(exit.spritePos.ToPoint(), exit.spriteSize).Contains(pos))
                 return KeysToInsanity.GameState.Exit;
 
             return KeysToInsanity.GameState.Death;
