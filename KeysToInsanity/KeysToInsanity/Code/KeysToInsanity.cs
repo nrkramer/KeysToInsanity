@@ -56,8 +56,8 @@ namespace KeysToInsanity
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private LevelLoader loader;
-        private uint stageIndex = 5;
 
+        // All of the sprites, menus, and stuff that is essential to have here
         private TheGentleman theGentleman; // Our main character sprite
         private bool enteredStageFromStart = true;
         public static HUD hud;
@@ -71,9 +71,11 @@ namespace KeysToInsanity
         private WinScreen winScreen;
         private bool showHelp = false;
 
-        private string[] levelXMLs;
-        private uint unlockedLevels = 1;
-        private uint currentLevel = 2; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
+        private string[] levelXMLs; // CHANGE THE FOLLOWING STUFF FOR TESTING
+        private uint unlockedLevels = 5; // CHANGE THIS TO CHANGE THE AMOUNT OF UNLOCKED LEVELS
+        private uint currentLevel = 1; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
+        private uint stageIndex = 0; // CHANGE THIS TO CHANGE THE CURRENT STAGE
+        private GameState gameState = GameState.ChooseLevel; // CHANGE THIS TO CHANGE WHICH STATE YOU WANT TO TEST
 
         private BasicInput input; // Our input handler
 
@@ -82,13 +84,10 @@ namespace KeysToInsanity
         private Sound testSound;
         private Sound landedOnGround;
 
-        //private horizontalPlatform platformH;
-
         //Setting constants for the menu items
         MouseState mouseState;
         MouseState previousMouseState;
         KeyboardState keyboardState;
-        private GameState gameState;
         private bool gotKey;
 
         // Checkpoint logic
@@ -102,8 +101,6 @@ namespace KeysToInsanity
 
         // Insanity logic
         private float insanity = 0.0f;
-
-        //Vector2 Scale = Vector2.One;
 
         public delegate void CollisionEventHandler(BasicSprite caller, BasicSprite collided, Rectangle data, GameTime time);
 
@@ -131,9 +128,6 @@ namespace KeysToInsanity
         {
             //Enabling mouse pointer
             IsMouseVisible = true;
-
-            //set the gamestate to the start menu
-            gameState = GameState.StartMenu;
 
             //Get input states
             mouseState = Mouse.GetState();
@@ -323,7 +317,7 @@ namespace KeysToInsanity
             }
             else if (gameState == GameState.Checkpoint)
             {
-                theGentleman.spritePos = checkpointPosition;
+                theGentleman.spritePos = new Vector2(checkpointPosition.X, checkpointPosition.Y + theGentleman.spriteSize.Y);
                 stageIndex = checkpointStageIndex;
                 theGentleman.health = checkpointHealth;
                 insanity = checkpointInsanity;
