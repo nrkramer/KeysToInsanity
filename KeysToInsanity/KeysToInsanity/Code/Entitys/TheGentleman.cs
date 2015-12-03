@@ -152,23 +152,23 @@ namespace KeysToInsanity.Code
         {
             // idle
             Animation idle = new Animation();
-            idle.AddFrame(new Rectangle(0, 0, 20, 32), TimeSpan.FromSeconds(1.0));
+            idle.AddFrame(new Rectangle(0, 0, 20, 33), TimeSpan.FromSeconds(1.0));
 
             // run right
             Animation runRight = new Animation();
-            runRight.AddUniformStrip(new Rectangle(0, 48, 150, 32), new Point(19, 32), TimeSpan.FromSeconds(0.08));
+            runRight.AddUniformStrip(new Rectangle(0, 50, 67, 32), new Point(19, 32), TimeSpan.FromSeconds(0.08));
 
             // run left
             Animation runLeft = new Animation();
-            runLeft.AddUniformStrip(new Rectangle(0, 96, 150, 32), new Point(19, 32), TimeSpan.FromSeconds(0.08));
+            runLeft.AddUniformStrip(new Rectangle(0, 100, 67, 32), new Point(19, 32), TimeSpan.FromSeconds(0.08));
 
             // fall right
             Animation fallRight = new Animation();
-            fallRight.AddUniformStrip(new Rectangle(0, 172, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
+            fallRight.AddUniformStrip(new Rectangle(0, 150, 20, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 
             // fall left
             Animation fallLeft = new Animation();
-            fallLeft.AddUniformStrip(new Rectangle(0, 128, 56, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
+            fallLeft.AddUniformStrip(new Rectangle(0, 200, 20, 33), new Point(18, 33), TimeSpan.FromSeconds(0.02));
 
             animations.Add(idle);
             animations.Add(runRight);
