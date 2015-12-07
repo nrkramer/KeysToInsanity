@@ -14,6 +14,7 @@
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false" />
       <Static type ="platform" x="c-20" y="c-100" w="40" h="25" collide="true"/>      
       <Background type="Level2Text"/>
+      <Music file="The_Cave_of_Ancient_Warriors_1_a"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">

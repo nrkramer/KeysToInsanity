@@ -157,7 +157,6 @@
     <Content Include="Content\fog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.wma" />
     <Content Include="Credits.txt" />
     <Content Include="Content\BankVault.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -522,15 +521,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\SoundFX\Music\Battle Theme III v3.0.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\SoundFX\Music\Beethovens5th.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\SoundFX\Music\Beethoven_5thSymphony.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\SoundFX\Music\Op9No2Session.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\SoundFX\Music\The_Cave_of_Ancient_Warriors_1_a.xnb">

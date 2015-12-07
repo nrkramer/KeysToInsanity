@@ -184,7 +184,7 @@ namespace KeysToInsanity
 
             input = new BasicInput(this, theGentleman);
 
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
+            testSound = new Sound(this, "SoundFX\\Music\\The_Cave_of_Ancient_Warriors_1_a");
             testSound.play(true);
 
             landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
