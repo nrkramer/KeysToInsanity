@@ -157,6 +157,12 @@
     <Content Include="Content\fog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\poison_cloud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SoundFX\Music\Beethoven_5thSymphony.wma" />
     <Content Include="Credits.txt" />
     <Content Include="Content\BankVault.png">

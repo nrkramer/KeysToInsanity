@@ -6,7 +6,7 @@ namespace KeysToInsanity.Code
 {
     public class Physics
     {
-        public float gravity = 5.0f;
+        public float gravity = 3.0f;
         public float jumpTime = 0.0f;
 
         public void UpdateGentlemanPhysics(GameTime gameTime, TheGentleman sprite)
@@ -15,7 +15,7 @@ namespace KeysToInsanity.Code
             float downVel = gravity * (frameTime - jumpTime);
 
             if (downVel >= 2.0f) // terminal velocity
-                downVel = 0.5f;
+                downVel = 1.0f;
 
             sprite.velocity.setY(sprite.velocity.getY() + downVel);
         }
@@ -29,7 +29,7 @@ namespace KeysToInsanity.Code
             foreach (BasicSprite i in spritesToPhysics)
             {
                 if (downVel >= 2.0f)
-                    downVel = 0.5f;
+                    downVel = 1.0f;
 
                 i.velocity.setY(i.velocity.getY() + downVel);
             }

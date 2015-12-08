@@ -7,7 +7,7 @@ sampler ScreenS = sampler_state
 
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
-	float4 color = tex2D(ScreenTexture, coords);
+	float4 color = tex2D(ScreenS, coords);
 	return color;
 }
 

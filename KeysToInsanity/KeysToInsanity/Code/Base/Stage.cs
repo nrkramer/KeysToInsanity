@@ -24,6 +24,7 @@ namespace KeysToInsanity.Code.Base
         public SpriteContainer fadeIns = new SpriteContainer(); // anything that you want to fade in visually
         public SpriteContainer gravitySprites = new SpriteContainer(); // any static that is also affected by gravity
         public SpriteContainer checkpoints = new SpriteContainer();
+        public List<Sound> sounds = new List<Sound>(); // sound effects that are played in this stage
 
         public KeysToInsanity.Boundary start;
         public int startX = 0;
@@ -58,6 +59,11 @@ namespace KeysToInsanity.Code.Base
             endX = x;
             endY = y;
             end = b;
+        }
+
+        public void addSound(Sound s)
+        {
+            sounds.Add(s);
         }
 
         public void addCharacter(AnimatedSprite c)
@@ -128,6 +134,22 @@ namespace KeysToInsanity.Code.Base
         public void setBackground(ParallaxBackground b)
         {
             background = b;
+        }
+
+        public void playSounds()
+        {
+            for(int i = 0; i < sounds.Count; i++)
+            {
+                sounds[i].play(true);
+            }
+        }
+
+        public void stopSounds()
+        {
+            for(int i = 0; i < sounds.Count; i++)
+            {
+                sounds[i].play(false);
+            }
         }
 
         public void drawStage(SpriteBatch s)

@@ -16,6 +16,7 @@
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
       <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="true"/>
       <Checkpoint x="c+100" y="f-110" />
+      <Music file="SoundFX\\Music\\The_Cave_of_Ancient_Warriors_1_a" />
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>   
     <Stage x="0" y="0" w="f" h="f">
@@ -92,13 +93,14 @@
       <Static type ="platform" x="c+60" y="c+100" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c-80" y="c" w="60" h="25" collide="true"/>
       <Static type ="platform" x="c+60" y="c-100" w="60" h="25" collide="true"/>
+      <Checkpoint x="c+60" y="100"/>
       <Background type="tileBackground" type2="fog" />
      <End boundary ="bottom"/>
      </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="20" y="0" boundary="top" />
       <Static type ="left_wall" x="0" y="0" w="10" h="f" collide="true"/>
-      <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
+      <Static type ="right_wall" x="f-10" y="0" w="10" h="f" collide="true"/>
       <Static type ="ceiling" x="100" y="0" w="f" h="10" collide="true"/>
       <Static type ="floor" x="0" y="f-10" w="c+150" h="40" collide ="true"/>
       <Hazard type="spikes-H" damage="10" x="10" y="f-65" w="100" h="55" collide ="true"/>

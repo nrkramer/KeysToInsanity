@@ -26,7 +26,7 @@ namespace KeysToInsanity
         public bool moveable = false; // object can be pushed by other sprites
         public Color color = Color.White;
         public float opacity = 1.0f;
-        public float friction = 0.50f; // 25% friction for most objects
+        public float friction = 0.65f; // 35% friction for most objects
         protected Color borderColor = Color.Red;
         protected SpriteContainer container;
         public event KeysToInsanity.CollisionEventHandler collisionCallback;
@@ -106,7 +106,7 @@ namespace KeysToInsanity
                 collisionCallback(this, s, data, time);
 
             if (moveable)
-                if (data.Width >= 1)
+                if (data.Width != 0)
                     updatePositionFromVelocity(s.velocity);
         }
 

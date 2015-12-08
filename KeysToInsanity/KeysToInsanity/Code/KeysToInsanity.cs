@@ -52,6 +52,8 @@ namespace KeysToInsanity
         public static Texture2D BOUNDING_BOX;
         public static Texture2D MOVEMENT_VECTOR;
         public static Effect DEFAULT_SHADER;
+        public static RenderTarget2D OFFSCREEN;
+        public static Texture2D OFFSCREEN_TEX;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -73,7 +75,7 @@ namespace KeysToInsanity
 
         private string[] levelXMLs; // CHANGE THE FOLLOWING STUFF FOR TESTING
         private uint unlockedLevels = 5; // CHANGE THIS TO CHANGE THE AMOUNT OF UNLOCKED LEVELS
-        private uint currentLevel = 1; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
+        private uint currentLevel = 4; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
         private uint stageIndex = 0; // CHANGE THIS TO CHANGE THE CURRENT STAGE
         private GameState gameState = GameState.ChooseLevel; // CHANGE THIS TO CHANGE WHICH STATE YOU WANT TO TEST
 
@@ -142,6 +144,10 @@ namespace KeysToInsanity
         /// </summary>
         protected override void LoadContent()
         {
+            // offscreen render target
+            OFFSCREEN = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            OFFSCREEN_TEX = new Texture2D(GraphicsDevice, OFFSCREEN.Width, OFFSCREEN.Height);
+
             levelXMLs = Directory.GetFiles("Content\\Levels\\", "*.xml");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -183,9 +189,6 @@ namespace KeysToInsanity
                 s.opacity = 0.0f;
 
             input = new BasicInput(this, theGentleman);
-
-            testSound = new Sound(this, "SoundFX\\Music\\Op9No2Session");
-            testSound.play(true);
 
             landedOnGround = new Sound(this, "SoundFX\\TheGentleman\\LandedOnFloor");
             landedOnGround.pitch = 1.0f;
@@ -413,6 +416,10 @@ namespace KeysToInsanity
                             // fade in stuff
                             foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
                                 s.opacity = 0.0f;
+                            // play sounds
+                            if (stageIndex > 0)
+                                loader.level.stages[stageIndex - 1].stopSounds();
+                            loader.level.stages[stageIndex].playSounds();
                             // put gentleman in start position
                             theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].startX, loader.level.stages[stageIndex].startY);
                             physics.resetTime(gameTime);
@@ -443,6 +450,10 @@ namespace KeysToInsanity
                         // fade in stuff
                         foreach (BasicSprite s in loader.level.stages[stageIndex].fadeIns)
                             s.opacity = 0.0f;
+                        // play sounds
+                        if (stageIndex < loader.level.stages.Length)
+                            loader.level.stages[stageIndex + 1].stopSounds();
+                        loader.level.stages[stageIndex].playSounds();
                         // put gentleman in end position
                         theGentleman.spritePos = new Vector2(loader.level.stages[stageIndex].endX, loader.level.stages[stageIndex].endY);
                     }
@@ -476,6 +487,7 @@ namespace KeysToInsanity
                 int i = chooseLevelMenu.Update(gameTime, mouseState);
                 if (i >= 0)
                 {
+                    loader.level.stopMusic();
                     loader = new LevelLoader(this, levelXMLs[i], hud); // load new level
                     currentLevel = (uint)i + 1; // calculate current level
                     stageIndex = 0; // set to first stage
@@ -550,15 +562,16 @@ namespace KeysToInsanity
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(OFFSCREEN);
+
             hud.drawHUD(spriteBatch); // render HUD texture
             theGentleman.renderGentleman(spriteBatch);
 
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            //DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
 
-            //Checks if gameState is at StartMenu, draws the start menu
+            //Checks if gameState is at StartMenu, draws the start menus
             if (gameState == GameState.StartMenu)
             {
                 startMenu.drawMenu(spriteBatch);
@@ -611,6 +624,13 @@ namespace KeysToInsanity
                 winScreen.drawMenu(spriteBatch);
             }
             spriteBatch.End();
+
+            /*GraphicsDevice.SetRenderTarget(null);
+            OFFSCREEN_TEX = OFFSCREEN;
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            DEFAULT_SHADER.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Draw(OFFSCREEN, Vector2.Zero, Color.White);
+            spriteBatch.End();*/
 
             base.Draw(gameTime);
         }

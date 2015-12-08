@@ -25,6 +25,12 @@ namespace KeysToInsanity.Code.Base
             levelMusic.play(true);
         }
 
+        public void stopMusic()
+        {
+            if (levelMusic != null)
+                levelMusic.stop();
+        }
+
         public void addStage(Stage stage, int index)
         {
             if (stage.key != null)

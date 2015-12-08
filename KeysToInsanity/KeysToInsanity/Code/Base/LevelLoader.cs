@@ -150,6 +150,9 @@ namespace KeysToInsanity.Code.Base
                         case "Music":
                             level.setMusic(new Sound(game, r.GetAttribute("file")));
                             break;
+                        case "Sound":
+                            s.addSound(ParseSound(r));
+                            break;
                         case "End":
                             s.setEnd(ParseExpression(r.GetAttribute("x"), fullX), ParseExpression(r.GetAttribute("y"), fullY), ParseBoundary(r));
                             break;
@@ -212,6 +215,22 @@ namespace KeysToInsanity.Code.Base
             {
                 return 0;
             }
+        }
+
+        public Sound ParseSound(XmlReader r)
+        {
+            Sound s = new Sound(game, r.GetAttribute("file"));
+            string text = r.GetAttribute("pitch");
+            if (text != null)
+                s.pitch = float.Parse(text);
+            text = r.GetAttribute("pan");
+            if (text != null)
+                s.pan = float.Parse(text);
+            text = r.GetAttribute("volume");
+            if (text != null)
+                s.volume = float.Parse(text);
+
+            return s;
         }
 
         public ParallaxBackground ParseBackground(XmlReader r)

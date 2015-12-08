@@ -13,7 +13,7 @@
       <LightEffect effect="circle" x="c-5" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
       <Static type="LanternPole" x="c+300" y="c+50" w="40" h="240" collide="false" />
       <LightEffect effect="circle" x="c+295" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
-      <Background type="Level4Text"/>
+      <Background type="Level4Text" type2="snow"/>
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -21,11 +21,11 @@
       <Static type ="left_wall" x="0" y="0" w="10" h="f-100" collide ="true"/>
       <Static type ="floor" x="0" y="f-10" w="100" h="40" collide ="true"/>
       <Static type ="iceblock" x="c-100" y="c+200" w="200" h="20" collide="true"/>
-      <Static type ="box" x="c+80" y="c+175" w="30" h="25" collide="true" moveable="true" gravity="true"/>
+      <Static type ="box" x="c+20" y="c+175" w="30" h="25" collide="true" moveable="true" gravity="true"/>
       <Static type ="floor" x="f-100" y="f-10" w="110" h="40" collide ="true"/>
       <Static type ="right_wall" x="f-10" y="0" w="10" h="f-100" collide="true"/>
       <Static type ="ceiling" x="0" y="0" w="f" h="10" collide="true"/>
-      <Background type="snowBackground"/>
+      <Background type="snowBackground" type2="snow"/>
       <End x="f" y="f-60" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -57,7 +57,7 @@
       <Static type="Vspikes-L" x="10" y="250" w="20" h="55" collide="true"/>
       <Platform x="390" y="c-100" w="50" h="20" distance ="80" speed ="1" direction="true" file="platform"/>
       <Platform x="520" y="c-175" w="50" h="20" distance ="80" speed ="2" direction="true" file="platform"/>
-      <Background type ="snowBackground"/>
+      <Background type ="snowBackground" type2="snow"/>
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -91,7 +91,7 @@
       <Platform x="120" y="c+220" w="400" h="20" distance ="80" speed ="1" direction="false" file="iceblock"/>
       <Static type ="iceblock" x="520" y="c" w="f" h="20" collide="true"/>
       <Platform x="630" y="c-100" w="60" h="25" distance ="60" speed ="1" direction="false" file="iceblock"/>
-      <Background type="snowBackground"/>
+      <Background type="snowBackground" type2="snow"/>
       <End x="f-5" y="50" boundary ="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -118,7 +118,7 @@
       <Platform x="f" y="10" w="610" h="300" distance ="600" speed ="2" direction="true" file="iceblock"/>
       <Static type ="iceblock" x="f-120" y="f-150" w="20" h="150" collide="true"/>
       <Static type ="iceblock" x="f-200" y="f-150" w="100" h="20" collide="true"/>
-      <Background type="snowBackground" />
+      <Background type="snowBackground" type2="snow"/>
       <End x="f" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -140,7 +140,7 @@
       <Key x="60" y="f-80"/>
       <Checkpoint x="100" y="f-110"/>
       <Door x="f-10" y="f-100" w="10" h="100" orientation="left"/>
-      <Background type="snowBackground" />
+      <Background type="snowBackground" type2="snow"/>
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -173,7 +173,7 @@
       <Static type ="iceblock" x="c+150" y="580" w="210" h="20" collide="true"/>
       <Static type ="iceblock" x="c+345" y="450" w="10" h="130" collide="true"/>
       <Static type ="iceblock" x="c+245" y="450" w="100" h="20" collide="true"/>
-      <Background type="snowBackground" />
+      <Background type="snowBackground" type2="snow"/>
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -203,7 +203,7 @@
       <Hazard type="Vspikes-L" damage="10" x="510" y="10" w="10" h="55" collide="true"/>
       <Hazard type="Vspikes-L" damage="10" x="510" y="65" w="10" h="55" collide="true"/>
       <Hazard type="Vspikes-L" damage="10" x="510" y="120" w="10" h="55" collide="true"/>
-      <Background type="snowBackground" />
+      <Background type="snowBackground" type2="snow"/>
       <End x="f-5" y="50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
@@ -233,21 +233,21 @@
       <Static type ="box" x="590" y="295" w="30" h="25" collide="true"/>
       <Static type ="box" x="590" y="270" w="30" h="25" collide="true"/>
       <Platform x="0" y="0" w="f" h="10" distance ="600" speed ="1" direction="false" file="iceblock"/>
-      <Background type="snowBackground"/>
+      <Background type="snowBackground" type2="snow"/>
       <End boundary="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top" />
       <Static type ="iceblock" x="0" y="0" w="c-75" h="f" collide ="true"/>
       <Static type ="iceblock" x="c+75" y="0" w="f" h="f" collide="true"/>
-      <Background type="snowBackground"/>
+      <Background type="snowBackground" type2="snow"/>
       <End boundary="bottom"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
       <Start x="c" y="0" boundary="top" />
       <Static type ="left_wall_con" x="0" y="0" w="c-75" h="f" collide ="true"/>
       <Static type ="right_wall_con" x="c+75" y="0" w="f" h="f" collide="true"/>
-      <Background type="blackBackground"/>
+      <Background type="blackBackground" type2="snow"/>
       <End boundary="bottom"/>
     </Stage>
   <Stage x="0" y="0" w="f" h="f">
@@ -258,7 +258,7 @@
       <Static type ="ceiling_con" x="0" y="0" w="c-75" h="10" collide="true"/>
       <Static type ="right_wall_con" x="f-10" y="0" w="10" h="c-100" collide="true"/>
       <Static type ="bed" x="c-25" y="c+20" w="50" h="30" collide ="true"/>
-      <Background type="blackBackground"/>
+      <Background type="blackBackground" type2="snow"/>
       <End boundary="right"/>
     </Stage>
   </Level>

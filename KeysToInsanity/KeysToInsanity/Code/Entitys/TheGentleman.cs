@@ -45,7 +45,9 @@ namespace KeysToInsanity.Code
 
             //how The Gentleman is able to know where to move
             input.defaultKeyboardHandler();
-            float xVelocity = velocity.getX() * friction; // reduce speed by frictional %
+            float xVelocity = velocity.getX();
+            if (!inAir && !input.rightDown(input.kb) && !input.leftDown(input.kb))
+                xVelocity *= friction; // reduce speed by frictional %
             float yVelocity = velocity.getY();
 
             //allows the game to know when to apply gravity
@@ -53,7 +55,7 @@ namespace KeysToInsanity.Code
             {
                 inAir = true;
                 KeysToInsanity.physics.resetTime(time);
-                yVelocity = -10.0f;
+                yVelocity = -8.0f;
                 jumps -= 1;
             }
 
@@ -61,12 +63,16 @@ namespace KeysToInsanity.Code
             {
                 if (inAir)
                 {
-                    xVelocity = 5.0f;
+                    xVelocity += 1.0f;
+                    if (xVelocity > 4.0f)
+                        xVelocity = 4.0f;
                     updateWithAnimation(time, 4);
                 }
                 else
                 {
-                    xVelocity = 5.0f;
+                    xVelocity += 1.0f;
+                    if (xVelocity > 4.0f)
+                        xVelocity = 4.0f;
                     updateWithAnimation(time, 1);
                 }
             }
@@ -74,12 +80,16 @@ namespace KeysToInsanity.Code
             {
                 if (inAir)
                 {
-                    xVelocity = -5.0f;
+                    xVelocity -= 1.0f;
+                    if (xVelocity < -4.0f)
+                        xVelocity = -4.0f;
                     updateWithAnimation(time, 3);
                 }
                 else
                 {
-                    xVelocity = -5.0f;
+                    xVelocity -= 1.0f;
+                    if (xVelocity < -4.0f)
+                        xVelocity = -4.0f;
                     updateWithAnimation(time, 2);
                 }
             }
