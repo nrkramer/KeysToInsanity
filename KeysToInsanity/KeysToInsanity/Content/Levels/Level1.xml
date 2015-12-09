@@ -16,7 +16,7 @@
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
       <Static type ="bed" x="c-25" y="f-40" w="50" h="30" collide ="true"/>
       <Checkpoint x="c+100" y="f-110" />
-      <Music file="SoundFX\\Music\\The_Cave_of_Ancient_Warriors_1_a" />
+      <Music file="SoundFX\\Music\\Thoughtful Piano Theme"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>   
     <Stage x="0" y="0" w="f" h="f">

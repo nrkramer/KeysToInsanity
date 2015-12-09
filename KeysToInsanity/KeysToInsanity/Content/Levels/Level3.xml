@@ -14,7 +14,7 @@
       <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Background type="Level3Text"/>
-      <Music file="Battle Theme III v3.0"/>
+      <Music file="SoundFX\\Music\\Battle Theme III v3.0"/>
       <End x="f-60" y="f-60" boundary="right"/>
     </Stage>
       

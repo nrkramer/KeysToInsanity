@@ -11,7 +11,7 @@
       <LightEffect effect="circle" x="539" y="c-18" w="150" h="150" color="FFFF00" fadein="true"/>
       <Static type="sconce" x="595" y="c+40" w="40" h="87" collide="false"/>
       <Background type="Level5Text"/>
-      <Music file="Thoughtful Piano Theme"/>
+      <Music file="SoundFX\\Music\\Thoughtful Piano Theme"/>
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
