@@ -14,6 +14,7 @@
       <Static type="LanternPole" x="c+300" y="c+50" w="40" h="240" collide="false" />
       <LightEffect effect="circle" x="c+295" y="c+60" w="50" h="80" color="FFFF00" fadein="true"/>
       <Background type="Level4Text" type2="snow"/>
+      <Music file="SoundFX\\Music\\The_Cave_of_Ancient_Warriors_1_a" />
       <End x="f-5" y="f-50" boundary="right"/>
     </Stage>
     <Stage x="0" y="0" w="f" h="f">
