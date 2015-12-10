@@ -166,11 +166,11 @@ namespace KeysToInsanity.Code
 
             // run right
             Animation runRight = new Animation();
-            runRight.AddUniformStrip(new Rectangle(0, 50, 70, 32), new Point(16, 32), TimeSpan.FromSeconds(0.09));
+            runRight.AddUniformStrip(new Rectangle(0, 50, 70, 32), new Point(16, 32), TimeSpan.FromSeconds(0.10));
 
             // run left
             Animation runLeft = new Animation();
-            runLeft.AddUniformStrip(new Rectangle(0, 100, 70, 32), new Point(16, 32), TimeSpan.FromSeconds(0.09));
+            runLeft.AddUniformStrip(new Rectangle(0, 100, 70, 32), new Point(13, 32), TimeSpan.FromSeconds(0.10));
 
             // fall right
             Animation fallRight = new Animation();
