@@ -29,9 +29,6 @@
       <Platform x="c-300" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
        <Static type ="Concrete" x="c" y="f-220" w="300" h="20" collide="true"/>
        <Static type ="Concrete" x="c-50" y="f-120" w="20" h="20" collide="true"/>
-      <Character type ="AttackDog" x="c-100" y="f-20" distance="50" speed="2"/>
-      <Character type ="AttackDog" x="c" y="f-20" distance="70" speed="4"/> 
-      <Character type ="AttackDog" x ="c+200" y="f-20" distance="50" speed= "2"/>
        <Character type ="Cars" x ="c+150" y="f-240" distance="50" speed= "3"/>
       <Background type="ParkingLot"/>
       <End x="f-60" y="f-60" boundary="right"/>
@@ -196,9 +193,6 @@
       <LightEffect effect="circle" x="c-5" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
       <Static type="LanternPole" x="c+300" y="f-96" w="40" h="87" collide="false" />
       <LightEffect effect="circle" x="c+295" y="f-106" w="50" h="50" color="FFFF00" fadein="true"/>
-      <Character type ="Cars" x="200" y="f-30" distance ="100" speed="2" />
-      <Character type ="Cars" x="500" y="f-30" distance ="100" speed="2" />
-      <Character type ="Cars" x="400" y="f-30" distance ="100" speed="4" />
       <Background type="ParkingLot"/>
       <End x="f-60" y="f-60" boundary="right"/>
       </Stage>
@@ -218,8 +212,6 @@
       <Platform x="c+270" y="f-90" w="100" h="20" distance ="60" speed ="2" direction="false" file="Concrete"/>
       <Platform x="c+270" y="f-140" w="100" h="20" distance ="40" speed ="3" direction="false" file="Concrete"/>
       <Platform x="c+270" y="f-300" w="100" h="150" distance ="30" speed ="5" direction="false" file="Concrete"/>
-      <Character type ="AttackDog" x="c-100" y="f-20" distance="30" speed="2"/>           
-      <Character type ="Security" x ="c+170" y="f-20" distance="100" speed= "1"/>
       <Background type="ParkingLot"/>
       <End x="f-60" y="f-60" boundary="right"/>
       </Stage>
