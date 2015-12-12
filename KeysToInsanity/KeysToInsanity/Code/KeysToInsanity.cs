@@ -77,7 +77,7 @@ namespace KeysToInsanity
         private uint unlockedLevels = 5; // CHANGE THIS TO CHANGE THE AMOUNT OF UNLOCKED LEVELS
         private uint currentLevel = 4; // CHANGE THIS TO CHANGE THE CURRENT LEVEL
         private uint stageIndex = 0; // CHANGE THIS TO CHANGE THE CURRENT STAGE
-        private GameState gameState = GameState.ChooseLevel; // CHANGE THIS TO CHANGE WHICH STATE YOU WANT TO TEST
+        private GameState gameState = GameState.StartMenu; // CHANGE THIS TO CHANGE WHICH STATE YOU WANT TO TEST
 
         private BasicInput input; // Our input handler
 
